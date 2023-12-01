@@ -1,0 +1,51 @@
+const mongoose = require('mongoose');
+
+const projectstructureSchema = mongoose.Schema({
+    foundation: String,
+    structurelevel: String,
+    masonrywall: String,
+    eightinchbrickwork: String,
+    uwtquantityinliter: String,
+    liftprovision: String,
+    numberofpeoples: String,
+    structureaboveplinthlevelrcc: String,
+    workuptoplinthlevelonly: String,
+    floors: String,
+    isolatedfooting: String,
+    length: String,
+    width: String,
+    height: String,
+    doublecage: String,
+    pilefooting: String,
+    piledepth: String,
+    piledig: String,
+    nounderbeam: String,
+    staircase: String,
+    stairwidth: String,
+    window: String,
+    tower: String,
+    location: String,
+    rccconstructiontype: String,
+    cleardoorsheight: String,
+    cleardoorswidth: String,
+    doorsframeheight: String,
+    doorsframewidth: String,
+    externalflydoor: String,
+    windows: String,
+    material: String,
+    granitechowkat: String,
+    levelssill: String,
+    level: String,
+    waterproofing: String,
+    flooring: String,
+    flooringsill: String,
+    flooringlevel: String,
+    elevation: String,
+    staircaseconstructionways: String,
+    leadID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'leads'
+    }
+});
+
+module.exports = mongoose.model("projectstructure", projectstructureSchema);
