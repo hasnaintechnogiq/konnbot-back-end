@@ -11,7 +11,8 @@ const Queries = require('./models/Queries');
 const Lead = require('./models/Lead');
 const fileUpload = require('express-fileupload');
 const authenticate = require('./authenticate');
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5010;
+
 const cloudinary = require('cloudinary').v2;
 
 cloudinary.config({
