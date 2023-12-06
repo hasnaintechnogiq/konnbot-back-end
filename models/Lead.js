@@ -17,6 +17,10 @@ const LeadsSchema = mongoose.Schema({
     sitearea: String,
     buildingtype: String,
     sitedev: String,
+    userID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users'
+    },
     projectID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'projects'
@@ -32,6 +36,10 @@ const LeadsSchema = mongoose.Schema({
     noticesID: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'notices'
+    }],
+    installmentID: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'myinstallments'
     }]
 });
 

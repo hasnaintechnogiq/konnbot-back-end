@@ -5,11 +5,11 @@ const { getProjectDetail , getSingleProject , deleteProject, addNewProject, upda
 const { getAllUsers, getUserWithQueries, getSingleUser, addNewUser, updateUserDetail, deleteUser } = require('../controllers/user-controller.js');
 const { getAllNotification, getSingleNotification, addNewNotification, updateNotification, deleteNotification } = require('../controllers/notification-controller.js');
 const { getAllQueries,getSingleQueries, addNewQueries, updateQueries, deleteQueries } = require('../controllers/queries-controller.js');
-const { getAllMyInstallment, getSingleInstallments,  addNewMyInstallment, updateMyInstallment, deleteMyInstallment } = require('../controllers/myinstallments-controller.js');
+const { getAllInstallmentsDetalis, getSingleUserInstallments,  addNewMyInstallment, updateMyInstallment, deleteMyInstallment } = require('../controllers/myinstallments-controller.js');
 const { searchLead, getAllLeads, getSingleLead,  addNewLead, updateLead, deleteLead, getLeadWithProject } = require('../controllers/leads-controller.js');
 const { getAllProjectstructureDetail, getSingleProjectstructure, deleteProjectstructure, addNewProjectstructure, updateProjectstructureDetail } = require('../controllers/project-structure-controller.js');
 const { getAllProjectspaceDetail, getSingleProjectspace, deleteProjectspace, addNewProjectspace, updateProjectspaceDetail } = require('../controllers/project-space-controller.js');
-const { addNewNotices, getSingleNotices, getAllNoticesDetail, deleteNotices, updateNoticesDetail } = require('../controllers/notices-controller.js');
+const { addNewNotices, getSingleUserNotices, getAllNoticesDetail, deleteNotices, updateNoticesDetail } = require('../controllers/notices-controller.js');
 
 // Project routes
 
@@ -46,8 +46,8 @@ router.delete("/delete-queries/:_id", deleteQueries)
 
 // MyInstallment routes
 
-router.get("/all-myinstallments", getAllMyInstallment)
-router.get("/get-single-myinstallment/:_id", getSingleInstallments)
+router.get("/get-all-myinstallments", getAllInstallmentsDetalis)
+router.get("/get-single-user-myinstallment/:_id", getSingleUserInstallments)
 router.post("/create-myinstallment", addNewMyInstallment)
 router.put("/update-myinstallment/:_id", updateMyInstallment)
 router.delete("/delete-myinstallment/:_id", deleteMyInstallment)
@@ -81,7 +81,7 @@ router.put("/update-project-space-detail/:_id", updateProjectspaceDetail)
 // Notices routes
 
 router.post("/add-new-notices", addNewNotices)
-router.get("/get-single-notices/:_id", getSingleNotices)
+router.get("/get-single-user-notices/:_id", getSingleUserNotices)
 router.get("/get-all-notices-detail", getAllNoticesDetail)
 router.delete("/delete-notices/:_id", deleteNotices)
 router.put("/update-notices-detail/:_id", updateNoticesDetail)

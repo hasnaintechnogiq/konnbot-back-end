@@ -7,6 +7,7 @@ const QueriesSchema = mongoose.Schema({
     subtype:String,
     description: String,
     status: String,
+    profile_url:String,
     kisusermh: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'

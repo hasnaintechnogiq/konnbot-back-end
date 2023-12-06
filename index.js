@@ -1,33 +1,185 @@
 const express = require('express');
 const dotenv = require('dotenv');
 dotenv.config({path:'./config.env'});
-
 require("./config");
 const jwt = require('jsonwebtoken');
 var cors = require('cors')
-const User = require('./models/User');
+const User = require('./models/User.js');
+
+const Admin = require('./models/Admin');
 const Project = require('./models/Project');
 const Queries = require('./models/Queries');
 const Lead = require('./models/Lead');
-const fileUpload = require('express-fileupload');
+// const fileUpload = require('express-fileupload');
 const authenticate = require('./authenticate');
-const PORT = process.env.PORT || 5010;
+const PORT = process.env.PORT || 5000;
+const mongoose = require('mongoose');
+// const cloudinary = require('cloudinary').v2;
 
-const cloudinary = require('cloudinary').v2;
-
-cloudinary.config({
-    cloud_name: 'drtpucilq',
-    api_key: '887349247613399',
-    api_secret: 'Q-TAkniqj157_LKVzZtXz7KRVW4'
-});
+// cloudinary.config({
+//     cloud_name: 'drtpucilq',
+//     api_key: '887349247613399',
+//     api_secret: 'Q-TAkniqj157_LKVzZtXz7KRVW4'
+// });
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(fileUpload({
-    useTempFiles: true
-}));
+// app.use(fileUpload({
+//     useTempFiles: true
+// }));
 const Routes = require("./routes/route.js")
+
+
+
+
+
+
+
+
+// const multer = require('multer')
+
+ 
+
+// const storage = multer.diskStorage({
+//     destination: function(req, file, cb) {
+//       return cb(null, "./public/Images")
+//     },
+//     filename: function (req, file, cb) {
+//       return cb(null, `${Date.now()}_${file.originalname}`)
+//     }
+//   })
+  
+//   const upload = multer({storage})
+  
+//   app.post('/upload', upload.single('file'), (req, res) => {
+//     console.log(req.body)
+//     console.log(req.file)
+//   })
+
+
+
+
+
+
+const multer = require("multer");
+const path = require("path");
+
+// storage engine 
+
+const storage = multer.diskStorage({
+    destination: './upload/images',
+    filename: (req, file, cb) => {
+        return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+    }
+})
+
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 10000000
+    }
+})
+
+app.use('/profile', express.static('upload/images'));
+app.post("/create-querie-upload", upload.single('profile'), async (req, res) => {
+    // console.log(req.body.name)
+    console.log(req.file)
+    const notice = new Queries({
+        ...req.body,
+        profile_url: `${process.env.REACT_APP_HOS}/profile/${req.file.filename}`
+    })
+    const result =  notice.save();
+
+    let objID = new mongoose.Types.ObjectId(notice.id);        
+    console.log(objID);
+  await   User.updateOne(
+        { email: req.body.email },
+        {
+            $push: {
+                queriesID: objID
+            }
+        }
+    )
+ 
+    res.send({
+        sitename: req.body.sitename,
+        profile_url: `${process.env.REACT_APP_HOS}/profile/${req.file.filename}`
+    })
+})
+
+function errHandler(err, req, res, next) {
+    if (err instanceof multer.MulterError) {
+        res.json({
+            success: 0,
+            message: err.message
+        })
+    }
+}
+app.use(errHandler);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // api for test start
 app.post("/test", async (req, resp) => {
@@ -58,11 +210,26 @@ app.post("/login", async (req, resp) => {
     if (req.body.name && req.body.password) {
         let user = await User.findOne(req.body).select("-password")
         if (user) {
-
             const token = await user.generateAuthToken();
             console.log(token);
- 
-            resp.send(user);
+             resp.send(user);
+        } else { resp.send("no data found") }
+    } else { resp.send("enter email and pass") }
+});
+
+app.post("/admin-register", async (req, resp) => {
+    let data = new Admin(req.body);
+    const result = await data.save();
+       resp.send(result);
+});
+
+app.post("/admin-login", async (req, resp) => {
+    if (req.body.name && req.body.password) {
+        let admin = await Admin.findOne(req.body).select("-password")
+        if (admin) {
+            // const token = await admin.generateAuthToken();
+            // console.log(token);
+             resp.send(admin);
         } else { resp.send("no data found") }
     } else { resp.send("enter email and pass") }
 });
@@ -157,7 +324,29 @@ app.put("/add-queries-in-user/:id", async (req, resp) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.use('/', Routes);
 app.listen(PORT, ()=> {
-    console.log("server is running on port 5000")
+    console.log(`server is running on port ${PORT}`)
 })

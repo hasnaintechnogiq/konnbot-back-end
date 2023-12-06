@@ -5,6 +5,10 @@ const myinstallmentsSchema = mongoose.Schema({
     projecttype:String,
     description: String,
     status: String,
+    leadID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'leads'
+    },
     date:{type:Date, default: Date.now}
 });
 

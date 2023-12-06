@@ -1,31 +1,37 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
-const usersSchema= mongoose.Schema({
-    // _id: mongoose.Schema.Types.ObjectId,
-    name:String,
-    number:Number,
-    email:String,
-    city:String,
-    state:String,
-    password:String,
+const usersSchema = mongoose.Schema({
+    name: String,
+    number: Number,
+    email: String,
+    city: String,
+    state: String,
+    password: String,
+    leadID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'leads'
+    },
     queriesID: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'queriess'
     }],
-    role: {
+    status: {
         type: String,
         default: "login"
+    },
+    role: {
+        type: String,
+        default: "user"
     },
     tokens: [
         {
             token: {
-                type: String             
+                type: String
             }
         }
     ]
 });
-
 
 usersSchema.methods.generateAuthToken = async function () {
     try {
@@ -40,4 +46,4 @@ usersSchema.methods.generateAuthToken = async function () {
 }
 
 
-module.exports= mongoose.model("users",usersSchema);
+module.exports = mongoose.model("users", usersSchema);

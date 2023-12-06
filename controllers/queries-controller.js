@@ -13,7 +13,7 @@ const getAllQueries = async (req, res) => {
 
 const getSingleQueries = async (req, resp) => {
     try {
-        let queriessingle = await Queries.findOne({ _id: req.params._id });
+        let queriessingle = await Queries.find({ kisusermh: req.params._id });
         resp.send(queriessingle);
     } catch (err) {
         res.status(500).json(err);
@@ -24,8 +24,9 @@ const addNewQueries = async (req, res) => {
     try {
         let queries = new Queries(req.body);
         const result = await queries.save();
-        let objID = new mongoose.Types.ObjectId(queries.id)
-        console.log(objID);
+        let objID = new mongoose.Types.ObjectId(queries.id);
+        
+        console.log(req.body.email);
         await User.updateOne(
             { email: req.body.email },
             {
@@ -61,4 +62,5 @@ const deleteQueries = async (req, res) => {
         res.status(500).json(error);
     }
 };
+
 module.exports = { getAllQueries, getSingleQueries, addNewQueries, updateQueries, deleteQueries };

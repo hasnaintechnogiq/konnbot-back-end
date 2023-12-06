@@ -6,19 +6,20 @@ const Lead = require('../models/Lead.js');
 
 const getAllNoticesDetail = async (req, res) => {
     try {
-        let noticesdata = await Notices.find()
+        let noticesdata = await Notices.find().populate("leadID");
         res.send(noticesdata)
     } catch (err) {
         res.status(500).json(err);
     }
 };
 
-const getSingleNotices = async (req, resp) => {
+const getSingleUserNotices = async (req, resp) => {
+    console.log(req.params._id)
     try {
-        let single = await Notices.findOne({ _id: req.params._id });
+        let single = await Lead.findOne({ _id: req.params._id }).populate("noticesID");
         resp.send(single);
     } catch (err) {
-        res.status(500).json(err);
+        resp.status(500).json(err);
     }
 };
 
@@ -64,6 +65,6 @@ const updateNoticesDetail = async (req, resp) => {
     }
 };
 
-module.exports = { getAllNoticesDetail, getSingleNotices, deleteNotices, addNewNotices, updateNoticesDetail };
+module.exports = { getAllNoticesDetail, getSingleUserNotices, deleteNotices, addNewNotices, updateNoticesDetail };
 
  
