@@ -1,18 +1,21 @@
 const mongoose = require('mongoose');
 
 const QueriesSchema = mongoose.Schema({
-    subtype:String,
-    sitename: String,
-    projecttype:String,
-    subtype:String,
+    type: String,
+    subtype: String,
     description: String,
-    status: String,
-    profile_url:String,
+    sitename: String,
+    querycategory: String,
+    status: {
+        type: String,
+        default: "Pending"
+    },
+    profile_url: String,
     kisusermh: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
     },
-    date:{type:Date, default: Date.now} ,
+    date: { type: Date, default: Date.now },
     images: String,
 });
 

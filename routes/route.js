@@ -4,12 +4,15 @@ const authenticate = require('../authenticate');
 const { getProjectDetail , getSingleProject , deleteProject, addNewProject, updateProjectDetail } = require('../controllers/project-controller.js');
 const { getAllUsers, getUserWithQueries, getSingleUser, addNewUser, updateUserDetail, deleteUser } = require('../controllers/user-controller.js');
 const { getAllNotification, getSingleNotification, addNewNotification, updateNotification, deleteNotification } = require('../controllers/notification-controller.js');
-const { getAllQueries,getSingleQueries, addNewQueries, updateQueries, deleteQueries } = require('../controllers/queries-controller.js');
-const { getAllInstallmentsDetalis, getSingleUserInstallments,  addNewMyInstallment, updateMyInstallment, deleteMyInstallment } = require('../controllers/myinstallments-controller.js');
+const { getSingleQuery, getAllQueries,getUserAllQueries, addNewQueries, updateQueries, deleteQueries } = require('../controllers/queries-controller.js');
+const { getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments,  addNewMyInstallment, updateMyInstallment, deleteMyInstallment } = require('../controllers/myinstallments-controller.js');
 const { searchLead, getAllLeads, getSingleLead,  addNewLead, updateLead, deleteLead, getLeadWithProject } = require('../controllers/leads-controller.js');
 const { getAllProjectstructureDetail, getSingleProjectstructure, deleteProjectstructure, addNewProjectstructure, updateProjectstructureDetail } = require('../controllers/project-structure-controller.js');
 const { getAllProjectspaceDetail, getSingleProjectspace, deleteProjectspace, addNewProjectspace, updateProjectspaceDetail } = require('../controllers/project-space-controller.js');
 const { addNewNotices, getSingleUserNotices, getAllNoticesDetail, deleteNotices, updateNoticesDetail } = require('../controllers/notices-controller.js');
+const { addNewChangeOrderInstallment, getSingleUserChangeOrderInstallment, getAllChangeOrderInstallmentDetail, deleteChangeOrderInstallment, updatechangeOrderInstallmentDetail } = require('../controllers/change-order-installment-controller.js');
+const { addNewChatOrderInstallment, getSingleUserChatOrderInstallment, getAllChatOrderInstallmentDetail, deleteChatOrderInstallment, updateChatOrderInstallmentDetail } = require('../controllers/Chats-Change-Installment-controller.js');
+
 
 // Project routes
 
@@ -38,14 +41,15 @@ router.delete("/delete-notification/:_id", deleteNotification)
 
 // Queries routes
 
+router.get("/get-single-query/:_id", getSingleQuery)
 router.get("/all-queries", getAllQueries)
-router.get("/get-single-queries/:_id", getSingleQueries)
+router.get("/get-user-all-queries/:_id", getUserAllQueries)
 router.post("/create-queries", addNewQueries)
 router.put("/update-queries/:_id", updateQueries)
 router.delete("/delete-queries/:_id", deleteQueries)
 
 // MyInstallment routes
-
+router.get("/get-single-installment-with-change-order/:_id", getSingleInstallmentWithChangeOrder)
 router.get("/get-all-myinstallments", getAllInstallmentsDetalis)
 router.get("/get-single-user-myinstallment/:_id", getSingleUserInstallments)
 router.post("/create-myinstallment", addNewMyInstallment)
@@ -85,5 +89,22 @@ router.get("/get-single-user-notices/:_id", getSingleUserNotices)
 router.get("/get-all-notices-detail", getAllNoticesDetail)
 router.delete("/delete-notices/:_id", deleteNotices)
 router.put("/update-notices-detail/:_id", updateNoticesDetail)
+
+// Change Order Installment
+
+router.post("/add-new-change-order-installment", addNewChangeOrderInstallment)
+router.get("/get-single-change-order-installment/:_id", getSingleUserChangeOrderInstallment)
+router.get("/get-all-change-order-installment-detail", getAllChangeOrderInstallmentDetail)
+router.delete("/delete-change-order-installment/:_id", deleteChangeOrderInstallment)
+router.put("/update-change-order-installment-detail/:_id", updatechangeOrderInstallmentDetail)
+
+// Chat Change Order Installment
+
+router.post("/add-new-order-installment-chat", addNewChatOrderInstallment) 
+router.get("/get-single-order-installment-chat/:_id", getSingleUserChatOrderInstallment)
+router.get("/get-all-order-installment-chat-detail", getAllChatOrderInstallmentDetail)
+router.delete("/delete-order-installment-chat/:_id", deleteChatOrderInstallment)
+router.put("/update-order-installment-chat-detail/:_id", updateChatOrderInstallmentDetail)
+
 
 module.exports = router;

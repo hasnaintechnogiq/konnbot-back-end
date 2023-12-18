@@ -11,7 +11,7 @@ const getAllQueries = async (req, res) => {
     }
 };
 
-const getSingleQueries = async (req, resp) => {
+const getUserAllQueries = async (req, resp) => {
     try {
         let queriessingle = await Queries.find({ kisusermh: req.params._id });
         resp.send(queriessingle);
@@ -19,6 +19,19 @@ const getSingleQueries = async (req, resp) => {
         res.status(500).json(err);
     }
 };
+
+const getSingleQuery = async (req, resp) => {
+    try {
+        let queriessingle = await Queries.find({ _id: req.params._id }).populate("kisusermh");
+        resp.send(queriessingle);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+};
+
+
+
+
 
 const addNewQueries = async (req, res) => {
     try {
@@ -63,4 +76,4 @@ const deleteQueries = async (req, res) => {
     }
 };
 
-module.exports = { getAllQueries, getSingleQueries, addNewQueries, updateQueries, deleteQueries };
+module.exports = { getAllQueries, getUserAllQueries, addNewQueries, updateQueries, deleteQueries, getSingleQuery };

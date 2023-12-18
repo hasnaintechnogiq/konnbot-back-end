@@ -14,11 +14,25 @@ const getAllInstallmentsDetalis = async (req, res) => {
 const getSingleUserInstallments = async (req, resp) => {
     try {
         let single = await Lead.findOne({ _id: req.params._id }).populate("installmentID");
-    resp.send(single);
-      } catch (err) {
-       resp.status(500).json(err);
-   }
+        resp.send(single);
+    } catch (err) {
+        resp.status(500).json(err);
+    }
 };
+
+//  Working 
+const getSingleInstallmentWithChangeOrder = async (req, resp) => {
+    try {
+        let single = await MyInstallment.findOne({ _id: req.params._id }).populate("changeorderinstallmentID");
+        resp.send(single);
+    } catch (err) {
+        resp.status(500).json(err);
+    }
+};
+
+//  Working 
+
+
 
 
 const deleteMyInstallment = async (req, res) => {
@@ -64,4 +78,4 @@ const updateMyInstallment = async (req, res) => {
     }
 };
 
-module.exports = { getAllInstallmentsDetalis, getSingleUserInstallments,  addNewMyInstallment, updateMyInstallment, deleteMyInstallment };
+module.exports = { getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, addNewMyInstallment, updateMyInstallment, deleteMyInstallment };

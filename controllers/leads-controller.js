@@ -4,7 +4,8 @@ const Lead = require('../models/Lead.js');
 
 const getAllLeads = async (req, res) => {
     try {
-        let leads = await Lead.find().populate("projectID");
+        let leads = await Lead.find().populate("projectID")
+        .populate("userID");
         res.send(leads)
     } catch (err) {
         res.status(500).json(err);
@@ -13,7 +14,7 @@ const getAllLeads = async (req, res) => {
 
 const getSingleLead = async (req, resp) => {
       try {
-        let single = await Lead.findOne({ _id: req.params.id });
+        let single = await Lead.findOne({ _id: req.params.id }).populate("userID");
         resp.send(single);
     } catch (err) {
         resp.status(500).json(err);

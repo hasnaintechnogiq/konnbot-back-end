@@ -3,6 +3,12 @@ const mongoose = require('mongoose');
 const LeadsSchema = mongoose.Schema({
     city: String,
     leadname: String,
+    interested: {
+        type: String,
+        default: "notintrested"
+    },
+    quotationstatus: String,
+    convertoproject:String,
     status: String,
     priority: String,
     projestatus: String,
@@ -41,6 +47,11 @@ const LeadsSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'myinstallments'
     }]
+    // ,
+    // changeorderinstallmentID: [{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'changeorderinstallment'
+    // }]
 });
 
 module.exports = mongoose.model("leads", LeadsSchema);

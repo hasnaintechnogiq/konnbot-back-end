@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const noticesSchema = mongoose.Schema({
+    title: String,
     personname: String,
     date:{type:Date, default: Date.now} ,
     discription: String,
