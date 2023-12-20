@@ -14,7 +14,7 @@ const LeadsSchema = mongoose.Schema({
     projestatus: String,
     goingtostart: String,
     email: String,
-    clientdescription: String,
+    clientdescription: Array,
     clientaddress: String,
     plotaddress: String,
     discription: String,
@@ -23,6 +23,7 @@ const LeadsSchema = mongoose.Schema({
     sitearea: String,
     buildingtype: String,
     sitedev: String,
+    nextmeeting: String,
     userID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const projectspaceSchema = mongoose.Schema({
     bankingtech: String,
     classtype: String,
-    spacetags: Array,
+    spacetags: String,
     spacerequirements: Array,
     doorname: String,
     roomdimension: String,

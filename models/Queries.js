@@ -16,7 +16,10 @@ const QueriesSchema = mongoose.Schema({
         ref: 'users'
     },
     date: { type: Date, default: Date.now },
-    images: String,
+    queryupdateID: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'queryupdate'
+    }]
 });
 
 module.exports = mongoose.model("queriess", QueriesSchema);

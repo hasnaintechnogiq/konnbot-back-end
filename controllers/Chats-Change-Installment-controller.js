@@ -27,7 +27,6 @@ const addNewChatOrderInstallment = async (req, resp) => {
 };
 
 const getSingleUserChatOrderInstallment = async (req, resp) => {
-    // console.log(req.params._id)
     try {
         let single = await ChangeOrderInstallment.findOne({ _id: req.params._id }).populate("chatschangeinstallmentID");
         resp.send(single);
@@ -68,4 +67,3 @@ const updateChatOrderInstallmentDetail = async (req, resp) => {
 };
 
 module.exports = { addNewChatOrderInstallment, getSingleUserChatOrderInstallment, getAllChatOrderInstallmentDetail, deleteChatOrderInstallment, updateChatOrderInstallmentDetail };
- 

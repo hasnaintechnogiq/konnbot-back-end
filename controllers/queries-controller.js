@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../models/User.js');
 const Queries = require('../models/Queries.js');
-
+const Queryupdates = require('../models/Queryupdates.js');
 const getAllQueries = async (req, res) => {
     try {
         let queries = await Queries.find().populate("kisusermh")
@@ -22,16 +22,34 @@ const getUserAllQueries = async (req, resp) => {
 
 const getSingleQuery = async (req, resp) => {
     try {
-        let queriessingle = await Queries.find({ _id: req.params._id }).populate("kisusermh");
+        let queriessingle = await Queries.find({ _id: req.params._id }).populate("kisusermh")
+        .populate("queryupdateID")
         resp.send(queriessingle);
     } catch (err) {
         res.status(500).json(err);
     }
 };
 
-
-
-
+const addQueryUpdate = async (req, res) => {
+    try {
+        let queries = new Queryupdates(req.body);
+        const result = await queries.save();
+        let objID = new mongoose.Types.ObjectId(queries.id);
+        let newss = new mongoose.Types.ObjectId(req.body.queryid)
+        console.log(req.body.email);
+        await Queries.updateOne(
+            { _id: newss },
+            {
+                $push: {
+                    queryupdateID: objID
+                }
+            }
+        )
+        res.send(result);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+};
 
 const addNewQueries = async (req, res) => {
     try {
@@ -76,4 +94,5 @@ const deleteQueries = async (req, res) => {
     }
 };
 
-module.exports = { getAllQueries, getUserAllQueries, addNewQueries, updateQueries, deleteQueries, getSingleQuery };
+
+module.exports = { addQueryUpdate, getAllQueries, getUserAllQueries, addNewQueries, updateQueries, deleteQueries, getSingleQuery };

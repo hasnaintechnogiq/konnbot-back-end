@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const authenticate = require('../authenticate');
 
-const { getProjectDetail , getSingleProject , deleteProject, addNewProject, updateProjectDetail } = require('../controllers/project-controller.js');
+const { getProjectDetail, getSingleProject, deleteProject, addNewProject, updateProjectDetail } = require('../controllers/project-controller.js');
 const { getAllUsers, getUserWithQueries, getSingleUser, addNewUser, updateUserDetail, deleteUser } = require('../controllers/user-controller.js');
 const { getAllNotification, getSingleNotification, addNewNotification, updateNotification, deleteNotification } = require('../controllers/notification-controller.js');
-const { getSingleQuery, getAllQueries,getUserAllQueries, addNewQueries, updateQueries, deleteQueries } = require('../controllers/queries-controller.js');
-const { getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments,  addNewMyInstallment, updateMyInstallment, deleteMyInstallment } = require('../controllers/myinstallments-controller.js');
-const { searchLead, getAllLeads, getSingleLead,  addNewLead, updateLead, deleteLead, getLeadWithProject } = require('../controllers/leads-controller.js');
+const { addQueryUpdate, getSingleQuery, getAllQueries, getUserAllQueries, addNewQueries, updateQueries, deleteQueries } = require('../controllers/queries-controller.js');
+const { getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, addNewMyInstallment, updateMyInstallment, deleteMyInstallment } = require('../controllers/myinstallments-controller.js');
+const { searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject } = require('../controllers/leads-controller.js');
 const { getAllProjectstructureDetail, getSingleProjectstructure, deleteProjectstructure, addNewProjectstructure, updateProjectstructureDetail } = require('../controllers/project-structure-controller.js');
 const { getAllProjectspaceDetail, getSingleProjectspace, deleteProjectspace, addNewProjectspace, updateProjectspaceDetail } = require('../controllers/project-space-controller.js');
 const { addNewNotices, getSingleUserNotices, getAllNoticesDetail, deleteNotices, updateNoticesDetail } = require('../controllers/notices-controller.js');
@@ -41,6 +41,7 @@ router.delete("/delete-notification/:_id", deleteNotification)
 
 // Queries routes
 
+router.post("/add-query-update", addQueryUpdate)
 router.get("/get-single-query/:_id", getSingleQuery)
 router.get("/all-queries", getAllQueries)
 router.get("/get-user-all-queries/:_id", getUserAllQueries)
@@ -100,7 +101,7 @@ router.put("/update-change-order-installment-detail/:_id", updatechangeOrderInst
 
 // Chat Change Order Installment
 
-router.post("/add-new-order-installment-chat", addNewChatOrderInstallment) 
+router.post("/add-new-order-installment-chat", addNewChatOrderInstallment)
 router.get("/get-single-order-installment-chat/:_id", getSingleUserChatOrderInstallment)
 router.get("/get-all-order-installment-chat-detail", getAllChatOrderInstallmentDetail)
 router.delete("/delete-order-installment-chat/:_id", deleteChatOrderInstallment)
