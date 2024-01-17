@@ -155,7 +155,7 @@ app.use('/profile', express.static('upload/images'));
       originalname: file.originalname,
       filename: file.filename,
       path: file.path,
-      profile_url: `${process.env.REACT_APP_HOS}/profile/${file.filename}`
+      profile_url: `https://konnbotbackend.onrender.com/profile/${file.filename}`
     }));
 
 
