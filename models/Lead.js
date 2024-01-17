@@ -47,12 +47,11 @@ const LeadsSchema = mongoose.Schema({
     installmentID: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'myinstallments'
+    }],
+    activitiesID: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'activities'
     }]
-    // ,
-    // changeorderinstallmentID: [{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'changeorderinstallment'
-    // }]
 });
 
 module.exports = mongoose.model("leads", LeadsSchema);

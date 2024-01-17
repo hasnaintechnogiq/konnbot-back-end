@@ -67,61 +67,114 @@ const path = require("path");
 
 // storage engine 
 
+// const storage = multer.diskStorage({
+//     destination: './upload/images',
+//     filename: (req, file, cb) => {
+//         return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+//     }
+// })
+
+// const upload = multer({
+//     storage: storage,
+//     limits: {
+//         fileSize: 10000000
+//     }
+// })
+
+// app.use('/profile', express.static('upload/images'));
+// app.post("/create-querie-upload", upload.single('profile'), async (req, res) => {
+//     // console.log(req.body.name)
+//     console.log(req.file)
+//     const notice = new Queries({
+//         ...req.body,
+//         profile_url: `${process.env.REACT_APP_HOS}/profile/${req.file.filename}`
+//     })
+//     const result =  notice.save();
+
+//     let objID = new mongoose.Types.ObjectId(notice.id);        
+//     console.log(objID);
+//   await   User.updateOne(
+//         { email: req.body.email },
+//         {
+//             $push: {
+//                 queriesID: objID
+//             }
+//         }
+//     )
+ 
+//     res.send({
+//         sitename: req.body.sitename,
+//         profile_url: `${process.env.REACT_APP_HOS}/profile/${req.file.filename}`
+//     })
+// })
+
+// function errHandler(err, req, res, next) {
+//     if (err instanceof multer.MulterError) {
+//         res.json({
+//             success: 0,
+//             message: err.message
+//         })
+//     }
+// }
+// app.use(errHandler);
+
+
+
+
 const storage = multer.diskStorage({
-    destination: './upload/images',
+    destination: function (req, file, cb) {
+      cb(null, './upload/images');
+    },
     filename: (req, file, cb) => {
         return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
-    }
-})
-
-const upload = multer({
-    storage: storage,
-    limits: {
-        fileSize: 10000000
-    }
-})
-
+    },
+  });
+  
+  const upload = multer({ storage: storage });
+  
+  // Set up a simple form for testing
+//   app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'index.html'));
+//   });
 app.use('/profile', express.static('upload/images'));
-app.post("/create-querie-upload", upload.single('profile'), async (req, res) => {
-    // console.log(req.body.name)
-    console.log(req.file)
-    const notice = new Queries({
-        ...req.body,
-        profile_url: `${process.env.REACT_APP_HOS}/profile/${req.file.filename}`
-    })
-    const result =  notice.save();
+  // Handle file upload
+  app.post('/upload', upload.array('images', 5), async (req, res) => {
+    const files = req.files;
+    if (!files || files.length === 0) {
+      return res.status(400).send('No files were uploaded.');
+    }
 
-    let objID = new mongoose.Types.ObjectId(notice.id);        
-    console.log(objID);
-  await   User.updateOne(
-        { email: req.body.email },
+    // Process the uploaded files (e.g., save to database, resize, etc.)
+    // Here, we're just sending a response with the file information.
+    const formData = req.body;
+ 
+    console.log(formData)
+
+
+    const imgarry = files.map((file) => ({
+      originalname: file.originalname,
+      filename: file.filename,
+      path: file.path,
+      profile_url: `${process.env.REACT_APP_HOS}/profile/${file.filename}`
+    }));
+
+
+    const result = await Queries.create({ ...formData, imgarry });
+    
+    let objID = new mongoose.Types.ObjectId(result.id);      
+    let newss = new mongoose.Types.ObjectId(req.body.kisusermh)  
+      console.log(objID);
+        await   User.updateOne(
+        { _id: newss },
         {
             $push: {
                 queriesID: objID
             }
         }
     )
- 
-    res.send({
-        sitename: req.body.sitename,
-        profile_url: `${process.env.REACT_APP_HOS}/profile/${req.file.filename}`
-    })
-})
-
-function errHandler(err, req, res, next) {
-    if (err instanceof multer.MulterError) {
-        res.json({
-            success: 0,
-            message: err.message
-        })
-    }
-}
-app.use(errHandler);
-
-
-
-
-
+    res.json(result);
+    // res.send(imgarry);
+  });
 
 
 

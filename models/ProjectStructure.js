@@ -23,7 +23,6 @@ const projectstructureSchema = mongoose.Schema({
     staircase: String,
     stairwidth: String,
     windowy: String,
-    tower: String,
     location: String,
     rccconstructiontype: String,
     cleardoorsheight: String,

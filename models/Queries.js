@@ -11,6 +11,7 @@ const QueriesSchema = mongoose.Schema({
         default: "Pending"
     },
     profile_url: String,
+    imgarry: Array,
     kisusermh: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'

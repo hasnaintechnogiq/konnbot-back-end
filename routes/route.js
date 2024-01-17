@@ -12,6 +12,8 @@ const { getAllProjectspaceDetail, getSingleProjectspace, deleteProjectspace, add
 const { addNewNotices, getSingleUserNotices, getAllNoticesDetail, deleteNotices, updateNoticesDetail } = require('../controllers/notices-controller.js');
 const { addNewChangeOrderInstallment, getSingleUserChangeOrderInstallment, getAllChangeOrderInstallmentDetail, deleteChangeOrderInstallment, updatechangeOrderInstallmentDetail } = require('../controllers/change-order-installment-controller.js');
 const { addNewChatOrderInstallment, getSingleUserChatOrderInstallment, getAllChatOrderInstallmentDetail, deleteChatOrderInstallment, updateChatOrderInstallmentDetail } = require('../controllers/Chats-Change-Installment-controller.js');
+const { getSingleLeadactivities, addNewActivities, updateActivities, deleteActivities } = require('../controllers/activities-controller.js');
+const { addNewUpdateInSubActivity, addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity } = require('../controllers/sub-activites-controller.js');
 
 
 // Project routes
@@ -106,6 +108,24 @@ router.get("/get-single-order-installment-chat/:_id", getSingleUserChatOrderInst
 router.get("/get-all-order-installment-chat-detail", getAllChatOrderInstallmentDetail)
 router.delete("/delete-order-installment-chat/:_id", deleteChatOrderInstallment)
 router.put("/update-order-installment-chat-detail/:_id", updateChatOrderInstallmentDetail)
+
+// Activites
+
+router.post("/add-new-activity", addNewActivities)
+router.get("/get-single-lead-all-activities/:_id", getSingleLeadactivities)
+// router.get("/get-all-order-installment-chat-detail", getAllChatOrderInstallmentDetail)
+router.delete("/delete-activity/:_id", deleteActivities)
+router.put("/update-activity/:_id", updateActivities)
+
+// SubActivites
+
+router.post("/add-new-subactivity", addNewSubActivity)
+router.get("/get-all-subactivities-ofsingle-activity/:_id", getSubActivitiesofSingleActivity)
+// router.get("/get-all-order-installment-chat-detail", getAllChatOrderInstallmentDetail)
+router.delete("/delete-subactivity/:_id", deleteSubActivity)
+router.put("/update-subactivity/:_id", updatesubactivity)
+router.post("/add-new-update-in-subactivity", addNewUpdateInSubActivity)
+
 
 
 module.exports = router;

@@ -19,8 +19,7 @@ const getSingleUserInstallments = async (req, resp) => {
         resp.status(500).json(err);
     }
 };
-
-//  Working 
+ 
 const getSingleInstallmentWithChangeOrder = async (req, resp) => {
     try {
         let single = await MyInstallment.findOne({ _id: req.params._id }).populate("changeorderinstallmentID");
@@ -29,11 +28,6 @@ const getSingleInstallmentWithChangeOrder = async (req, resp) => {
         resp.status(500).json(err);
     }
 };
-
-//  Working 
-
-
-
 
 const deleteMyInstallment = async (req, res) => {
     try {
