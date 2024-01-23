@@ -34,7 +34,13 @@ const addNewActivities = async (req, res) => {
 
 const getSingleLeadactivities = async (req, resp) => {
     try {
-        let single = await Lead.findOne({ _id: req.params._id }).populate("activitiesID");
+        let single = await Lead.findById({ _id: req.params._id }).populate({
+            path: 'activitiesID',
+            populate: {
+              path: 'subactivitiesID',
+              model: 'subactivities'
+            }
+          });
         resp.send(single);
     } catch (err) {
         resp.status(500).json(err);

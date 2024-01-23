@@ -148,7 +148,7 @@ app.use('/profile', express.static('upload/images'));
     // Here, we're just sending a response with the file information.
     const formData = req.body;
  
-    console.log(formData)
+    console.log(files)
 
 
     const imgarry = files.map((file) => ({

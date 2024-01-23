@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const subactivitiesSchema = mongoose.Schema({
+    statussubactivity: {
+        type: Number,
+        default: 0
+    },
     subactivityname: String,
     startdatesubactivity: String,
     duedatesubactivity: String,
