@@ -5,10 +5,11 @@ require("./config");
 const jwt = require('jsonwebtoken');
 var cors = require('cors')
 const User = require('./models/User.js');
-
+const Queryupdates = require('./models/Queryupdates.js');
 const Admin = require('./models/Admin');
 const Project = require('./models/Project');
 const Queries = require('./models/Queries');
+
 const Lead = require('./models/Lead');
 const ChangeOrderInstallment = require('./models/ChangeOrderInstallment.js');
 const ChatsChangeInstallment = require('./models/ChatsChangeInstallment.js');
@@ -246,6 +247,69 @@ app.post('/add-images-in-change-order-upload', upload.array('images', 5), async 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// Ticket update with images start
+
+app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, res) => {
+    const files = req.files;
+    if (!files || files.length === 0) {
+        const formData = req.body;
+        const result = await Queryupdates.create({ ...formData });
+
+        let objID = new mongoose.Types.ObjectId(result.id);
+        let newss = new mongoose.Types.ObjectId(req.body.queryid)
+        console.log(req.body.email);
+        await Queries.updateOne(
+            { _id: newss },
+            {
+                $push: {
+                    queryupdateID: objID
+                }
+            }
+        )
+ 
+        return res.send(result);
+    }
+
+    const formData = req.body;
+    console.log(files)
+    const imgarry = files.map((file) => ({
+        originalname: file.originalname,
+        filename: file.filename,
+        path: file.path,
+        profile_url: `https://konnbotbackend.onrender.com/profile/${file.filename}`
+    }));
+
+    const result = await Queryupdates.create({ ...formData, imgarry });
+
+    let objID = new mongoose.Types.ObjectId(result.id);
+    let newss = new mongoose.Types.ObjectId(req.body.queryid)
+    console.log(req.body.email);
+    await Queries.updateOne(
+        { _id: newss },
+        {
+            $push: {
+                queryupdateID: objID
+            }
+        }
+    )
+        res.send(result);
+    // res.send(imgarry);
+});
+
+
+// Ticket update with images end
 
 
 
