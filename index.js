@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-dotenv.config({path:'./config.env'});
+dotenv.config({ path: './config.env' });
 require("./config");
 const jwt = require('jsonwebtoken');
 var cors = require('cors')
@@ -10,7 +10,8 @@ const Admin = require('./models/Admin');
 const Project = require('./models/Project');
 const Queries = require('./models/Queries');
 const Lead = require('./models/Lead');
-// const fileUpload = require('express-fileupload');
+const ChangeOrderInstallment = require('./models/ChangeOrderInstallment.js');
+const ChatsChangeInstallment = require('./models/ChatsChangeInstallment.js');
 const authenticate = require('./authenticate');
 const PORT = process.env.PORT || 5000;
 const mongoose = require('mongoose');
@@ -39,7 +40,7 @@ const Routes = require("./routes/route.js")
 
 // const multer = require('multer')
 
- 
+
 
 // const storage = multer.diskStorage({
 //     destination: function(req, file, cb) {
@@ -49,9 +50,9 @@ const Routes = require("./routes/route.js")
 //       return cb(null, `${Date.now()}_${file.originalname}`)
 //     }
 //   })
-  
+
 //   const upload = multer({storage})
-  
+
 //   app.post('/upload', upload.single('file'), (req, res) => {
 //     console.log(req.body)
 //     console.log(req.file)
@@ -101,7 +102,7 @@ const path = require("path");
 //             }
 //         }
 //     )
- 
+
 //     res.send({
 //         sitename: req.body.sitename,
 //         profile_url: `${process.env.REACT_APP_HOS}/profile/${req.file.filename}`
@@ -123,48 +124,48 @@ const path = require("path");
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, './upload/images');
+        cb(null, './upload/images');
     },
     filename: (req, file, cb) => {
         return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
     },
-  });
-  
-  const upload = multer({ storage: storage });
-  
-  // Set up a simple form for testing
+});
+
+const upload = multer({ storage: storage });
+
+// Set up a simple form for testing
 //   app.get('/', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'index.html'));
 //   });
 app.use('/profile', express.static('upload/images'));
-  // Handle file upload
-  app.post('/upload', upload.array('images', 5), async (req, res) => {
+// Handle file upload
+app.post('/add-ticket-and-upload', upload.array('images', 5), async (req, res) => {
     const files = req.files;
     if (!files || files.length === 0) {
-      return res.status(400).send('No files were uploaded.');
+        return res.status(400).send('No files were uploaded.');
     }
 
     // Process the uploaded files (e.g., save to database, resize, etc.)
     // Here, we're just sending a response with the file information.
     const formData = req.body;
- 
+
     console.log(files)
 
 
     const imgarry = files.map((file) => ({
-      originalname: file.originalname,
-      filename: file.filename,
-      path: file.path,
-      profile_url: `https://konnbotbackend.onrender.com/profile/${file.filename}`
+        originalname: file.originalname,
+        filename: file.filename,
+        path: file.path,
+        profile_url: `https://konnbotbackend.onrender.com/profile/${file.filename}`
     }));
 
 
     const result = await Queries.create({ ...formData, imgarry });
-    
-    let objID = new mongoose.Types.ObjectId(result.id);      
-    let newss = new mongoose.Types.ObjectId(req.body.kisusermh)  
-      console.log(objID);
-        await   User.updateOne(
+
+    let objID = new mongoose.Types.ObjectId(result.id);
+    let newss = new mongoose.Types.ObjectId(req.body.kisusermh)
+    console.log(objID);
+    await User.updateOne(
         { _id: newss },
         {
             $push: {
@@ -174,7 +175,7 @@ app.use('/profile', express.static('upload/images'));
     )
     res.json(result);
     // res.send(imgarry);
-  });
+});
 
 
 
@@ -184,6 +185,61 @@ app.use('/profile', express.static('upload/images'));
 
 
 
+
+
+
+
+
+
+
+
+
+app.post('/add-images-in-change-order-upload', upload.array('images', 5), async (req, res) => {
+    const files = req.files;
+    if (!files || files.length === 0) {
+        const formData = req.body;
+        const result = await ChatsChangeInstallment.create({ ...formData });
+
+        let objID = new mongoose.Types.ObjectId(result.id);
+        let newss = new mongoose.Types.ObjectId(req.body.changeorderinstallmentid)
+         console.log(objID);
+         await ChangeOrderInstallment.updateOne(
+             { _id: newss },
+             {
+                 $push: {
+                     chatschangeinstallmentID: objID
+                 }
+             }
+         )
+        //  res.send(result);
+        return res.send(result);
+    }
+
+    const formData = req.body;
+    console.log(files)
+    const imgarry = files.map((file) => ({
+        originalname: file.originalname,
+        filename: file.filename,
+        path: file.path,
+        profile_url: `https://konnbotbackend.onrender.com/profile/${file.filename}`
+    }));
+
+    const result = await ChatsChangeInstallment.create({ ...formData, imgarry });
+
+    let objID = new mongoose.Types.ObjectId(result.id);
+       let newss = new mongoose.Types.ObjectId(req.body.changeorderinstallmentid)
+        console.log(objID);
+        await ChangeOrderInstallment.updateOne(
+            { _id: newss },
+            {
+                $push: {
+                    chatschangeinstallmentID: objID
+                }
+            }
+        )
+        res.send(result);
+    // res.send(imgarry);
+});
 
 
 
@@ -256,16 +312,16 @@ app.post("/test", async (req, resp) => {
 app.post("/register", async (req, resp) => {
     let data = new User(req.body);
     const result = await data.save();
-       resp.send(result);
+    resp.send(result);
 });
 
 app.post("/login", async (req, resp) => {
-    if (req.body.name && req.body.password) {
+    if (req.body.email && req.body.password) {
         let user = await User.findOne(req.body).select("-password")
         if (user) {
             const token = await user.generateAuthToken();
             console.log(token);
-             resp.send(user);
+            resp.send(user);
         } else { resp.send("no data found") }
     } else { resp.send("enter email and pass") }
 });
@@ -273,7 +329,7 @@ app.post("/login", async (req, resp) => {
 app.post("/admin-register", async (req, resp) => {
     let data = new Admin(req.body);
     const result = await data.save();
-       resp.send(result);
+    resp.send(result);
 });
 
 app.post("/admin-login", async (req, resp) => {
@@ -282,7 +338,7 @@ app.post("/admin-login", async (req, resp) => {
         if (admin) {
             // const token = await admin.generateAuthToken();
             // console.log(token);
-             resp.send(admin);
+            resp.send(admin);
         } else { resp.send("no data found") }
     } else { resp.send("enter email and pass") }
 });
@@ -294,12 +350,12 @@ app.post("/add-product", async (req, resp) => {
 });
 
 app.get("/get-product",
-//  authenticate , 
-  async (req, resp) => {
-    let products = await Product.find();
-    // const result = await products.save();
-    resp.send(products);
-});
+    //  authenticate , 
+    async (req, resp) => {
+        let products = await Product.find();
+        // const result = await products.save();
+        resp.send(products);
+    });
 
 app.delete("/delete-product/:_id", async (req, resp) => {
     console.log(req.params)
@@ -344,7 +400,7 @@ app.put("/update/:_id", async (req, resp) => {
 // or url me user ki id 
 
 app.put("/add-queries-in-user/:id", async (req, resp) => {
-    const result = await User.findByIdAndUpdate(req.params.id, { $push: { queriesID: req.body.queriesid}});
+    const result = await User.findByIdAndUpdate(req.params.id, { $push: { queriesID: req.body.queriesid } });
     resp.send(result);
 });
 
@@ -366,9 +422,9 @@ app.put("/add-queries-in-user/:id", async (req, resp) => {
 // });
 
 
- 
+
 // Poulate End
- 
+
 
 
 
@@ -400,6 +456,6 @@ app.put("/add-queries-in-user/:id", async (req, resp) => {
 
 
 app.use('/', Routes);
-app.listen(PORT, ()=> {
+app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`)
 })

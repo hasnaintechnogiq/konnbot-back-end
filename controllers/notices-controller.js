@@ -37,9 +37,10 @@ const addNewNotices = async (req, resp) => {
         let structure = new Notices(req.body);
         const result = await structure.save();
         let objID = new mongoose.Types.ObjectId(structure.id)
+        let newss = new mongoose.Types.ObjectId(req.body.leadID)
         console.log(objID);
         await Lead.updateOne(
-            { email: req.body.email },
+            { _id: newss },
             {
                 $push: {
                     noticesID: objID
