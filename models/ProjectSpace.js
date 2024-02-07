@@ -1,18 +1,17 @@
 const mongoose = require('mongoose');
 
 const projectspaceSchema = mongoose.Schema({
+    floorsequence: String,
     bankingtech: String,
     classtype: String,
-    spacetags: String,
-    spacerequirements: Array,
-    doorname: String,
-    roomdimension: String,
-    cement: String,
-    reinforcement: String,
-    fillingmaterial: String,
-    antitermite: String,
-    masonary: String,
-    plastercement: String,
+    floorlengthmain: Number,
+    floorlengthsecond: Number,
+    floorwidthmain: Number,
+    floorwidthsecond: Number,
+    roomsID: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'rooms'
+    }],
     leadID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'leads'

@@ -26,9 +26,10 @@ const addNewLead = async (req, res) => {
         let lead = new Lead(req.body);
         const result = await lead.save();
         let objID = new mongoose.Types.ObjectId(lead.id)
+        let newss = new mongoose.Types.ObjectId(req.body.userID)
         console.log(objID);
         await User.updateOne(
-            { email: req.body.email },
+            { _id: newss },
             {
                 $set: {
                     leadID: objID
@@ -67,7 +68,13 @@ const getLeadWithProject = async (req, resp) => {
     const result = await Lead.findOne({ _id: req.params.id })
         .populate("projectID")
         .populate("projectstructureID")
-        .populate("projectspaceID")
+        .populate({
+            path: 'projectspaceID',
+            populate: {
+              path: 'roomsID',
+              model: 'rooms'
+            }
+          })
         .populate("noticesID")
         .populate("userID")
     resp.send(result);

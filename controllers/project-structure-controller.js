@@ -36,9 +36,10 @@ const addNewProjectstructure = async (req, resp) => {
         let projectstructure = new ProjectStructure(req.body);
         const result = await projectstructure.save();
         let objID = new mongoose.Types.ObjectId(projectstructure.id)
+        let newss = new mongoose.Types.ObjectId(req.body.leadID)
         console.log(objID);
         await Lead.updateOne(
-            { email: req.body.email },
+            { _id: newss },
             {
                 $set: {
                     projectstructureID: objID

@@ -2,18 +2,27 @@ const mongoose = require('mongoose');
 
 const LeadsSchema = mongoose.Schema({
     city: String,
+    number: Number,
     leadname: String,
     interested: {
         type: String,
         default: "notintrested"
     },
-    quotationstatus: String,
-    convertoproject:String,
+    quotationstatus: {
+        type: String,
+        default: "Yes"
+    },
+    convertoproject: {
+        type: String,
+        default: "No"
+    },
+   
     status: String,
     priority: String,
     projestatus: String,
     goingtostart: String,
     email: String,
+    clientname: String,
     clientdescription: Array,
     clientaddress: String,
     plotaddress: String,
