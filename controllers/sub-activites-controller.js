@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const SubActivities = require('../models/SubActivities.js');
 const Activities = require('../models/Activities.js');
 const SubActivitiesUpdate = require('../models/SubActivitiesUpdate.js');
+const Subtask = require('../models/SubTaskForSubactivities.js');
+const Checks = require('../models/Checks.js');
 
 const addNewSubActivity = async (req, res) => {
     try {
@@ -48,14 +50,54 @@ const addNewUpdateInSubActivity = async (req, res) => {
         res.status(500).json(err);
     }
 };
-// const getAllactivitiesDetalis = async (req, res) => {
-//     try {
-//         let data = await Activities.find().populate("leadID");
-//         res.send(data)
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// };
+
+
+const addSubTask = async (req, res) => {
+    try {
+        let data = new Subtask(req.body);
+        const result = await data.save();
+
+        let objID = new mongoose.Types.ObjectId(data.id)
+        let newss = new mongoose.Types.ObjectId(req.body.subactivityID)
+        console.log(objID);
+        await SubActivities.updateOne(
+            { _id: newss },
+            {
+                $push: {
+                    subtaskID: objID
+                }
+            }
+        )
+        res.send(result);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+};
+
+
+const addCheck = async (req, res) => {
+    try {
+        let data = new Checks(req.body);
+        const result = await data.save();
+
+        let objID = new mongoose.Types.ObjectId(data.id)
+        let newss = new mongoose.Types.ObjectId(req.body.subactivityID)
+        console.log(objID);
+        await SubActivities.updateOne(
+            { _id: newss },
+            {
+                $push: {
+                    checksID: objID
+                }
+            }
+        )
+        res.send(result);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+};
+
+
 
 const getSubActivitiesofSingleActivity = async (req, resp) => {
     try {
@@ -66,14 +108,18 @@ const getSubActivitiesofSingleActivity = async (req, resp) => {
     }
 };
  
-// const getSingleactivitiesWithsubtask = async (req, resp) => {
-//     try {
-//         let single = await Activities.findOne({ _id: req.params._id }).populate("activitiesID");
-//         resp.send(single);
-//     } catch (err) {
-//         resp.status(500).json(err);
-//     }
-// };
+
+
+const getSubActivitiesWithdetails = async (req, resp) => {
+    try {
+        let single = await SubActivities.findOne({ _id: req.params._id }).populate("subactivitiesupdateID").populate("subtaskID").populate("checksID").populate("imagesID");
+        resp.send(single);
+    } catch (err) {
+        resp.status(500).json(err);
+    }
+};
+
+
 
 const deleteSubActivity = async (req, res) => {
     try {
@@ -98,7 +144,8 @@ const updatesubactivity = async (req, res) => {
 };
 
 module.exports = { 
-    // getSingleactivitiesWithChangeOrder,
-    //  getAllactivitiesDetalis,
+    addCheck,
+    addSubTask,
+    getSubActivitiesWithdetails,
     addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity, addNewUpdateInSubActivity
         };

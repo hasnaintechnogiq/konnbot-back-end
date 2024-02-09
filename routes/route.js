@@ -13,7 +13,7 @@ const { addNewNotices, getSingleUserNotices, getAllNoticesDetail, deleteNotices,
 const { addNewChangeOrderInstallment, getSingleUserChangeOrderInstallment, getAllChangeOrderInstallmentDetail, deleteChangeOrderInstallment, updatechangeOrderInstallmentDetail } = require('../controllers/change-order-installment-controller.js');
 const { addNewChatOrderInstallment, getSingleUserChatOrderInstallment, getAllChatOrderInstallmentDetail, deleteChatOrderInstallment, updateChatOrderInstallmentDetail } = require('../controllers/Chats-Change-Installment-controller.js');
 const { getSingleLeadactivities, addNewActivities, updateActivities, deleteActivities } = require('../controllers/activities-controller.js');
-const { addNewUpdateInSubActivity, addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity } = require('../controllers/sub-activites-controller.js');
+const { addCheck, addSubTask,getSubActivitiesWithdetails, addNewUpdateInSubActivity, addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity } = require('../controllers/sub-activites-controller.js');
 
 
 // Project routes
@@ -121,11 +121,11 @@ router.put("/update-activity/:_id", updateActivities)
 
 router.post("/add-new-subactivity", addNewSubActivity)
 router.get("/get-all-subactivities-ofsingle-activity/:_id", getSubActivitiesofSingleActivity)
-// router.get("/get-all-order-installment-chat-detail", getAllChatOrderInstallmentDetail)
+router.get("/get-sub-activites-with-details/:_id", getSubActivitiesWithdetails)
 router.delete("/delete-subactivity/:_id", deleteSubActivity)
 router.put("/update-subactivity/:_id", updatesubactivity)
 router.post("/add-new-update-in-subactivity", addNewUpdateInSubActivity)
-
-
+router.post("/add-sub-task", addSubTask)
+router.post("/add-checks", addCheck)
 
 module.exports = router;

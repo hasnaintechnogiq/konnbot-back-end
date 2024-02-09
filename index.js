@@ -13,6 +13,10 @@ const Queries = require('./models/Queries');
 const Lead = require('./models/Lead');
 const ChangeOrderInstallment = require('./models/ChangeOrderInstallment.js');
 const ChatsChangeInstallment = require('./models/ChatsChangeInstallment.js');
+const SubActivities = require('./models/SubActivities.js');
+const PhotosForSubActivities = require('./models/PhotosForSubActivities.js');
+
+
 const authenticate = require('./authenticate');
 const PORT = process.env.PORT || 5000;
 const mongoose = require('mongoose');
@@ -314,9 +318,41 @@ app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, r
 
 
 
+// Upload images for sub task start
+
+app.post('/upload-images-for-sub-task', upload.array('images', 3), async (req, res) => {
+    const files = req.files;
+    if (!files || files.length === 0) {
+        return res.status(400).send('No files were uploaded.');
+    }
+    console.log(files)
+
+    const imgarry = files.map((file) => ({
+        originalname: file.originalname,
+        filename: file.filename,
+        path: file.path,
+        profile_url: `https://konnbotbackend.onrender.com/profile/${file.filename}`
+    }));
 
 
+    const result = await PhotosForSubActivities.create({ imgarry });
 
+    let objID = new mongoose.Types.ObjectId(result.id);
+    let newss = new mongoose.Types.ObjectId(req.body.subactivityID)
+    console.log(objID);
+    await SubActivities.updateOne(
+        { _id: newss },
+        {
+            $push: {
+                imagesID: objID
+            }
+        }
+    )
+    res.json(result);
+});
+
+
+// Upload images for sub task end
 
 
 
