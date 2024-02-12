@@ -15,25 +15,16 @@ const ChangeOrderInstallment = require('./models/ChangeOrderInstallment.js');
 const ChatsChangeInstallment = require('./models/ChatsChangeInstallment.js');
 const SubActivities = require('./models/SubActivities.js');
 const PhotosForSubActivities = require('./models/PhotosForSubActivities.js');
-
-
+const Activities = require('./models/Activities.js');
 const authenticate = require('./authenticate');
 const PORT = process.env.PORT || 5000;
 const mongoose = require('mongoose');
-// const cloudinary = require('cloudinary').v2;
 
-// cloudinary.config({
-//     cloud_name: 'drtpucilq',
-//     api_key: '887349247613399',
-//     api_secret: 'Q-TAkniqj157_LKVzZtXz7KRVW4'
-// });
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-// app.use(fileUpload({
-//     useTempFiles: true
-// }));
+
 const Routes = require("./routes/route.js")
 
 
@@ -43,86 +34,10 @@ const Routes = require("./routes/route.js")
 
 
 
-// const multer = require('multer')
-
-
-
-// const storage = multer.diskStorage({
-//     destination: function(req, file, cb) {
-//       return cb(null, "./public/Images")
-//     },
-//     filename: function (req, file, cb) {
-//       return cb(null, `${Date.now()}_${file.originalname}`)
-//     }
-//   })
-
-//   const upload = multer({storage})
-
-//   app.post('/upload', upload.single('file'), (req, res) => {
-//     console.log(req.body)
-//     console.log(req.file)
-//   })
-
-
-
-
-
 
 const multer = require("multer");
 const path = require("path");
 
-// storage engine 
-
-// const storage = multer.diskStorage({
-//     destination: './upload/images',
-//     filename: (req, file, cb) => {
-//         return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
-//     }
-// })
-
-// const upload = multer({
-//     storage: storage,
-//     limits: {
-//         fileSize: 10000000
-//     }
-// })
-
-// app.use('/profile', express.static('upload/images'));
-// app.post("/create-querie-upload", upload.single('profile'), async (req, res) => {
-//     // console.log(req.body.name)
-//     console.log(req.file)
-//     const notice = new Queries({
-//         ...req.body,
-//         profile_url: `${process.env.REACT_APP_HOS}/profile/${req.file.filename}`
-//     })
-//     const result =  notice.save();
-
-//     let objID = new mongoose.Types.ObjectId(notice.id);        
-//     console.log(objID);
-//   await   User.updateOne(
-//         { email: req.body.email },
-//         {
-//             $push: {
-//                 queriesID: objID
-//             }
-//         }
-//     )
-
-//     res.send({
-//         sitename: req.body.sitename,
-//         profile_url: `${process.env.REACT_APP_HOS}/profile/${req.file.filename}`
-//     })
-// })
-
-// function errHandler(err, req, res, next) {
-//     if (err instanceof multer.MulterError) {
-//         res.json({
-//             success: 0,
-//             message: err.message
-//         })
-//     }
-// }
-// app.use(errHandler);
 
 
 
@@ -138,10 +53,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Set up a simple form for testing
-//   app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'index.html'));
-//   });
+
 app.use('/profile', express.static('upload/images'));
 // Handle file upload
 app.post('/add-ticket-and-upload', upload.array('images', 5), async (req, res) => {
@@ -150,8 +62,6 @@ app.post('/add-ticket-and-upload', upload.array('images', 5), async (req, res) =
         return res.status(400).send('No files were uploaded.');
     }
 
-    // Process the uploaded files (e.g., save to database, resize, etc.)
-    // Here, we're just sending a response with the file information.
     const formData = req.body;
 
     console.log(files)
@@ -207,15 +117,15 @@ app.post('/add-images-in-change-order-upload', upload.array('images', 5), async 
 
         let objID = new mongoose.Types.ObjectId(result.id);
         let newss = new mongoose.Types.ObjectId(req.body.changeorderinstallmentid)
-         console.log(objID);
-         await ChangeOrderInstallment.updateOne(
-             { _id: newss },
-             {
-                 $push: {
-                     chatschangeinstallmentID: objID
-                 }
-             }
-         )
+        console.log(objID);
+        await ChangeOrderInstallment.updateOne(
+            { _id: newss },
+            {
+                $push: {
+                    chatschangeinstallmentID: objID
+                }
+            }
+        )
         //  res.send(result);
         return res.send(result);
     }
@@ -232,17 +142,17 @@ app.post('/add-images-in-change-order-upload', upload.array('images', 5), async 
     const result = await ChatsChangeInstallment.create({ ...formData, imgarry });
 
     let objID = new mongoose.Types.ObjectId(result.id);
-       let newss = new mongoose.Types.ObjectId(req.body.changeorderinstallmentid)
-        console.log(objID);
-        await ChangeOrderInstallment.updateOne(
-            { _id: newss },
-            {
-                $push: {
-                    chatschangeinstallmentID: objID
-                }
+    let newss = new mongoose.Types.ObjectId(req.body.changeorderinstallmentid)
+    console.log(objID);
+    await ChangeOrderInstallment.updateOne(
+        { _id: newss },
+        {
+            $push: {
+                chatschangeinstallmentID: objID
             }
-        )
-        res.send(result);
+        }
+    )
+    res.send(result);
     // res.send(imgarry);
 });
 
@@ -282,7 +192,7 @@ app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, r
                 }
             }
         )
- 
+
         return res.send(result);
     }
 
@@ -308,7 +218,7 @@ app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, r
             }
         }
     )
-        res.send(result);
+    res.send(result);
     // res.send(imgarry);
 });
 
@@ -391,20 +301,103 @@ app.post('/upload-images-for-sub-task', upload.array('images', 3), async (req, r
 
 
 // api for test start
-app.post("/test", async (req, resp) => {
-    console.log(req.body);
-    const file = req.files.photo;
-    cloudinary.uploader.upload(file.tempFilePath, async (error, result) => {
-        console.log(result);
-        let data = new Queries({
-            sitename: req.body.sitename,
-            description: req.body.description,
-            status: req.body.status,
-            images: result.url,
-        });
-        const results = await data.save();
-        resp.send(results);
-    });
+app.post("/add-all-activities", async (req, resp) => {
+
+
+    const dataArray = [
+        { categoryname: 'A', leadID: req.body.leadID },
+        { categoryname: 'B', leadID: req.body.leadID },
+        { categoryname: 'C', leadID: req.body.leadID },
+        { categoryname: 'D', leadID: req.body.leadID },
+        { categoryname: 'E', leadID: req.body.leadID },
+        { categoryname: 'F', leadID: req.body.leadID },
+        { categoryname: 'G', leadID: req.body.leadID },
+ 
+    ];
+
+
+
+    async function saveDataSequentially() {
+        for (let i = 0; i < dataArray.length; i++) {
+            try {
+                const newData = new Activities(dataArray[i]);
+                const savedData = await newData.save();
+                let objID = new mongoose.Types.ObjectId(newData.id)
+                let newss = new mongoose.Types.ObjectId(req.body.leadID)
+
+               
+                if(newData.categoryname === "A"){
+                 
+                    console.log(newData._id)
+
+
+                    const dataArranew = [
+                        { subactivityname: 'Alice new', activityID: newData._id },
+                        { subactivityname: 'Bob new', activityID: newData._id },
+                        // Add more data as needed
+                    ];
+                    
+                    // Function to save data sequentially
+                    async function saveDatanew() {
+                        for (let i = 0; i < dataArranew.length; i++) {
+                            try {
+                                const newDatanew = new SubActivities(dataArranew[i]);
+                                const savedData = await newDatanew.save();
+
+                                let objID = new mongoose.Types.ObjectId(newDatanew.id)
+                                let newss = new mongoose.Types.ObjectId(newData._id)
+                                console.log(objID);
+                                await Activities.updateOne(
+                                    { _id: newss },
+                                    {
+                                        $push: {
+                                            subactivitiesID: objID
+                                        }
+                                    }
+                                ) 
+ 
+                                console.log('Data saved:', savedData);
+
+                            } catch (error) {
+                                console.error('Error saving data:', error);
+                            }
+                        }
+                    }
+                    
+
+                    saveDatanew();
+
+
+
+                }
+                await Lead.updateOne(
+                    { _id: newss },
+                    {
+                        $push: {
+                            activitiesID: objID
+                        }
+                    }
+                )
+
+                // console.log('Data saved:', savedData);
+            } catch (error) {
+                console.error('Error saving data:', error);
+            }
+        }
+    }
+
+
+
+    saveDataSequentially();
+
+
+
+
+
+
+
+
+
 });
 
 // api for test end

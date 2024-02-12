@@ -23,14 +23,7 @@ const addNewActivities = async (req, res) => {
         res.status(500).json(err);
     }
 };
-// const getAllactivitiesDetalis = async (req, res) => {
-//     try {
-//         let data = await Activities.find().populate("leadID");
-//         res.send(data)
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// };
+ 
 
 const getSingleLeadactivities = async (req, resp) => {
     try {
@@ -47,14 +40,6 @@ const getSingleLeadactivities = async (req, resp) => {
     }
 };
  
-// const getSingleactivitiesWithsubtask = async (req, resp) => {
-//     try {
-//         let single = await Activities.findOne({ _id: req.params._id }).populate("activitiesID");
-//         resp.send(single);
-//     } catch (err) {
-//         resp.status(500).json(err);
-//     }
-// };
 
 const deleteActivities = async (req, res) => {
     try {
@@ -79,8 +64,7 @@ const updateActivities = async (req, res) => {
 };
 
 module.exports = { 
-    // getSingleactivitiesWithChangeOrder,
-    //  getAllactivitiesDetalis,
+ 
       getSingleLeadactivities,
        addNewActivities,
         updateActivities,
