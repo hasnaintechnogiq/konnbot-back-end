@@ -312,7 +312,7 @@ app.post("/add-all-activities", async (req, resp) => {
         { categoryname: 'E', leadID: req.body.leadID },
         { categoryname: 'F', leadID: req.body.leadID },
         { categoryname: 'G', leadID: req.body.leadID },
- 
+
     ];
 
 
@@ -325,19 +325,15 @@ app.post("/add-all-activities", async (req, resp) => {
                 let objID = new mongoose.Types.ObjectId(newData.id)
                 let newss = new mongoose.Types.ObjectId(req.body.leadID)
 
-               
-                if(newData.categoryname === "A"){
-                 
-                    console.log(newData._id)
 
+                if (newData.categoryname === "A") {
 
                     const dataArranew = [
                         { subactivityname: 'Alice new', activityID: newData._id },
                         { subactivityname: 'Bob new', activityID: newData._id },
-                        // Add more data as needed
+
                     ];
-                    
-                    // Function to save data sequentially
+
                     async function saveDatanew() {
                         for (let i = 0; i < dataArranew.length; i++) {
                             try {
@@ -354,21 +350,14 @@ app.post("/add-all-activities", async (req, resp) => {
                                             subactivitiesID: objID
                                         }
                                     }
-                                ) 
- 
+                                )
                                 console.log('Data saved:', savedData);
-
                             } catch (error) {
                                 console.error('Error saving data:', error);
                             }
                         }
                     }
-                    
-
                     saveDatanew();
-
-
-
                 }
                 await Lead.updateOne(
                     { _id: newss },
