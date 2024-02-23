@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const MyInstallment = require('../models/MyInstallment.js');
 const Lead = require('../models/Lead.js');
+const PaidAmount = require('../models/PaidAmount.js');
 
 const getAllInstallmentsDetalis = async (req, res) => {
     try {
@@ -22,7 +23,7 @@ const getSingleUserInstallments = async (req, resp) => {
  
 const getSingleInstallmentWithChangeOrder = async (req, resp) => {
     try {
-        let single = await MyInstallment.findOne({ _id: req.params._id }).populate("changeorderinstallmentID");
+        let single = await MyInstallment.findOne({ _id: req.params._id }).populate("changeorderinstallmentID").populate("paidamountID")
         resp.send(single);
     } catch (err) {
         resp.status(500).json(err);
@@ -59,6 +60,50 @@ const addNewMyInstallment = async (req, res) => {
     }
 };
 
+
+const addPaidAmount = async (req, res) => {
+    try {
+        let data = new PaidAmount(req.body);
+        const result = await data.save();
+
+        let objID = new mongoose.Types.ObjectId(data.id)
+        let newss = new mongoose.Types.ObjectId(req.body.installmentID)
+        console.log(objID);
+        await MyInstallment.updateOne(
+            { _id: newss },
+            {
+                $push: {
+                    paidamountID: objID
+                }
+            }
+        )
+        res.send(result);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const updateMyInstallment = async (req, res) => {
     try {
         console.log(req.params)
@@ -72,4 +117,4 @@ const updateMyInstallment = async (req, res) => {
     }
 };
 
-module.exports = { getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, addNewMyInstallment, updateMyInstallment, deleteMyInstallment };
+module.exports = {addPaidAmount, getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, addNewMyInstallment, updateMyInstallment, deleteMyInstallment };

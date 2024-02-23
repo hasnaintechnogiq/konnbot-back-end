@@ -9,7 +9,7 @@ const addNewChangeOrderInstallment = async (req, resp) => {
         let changeorder = new ChangeOrderInstallment(req.body);
         const result = await changeorder.save();
         let objID = new mongoose.Types.ObjectId(changeorder.id)
-        let newss = new mongoose.Types.ObjectId(req.body.myinstallmentid)
+        let newss = new mongoose.Types.ObjectId(req.body.installmentID)
         console.log(objID);
         await MyInstallment.updateOne(
             { _id: newss },

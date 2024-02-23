@@ -2,10 +2,10 @@ const router = require('express').Router();
 const authenticate = require('../authenticate');
 
 const { getProjectDetail, getSingleProject, deleteProject, addNewProject, updateProjectDetail } = require('../controllers/project-controller.js');
-const { getAllUsers, getUserWithQueries, getSingleUser, addNewUser, updateUserDetail, deleteUser } = require('../controllers/user-controller.js');
+const {addSiteDetailsForDemo, getAllUsers, getUserWithQueries, getSingleUser, addNewUser, updateUserDetail, deleteUser } = require('../controllers/user-controller.js');
 const { getAllNotification, getSingleNotification, addNewNotification, updateNotification, deleteNotification } = require('../controllers/notification-controller.js');
 const { addQueryUpdate, getSingleQuery, getAllQueries, getUserAllQueries, addNewQueries, updateQueries, deleteQueries } = require('../controllers/queries-controller.js');
-const { getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, addNewMyInstallment, updateMyInstallment, deleteMyInstallment } = require('../controllers/myinstallments-controller.js');
+const { getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, addNewMyInstallment, updateMyInstallment, deleteMyInstallment , addPaidAmount} = require('../controllers/myinstallments-controller.js');
 const { searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject } = require('../controllers/leads-controller.js');
 const { getAllProjectstructureDetail, getSingleProjectstructure, deleteProjectstructure, addNewProjectstructure, updateProjectstructureDetail } = require('../controllers/project-structure-controller.js');
 const { addRoom, getAllProjectspaceDetail, getSingleProjectspace, deleteProjectspace, addNewProjectspace, updateProjectspaceDetail } = require('../controllers/project-space-controller.js');
@@ -13,8 +13,8 @@ const { addNewNotices, getSingleUserNotices, getAllNoticesDetail, deleteNotices,
 const { addNewChangeOrderInstallment, getSingleUserChangeOrderInstallment, getAllChangeOrderInstallmentDetail, deleteChangeOrderInstallment, updatechangeOrderInstallmentDetail } = require('../controllers/change-order-installment-controller.js');
 const { addNewChatOrderInstallment, getSingleUserChatOrderInstallment, getAllChatOrderInstallmentDetail, deleteChatOrderInstallment, updateChatOrderInstallmentDetail } = require('../controllers/Chats-Change-Installment-controller.js');
 const { getSingleLeadactivities, addNewActivities, updateActivities, deleteActivities } = require('../controllers/activities-controller.js');
-const { addCheck, addSubTask,getSubActivitiesWithdetails, addNewUpdateInSubActivity, addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity } = require('../controllers/sub-activites-controller.js');
-
+const { addCheck, addSubTask, getSubActivitiesWithdetails, addNewUpdateInSubActivity, addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity } = require('../controllers/sub-activites-controller.js');
+const { getspaceWithRoom, addNewProjectInQuotaion, addNewStructureInQuotation, addNewProjectspaceinQuatation, addSelectedQuotationinLead, getQuotationWithDetails, getAllQuotationInLead } = require('../controllers/quotation-controller.js');
 
 // Project routes
 
@@ -32,6 +32,7 @@ router.get("/get-single-user/:_id", getSingleUser)
 router.post("/user-create-profile", addNewUser)
 router.put("/update-user-detail/:_id", updateUserDetail)
 router.delete("/delete-user/:_id", deleteUser)
+router.post("/add-Site-Details-For-Demo", addSiteDetailsForDemo)
 
 // notification routes 
 
@@ -58,6 +59,7 @@ router.get("/get-single-user-myinstallment/:_id", getSingleUserInstallments)
 router.post("/create-myinstallment", addNewMyInstallment)
 router.put("/update-myinstallment/:_id", updateMyInstallment)
 router.delete("/delete-myinstallment/:_id", deleteMyInstallment)
+router.post("/create-paid-amount", addPaidAmount)
 
 // LEAD routes
 
@@ -127,5 +129,15 @@ router.put("/update-subactivity/:_id", updatesubactivity)
 router.post("/add-new-update-in-subactivity", addNewUpdateInSubActivity)
 router.post("/add-sub-task", addSubTask)
 router.post("/add-checks", addCheck)
+
+// Quotation
+
+router.post("/add-new-project-in-quotation", addNewProjectInQuotaion)
+router.post("/add-structure-in-quatation", addNewStructureInQuotation)
+router.get("/get-quotatin-with-details/:id", getQuotationWithDetails)
+router.post("/add-space-in-quotation", addNewProjectspaceinQuatation)
+router.post("/add-selected-quotation-in-lead", addSelectedQuotationinLead)
+router.get("/get-all-quotatins-list/:id", getAllQuotationInLead)
+router.get("/get-space-with-rooms/:id", getspaceWithRoom)
 
 module.exports = router;

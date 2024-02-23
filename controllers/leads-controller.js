@@ -29,7 +29,7 @@ const addNewLead = async (req, res) => {
         let newss = new mongoose.Types.ObjectId(req.body.userID)
         console.log(objID);
         await User.updateOne(
-            { _id: newss },
+            { email: req.body.email },
             {
                 $set: {
                     leadID: objID

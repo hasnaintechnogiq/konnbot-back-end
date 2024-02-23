@@ -16,7 +16,6 @@ const LeadsSchema = mongoose.Schema({
         type: String,
         default: "No"
     },
-   
     status: String,
     priority: String,
     projestatus: String,
@@ -60,7 +59,16 @@ const LeadsSchema = mongoose.Schema({
     activitiesID: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'activities'
-    }]
+    }],
+    quotationID: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'quotation'
+    }],
+    quotationSelectedID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'quotation'
+    }
+
 });
 
 module.exports = mongoose.model("leads", LeadsSchema);

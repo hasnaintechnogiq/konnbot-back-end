@@ -107,7 +107,7 @@ const getSubActivitiesofSingleActivity = async (req, resp) => {
         resp.status(500).json(err);
     }
 };
- 
+
 
 
 const getSubActivitiesWithdetails = async (req, resp) => {
@@ -143,9 +143,9 @@ const updatesubactivity = async (req, res) => {
     }
 };
 
-module.exports = { 
+module.exports = {
     addCheck,
     addSubTask,
     getSubActivitiesWithdetails,
     addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity, addNewUpdateInSubActivity
-        };
+};

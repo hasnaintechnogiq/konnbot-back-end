@@ -1,4 +1,6 @@
+const mongoose = require('mongoose');
 const User = require('../models/User.js');
+const UserSiteDetailsDemo = require('../models/UserSiteDetailsDemo.js');
 
 const getAllUsers = async (req, res) => {
     try {
@@ -65,4 +67,35 @@ const getUserWithQueries= async (req, resp) => {
 
 
 
-module.exports = { getAllUsers, getUserWithQueries, getSingleUser, addNewUser, updateUserDetail, deleteUser };
+const addSiteDetailsForDemo = async (req, resp) => {
+    try {
+        let sitedemo = new UserSiteDetailsDemo(req.body);
+        const result = await sitedemo.save();
+        let objID = new mongoose.Types.ObjectId(sitedemo.id)
+        let newss = new mongoose.Types.ObjectId(req.body.userID)
+        console.log(objID);
+        await User.updateOne(
+            { _id: newss },
+            {
+                $set: {
+                    usersitedetailsdemoID: objID
+                }
+            }
+        )
+        resp.send(result);
+    } catch (err) {
+        resp.status(500).json(err);
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+module.exports = { addSiteDetailsForDemo, getAllUsers, getUserWithQueries, getSingleUser, addNewUser, updateUserDetail, deleteUser };

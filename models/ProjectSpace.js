@@ -15,6 +15,10 @@ const projectspaceSchema = mongoose.Schema({
     leadID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'leads'
+    },
+    quotationID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'quotation'
     }
 });
 

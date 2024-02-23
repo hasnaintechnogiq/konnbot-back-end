@@ -12,6 +12,10 @@ const usersSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'leads'
     },
+    usersitedetailsdemoID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'usersitedetailsdemo'
+    },
     queriesID: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'queriess'

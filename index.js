@@ -5,10 +5,14 @@ require("./config");
 const jwt = require('jsonwebtoken');
 var cors = require('cors')
 const User = require('./models/User.js');
+const Engineer = require('./models/Engineer.js');
+const Manager = require('./models/Manager.js');
+const LeadManager = require('./models/LeadManager.js');
 const Queryupdates = require('./models/Queryupdates.js');
 const Admin = require('./models/Admin');
 const Project = require('./models/Project');
 const Queries = require('./models/Queries');
+const MyInstallment = require('./models/MyInstallment.js');
 
 const Lead = require('./models/Lead');
 const ChangeOrderInstallment = require('./models/ChangeOrderInstallment.js');
@@ -300,19 +304,23 @@ app.post('/upload-images-for-sub-task', upload.array('images', 3), async (req, r
 
 
 
-// api for test start
+// api for add all activities start
 app.post("/add-all-activities", async (req, resp) => {
 
 
     const dataArray = [
-        { categoryname: 'A', leadID: req.body.leadID },
-        { categoryname: 'B', leadID: req.body.leadID },
-        { categoryname: 'C', leadID: req.body.leadID },
-        { categoryname: 'D', leadID: req.body.leadID },
-        { categoryname: 'E', leadID: req.body.leadID },
-        { categoryname: 'F', leadID: req.body.leadID },
-        { categoryname: 'G', leadID: req.body.leadID },
-
+        { categoryname: 'Footing', leadID: req.body.leadID },
+        { categoryname: 'Plinth', leadID: req.body.leadID },
+        { categoryname: 'RCC Work', leadID: req.body.leadID },
+        { categoryname: 'Brick Work', leadID: req.body.leadID },
+        { categoryname: 'Electrical', leadID: req.body.leadID },
+        { categoryname: 'Plumbing', leadID: req.body.leadID },
+        { categoryname: 'Plaster', leadID: req.body.leadID },
+        { categoryname: 'Other Interior', leadID: req.body.leadID },
+        { categoryname: 'Door & Window', leadID: req.body.leadID },
+        { categoryname: 'Flooring', leadID: req.body.leadID },
+        { categoryname: 'Paint & Finishes', leadID: req.body.leadID },
+        { categoryname: 'Miscellenous', leadID: req.body.leadID },
     ];
 
 
@@ -326,11 +334,16 @@ app.post("/add-all-activities", async (req, resp) => {
                 let newss = new mongoose.Types.ObjectId(req.body.leadID)
 
 
-                if (newData.categoryname === "A") {
+                if (newData.categoryname === "Footing") {
 
                     const dataArranew = [
-                        { subactivityname: 'Alice new', activityID: newData._id },
-                        { subactivityname: 'Bob new', activityID: newData._id },
+                        { subactivityname: 'Site Clearance', activityID: newData._id },
+                        { subactivityname: 'Layout & Leveling', activityID: newData._id },
+                        { subactivityname: 'Excavation', activityID: newData._id },
+                        { subactivityname: 'P.C.C Work', activityID: newData._id },
+                        { subactivityname: 'R.C.C Footing', activityID: newData._id },
+                        { subactivityname: 'R.C.C Pedestal', activityID: newData._id },
+                        { subactivityname: 'Back Filling', activityID: newData._id },
 
                     ];
 
@@ -359,6 +372,443 @@ app.post("/add-all-activities", async (req, resp) => {
                     }
                     saveDatanew();
                 }
+
+                if (newData.categoryname === "Plinth") {
+
+                    const dataArranew = [
+                        { subactivityname: 'R.C.C Plinth', activityID: newData._id },
+                        { subactivityname: 'Sewage Line', activityID: newData._id },
+                        { subactivityname: 'Filling + Ramming', activityID: newData._id },
+                        { subactivityname: 'Anti - Termite', activityID: newData._id },
+                        { subactivityname: 'R.C.C Grade Slab', activityID: newData._id },
+                    ];
+
+                    async function plinthCalling() {
+                        for (let i = 0; i < dataArranew.length; i++) {
+                            try {
+                                const newDatanew = new SubActivities(dataArranew[i]);
+                                const savedData = await newDatanew.save();
+
+                                let objID = new mongoose.Types.ObjectId(newDatanew.id)
+                                let newss = new mongoose.Types.ObjectId(newData._id)
+                                console.log(objID);
+                                await Activities.updateOne(
+                                    { _id: newss },
+                                    {
+                                        $push: {
+                                            subactivitiesID: objID
+                                        }
+                                    }
+                                )
+                                console.log('Data saved:', savedData);
+                            } catch (error) {
+                                console.error('Error saving data:', error);
+                            }
+                        }
+                    }
+                    plinthCalling();
+                }
+
+                if (newData.categoryname === "RCC Work") {
+
+                    const dataArranew = [
+                        { subactivityname: 'GF R.C.C Column', activityID: newData._id },
+                        { subactivityname: 'GF R.C.C Slab + Staircase', activityID: newData._id },
+                        { subactivityname: 'FF R.C.C Column', activityID: newData._id },
+                        { subactivityname: 'FF R.C.C Slab + Staircase', activityID: newData._id },
+                        { subactivityname: 'SF R.C.C Column', activityID: newData._id },
+                        { subactivityname: 'SF R.C.C Slab + Staircase', activityID: newData._id },
+                        { subactivityname: 'TF R.C.C Column', activityID: newData._id },
+                        { subactivityname: 'TF R.C.C Slab + Staircase', activityID: newData._id },
+                        { subactivityname: 'FF R.C.C Column', activityID: newData._id },
+                        { subactivityname: 'FF R.C.C Slab + Staircase', activityID: newData._id },
+                        { subactivityname: 'Tower R.C.C Column + Slab', activityID: newData._id },
+                    ];
+
+                    async function rccCalling() {
+                        for (let i = 0; i < dataArranew.length; i++) {
+                            try {
+                                const newDatanew = new SubActivities(dataArranew[i]);
+                                const savedData = await newDatanew.save();
+
+                                let objID = new mongoose.Types.ObjectId(newDatanew.id)
+                                let newss = new mongoose.Types.ObjectId(newData._id)
+                                console.log(objID);
+                                await Activities.updateOne(
+                                    { _id: newss },
+                                    {
+                                        $push: {
+                                            subactivitiesID: objID
+                                        }
+                                    }
+                                )
+                                console.log('Data saved:', savedData);
+                            } catch (error) {
+                                console.error('Error saving data:', error);
+                            }
+                        }
+                    }
+                    rccCalling();
+                }
+
+
+
+                if (newData.categoryname === "Brick Work") {
+
+                    const dataArranew = [
+                        { subactivityname: 'GF Masonry', activityID: newData._id },
+                        { subactivityname: 'FF Masonry', activityID: newData._id },
+                        { subactivityname: 'SF Masonry', activityID: newData._id },
+                        { subactivityname: 'TF Masonry', activityID: newData._id },
+                        { subactivityname: 'FF Masonry', activityID: newData._id },
+                        { subactivityname: 'Tower Masonry', activityID: newData._id },
+                    ];
+
+                    async function brickCalling() {
+                        for (let i = 0; i < dataArranew.length; i++) {
+                            try {
+                                const newDatanew = new SubActivities(dataArranew[i]);
+                                const savedData = await newDatanew.save();
+
+                                let objID = new mongoose.Types.ObjectId(newDatanew.id)
+                                let newss = new mongoose.Types.ObjectId(newData._id)
+                                console.log(objID);
+                                await Activities.updateOne(
+                                    { _id: newss },
+                                    {
+                                        $push: {
+                                            subactivitiesID: objID
+                                        }
+                                    }
+                                )
+                                console.log('Data saved:', savedData);
+                            } catch (error) {
+                                console.error('Error saving data:', error);
+                            }
+                        }
+                    }
+                    brickCalling();
+                }
+
+
+
+                if (newData.categoryname === "Electrical") {
+
+                    const dataArranew = [
+                        { subactivityname: 'GF Electrical', activityID: newData._id },
+                        { subactivityname: 'FF Electrical', activityID: newData._id },
+                        { subactivityname: 'SF Electrical', activityID: newData._id },
+                        { subactivityname: 'TF Electrical', activityID: newData._id },
+                        { subactivityname: 'FF Electrical', activityID: newData._id },
+                        { subactivityname: 'Tower Electrical', activityID: newData._id },
+                        { subactivityname: 'Elevation Electrical', activityID: newData._id },
+                        { subactivityname: 'Wiring', activityID: newData._id },
+                        { subactivityname: 'Switch & Socket', activityID: newData._id },
+                    ];
+
+                    async function electricalCalling() {
+                        for (let i = 0; i < dataArranew.length; i++) {
+                            try {
+                                const newDatanew = new SubActivities(dataArranew[i]);
+                                const savedData = await newDatanew.save();
+
+                                let objID = new mongoose.Types.ObjectId(newDatanew.id)
+                                let newss = new mongoose.Types.ObjectId(newData._id)
+                                console.log(objID);
+                                await Activities.updateOne(
+                                    { _id: newss },
+                                    {
+                                        $push: {
+                                            subactivitiesID: objID
+                                        }
+                                    }
+                                )
+                                console.log('Data saved:', savedData);
+                            } catch (error) {
+                                console.error('Error saving data:', error);
+                            }
+                        }
+                    }
+                    electricalCalling();
+                }
+
+
+                if (newData.categoryname === "Plumbing") {
+
+                    const dataArranew = [
+                        { subactivityname: 'Toilet - Floor', activityID: newData._id },
+                        { subactivityname: 'Toilet - Wall', activityID: newData._id },
+                        { subactivityname: 'Kitchen Pipeline', activityID: newData._id },
+                        { subactivityname: 'Vertical', activityID: newData._id },
+                        { subactivityname: 'A.C', activityID: newData._id },
+                        { subactivityname: 'Other Fitting', activityID: newData._id },
+                        { subactivityname: 'Sanitary Toilets', activityID: newData._id },
+                        { subactivityname: 'Sanitary Kitchen', activityID: newData._id },
+                    ];
+
+                    async function plumbingCalling() {
+                        for (let i = 0; i < dataArranew.length; i++) {
+                            try {
+                                const newDatanew = new SubActivities(dataArranew[i]);
+                                const savedData = await newDatanew.save();
+
+                                let objID = new mongoose.Types.ObjectId(newDatanew.id)
+                                let newss = new mongoose.Types.ObjectId(newData._id)
+                                console.log(objID);
+                                await Activities.updateOne(
+                                    { _id: newss },
+                                    {
+                                        $push: {
+                                            subactivitiesID: objID
+                                        }
+                                    }
+                                )
+                                console.log('Data saved:', savedData);
+                            } catch (error) {
+                                console.error('Error saving data:', error);
+                            }
+                        }
+                    }
+                    plumbingCalling();
+                }
+
+
+
+                if (newData.categoryname === "Plaster") {
+                    const dataArranew = [
+                        { subactivityname: 'GF Plaster', activityID: newData._id },
+                        { subactivityname: 'FF Plaster', activityID: newData._id },
+                        { subactivityname: 'SF Plaster', activityID: newData._id },
+                        { subactivityname: 'TF Plaster', activityID: newData._id },
+                        { subactivityname: 'FF Plaster', activityID: newData._id },
+                        { subactivityname: 'Tower Plaster', activityID: newData._id },
+                        { subactivityname: 'Elevation Plaster', activityID: newData._id },
+                    ];
+
+                    async function plasterCalling() {
+                        for (let i = 0; i < dataArranew.length; i++) {
+                            try {
+                                const newDatanew = new SubActivities(dataArranew[i]);
+                                const savedData = await newDatanew.save();
+
+                                let objID = new mongoose.Types.ObjectId(newDatanew.id)
+                                let newss = new mongoose.Types.ObjectId(newData._id)
+                                console.log(objID);
+                                await Activities.updateOne(
+                                    { _id: newss },
+                                    {
+                                        $push: {
+                                            subactivitiesID: objID
+                                        }
+                                    }
+                                )
+                                console.log('Data saved:', savedData);
+                            } catch (error) {
+                                console.error('Error saving data:', error);
+                            }
+                        }
+                    }
+                    plasterCalling();
+                }
+
+
+
+                if (newData.categoryname === "Other Interior") {
+                    const dataArranew = [
+                        { subactivityname: 'P.O.P Frame', activityID: newData._id },
+                        { subactivityname: 'P.O.P Putty', activityID: newData._id },
+                        { subactivityname: 'P.O.P Lights', activityID: newData._id },
+                        { subactivityname: 'External Electrical', activityID: newData._id },
+                        { subactivityname: 'Internal Wall Tile', activityID: newData._id },
+                        { subactivityname: 'Changes in Points', activityID: newData._id },
+                        { subactivityname: 'Washroom Design', activityID: newData._id },
+                    ];
+
+                    async function otherinteririorCalling() {
+                        for (let i = 0; i < dataArranew.length; i++) {
+                            try {
+                                const newDatanew = new SubActivities(dataArranew[i]);
+                                const savedData = await newDatanew.save();
+
+                                let objID = new mongoose.Types.ObjectId(newDatanew.id)
+                                let newss = new mongoose.Types.ObjectId(newData._id)
+                                console.log(objID);
+                                await Activities.updateOne(
+                                    { _id: newss },
+                                    {
+                                        $push: {
+                                            subactivitiesID: objID
+                                        }
+                                    }
+                                )
+                                console.log('Data saved:', savedData);
+                            } catch (error) {
+                                console.error('Error saving data:', error);
+                            }
+                        }
+                    }
+                    otherinteririorCalling();
+                }
+
+
+
+                if (newData.categoryname === "Door & Window") {
+                    const dataArranew = [
+                        { subactivityname: 'GF Door & Window', activityID: newData._id },
+                        { subactivityname: 'FF Door & Window', activityID: newData._id },
+                        { subactivityname: 'SF Door & Window', activityID: newData._id },
+                        { subactivityname: 'TF Door & Window', activityID: newData._id },
+                        { subactivityname: 'FF Door & Window', activityID: newData._id },
+                        { subactivityname: 'Towe Door & Window', activityID: newData._id },
+                    ];
+
+                    async function doorandwindowCalling() {
+                        for (let i = 0; i < dataArranew.length; i++) {
+                            try {
+                                const newDatanew = new SubActivities(dataArranew[i]);
+                                const savedData = await newDatanew.save();
+
+                                let objID = new mongoose.Types.ObjectId(newDatanew.id)
+                                let newss = new mongoose.Types.ObjectId(newData._id)
+                                console.log(objID);
+                                await Activities.updateOne(
+                                    { _id: newss },
+                                    {
+                                        $push: {
+                                            subactivitiesID: objID
+                                        }
+                                    }
+                                )
+                                console.log('Data saved:', savedData);
+                            } catch (error) {
+                                console.error('Error saving data:', error);
+                            }
+                        }
+                    }
+                    doorandwindowCalling();
+                }
+
+
+
+                if (newData.categoryname === "Flooring") {
+                    const dataArranew = [
+                        { subactivityname: 'Toilet Wall Flooring', activityID: newData._id },
+                        { subactivityname: 'Kitchen', activityID: newData._id },
+                        { subactivityname: 'GF Flooring', activityID: newData._id },
+                        { subactivityname: 'FF Flooring', activityID: newData._id },
+                        { subactivityname: 'SF Flooring', activityID: newData._id },
+                        { subactivityname: 'TF Flooring', activityID: newData._id },
+                        { subactivityname: 'FF Flooring', activityID: newData._id },
+                        { subactivityname: 'Tower Flooring', activityID: newData._id },
+                        { subactivityname: 'Terrace Flooring', activityID: newData._id },
+                        { subactivityname: 'Staircase', activityID: newData._id },
+                    ];
+
+                    async function flooringCalling() {
+                        for (let i = 0; i < dataArranew.length; i++) {
+                            try {
+                                const newDatanew = new SubActivities(dataArranew[i]);
+                                const savedData = await newDatanew.save();
+
+                                let objID = new mongoose.Types.ObjectId(newDatanew.id)
+                                let newss = new mongoose.Types.ObjectId(newData._id)
+                                console.log(objID);
+                                await Activities.updateOne(
+                                    { _id: newss },
+                                    {
+                                        $push: {
+                                            subactivitiesID: objID
+                                        }
+                                    }
+                                )
+                                console.log('Data saved:', savedData);
+                            } catch (error) {
+                                console.error('Error saving data:', error);
+                            }
+                        }
+                    }
+                    flooringCalling();
+                }
+
+
+                if (newData.categoryname === "Paint & Finishes") {
+                    const dataArranew = [
+                        { subactivityname: 'White Wash', activityID: newData._id },
+                        { subactivityname: 'GF Paint', activityID: newData._id },
+                        { subactivityname: 'FF Paint', activityID: newData._id },
+                        { subactivityname: 'SF Paint', activityID: newData._id },
+                        { subactivityname: 'TF Paint', activityID: newData._id },
+                        { subactivityname: 'FF Paint', activityID: newData._id },
+                        { subactivityname: 'Tower Paint', activityID: newData._id },
+                        { subactivityname: 'External & Elevation Paint', activityID: newData._id },
+                    ];
+
+                    async function paintCalling() {
+                        for (let i = 0; i < dataArranew.length; i++) {
+                            try {
+                                const newDatanew = new SubActivities(dataArranew[i]);
+                                const savedData = await newDatanew.save();
+
+                                let objID = new mongoose.Types.ObjectId(newDatanew.id)
+                                let newss = new mongoose.Types.ObjectId(newData._id)
+                                console.log(objID);
+                                await Activities.updateOne(
+                                    { _id: newss },
+                                    {
+                                        $push: {
+                                            subactivitiesID: objID
+                                        }
+                                    }
+                                )
+                                console.log('Data saved:', savedData);
+                            } catch (error) {
+                                console.error('Error saving data:', error);
+                            }
+                        }
+                    }
+                    paintCalling();
+                }
+
+
+
+                if (newData.categoryname === "Miscellenous") {
+                    const dataArranew = [
+                        { subactivityname: 'M.S Work', activityID: newData._id },
+                        { subactivityname: 'Main Gate', activityID: newData._id },
+                        { subactivityname: 'Ramp & Other Work', activityID: newData._id },
+                        { subactivityname: 'Electrical Check', activityID: newData._id },
+                        { subactivityname: 'Plumbing Check', activityID: newData._id },
+                        { subactivityname: 'Flooring Check', activityID: newData._id },
+                        { subactivityname: 'Paint Check', activityID: newData._id },
+                    ];
+
+                    async function miscellenousCalling() {
+                        for (let i = 0; i < dataArranew.length; i++) {
+                            try {
+                                const newDatanew = new SubActivities(dataArranew[i]);
+                                const savedData = await newDatanew.save();
+
+                                let objID = new mongoose.Types.ObjectId(newDatanew.id)
+                                let newss = new mongoose.Types.ObjectId(newData._id)
+                                console.log(objID);
+                                await Activities.updateOne(
+                                    { _id: newss },
+                                    {
+                                        $push: {
+                                            subactivitiesID: objID
+                                        }
+                                    }
+                                )
+                                console.log('Data saved:', savedData);
+                            } catch (error) {
+                                console.error('Error saving data:', error);
+                            }
+                        }
+                    }
+                    miscellenousCalling();
+                }
+
+
                 await Lead.updateOne(
                     { _id: newss },
                     {
@@ -374,22 +824,141 @@ app.post("/add-all-activities", async (req, resp) => {
             }
         }
     }
-
-
-
     saveDataSequentially();
-
-
-
-
-
-
-
-
-
 });
+// api for add-all-activities end
 
-// api for test end
+
+
+
+
+
+
+
+
+// Create Installments start
+app.post("/add-all-installlments", async (req, resp) => {
+
+    const dataArray = [
+        { installmentnum: '1st', installmenttype: 'Footing', leadID: req.body.leadID },
+        { installmentnum: '2nd', installmenttype: 'Plinth', leadID: req.body.leadID },
+        { installmentnum: '3rd', installmenttype: 'RCC Work', leadID: req.body.leadID },
+        { installmentnum: '4th', installmenttype: 'Brick Work', leadID: req.body.leadID },
+        { installmentnum: '5th', installmenttype: 'Electrical', leadID: req.body.leadID },
+        { installmentnum: '6th', installmenttype: 'Plumbing', leadID: req.body.leadID },
+        { installmentnum: '7th', installmenttype: 'Plaster', leadID: req.body.leadID },
+        { installmentnum: '8th', installmenttype: 'Other Interior', leadID: req.body.leadID },
+        { installmentnum: '9th', installmenttype: 'Door & Window', leadID: req.body.leadID },
+        { installmentnum: '10th', installmenttype: 'Flooring', leadID: req.body.leadID },
+        { installmentnum: '11th', installmenttype: 'Paint & Finishes', leadID: req.body.leadID },
+        { installmentnum: '12th', installmenttype: 'Miscellenous', leadID: req.body.leadID },
+    ];
+
+
+    async function saveDataSeq() {
+        for (let i = 0; i < dataArray.length; i++) {
+            try {
+                const newData = new MyInstallment(dataArray[i]);
+                const savedData = await newData.save();
+                let objID = new mongoose.Types.ObjectId(newData.id)
+                let newss = new mongoose.Types.ObjectId(req.body.leadID)
+
+                await Lead.updateOne(
+                    { _id: newss },
+                    {
+                        $push: {
+                            installmentID: objID
+                        }
+                    }
+                )
+            } catch (error) {
+                console.error('Error saving data:', error);
+            }
+        }
+    }
+    saveDataSeq();
+});
+// Create Installments End
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.post("/register", async (req, resp) => {
     let data = new User(req.body);
@@ -407,6 +976,53 @@ app.post("/login", async (req, resp) => {
         } else { resp.send("no data found") }
     } else { resp.send("enter email and pass") }
 });
+
+
+
+
+
+
+
+app.post("/engineer-login", async (req, resp) => {
+    if (req.body.email && req.body.password) {
+        let user = await Engineer.findOne(req.body).select("-password")
+        if (user) {
+            resp.send(user);
+        } else { resp.send("no data found") }
+    } else { resp.send("enter email and pass") }
+});
+
+
+
+
+app.post("/manager-login", async (req, resp) => {
+    if (req.body.email && req.body.password) {
+        let user = await Manager.findOne(req.body).select("-password")
+        if (user) {
+            resp.send(user);
+        } else { resp.send("no data found") }
+    } else { resp.send("enter email and pass") }
+});
+
+
+
+app.post("/lead-manager-login", async (req, resp) => {
+    if (req.body.email && req.body.password) {
+        let user = await LeadManager.findOne(req.body).select("-password")
+        if (user) {
+            resp.send(user);
+        } else { resp.send("no data found") }
+    } else { resp.send("enter email and pass") }
+});
+
+
+
+
+
+
+
+
+
 
 app.post("/admin-register", async (req, resp) => {
     let data = new Admin(req.body);

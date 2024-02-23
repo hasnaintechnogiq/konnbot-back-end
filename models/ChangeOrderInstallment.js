@@ -1,23 +1,21 @@
 const mongoose = require('mongoose');
 
 const changeorderinstallmentSchema = mongoose.Schema({
-    topic: String,
+    tittle: String,
+    modechange: String,
     status: {
         type: String,
         default: "Pending"
     },
-    amount: String,
+    amountchange: Number,
+    dateofcommerse: String,
     duedate: String,
-    description: String,
+    resonchange: String,
     date: { type: Date, default: Date.now },
-    chatschangeinstallmentID : [{
+    chatschangeinstallmentID: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'chatschangeinstallment'
-    }],   
-    leadID: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'leads'
-    },
+    }],
     installmentID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'myinstallments'
