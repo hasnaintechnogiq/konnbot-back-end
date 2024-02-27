@@ -115,6 +115,7 @@ const getQuotationWithDetails = async (req, resp) => {
                 model: 'rooms'
             }
         })
+        .populate("documentsID")
     resp.send(result);
 };
 

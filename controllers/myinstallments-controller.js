@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const MyInstallment = require('../models/MyInstallment.js');
 const Lead = require('../models/Lead.js');
 const PaidAmount = require('../models/PaidAmount.js');
+const ChatInstallment = require('../models/ChatInstallment.js');
+
+
+
 
 const getAllInstallmentsDetalis = async (req, res) => {
     try {
@@ -23,7 +27,7 @@ const getSingleUserInstallments = async (req, resp) => {
  
 const getSingleInstallmentWithChangeOrder = async (req, resp) => {
     try {
-        let single = await MyInstallment.findOne({ _id: req.params._id }).populate("changeorderinstallmentID").populate("paidamountID")
+        let single = await MyInstallment.findOne({ _id: req.params._id }).populate("changeorderinstallmentID").populate("paidamountID").populate("chatsinstallmentID")
         resp.send(single);
     } catch (err) {
         resp.status(500).json(err);
@@ -86,8 +90,28 @@ const addPaidAmount = async (req, res) => {
 
 
 
-
-
+// Test start
+const chatsInstallment = async (req, resp) => {
+    try {
+        let changeorder = new ChatInstallment(req.body);
+        const result = await changeorder.save();
+        let objID = new mongoose.Types.ObjectId(changeorder.id)
+        let newss = new mongoose.Types.ObjectId(req.body.installmentID)
+        console.log(objID);
+        await MyInstallment.updateOne(
+            { _id: newss },
+            {
+                $push: {
+                    chatsinstallmentID: objID
+                }
+            }
+        )
+        resp.send(result);
+    } catch (err) {
+        resp.status(500).json(err);
+    }
+};
+// test end
 
 
 
@@ -117,4 +141,4 @@ const updateMyInstallment = async (req, res) => {
     }
 };
 
-module.exports = {addPaidAmount, getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, addNewMyInstallment, updateMyInstallment, deleteMyInstallment };
+module.exports = {chatsInstallment, addPaidAmount, getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, addNewMyInstallment, updateMyInstallment, deleteMyInstallment };

@@ -13,6 +13,8 @@ const Admin = require('./models/Admin');
 const Project = require('./models/Project');
 const Queries = require('./models/Queries');
 const MyInstallment = require('./models/MyInstallment.js');
+const DocumentForQuotation = require('./models/DocumentForQuotation.js');
+const Quotation = require('./models/Quotation.js');
 
 const Lead = require('./models/Lead');
 const ChangeOrderInstallment = require('./models/ChangeOrderInstallment.js');
@@ -271,11 +273,42 @@ app.post('/upload-images-for-sub-task', upload.array('images', 3), async (req, r
 
 
 
+// app.use('/documents', express.static('uploads'));
+// upload documents for Quotation
+app.post('/upload-documents', upload.single('document'), async (req, res) => {
+    const formData = req.body;
+    console.log(formData)
+    try {
+      const { originalname, size, mimetype, filename } = req.file;
+      const newDocument = new DocumentForQuotation({
+        name: originalname,
+        uri: filename,
+        type: mimetype,
+        size: size
+      });
+  
+      const result =  await newDocument.save();
 
+      let objID = new mongoose.Types.ObjectId(result.id);
+      let newss = new mongoose.Types.ObjectId(req.body.QuotationID)
+      console.log(objID);
+      await Quotation.updateOne(
+          { _id: newss },
+          {
+              $push: {
+                documentsID: objID
+              }
+          }
+      )
+ 
 
-
-
-
+      
+      res.json({ message: 'Document uploaded successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error uploading document' });
+    }
+});
 
 
 

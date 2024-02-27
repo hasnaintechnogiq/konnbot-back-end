@@ -35,7 +35,11 @@ const myinstallmentsSchema = mongoose.Schema({
     paidamountID: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'paidamount'
-    }]
+    }],
+    chatsinstallmentID: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'chatsinstallment'
+    }],
 });
 
 module.exports = mongoose.model("myinstallments", myinstallmentsSchema);

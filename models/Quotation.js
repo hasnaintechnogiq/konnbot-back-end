@@ -23,6 +23,10 @@ const quotationSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'projectspace'
     }],
+    documentsID: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Document'
+    }],
     quatationdate: { type: Date, default: Date.now }
 });
 
