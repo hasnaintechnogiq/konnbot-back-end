@@ -4,7 +4,7 @@ const Lead = require('../models/Lead.js');
 const Project = require('../models/Project.js');
 const ProjectStructure = require('../models/ProjectStructure.js');
 const Projectspace = require('../models/ProjectSpace.js');
-
+const CommentsOnQuotation = require('../models/CommentsOnQuotation.js');
 
 
 const addNewProjectInQuotaion = async (req, res) => {
@@ -116,6 +116,7 @@ const getQuotationWithDetails = async (req, resp) => {
             }
         })
         .populate("documentsID")
+        .populate("commentsID")
     resp.send(result);
 };
 
@@ -152,6 +153,49 @@ const getspaceWithRoom = async (req, resp) => {
 
 
 
+
+
+// Test start
+const commentsonquatation = async (req, resp) => {
+    try {
+        let changeorder = new CommentsOnQuotation(req.body);
+        const result = await changeorder.save();
+        let objID = new mongoose.Types.ObjectId(changeorder.id)
+        let newss = new mongoose.Types.ObjectId(req.body.quotationID)
+        console.log(objID);
+        await Quotation.updateOne(
+            { _id: newss },
+            {
+                $push: {
+                    commentsID: objID
+                }
+            }
+        )
+        resp.send(result);
+    } catch (err) {
+        resp.status(500).json(err);
+    }
+};
+// test end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = {
     addNewProjectInQuotaion,
     addNewStructureInQuotation,
@@ -159,5 +203,6 @@ module.exports = {
     addSelectedQuotationinLead,
     getQuotationWithDetails,
     getAllQuotationInLead,
-    getspaceWithRoom
+    getspaceWithRoom,
+    commentsonquatation
 };

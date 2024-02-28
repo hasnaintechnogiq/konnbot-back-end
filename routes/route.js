@@ -14,7 +14,7 @@ const { addNewChangeOrderInstallment, getSingleUserChangeOrderInstallment, getAl
 const { addNewChatOrderInstallment, getSingleUserChatOrderInstallment, getAllChatOrderInstallmentDetail, deleteChatOrderInstallment, updateChatOrderInstallmentDetail } = require('../controllers/Chats-Change-Installment-controller.js');
 const { getSingleLeadactivities, addNewActivities, updateActivities, deleteActivities } = require('../controllers/activities-controller.js');
 const { addCheck, addSubTask, getSubActivitiesWithdetails, addNewUpdateInSubActivity, addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity } = require('../controllers/sub-activites-controller.js');
-const { getspaceWithRoom, addNewProjectInQuotaion, addNewStructureInQuotation, addNewProjectspaceinQuatation, addSelectedQuotationinLead, getQuotationWithDetails, getAllQuotationInLead } = require('../controllers/quotation-controller.js');
+const { commentsonquatation,getspaceWithRoom, addNewProjectInQuotaion, addNewStructureInQuotation, addNewProjectspaceinQuatation, addSelectedQuotationinLead, getQuotationWithDetails, getAllQuotationInLead } = require('../controllers/quotation-controller.js');
 
 // Project routes
 
@@ -141,5 +141,6 @@ router.post("/add-space-in-quotation", addNewProjectspaceinQuatation)
 router.post("/add-selected-quotation-in-lead", addSelectedQuotationinLead)
 router.get("/get-all-quotatins-list/:id", getAllQuotationInLead)
 router.get("/get-space-with-rooms/:id", getspaceWithRoom)
+router.post("/add-commentsonquatation", commentsonquatation)
 
 module.exports = router;

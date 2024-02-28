@@ -90,7 +90,7 @@ const addPaidAmount = async (req, res) => {
 
 
 
-// Test start
+
 const chatsInstallment = async (req, resp) => {
     try {
         let changeorder = new ChatInstallment(req.body);
@@ -111,7 +111,7 @@ const chatsInstallment = async (req, resp) => {
         resp.status(500).json(err);
     }
 };
-// test end
+
 
 
 

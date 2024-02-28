@@ -27,6 +27,10 @@ const quotationSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Document'
     }],
+    commentsID: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'commentsonquotation'
+    }],
     quatationdate: { type: Date, default: Date.now }
 });
 
