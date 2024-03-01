@@ -370,6 +370,7 @@ app.post("/add-all-activities", async (req, resp) => {
                 if (newData.categoryname === "Footing") {
 
                     const dataArranew = [
+                        { subactivityname: 'Site Visit', activityID: newData._id },
                         { subactivityname: 'Site Clearance', activityID: newData._id },
                         { subactivityname: 'Layout & Leveling', activityID: newData._id },
                         { subactivityname: 'Excavation', activityID: newData._id },

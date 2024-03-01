@@ -49,9 +49,10 @@ const addNewMyInstallment = async (req, res) => {
         const result = await data.save();
 
         let objID = new mongoose.Types.ObjectId(data.id)
-        console.log(objID);
+        let newss = new mongoose.Types.ObjectId(req.body.leadID)
+
         await Lead.updateOne(
-            { email: req.body.email },
+            { _id: newss },
             {
                 $push: {
                     installmentID: objID

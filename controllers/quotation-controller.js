@@ -178,11 +178,29 @@ const commentsonquatation = async (req, resp) => {
 };
 // test end
 
+const deleteQuotationOne = async (req, res) => {
+    try {
+        let data = await Quotation.deleteOne(req.params);
+        res.send(data);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
 
 
 
-
-
+const updateQuotation = async (req, res) => {
+    try {
+        console.log(req.params)
+        let data = await Quotation.updateOne(
+            req.params,
+            { $set: req.body }
+        );
+        res.send(data);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
 
 
 
@@ -204,5 +222,7 @@ module.exports = {
     getQuotationWithDetails,
     getAllQuotationInLead,
     getspaceWithRoom,
-    commentsonquatation
+    commentsonquatation,
+    deleteQuotationOne,
+    updateQuotation
 };
