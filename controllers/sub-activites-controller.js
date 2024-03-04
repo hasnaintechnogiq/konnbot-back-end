@@ -143,7 +143,37 @@ const updatesubactivity = async (req, res) => {
     }
 };
 
+
+const updatesubTask = async (req, res) => {
+    try {
+        console.log(req.params)
+        let data = await Subtask.updateOne(
+            req.params,
+            { $set: req.body }
+        );
+        res.send(data);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
+
+const updateChecks = async (req, res) => {
+    try {
+        console.log(req.params)
+        let data = await Checks.updateOne(
+            req.params,
+            { $set: req.body }
+        );
+        res.send(data);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
 module.exports = {
+    updateChecks,
+    updatesubTask,
     addCheck,
     addSubTask,
     getSubActivitiesWithdetails,

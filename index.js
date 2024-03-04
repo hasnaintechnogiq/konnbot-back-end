@@ -15,11 +15,12 @@ const Queries = require('./models/Queries');
 const MyInstallment = require('./models/MyInstallment.js');
 const DocumentForQuotation = require('./models/DocumentForQuotation.js');
 const Quotation = require('./models/Quotation.js');
-
+const Checks = require('./models/Checks.js');
 const Lead = require('./models/Lead');
 const ChangeOrderInstallment = require('./models/ChangeOrderInstallment.js');
 const ChatsChangeInstallment = require('./models/ChatsChangeInstallment.js');
 const SubActivities = require('./models/SubActivities.js');
+const Subtask = require('./models/SubTaskForSubactivities.js');
 const PhotosForSubActivities = require('./models/PhotosForSubActivities.js');
 const Activities = require('./models/Activities.js');
 const authenticate = require('./authenticate');
@@ -389,7 +390,727 @@ app.post("/add-all-activities", async (req, resp) => {
 
                                 let objID = new mongoose.Types.ObjectId(newDatanew.id)
                                 let newss = new mongoose.Types.ObjectId(newData._id)
-                                console.log(objID);
+                           
+
+
+                                if (newDatanew.subactivityname === "Site Visit") {
+
+                                    const dataArranew = [
+                                        { subtaskdescription: 'Site location - Geo Locationn | Address' },
+                                        { subtaskdescription: 'Clients Name and Contact No.' },
+                                        { subtaskdescription: 'Project ID' },
+                                        { subtaskdescription: 'Click the photos of Site for the references Front side,Back side and sideways' },
+                                        { subtaskdescription: 'Does this structure/boundary needs to be demolished' },
+                                        { subtaskdescription: 'Mark the details of all four adjacent sides of the plot' },
+                                        { subtaskdescription: 'Does the site has connected roads' },
+                                        { subtaskdescription: 'The society and neighbours to be informed about the start of the Work and the permission to be taken for the material procurement' },
+                                        { subtaskdescription: 'If any issue with the neighbours then inform the Client and Client will have to manage it' },
+                                        { subtaskdescription: 'In terms of electricity, How many days it will take to come electricity on site.' },
+                                        { subtaskdescription: 'Who is pursuing the Electrical Work' },
+                                        { subtaskdescription: 'If borewell than in working condition or motor installation is remaining' },
+                                        { subtaskdescription: 'How many days needed for working borewell from Client ends' },
+                                        { subtaskdescription: 'If society is giving the connection, timing for the water available on site' },
+                                        { subtaskdescription: 'If Society is providing the water than, we need the Plastic Water Tank, for water storage.' },
+                                        { subtaskdescription: 'In case of Drain on going in front of plot, Client have to make sure that it is covered, by some good material so that while excavation or construction, It should not get blocked' },
+                                        { subtaskdescription: 'Informed about the Extra Cable Length for smooth Ongoing of the Work to client.' },
+                                        { subtaskdescription: 'If feasible, then take the dimension of the plot, for the discussion purpose are as per the Drawings. If any changes then mark and write it.' },
+                                        { subtaskdescription: 'If there is any changes, Please Inform to the Client on the spot to mention it & take the outer points in front of him.' },
+                                        { subtaskdescription: 'In not agreed by the Client, which process we are taking' },
+                                        { subtaskdescription: 'Type of Soil present on the Top Surface of the Plot' },
+                                        { subtaskdescription: 'If you find any site, nearby to it, then please ask them the type of footing they have & the depth of hard strata' },
+                                        { subtaskdescription: 'Possible Excavation Type' },
+                                        { subtaskdescription: 'Possible Excavation Process' },
+                                        { subtaskdescription: 'Did you have the form which consists Site Handover Work from the client end to KONNBOT & undertaking that the outer points are given by the Client and conforming it.' },
+                                    ];
+                
+                                    async function sitevisitcallnow() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Subtask(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+                
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                console.log(objID);
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            subtaskID: objID
+                                                        }
+                                                    }
+                                                )
+                                                console.log('Data saved:', savedData);
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    sitevisitcallnow();
+                                }
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Site Visit") {
+
+                                    const dataArranew = [
+                                        { checksdescription: 'Measuring tape (30m)' },
+                                        { checksdescription: 'Is there any existing structure/Boundary.' },
+                                        { checksdescription: 'Is there a tree inside the site boundary or away from the site boundary but it can interrupt the working' },
+                                        { checksdescription: 'Can the vehicles easily move along the site for material supply' },
+                                        { checksdescription: 'Is there a proper place form the placement of the material' },
+                                        { checksdescription: 'Is there a place for the security person' },
+                                        { checksdescription: 'Is there a public toilet nearby for the security person' },
+                                        { checksdescription: 'Is the electric pole nearby the site' },
+                                        { checksdescription: 'Has the electrictity connection been taken' },
+                                        { checksdescription: 'Temporary Placement position for providing the meter on Site, is informed & structure needed to put it. Do we inform the client' },
+                                        { checksdescription: 'Provision that, no cable should be harmed for that particular precaution are taken, Please check the Rule Book for It.' },
+                                        { checksdescription: 'If there is anything (Electrical Wires, Septic tank, Sewer line or others) Informed to client that they should ask the society for the information.' },
+                                        { checksdescription: 'Ask client to show the Sewer Line + Main Hole near plot, whereas if not available then construction of septic tank is to be considered' },
+                                        { checksdescription: 'Water connection availability' },
+                                    ];
+                
+                                    async function sitevisitcallnowChacks() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Checks(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+                
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                console.log(objID);
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            checksID: objID
+                                                        }
+                                                    }
+                                                )
+                                                console.log('Data saved:', savedData);
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    sitevisitcallnowChacks();
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Site Clearance") {
+
+                                    const dataArranew = [
+                                        { subtaskdescription: 'Who is assigned to do Site Clearance Work' },
+                                        { subtaskdescription: 'Did you Finalize the JCB / Labour for the work + Dumper to dump outside.' },
+                                        { subtaskdescription: 'Search also for the near by dump yard or ask the JCB person to find it by their own' },
+                                        { subtaskdescription: 'How much deep you are going down while clearing ( in inches)' },
+                                        { subtaskdescription: 'Schedule Date for Clearing the Site & Dumping Nearby' },
+                                        { subtaskdescription: 'After clearing the site, the difference in the level from road to site ground level. (in inches)' },
+                                    ];
+                
+                                    async function siteClearanceCallingnow() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Subtask(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+                
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                console.log(objID);
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            subtaskID: objID
+                                                        }
+                                                    }
+                                                )
+                                                console.log('Data saved:', savedData);
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    siteClearanceCallingnow();
+                                }
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Site Clearance") {
+
+                                    const dataArranew = [
+                                        { checksdescription: 'Does the site need to be cleared' },
+                                        { checksdescription: 'Does it require a JCB for cleaning or it can be done by the labour.' },
+                                        { checksdescription: 'If by any chance we have tree or any other important things on site, than client will handel this issue by his own, KONNBOT wont interfere in any matter.' },
+                                        { checksdescription: 'After the site clearance the adjacent roads to be cleaned so that there is no objection from the neighbours' },
+                                    ];
+                
+                                    async function siteclearancesChacks() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Checks(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+                
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                console.log(objID);
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            checksID: objID
+                                                        }
+                                                    }
+                                                )
+                                                console.log('Data saved:', savedData);
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    siteclearancesChacks();
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Layout & Leveling") {
+
+                                    const dataArranew = [
+                                        { subtaskdescription: 'Soil investigation report is kept in the site, if not then as per the site analysis and near by plot condition.' },
+                                        { subtaskdescription: 'Mark the corners of the plot and make a bhurji.' },
+                                        { subtaskdescription: 'Check the diagonal of the site.' },
+                                        { subtaskdescription: 'If the diagonals are OK then proceed with the layout.' },
+                                        { subtaskdescription: 'If the diagonals are varying then discuss with the engineer in charge.' },
+                                        { subtaskdescription: 'After confirmation of the diagonals go ahead with the grid marking on the plot.' },
+                                        { subtaskdescription: 'After marking the grid on the site, Check through all the sides for final confirmation as per Drawing.' },
+                                        { subtaskdescription: 'If any side of building is there, mark the Horizontal Level on it, as per that decide the benchmark height.' },
+                                        { subtaskdescription: 'If isolated, mark the Footing Size with 4" cover on every side.' },
+                                        { subtaskdescription: 'If piling then, Pile Cap Shape Cage for fabrication work.' },
+                                        { subtaskdescription: 'Mark the pile Cap, inside the pile cap Piles marked.' },
+                                    ];
+                
+                                    async function layoutAndLevellingCall() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Subtask(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+                
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                console.log(objID);
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            subtaskID: objID
+                                                        }
+                                                    }
+                                                )
+                                                console.log('Data saved:', savedData);
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    layoutAndLevellingCall();
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Layout & Leveling") {
+
+                                    const dataArranew = [
+                                        { checksdescription: 'Is the site clean for the layout' },
+                                        { checksdescription: 'Are the instruments and materials required for the layout present in the site' },
+                                        { checksdescription: 'Are the boudary of the plot fixed' },
+                                        { checksdescription: 'Approved Architectural drawings are kept in the site' },
+                                        { checksdescription: 'Approved Structural drawings are kept in the site.' },
+                                        { checksdescription: 'Structural grid line and architectural grid lines are checked properly.' },
+                                        { checksdescription: 'Identify the type of footing from the drawing' },
+                                        { checksdescription: 'Foundations of edge columns does not exceed the property line' },
+                                        { checksdescription: 'Once the layout has been finalised the Client should be informed about the site boundaries so that there is no issue with the neighbours plot' },
+                                    ];
+                
+                                    async function layoutandlevelingsdChacks() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Checks(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+                
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                console.log(objID);
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            checksID: objID
+                                                        }
+                                                    }
+                                                )
+                                                console.log('Data saved:', savedData);
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    layoutandlevelingsdChacks();
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Excavation") {
+
+                                    const dataArranew = [
+                                        { subtaskdescription: 'RL of benchmark is present at the site.' },
+                                        { subtaskdescription: 'Precaution plans are made to mitigate the risk of any failure of adjacent building/ structures due to excavation.' },
+                                        { subtaskdescription: 'Column grid lines are stable (not dislocated) during earth cutting.' },
+                                        { subtaskdescription: 'Mode of excavation.' },
+                                        { subtaskdescription: 'Method of excavation.' },
+                                        { subtaskdescription: 'If the excavation is to be done by JCB then confirm the sequence of excavation of footing.' },
+                                        { subtaskdescription: 'Approval from the Neighbour or Society to put the Soil Outside the Plot or Informed Client.' },
+                                        { subtaskdescription: 'If during excavation of footing the neighbour footing is coming on our plot then inform the client and the Neighbour and the required step to be taken' },
+                                        { subtaskdescription: 'If any services are passing through the plot then the society should be informed to take the required step' },
+                                        { subtaskdescription: 'Pile lifting position is painted and marked.' },
+                                    ];
+                
+                                    async function layoutAndLevellingCall() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Subtask(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+                
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                console.log(objID);
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            subtaskID: objID
+                                                        }
+                                                    }
+                                                )
+                                                console.log('Data saved:', savedData);
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    layoutAndLevellingCall();
+                                }
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Excavation") {
+
+                                    const dataArranew = [
+                                        { checksdescription: 'Whether the layout has been done and Checked by the Client' },
+                                        { checksdescription: 'Depth of cutting is finalized with repect to Reduced level.' },
+                                        { checksdescription: 'Excavation is executed to the target depth.' },
+                                        { checksdescription: 'Foundation bed is properly compacted and leveled' },
+                                        { checksdescription: 'Any objectionable object in foundation bed is removed.' },
+                                        { checksdescription: 'Are the footings at the same level' },
+                                        { checksdescription: 'Proper way for movement of the labours' },
+                                        { checksdescription: 'It should be confirmed that Foundations of edge columns does not exceed the property line' },
+                                        { checksdescription: 'Level of Pile Top is fixed as per design instruction.' },
+                                        { checksdescription: 'Pile driving position is Correctly marked on the site.' },
+                                        { checksdescription: 'Pile driving is truely vertical.' },
+                                        { checksdescription: 'Column position is set at center of all pile groups' },
+                                    ];
+                
+                                    async function ExcavationnewChacks() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Checks(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+                
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                console.log(objID);
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            checksID: objID
+                                                        }
+                                                    }
+                                                )
+                                                console.log('Data saved:', savedData);
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    ExcavationnewChacks();
+                                }
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "P.C.C Work") {
+
+                                    const dataArranew = [
+                                        { checksdescription: 'Check surface preparation.' },
+                                        { checksdescription: 'Check marking and levels to be done with respect to drawing.' },
+                                        { checksdescription: 'Check for form work.' },
+                                        { checksdescription: 'Check for finished level.' },
+                                        { checksdescription: 'Check for mixing of cement, sand and aggregate and adequate material.' },
+                                        { checksdescription: 'Check for pouring height.' },
+                                        { checksdescription: 'Do not allow extra cement mortar on top of PCC for smooth finishing.' },
+                                        { checksdescription: 'Check for ramming with proper tools.' },
+                                        { checksdescription: 'Check for bottom marking for PCC thickness.' },
+                                        { checksdescription: 'Proper marking of the centreline has been done as per the drawing' },
+                                    ];
+                
+                                    async function pccworkchChacks() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Checks(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+                
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                console.log(objID);
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            checksID: objID
+                                                        }
+                                                    }
+                                                )
+                                                console.log('Data saved:', savedData);
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    pccworkchChacks();
+                                }
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "R.C.C Footing") {
+
+                                    const dataArranew = [
+                                        { checksdescription: 'Check whether the proper placement of the reinforment has been done' },
+                                        { checksdescription: 'Proper shuttering has been provided' },
+                                        { checksdescription: 'Proper cover to be provided for the footing' },
+                                        { checksdescription: 'The contractor is present at the time of concreting' },
+                                        { checksdescription: 'The ratio of concrete is as per the drawing' },
+                                        { checksdescription: 'Footing Vibrator for every 6" - 8" of Layer & Make sure regarding the Vibrator running time, as per site' },
+                                        { checksdescription: 'Concrete filled evenly upto required level' },
+                                        { checksdescription: 'Concrete not dropped from height greater than 1.5 - 1.8 m and thrown at distance greater than 2m' },
+                                        { checksdescription: 'Concrete filling should be continuous, for every footing, No Break in between or Mixer Break' },
+                                        { checksdescription: 'Proper levelling of concrete has been done' },
+                                        { checksdescription: 'Concreting has been done upto the required depth' },
+                                        { checksdescription: 'Proper compaction has been done and no Bleeding or Segregation occurs' },
+                                        { checksdescription: 'Shuttering to be removed properly' },
+                                        { checksdescription: 'Proper curing should be done' },
+                                    ];
+                
+                                    async function rccworkchChacks() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Checks(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+                
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                console.log(objID);
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            checksID: objID
+                                                        }
+                                                    }
+                                                )
+                                                console.log('Data saved:', savedData);
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    rccworkchChacks();
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "R.C.C Pedestal") {
+
+                                    const dataArranew = [
+                                        { checksdescription: 'Plotting of gridline for center of column above plinth / floor slab.' },
+                                        { checksdescription: 'Locating & marking the centers of columns.' },
+                                        { checksdescription: 'Binding & placing column reinforcement above upper floor slab as per required height, considering lap length of the bar.' },
+                                        { checksdescription: 'Column reinforcement & its arrangement as per drawing.' },
+                                        { checksdescription: 'Ring spacing & their arrangement as per R.C.C. drawings.' },
+                                        { checksdescription: 'Proper binding of reinforcement with binding wire.' },
+                                        { checksdescription: 'Fixing of concrete or P.V.C. cover blocks to reinforcement.' },
+                                        { checksdescription: 'The quality of shuttering before placing.' },
+                                        { checksdescription: 'Applying deshuttering oil to plywood shuttering.' },
+                                        { checksdescription: 'Fixing M.S.clamps (shinkanjas) at every 0.6 m (2’0") internal.' },
+                                        { checksdescription: 'Stiffness of side supports to have formwork in plumb.' },
+                                        { checksdescription: 'Size as per drawing.' },
+                                        { checksdescription: 'Diagonals as required.' },
+                                        { checksdescription: 'Oiling of shuttering.' },
+                                        { checksdescription: 'Plumb on both sides.' },
+                                        { checksdescription: 'Line of columns as desired.' },
+                                        { checksdescription: 'Sufficient Marking level up to which concreting to be done.' },
+                                        { checksdescription: 'Supports.' },
+                                        { checksdescription: 'Reinforcement cover provided.' },
+                                        { checksdescription: 'Spacing of reinforcement above concrete level, maintained as required.' },
+                                        { checksdescription: 'Proper filling of gaps from outside by soil paste.' },
+                                        { checksdescription: 'Quality of materials of concrete.' },
+                                        { checksdescription: 'The proportion & mixing of material.' },
+                                        { checksdescription: 'Six cube mould are kept ready to cast cubes from different batches.' },
+                                        { checksdescription: 'Controlled water cement ratio.' },
+                                        { checksdescription: 'Availability of vibrator or labour for tamping.' },
+                                        { checksdescription: 'Proper cover after concreting on top level.' },
+                                        { checksdescription: 'Casting of concrete cubes as required.' },
+                                        { checksdescription: 'Proper numbering on cubes.' },
+                                        { checksdescription: 'Fill joints if slurry flows from anywhere.' },
+                                        { checksdescription: 'Maintain required concrete level.' },
+                                        { checksdescription: 'Cleaning of mixing platform.' },
+                                        { checksdescription: 'Deshuttering of columns after 24 hrs-48 hrs.' },
+                                        { checksdescription: 'Submission of the deshuttering report to higher authority.' },
+                                        { checksdescription: 'Finishing of honey combing, if any, with proper care.' },
+                                        { checksdescription: 'Date of casting written on column.' },
+                                        { checksdescription: 'Hacking of columns.' },
+                                        { checksdescription: 'Cubes removed next day & kept for curing, with code numbers, cast code, site name on cubes.' },
+                                        { checksdescription: 'Curing of columns done for minimum 15 days. Wet cloth wrapped around it.' },
+                                        { checksdescription: 'Testing of cubes on due dates i.e. after seventh & twenty eighth day' },
+
+                                    ];
+                
+                                    async function pedastalrccChacks() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Checks(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+                
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                console.log(objID);
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            checksID: objID
+                                                        }
+                                                    }
+                                                )
+                                                console.log('Data saved:', savedData);
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    pedastalrccChacks();
+                                }
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Back Filling") {
+
+                                    const dataArranew = [
+                                        { checksdescription: 'Backfilling material approved' },
+                                        { checksdescription: 'Material free from impurities' },
+                                        { checksdescription: 'Bottom levels taken/noted' },
+                                        { checksdescription: 'Rock pieces not greater than 150mm' },
+                                        { checksdescription: 'Filling layers not greater than 150mm (or as directed by incharge)' },
+                                        { checksdescription: 'Watering of layers filled' },
+                                        { checksdescription: 'Proper compaction by approved method /machinery.' },
+                                        { checksdescription: 'Slopes maintained if required' },
+                                        { checksdescription: 'Top levels taken' },
+                                        { checksdescription: 'The backfilled soil should be rammed and levelled' },
+                                        { checksdescription: 'All backfill materials are free of debris, waste, organic material, and other deleterious matter' },
+                                        { checksdescription: 'Backfill has been placed in layers not to exceed 150 mm in compacted thickness.' },
+                                        { checksdescription: 'Each layer has been compacted to 90% for general fill and 95% for structural fill of optimum dry density' },
+                                        { checksdescription: 'Level tolerance, Gen. Fill :±100 mm, Fill to be covered with concrete in foundations or linings: ±0 mm' },
+                                    ];
+                
+                                    async function backfillingchChacks() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Checks(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+                
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                console.log(objID);
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            checksID: objID
+                                                        }
+                                                    }
+                                                )
+                                                console.log('Data saved:', savedData);
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    backfillingchChacks();
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 await Activities.updateOne(
                                     { _id: newss },
                                     {
