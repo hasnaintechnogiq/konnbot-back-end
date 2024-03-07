@@ -31,7 +31,15 @@ const getSingleLeadactivities = async (req, resp) => {
             path: 'activitiesID',
             populate: {
               path: 'subactivitiesID',
-              model: 'subactivities'
+              model: 'subactivities',
+              populate: [
+                { path: 'subtaskID', model: 'subtask' }, // Populate the first nested array
+                { path: 'checksID', model: 'checks' }  // Populate the second nested array
+            ]
+            //   populate: {
+            //       path: 'subtaskID', 
+            //       model: 'subtask' // Replace NestedModel with the actual model name
+            //   }
             }
           });
         resp.send(single);

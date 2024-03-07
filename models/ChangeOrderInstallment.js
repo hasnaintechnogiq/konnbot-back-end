@@ -5,7 +5,7 @@ const changeorderinstallmentSchema = mongoose.Schema({
     modechange: String,
     status: {
         type: String,
-        default: "Pending"
+        default: "Open"
     },
     amountchange: Number,
     dateofcommerse: String,

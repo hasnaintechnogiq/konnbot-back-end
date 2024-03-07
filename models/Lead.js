@@ -16,6 +16,14 @@ const LeadsSchema = mongoose.Schema({
         type: String,
         default: "No"
     },
+    todayworkstatus: {
+        type: String,
+        default: "Yes"
+    },
+    reasontostopwork : {
+        type: String,
+        default: "Delay's End"
+    },
     status: String,
     priority: String,
     projestatus: String,
