@@ -12,6 +12,10 @@ const usersSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'leads'
     },
+    notificationarrayID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'notificationarray'
+    },
     usersitedetailsdemoID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'usersitedetailsdemo'

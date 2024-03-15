@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const User = require('../models/User.js');
 const UserSiteDetailsDemo = require('../models/UserSiteDetailsDemo.js');
+const NotificationArray = require('../models/NotificationArray.js');
+
 
 const getAllUsers = async (req, res) => {
     try {
@@ -14,10 +16,10 @@ const getAllUsers = async (req, res) => {
 const getSingleUser = async (req, resp) => {
     try {
         let single = await User.findOne({ _id: req.params._id });
-    resp.send(single);
-      } catch (err) {
-       res.status(500).json(err);
-   }
+        resp.send(single);
+    } catch (err) {
+        res.status(500).json(err);
+    }
 };
 
 const addNewUser = async (req, res) => {
@@ -29,7 +31,15 @@ const addNewUser = async (req, res) => {
             res.send('Email already exists');
             console.log("Email already exists")
         } else {
+
+            const newDocument = new NotificationArray();
+            const notifiArray = await newDocument.save();
+
+            let objID = new mongoose.Types.ObjectId(newDocument.id)
+
+            user.notificationarrayID = objID;
             const result = await user.save();
+
             res.send(result);
         }
     } catch (err) {
@@ -37,12 +47,12 @@ const addNewUser = async (req, res) => {
     }
 };
 
-const updateUserDetail =async (req, res) => {
+const updateUserDetail = async (req, res) => {
     try {
         console.log(req.params)
         let data = await User.updateOne(
             req.params,
-            {$set: req.body}
+            { $set: req.body }
         );
         res.send(data);
     } catch (error) {
@@ -59,7 +69,7 @@ const deleteUser = async (req, res) => {
     }
 };
 
-const getUserWithQueries= async (req, resp) => {
+const getUserWithQueries = async (req, resp) => {
     const result = await User.findOne(
         { _id: req.params.id }).populate("queriesID")
     resp.send(result);

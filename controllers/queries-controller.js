@@ -4,7 +4,7 @@ const Queries = require('../models/Queries.js');
 const Queryupdates = require('../models/Queryupdates.js');
 const getAllQueries = async (req, res) => {
     try {
-        let queries = await Queries.find().populate("kisusermh")
+        let queries = await Queries.find()
         res.send(queries)
     } catch (err) {
         res.status(500).json(err);

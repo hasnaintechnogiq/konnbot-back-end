@@ -23,6 +23,19 @@ const SubActivities = require('./models/SubActivities.js');
 const Subtask = require('./models/SubTaskForSubactivities.js');
 const PhotosForSubActivities = require('./models/PhotosForSubActivities.js');
 const Activities = require('./models/Activities.js');
+const NotificationsForAll = require('./models/NotificationsForAll.js');
+const NotificationArray = require('./models/NotificationArray.js');
+const Delays = require('./models/Delays.js');
+
+
+
+
+
+
+
+
+
+
 const authenticate = require('./authenticate');
 const PORT = process.env.PORT || 5000;
 const mongoose = require('mongoose');
@@ -133,7 +146,36 @@ app.post('/add-images-in-change-order-upload', upload.array('images', 5), async 
                 }
             }
         )
-        //  res.send(result);
+
+        const objecttosave = {
+            pathtoredirect: 'ChangeOrder',
+            idtogetdata: req.body.changeorderinstallmentid,
+            notificationtypeorsection: 'New Massage in Change Order!',
+            iconname: 'message-text-clock',
+        }
+
+        let notificationall = new NotificationsForAll(objecttosave);
+        const resultnew = await notificationall.save();
+        let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
+
+        const useridcheck = req.body.userID
+
+        if(useridcheck){
+            let single = await User.findOne({ _id: useridcheck })
+
+            let notifiIDes = single.notificationarrayID
+
+            console.log("go", notifiIDes);
+            await NotificationArray.updateOne(
+                { _id: notifiIDes },
+                {
+                    $push: {
+                        notificationsforallID: objIDnew
+                    }
+                }
+            )
+        }
+
         return res.send(result);
     }
 
@@ -159,6 +201,34 @@ app.post('/add-images-in-change-order-upload', upload.array('images', 5), async 
             }
         }
     )
+
+    const objecttosave = {
+        pathtoredirect: 'ChangeOrder',
+        idtogetdata: req.body.changeorderinstallmentid,
+        notificationtypeorsection: 'New Massage in Change Order!',
+        iconname: 'message-text-clock',
+    }
+
+    let notificationall = new NotificationsForAll(objecttosave);
+    const resultnew = await notificationall.save();
+    let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
+    const useridcheck = req.body.userID
+
+    if(useridcheck){
+        let single = await User.findOne({ _id: useridcheck })
+
+        let notifiIDes = single.notificationarrayID
+
+        console.log("go", notifiIDes);
+        await NotificationArray.updateOne(
+            { _id: notifiIDes },
+            {
+                $push: {
+                    notificationsforallID: objIDnew
+                }
+            }
+        )
+    }
     res.send(result);
     // res.send(imgarry);
 });
@@ -200,6 +270,45 @@ app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, r
             }
         )
 
+
+        const objecttosave = {
+            pathtoredirect: 'TicketDetails',
+            idtogetdata: req.body.queryid,
+            notificationtypeorsection: 'New Massage in Ticket!',
+            iconname: 'facebook-messenger',
+        }
+
+        let notificationall = new NotificationsForAll(objecttosave);
+        const resultnew = await notificationall.save();
+        let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
+
+        
+        const useridcheck = req.body.userID
+
+        if(useridcheck){
+            let single = await User.findOne({ _id: useridcheck })
+
+            let notifiIDes = single.notificationarrayID
+
+            console.log("go", notifiIDes);
+            await NotificationArray.updateOne(
+                { _id: notifiIDes },
+                {
+                    $push: {
+                        notificationsforallID: objIDnew
+                    }
+                }
+            )
+        }
+
+
+
+
+
+
+
+
+
         return res.send(result);
     }
 
@@ -225,12 +334,196 @@ app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, r
             }
         }
     )
+
+
+    const objecttosave = {
+        pathtoredirect: 'TicketDetails',
+        idtogetdata: req.body.queryid,
+        notificationtypeorsection: 'New Massage in Ticket!',
+        iconname: 'facebook-messenger',
+    }
+
+    let notificationall = new NotificationsForAll(objecttosave);
+    const resultnew = await notificationall.save();
+    let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
+
+    
+    const useridcheck = req.body.userID
+
+    if(useridcheck){
+        let single = await User.findOne({ _id: useridcheck })
+
+        let notifiIDes = single.notificationarrayID
+
+        console.log("go", notifiIDes);
+        await NotificationArray.updateOne(
+            { _id: notifiIDes },
+            {
+                $push: {
+                    notificationsforallID: objIDnew
+                }
+            }
+        )
+    }
+
+
+
+
+
+
     res.send(result);
     // res.send(imgarry);
 });
 
 
 // Ticket update with images end
+
+
+
+
+
+
+
+
+// add delay with images start
+
+app.post('/add-delay-with-images', upload.array('images', 5), async (req, res) => {
+    const files = req.files;
+    if (!files || files.length === 0) {
+        const formData = req.body;
+        const result = await Delays.create({ ...formData });
+
+        let objID = new mongoose.Types.ObjectId(result.id);
+        let newss = new mongoose.Types.ObjectId(req.body.leadID)
+        // console.log(req.body.email);
+        await Lead.updateOne(
+            { _id: newss },
+            {
+                $push: {
+                    delaysID: objID
+                }
+            }
+        )
+
+
+        // const objecttosave = {
+        //     pathtoredirect: 'TicketDetails',
+        //     idtogetdata: req.body.queryid,
+        //     notificationtypeorsection: 'New Massage in Ticket!',
+        //     iconname: 'facebook-messenger',
+        // }
+
+        // let notificationall = new NotificationsForAll(objecttosave);
+        // const resultnew = await notificationall.save();
+        // let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
+
+        
+        // const useridcheck = req.body.userID
+
+        // if(useridcheck){
+        //     let single = await User.findOne({ _id: useridcheck })
+
+        //     let notifiIDes = single.notificationarrayID
+
+        //     console.log("go", notifiIDes);
+        //     await NotificationArray.updateOne(
+        //         { _id: notifiIDes },
+        //         {
+        //             $push: {
+        //                 notificationsforallID: objIDnew
+        //             }
+        //         }
+        //     )
+        // }
+
+        return res.send(result);
+    }
+
+    const formData = req.body;
+    console.log(files)
+    const imgarry = files.map((file) => ({
+        originalname: file.originalname,
+        filename: file.filename,
+        path: file.path,
+        profile_url: `https://konnbotbackend.onrender.com/profile/${file.filename}`
+    }));
+
+    const result = await Delays.create({ ...formData, imgarry });
+
+    let objID = new mongoose.Types.ObjectId(result.id);
+    let newss = new mongoose.Types.ObjectId(req.body.leadID)
+    // console.log(req.body.email);
+    await Lead.updateOne(
+        { _id: newss },
+        {
+            $push: {
+                delaysID: objID
+            }
+        }
+    )
+
+
+    // const objecttosave = {
+    //     pathtoredirect: 'TicketDetails',
+    //     idtogetdata: req.body.queryid,
+    //     notificationtypeorsection: 'New Massage in Ticket!',
+    //     iconname: 'facebook-messenger',
+    // }
+
+    // let notificationall = new NotificationsForAll(objecttosave);
+    // const resultnew = await notificationall.save();
+    // let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
+
+    
+    // const useridcheck = req.body.userID
+
+    // if(useridcheck){
+    //     let single = await User.findOne({ _id: useridcheck })
+
+    //     let notifiIDes = single.notificationarrayID
+
+    //     console.log("go", notifiIDes);
+    //     await NotificationArray.updateOne(
+    //         { _id: notifiIDes },
+    //         {
+    //             $push: {
+    //                 notificationsforallID: objIDnew
+    //             }
+    //         }
+    //     )
+    // }
+
+    res.send(result);
+    // res.send(imgarry);
+});
+
+
+// Add delay with images end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -280,34 +573,34 @@ app.post('/upload-documents', upload.single('document'), async (req, res) => {
     const formData = req.body;
     console.log(formData)
     try {
-      const { originalname, size, mimetype, filename } = req.file;
-      const newDocument = new DocumentForQuotation({
-        name: originalname,
-        uri: filename,
-        type: mimetype,
-        size: size
-      });
-  
-      const result =  await newDocument.save();
+        const { originalname, size, mimetype, filename } = req.file;
+        const newDocument = new DocumentForQuotation({
+            name: originalname,
+            uri: filename,
+            type: mimetype,
+            size: size
+        });
 
-      let objID = new mongoose.Types.ObjectId(result.id);
-      let newss = new mongoose.Types.ObjectId(req.body.QuotationID)
-      console.log(objID);
-      await Quotation.updateOne(
-          { _id: newss },
-          {
-              $push: {
-                documentsID: objID
-              }
-          }
-      )
- 
+        const result = await newDocument.save();
 
-      
-      res.json({ message: 'Document uploaded successfully' });
+        let objID = new mongoose.Types.ObjectId(result.id);
+        let newss = new mongoose.Types.ObjectId(req.body.QuotationID)
+        console.log(objID);
+        await Quotation.updateOne(
+            { _id: newss },
+            {
+                $push: {
+                    documentsID: objID
+                }
+            }
+        )
+
+
+
+        res.json({ message: 'Document uploaded successfully' });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Error uploading document' });
+        console.error(error);
+        res.status(500).json({ error: 'Error uploading document' });
     }
 });
 
@@ -390,7 +683,7 @@ app.post("/add-all-activities", async (req, resp) => {
 
                                 let objID = new mongoose.Types.ObjectId(newDatanew.id)
                                 let newss = new mongoose.Types.ObjectId(newData._id)
-                           
+
 
 
                                 if (newDatanew.subactivityname === "Site Visit") {
@@ -422,13 +715,13 @@ app.post("/add-all-activities", async (req, resp) => {
                                         { subtaskdescription: 'Possible Excavation Process' },
                                         { subtaskdescription: 'Did you have the form which consists Site Handover Work from the client end to KONNBOT & undertaking that the outer points are given by the Client and conforming it.' },
                                     ];
-                
+
                                     async function sitevisitcallnow() {
                                         for (let i = 0; i < dataArranew.length; i++) {
                                             try {
                                                 const newDatanewtask = new Subtask(dataArranew[i]);
                                                 const savedData = await newDatanewtask.save();
-                
+
                                                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                                                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
                                                 console.log(objID);
@@ -476,13 +769,13 @@ app.post("/add-all-activities", async (req, resp) => {
                                         { checksdescription: 'Ask client to show the Sewer Line + Main Hole near plot, whereas if not available then construction of septic tank is to be considered' },
                                         { checksdescription: 'Water connection availability' },
                                     ];
-                
+
                                     async function sitevisitcallnowChacks() {
                                         for (let i = 0; i < dataArranew.length; i++) {
                                             try {
                                                 const newDatanewtask = new Checks(dataArranew[i]);
                                                 const savedData = await newDatanewtask.save();
-                
+
                                                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                                                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
                                                 console.log(objID);
@@ -536,13 +829,13 @@ app.post("/add-all-activities", async (req, resp) => {
                                         { subtaskdescription: 'Schedule Date for Clearing the Site & Dumping Nearby' },
                                         { subtaskdescription: 'After clearing the site, the difference in the level from road to site ground level. (in inches)' },
                                     ];
-                
+
                                     async function siteClearanceCallingnow() {
                                         for (let i = 0; i < dataArranew.length; i++) {
                                             try {
                                                 const newDatanewtask = new Subtask(dataArranew[i]);
                                                 const savedData = await newDatanewtask.save();
-                
+
                                                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                                                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
                                                 console.log(objID);
@@ -580,13 +873,13 @@ app.post("/add-all-activities", async (req, resp) => {
                                         { checksdescription: 'If by any chance we have tree or any other important things on site, than client will handel this issue by his own, KONNBOT wont interfere in any matter.' },
                                         { checksdescription: 'After the site clearance the adjacent roads to be cleaned so that there is no objection from the neighbours' },
                                     ];
-                
+
                                     async function siteclearancesChacks() {
                                         for (let i = 0; i < dataArranew.length; i++) {
                                             try {
                                                 const newDatanewtask = new Checks(dataArranew[i]);
                                                 const savedData = await newDatanewtask.save();
-                
+
                                                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                                                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
                                                 console.log(objID);
@@ -641,13 +934,13 @@ app.post("/add-all-activities", async (req, resp) => {
                                         { subtaskdescription: 'If piling then, Pile Cap Shape Cage for fabrication work.' },
                                         { subtaskdescription: 'Mark the pile Cap, inside the pile cap Piles marked.' },
                                     ];
-                
+
                                     async function layoutAndLevellingCall() {
                                         for (let i = 0; i < dataArranew.length; i++) {
                                             try {
                                                 const newDatanewtask = new Subtask(dataArranew[i]);
                                                 const savedData = await newDatanewtask.save();
-                
+
                                                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                                                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
                                                 console.log(objID);
@@ -695,13 +988,13 @@ app.post("/add-all-activities", async (req, resp) => {
                                         { checksdescription: 'Foundations of edge columns does not exceed the property line' },
                                         { checksdescription: 'Once the layout has been finalised the Client should be informed about the site boundaries so that there is no issue with the neighbours plot' },
                                     ];
-                
+
                                     async function layoutandlevelingsdChacks() {
                                         for (let i = 0; i < dataArranew.length; i++) {
                                             try {
                                                 const newDatanewtask = new Checks(dataArranew[i]);
                                                 const savedData = await newDatanewtask.save();
-                
+
                                                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                                                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
                                                 console.log(objID);
@@ -772,13 +1065,13 @@ app.post("/add-all-activities", async (req, resp) => {
                                         { subtaskdescription: 'If any services are passing through the plot then the society should be informed to take the required step' },
                                         { subtaskdescription: 'Pile lifting position is painted and marked.' },
                                     ];
-                
+
                                     async function layoutAndLevellingCall() {
                                         for (let i = 0; i < dataArranew.length; i++) {
                                             try {
                                                 const newDatanewtask = new Subtask(dataArranew[i]);
                                                 const savedData = await newDatanewtask.save();
-                
+
                                                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                                                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
                                                 console.log(objID);
@@ -821,13 +1114,13 @@ app.post("/add-all-activities", async (req, resp) => {
                                         { checksdescription: 'Pile driving is truely vertical.' },
                                         { checksdescription: 'Column position is set at center of all pile groups' },
                                     ];
-                
+
                                     async function ExcavationnewChacks() {
                                         for (let i = 0; i < dataArranew.length; i++) {
                                             try {
                                                 const newDatanewtask = new Checks(dataArranew[i]);
                                                 const savedData = await newDatanewtask.save();
-                
+
                                                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                                                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
                                                 console.log(objID);
@@ -867,13 +1160,13 @@ app.post("/add-all-activities", async (req, resp) => {
                                         { checksdescription: 'Check for bottom marking for PCC thickness.' },
                                         { checksdescription: 'Proper marking of the centreline has been done as per the drawing' },
                                     ];
-                
+
                                     async function pccworkchChacks() {
                                         for (let i = 0; i < dataArranew.length; i++) {
                                             try {
                                                 const newDatanewtask = new Checks(dataArranew[i]);
                                                 const savedData = await newDatanewtask.save();
-                
+
                                                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                                                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
                                                 console.log(objID);
@@ -919,13 +1212,13 @@ app.post("/add-all-activities", async (req, resp) => {
                                         { checksdescription: 'Shuttering to be removed properly' },
                                         { checksdescription: 'Proper curing should be done' },
                                     ];
-                
+
                                     async function rccworkchChacks() {
                                         for (let i = 0; i < dataArranew.length; i++) {
                                             try {
                                                 const newDatanewtask = new Checks(dataArranew[i]);
                                                 const savedData = await newDatanewtask.save();
-                
+
                                                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                                                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
                                                 console.log(objID);
@@ -1006,13 +1299,13 @@ app.post("/add-all-activities", async (req, resp) => {
                                         { checksdescription: 'Testing of cubes on due dates i.e. after seventh & twenty eighth day' },
 
                                     ];
-                
+
                                     async function pedastalrccChacks() {
                                         for (let i = 0; i < dataArranew.length; i++) {
                                             try {
                                                 const newDatanewtask = new Checks(dataArranew[i]);
                                                 const savedData = await newDatanewtask.save();
-                
+
                                                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                                                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
                                                 console.log(objID);
@@ -1060,13 +1353,13 @@ app.post("/add-all-activities", async (req, resp) => {
                                         { checksdescription: 'Each layer has been compacted to 90% for general fill and 95% for structural fill of optimum dry density' },
                                         { checksdescription: 'Level tolerance, Gen. Fill :±100 mm, Fill to be covered with concrete in foundations or linings: ±0 mm' },
                                     ];
-                
+
                                     async function backfillingchChacks() {
                                         for (let i = 0; i < dataArranew.length; i++) {
                                             try {
                                                 const newDatanewtask = new Checks(dataArranew[i]);
                                                 const savedData = await newDatanewtask.save();
-                
+
                                                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                                                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
                                                 console.log(objID);

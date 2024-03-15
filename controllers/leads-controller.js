@@ -5,7 +5,6 @@ const Lead = require('../models/Lead.js');
 const getAllLeads = async (req, res) => {
     try {
         let leads = await Lead.find().populate("projectID")
-        .populate("userID");
         res.send(leads)
     } catch (err) {
         res.status(500).json(err);
@@ -13,7 +12,7 @@ const getAllLeads = async (req, res) => {
 };
 
 const getSingleLead = async (req, resp) => {
-      try {
+    try {
         let single = await Lead.findOne({ _id: req.params.id }).populate("userID");
         resp.send(single);
     } catch (err) {
@@ -26,8 +25,8 @@ const addNewLead = async (req, res) => {
         let lead = new Lead(req.body);
         const result = await lead.save();
         let objID = new mongoose.Types.ObjectId(lead.id)
-        let newss = new mongoose.Types.ObjectId(req.body.userID)
-        console.log(objID);
+        // let newss = new mongoose.Types.ObjectId(req.body.userID)
+
         await User.updateOne(
             { email: req.body.email },
             {
@@ -36,6 +35,22 @@ const addNewLead = async (req, res) => {
                 }
             }
         )
+        let single = await User.findOne({ email: req.body.email });
+
+        if (single) {
+            console.log(single._id)
+            await Lead.updateOne(
+                { _id: objID },
+                {
+                    $set: {
+                        userID: single._id
+                    }
+                }
+            )
+        }
+
+
+
         res.send(result);
     } catch (err) {
         res.status(500).json(err);
@@ -71,25 +86,34 @@ const getLeadWithProject = async (req, resp) => {
         .populate({
             path: 'projectspaceID',
             populate: {
-              path: 'roomsID',
-              model: 'rooms'
+                path: 'roomsID',
+                model: 'rooms'
             }
-          })
+        })
         .populate("noticesID")
         .populate("userID")
         .populate("activitiesID")
     resp.send(result);
 };
 
+
+const getLeadWithdelays = async (req, resp) => {
+    const result = await Lead.findOne({ _id: req.params.id })
+        .populate("delaysID")
+    resp.send(result);
+};
+
+
+
 const searchLead = async (req, resp) => {
     let result = await Lead.find({
         "$or": [
             { leadname: { $regex: req.params.key, $options: "i" } },
-            { email: { $regex: req.params.key, $options: "i"  } }
+            { email: { $regex: req.params.key, $options: "i" } }
         ]
     });
     resp.send(result);
 };
 
 
-module.exports = {searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject };
+module.exports = { getLeadWithdelays, searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject };

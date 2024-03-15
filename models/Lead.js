@@ -72,6 +72,10 @@ const LeadsSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'quotation'
     }],
+    delaysID: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'delays'
+    }],
     quotationSelectedID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'quotation'

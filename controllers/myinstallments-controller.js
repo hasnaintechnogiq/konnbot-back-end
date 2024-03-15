@@ -3,8 +3,9 @@ const MyInstallment = require('../models/MyInstallment.js');
 const Lead = require('../models/Lead.js');
 const PaidAmount = require('../models/PaidAmount.js');
 const ChatInstallment = require('../models/ChatInstallment.js');
-
-
+const NotificationsForAll = require('../models/NotificationsForAll.js');
+const NotificationArray = require('../models/NotificationArray.js');
+const User = require('../models/User.js');
 
 
 const getAllInstallmentsDetalis = async (req, res) => {
@@ -24,7 +25,7 @@ const getSingleUserInstallments = async (req, resp) => {
         resp.status(500).json(err);
     }
 };
- 
+
 const getSingleInstallmentWithChangeOrder = async (req, resp) => {
     try {
         let single = await MyInstallment.findOne({ _id: req.params._id }).populate("changeorderinstallmentID").populate("paidamountID").populate("chatsinstallmentID")
@@ -98,7 +99,7 @@ const chatsInstallment = async (req, resp) => {
         const result = await changeorder.save();
         let objID = new mongoose.Types.ObjectId(changeorder.id)
         let newss = new mongoose.Types.ObjectId(req.body.installmentID)
-        console.log(objID);
+        // console.log(req.body);
         await MyInstallment.updateOne(
             { _id: newss },
             {
@@ -107,11 +108,43 @@ const chatsInstallment = async (req, resp) => {
                 }
             }
         )
+
+        const objecttosave = {
+            pathtoredirect: 'InstallmentDetails',
+            idtogetdata: req.body.installmentID,
+            notificationtypeorsection: 'New Massage in Installment!',
+            iconname: 'message-bulleted',
+        }
+
+        let notificationall = new NotificationsForAll(objecttosave);
+        const resultnew = await notificationall.save();
+        let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
+
+        const { userID } = req.body
+        console.log(userID)
+        if(userID){
+            let single = await User.findOne({ _id: userID })
+
+            let notifiIDes = single.notificationarrayID
+
+            console.log(notifiIDes);
+            await NotificationArray.updateOne(
+                { _id: notifiIDes },
+                {
+                    $push: {
+                        notificationsforallID: objIDnew
+                    }
+                }
+            )
+        }
+
         resp.send(result);
     } catch (err) {
         resp.status(500).json(err);
     }
 };
+
+
 
 
 
@@ -142,4 +175,4 @@ const updateMyInstallment = async (req, res) => {
     }
 };
 
-module.exports = {chatsInstallment, addPaidAmount, getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, addNewMyInstallment, updateMyInstallment, deleteMyInstallment };
+module.exports = { chatsInstallment, addPaidAmount, getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, addNewMyInstallment, updateMyInstallment, deleteMyInstallment };
