@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 const quotationSchema = mongoose.Schema({
     quotationname: String,
     status: String,
+    Quotationselectionstatusbyclient: {
+        type: String,
+        default: "No"
+    },
     leadID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'leads'

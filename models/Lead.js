@@ -16,6 +16,10 @@ const LeadsSchema = mongoose.Schema({
         type: String,
         default: "No"
     },
+    contractcreated: {
+        type: String,
+        default: "No"
+    },
     todayworkstatus: {
         type: String,
         default: "Yes"
