@@ -4,18 +4,9 @@ const snagsSchema = mongoose.Schema({
     headingforshorting: String,
     maintitle: String,
     subtitle: String,
-    firstcheck: {
-        type: String,
-        default: "No"
-    },
-    secondcheck: {
-        type: String,
-        default: "No"
-    },
-    thirdcheck: {
-        type: String,
-        default: "No"
-    },
+    firstcheck: String,
+    secondcheck: String,
+    thirdcheck: String,
     subactivityID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'subactivities'

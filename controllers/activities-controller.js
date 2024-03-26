@@ -33,8 +33,9 @@ const getSingleLeadactivities = async (req, resp) => {
               path: 'subactivitiesID',
               model: 'subactivities',
               populate: [
-                { path: 'subtaskID', model: 'subtask' }, // Populate the first nested array
-                { path: 'checksID', model: 'checks' }  // Populate the second nested array
+                { path: 'subtaskID', model: 'subtask' },
+                { path: 'checksID', model: 'checks' },
+                { path: 'snagsID', model: 'snags' }
             ]
             //   populate: {
             //       path: 'subtaskID', 

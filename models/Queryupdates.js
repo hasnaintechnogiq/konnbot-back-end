@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
 const queryupdateSchema = mongoose.Schema({
+    name: String,
+    usertype: String,
     usertypename: String,
     queryupdatedescription: String,
     imgarry: Array,

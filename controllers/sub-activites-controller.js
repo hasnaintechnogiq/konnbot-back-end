@@ -112,7 +112,7 @@ const getSubActivitiesofSingleActivity = async (req, resp) => {
 
 const getSubActivitiesWithdetails = async (req, resp) => {
     try {
-        let single = await SubActivities.findOne({ _id: req.params._id }).populate("subactivitiesupdateID").populate("subtaskID").populate("checksID").populate("imagesID");
+        let single = await SubActivities.findOne({ _id: req.params._id }).populate("subactivitiesupdateID").populate("subtaskID").populate("checksID").populate("imagesID").populate("snagsID");
         resp.send(single);
     } catch (err) {
         resp.status(500).json(err);

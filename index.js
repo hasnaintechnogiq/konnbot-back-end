@@ -16,6 +16,7 @@ const MyInstallment = require('./models/MyInstallment.js');
 const DocumentForQuotation = require('./models/DocumentForQuotation.js');
 const Quotation = require('./models/Quotation.js');
 const Checks = require('./models/Checks.js');
+const Snags = require('./models/Snags.js');
 const Lead = require('./models/Lead');
 const ChangeOrderInstallment = require('./models/ChangeOrderInstallment.js');
 const ChatsChangeInstallment = require('./models/ChatsChangeInstallment.js');
@@ -160,7 +161,7 @@ app.post('/add-images-in-change-order-upload', upload.array('images', 5), async 
 
         const useridcheck = req.body.userID
 
-        if(useridcheck){
+        if (useridcheck) {
             let single = await User.findOne({ _id: useridcheck })
 
             let notifiIDes = single.notificationarrayID
@@ -214,7 +215,7 @@ app.post('/add-images-in-change-order-upload', upload.array('images', 5), async 
     let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
     const useridcheck = req.body.userID
 
-    if(useridcheck){
+    if (useridcheck) {
         let single = await User.findOne({ _id: useridcheck })
 
         let notifiIDes = single.notificationarrayID
@@ -282,10 +283,10 @@ app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, r
         const resultnew = await notificationall.save();
         let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
 
-        
+
         const useridcheck = req.body.userID
 
-        if(useridcheck){
+        if (useridcheck) {
             let single = await User.findOne({ _id: useridcheck })
 
             let notifiIDes = single.notificationarrayID
@@ -347,10 +348,10 @@ app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, r
     const resultnew = await notificationall.save();
     let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
 
-    
+
     const useridcheck = req.body.userID
 
-    if(useridcheck){
+    if (useridcheck) {
         let single = await User.findOne({ _id: useridcheck })
 
         let notifiIDes = single.notificationarrayID
@@ -417,7 +418,7 @@ app.post('/add-delay-with-images', upload.array('images', 5), async (req, res) =
         // const resultnew = await notificationall.save();
         // let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
 
-        
+
         // const useridcheck = req.body.userID
 
         // if(useridcheck){
@@ -474,7 +475,7 @@ app.post('/add-delay-with-images', upload.array('images', 5), async (req, res) =
     // const resultnew = await notificationall.save();
     // let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
 
-    
+
     // const useridcheck = req.body.userID
 
     // if(useridcheck){
@@ -1146,6 +1147,76 @@ app.post("/add-all-activities", async (req, resp) => {
 
 
 
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Excavation") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'F1' },
+                                        { maintitle: 'F2' },
+                                        { maintitle: 'F3' },
+                                        { maintitle: 'F4' },
+                                        { maintitle: 'F5' },
+                                        { maintitle: 'F6' },
+                                        { maintitle: 'F7' },
+                                    ];
+
+                                    async function ExcavationnewSnags() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                console.log(objID);
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                                console.log('Data saved:', savedData);
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    ExcavationnewSnags();
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 if (newDatanew.subactivityname === "P.C.C Work") {
 
                                     const dataArranew = [
@@ -1238,6 +1309,79 @@ app.post("/add-all-activities", async (req, resp) => {
                                     }
                                     rccworkchChacks();
                                 }
+
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "R.C.C Footing") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'F1', headingforshorting: 'Rein', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F2', headingforshorting: 'Rein', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F3', headingforshorting: 'Rein', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F4', headingforshorting: 'Rein', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F5', headingforshorting: 'Rein', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F6', headingforshorting: 'Rein', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F7', headingforshorting: 'Rein', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F1', headingforshorting: 'Shuttering', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F2', headingforshorting: 'Shuttering', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F3', headingforshorting: 'Shuttering', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F4', headingforshorting: 'Shuttering', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F5', headingforshorting: 'Shuttering', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F6', headingforshorting: 'Shuttering', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F7', headingforshorting: 'Shuttering', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F1', headingforshorting: 'R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F2', headingforshorting: 'R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F3', headingforshorting: 'R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F4', headingforshorting: 'R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F5', headingforshorting: 'R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F6', headingforshorting: 'R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'F7', headingforshorting: 'R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function RccsnagsSnags() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                console.log(objID);
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                                console.log('Data saved:', savedData);
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    RccsnagsSnags();
+                                }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1439,7 +1583,52 @@ app.post("/add-all-activities", async (req, resp) => {
 
                                 let objID = new mongoose.Types.ObjectId(newDatanew.id)
                                 let newss = new mongoose.Types.ObjectId(newData._id)
-                                console.log(objID);
+
+
+
+                                if (newDatanew.subactivityname === "R.C.C Plinth") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'PB - 1', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'PB - 2', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'PB - 3', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'PB - 4', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'PB - 5', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'PB - 6', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'PB - 7', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function rccplinthbeam() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    rccplinthbeam();
+                                }
+
+
+
+
+
+
+
                                 await Activities.updateOne(
                                     { _id: newss },
                                     {
@@ -1468,8 +1657,8 @@ app.post("/add-all-activities", async (req, resp) => {
                         { subactivityname: 'SF R.C.C Slab + Staircase', activityID: newData._id },
                         { subactivityname: 'TF R.C.C Column', activityID: newData._id },
                         { subactivityname: 'TF R.C.C Slab + Staircase', activityID: newData._id },
-                        { subactivityname: 'FF R.C.C Column', activityID: newData._id },
-                        { subactivityname: 'FF R.C.C Slab + Staircase', activityID: newData._id },
+                        { subactivityname: 'FF R.C.C Column.', activityID: newData._id },
+                        { subactivityname: 'FF R.C.C Slab + Staircase.', activityID: newData._id },
                         { subactivityname: 'Tower R.C.C Column + Slab', activityID: newData._id },
                     ];
 
@@ -1481,7 +1670,600 @@ app.post("/add-all-activities", async (req, resp) => {
 
                                 let objID = new mongoose.Types.ObjectId(newDatanew.id)
                                 let newss = new mongoose.Types.ObjectId(newData._id)
-                                console.log(objID);
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "GF R.C.C Column") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'C1', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C2', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C3', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C4', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C1', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C2', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C3', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C4', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C1', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C2', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C3', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C4', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function GfRccColoumnSnags() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    GfRccColoumnSnags();
+                                }
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "FF R.C.C Column") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'C1', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C2', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C3', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C4', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C1', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C2', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C3', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C4', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C1', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C2', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C3', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C4', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function FFRccColoumnSnags() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    FFRccColoumnSnags();
+                                }
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "SF R.C.C Column") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'C1', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C2', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C3', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C4', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C1', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C2', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C3', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C4', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C1', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C2', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C3', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C4', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function SfRccColoumnSnags() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    SfRccColoumnSnags();
+                                }
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "TF R.C.C Column") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'C1', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C2', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C3', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C4', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C1', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C2', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C3', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C4', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C1', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C2', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C3', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C4', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function TfRccColoumnSnags() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    TfRccColoumnSnags();
+                                }
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "FF R.C.C Column.") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'C1', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C2', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C3', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C4', headingforshorting: 'Starter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C1', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C2', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C3', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C4', headingforshorting: 'Rein.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C1', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C2', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C3', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'C4', headingforshorting: 'Shutter & R.C.C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function fffRccColoumnSnags() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    fffRccColoumnSnags();
+                                }
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "GF R.C.C Slab + Staircase") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'GFB - 01', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 01', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 01', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 01', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function GfbeamSnags() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    GfbeamSnags();
+                                }
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "FF R.C.C Slab + Staircase") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'GFB - 01', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 01', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 01', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 01', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function GfRccbeamSnags() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    GfRccbeamSnags();
+                                }
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "SF R.C.C Slab + Staircase") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'GFB - 01', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 01', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 01', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 01', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function GfRloumnSnags() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    GfRloumnSnags();
+                                }
+
+
+
+
+
+                                if (newDatanew.subactivityname === "TF R.C.C Slab + Staircase") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'GFB - 01', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 01', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 01', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 01', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function tfbeamccColoumnSnags() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    tfbeamccColoumnSnags();
+                                }
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "FF R.C.C Slab + Staircase.") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'GFB - 01', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 01', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'Pre RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 01', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 01', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 02', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GFB - 03', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Staircase', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S1', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'S2', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Sunken', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Cut Out', headingforshorting: 'Post RCC', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function fifthfloorbeam() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    fifthfloorbeam();
+                                }
+
+
+
+
+
+
+
+
+
+
                                 await Activities.updateOne(
                                     { _id: newss },
                                     {
@@ -1508,7 +2290,7 @@ app.post("/add-all-activities", async (req, resp) => {
                         { subactivityname: 'FF Masonry', activityID: newData._id },
                         { subactivityname: 'SF Masonry', activityID: newData._id },
                         { subactivityname: 'TF Masonry', activityID: newData._id },
-                        { subactivityname: 'FF Masonry', activityID: newData._id },
+                        { subactivityname: 'FF Masonry.', activityID: newData._id },
                         { subactivityname: 'Tower Masonry', activityID: newData._id },
                     ];
 
@@ -1520,7 +2302,363 @@ app.post("/add-all-activities", async (req, resp) => {
 
                                 let objID = new mongoose.Types.ObjectId(newDatanew.id)
                                 let newss = new mongoose.Types.ObjectId(newData._id)
-                                console.log(objID);
+
+
+
+
+
+                                if (newDatanew.subactivityname === "GF Masonry") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                    ];
+
+                                    async function gfmasonaryworkmm() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfmasonaryworkmm();
+                                }
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "FF Masonry") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                    ];
+
+                                    async function gfmasonaryworkmm() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfmasonaryworkmm();
+                                }
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "SF Masonry") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                    ];
+
+                                    async function ffmasonarywork() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    ffmasonarywork();
+                                }
+
+
+
+
+
+                                if (newDatanew.subactivityname === "TF Masonry") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                    ];
+
+                                    async function tfaryworkmm() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    tfaryworkmm();
+                                }
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "FF Masonry.") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Others', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Masonry', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Align', firstcheck: 'No', secondcheck: 'No' },
+                                    ];
+
+                                    async function ffffmasonaryworkmm() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    ffffmasonaryworkmm();
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 await Activities.updateOne(
                                     { _id: newss },
                                     {
@@ -1547,7 +2685,7 @@ app.post("/add-all-activities", async (req, resp) => {
                         { subactivityname: 'FF Electrical', activityID: newData._id },
                         { subactivityname: 'SF Electrical', activityID: newData._id },
                         { subactivityname: 'TF Electrical', activityID: newData._id },
-                        { subactivityname: 'FF Electrical', activityID: newData._id },
+                        { subactivityname: 'FF Electrical.', activityID: newData._id },
                         { subactivityname: 'Tower Electrical', activityID: newData._id },
                         { subactivityname: 'Elevation Electrical', activityID: newData._id },
                         { subactivityname: 'Wiring', activityID: newData._id },
@@ -1562,7 +2700,508 @@ app.post("/add-all-activities", async (req, resp) => {
 
                                 let objID = new mongoose.Types.ObjectId(newDatanew.id)
                                 let newss = new mongoose.Types.ObjectId(newData._id)
-                                console.log(objID);
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "GF Electrical") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                    ];
+
+                                    async function gfelectriclpiplin() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfelectriclpiplin();
+                                }
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "FF Electrical") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                    ];
+
+                                    async function gfelectriclpiplin() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfelectriclpiplin();
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "SF Electrical") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                    ];
+
+                                    async function gfelectriclpiplin() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfelectriclpiplin();
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "TF Electrical") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                    ];
+
+                                    async function gfelectriclpiplin() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfelectriclpiplin();
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "FF Electrical.") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                    ];
+
+                                    async function ffelectricalt() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    ffelectricalt();
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Tower Electrical") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                    ];
+
+                                    async function towereleckf() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    towereleckf();
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Elevation Electrical") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Layout', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No' },
+                                    ];
+
+                                    async function elevatilnelec() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    elevatilnelec();
+                                }
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Wiring") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', firstcheck: 'No', secondcheck: 'No' },
+                                    ];
+
+                                    async function wiringonly() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    wiringonly();
+                                }
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Switch & Socket") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Dinning Room', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Kitchen', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Powder Wash', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Wash Area', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Parking', firstcheck: 'No', secondcheck: 'No' },
+                                        { maintitle: 'Garden Area', firstcheck: 'No', secondcheck: 'No' },
+                                    ];
+
+                                    async function switchandsocetcall() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    switchandsocetcall();
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 await Activities.updateOne(
                                     { _id: newss },
                                     {
@@ -1602,7 +3241,403 @@ app.post("/add-all-activities", async (req, resp) => {
 
                                 let objID = new mongoose.Types.ObjectId(newDatanew.id)
                                 let newss = new mongoose.Types.ObjectId(newData._id)
-                                console.log(objID);
+
+
+
+                                if (newDatanew.subactivityname === "Toilet - Floor") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'GF', headingforshorting: 'Duct', subtitle: 'T - A', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GF', headingforshorting: 'Duct', subtitle: 'T - B', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'FF', headingforshorting: 'Duct', subtitle: 'T - C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'FF', headingforshorting: 'Duct', subtitle: 'T - D', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'SF', headingforshorting: 'Duct', subtitle: 'T - E', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Tow', headingforshorting: 'Duct', subtitle: 'T - F', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GF', headingforshorting: 'Points', subtitle: 'T - A', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GF', headingforshorting: 'Points', subtitle: 'T - B', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'FF', headingforshorting: 'Points', subtitle: 'T - C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'FF', headingforshorting: 'Points', subtitle: 'T - D', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'SF', headingforshorting: 'Points', subtitle: 'T - E', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Tow', headingforshorting: 'Points', subtitle: 'T - F', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GF', headingforshorting: 'Pipeline', subtitle: 'T - A', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GF', headingforshorting: 'Pipeline', subtitle: 'T - B', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'FF', headingforshorting: 'Pipeline', subtitle: 'T - C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'FF', headingforshorting: 'Pipeline', subtitle: 'T - D', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'SF', headingforshorting: 'Pipeline', subtitle: 'T - E', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Tow', headingforshorting: 'Pipeline', subtitle: 'T - F', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function toiletpointscall() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    toiletpointscall();
+                                }
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Toilet - Wall") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'GF', headingforshorting: 'Heights', subtitle: 'T - A', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GF', headingforshorting: 'Heights', subtitle: 'T - B', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'FF', headingforshorting: 'Heights', subtitle: 'T - C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'FF', headingforshorting: 'Heights', subtitle: 'T - D', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'SF', headingforshorting: 'Heights', subtitle: 'T - E', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Tow', headingforshorting: 'Heights', subtitle: 'T - F', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GF', headingforshorting: 'Internal', subtitle: 'T - A', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GF', headingforshorting: 'Internal', subtitle: 'T - B', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'FF', headingforshorting: 'Internal', subtitle: 'T - C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'FF', headingforshorting: 'Internal', subtitle: 'T - D', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'SF', headingforshorting: 'Internal', subtitle: 'T - E', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Tow', headingforshorting: 'Internal', subtitle: 'T - F', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GF', headingforshorting: 'Pipeline', subtitle: 'T - A', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GF', headingforshorting: 'Pipeline', subtitle: 'T - B', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'FF', headingforshorting: 'Pipeline', subtitle: 'T - C', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'FF', headingforshorting: 'Pipeline', subtitle: 'T - D', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'SF', headingforshorting: 'Pipeline', subtitle: 'T - E', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Tow', headingforshorting: 'Pipeline', subtitle: 'T - F', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function toiletwallfunctioncallnow() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    toiletwallfunctioncallnow();
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Kitchen Pipeline") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Kit - Sink', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dish Washer', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash - Sink', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Washing Mac', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash - Point', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking - Point', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Balco. - Point', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Terra. - Point', headingforshorting: 'Pipeline', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kit - Sink', headingforshorting: 'Points', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dish Washer', headingforshorting: 'Points', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash - Sink', headingforshorting: 'Points', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Washing Mac', headingforshorting: 'Points', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash - Point', headingforshorting: 'Points', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking - Point', headingforshorting: 'Points', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Balco. - Point', headingforshorting: 'Points', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Terra. - Point', headingforshorting: 'Points', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function kitchenpiplinecall() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    kitchenpiplinecall();
+                                }
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Vertical") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Ducts', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Rain Harvest', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Elevation', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Others', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function verticalpippecallnow() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    verticalpippecallnow();
+                                }
+
+
+
+
+
+                                if (newDatanew.subactivityname === "A.C") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom - 1', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom - 2', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom - 3', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom - 4', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Multi Purpose', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function accallnowmeet() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    accallnowmeet();
+                                }
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Other Fitting") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'O.H.W.T', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'U.G.W.T', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Water Flow', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Floor to Floor', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Municipal Line', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Heater / Solar', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Pressure Pump', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Reverse Line', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function otherfittinggcall() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    otherfittinggcall();
+                                }
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Sanitary Toilets") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'T - A', headingforshorting: 'Water Closet', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - B', headingforshorting: 'Water Closet', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - C', headingforshorting: 'Water Closet', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - D', headingforshorting: 'Water Closet', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - E', headingforshorting: 'Water Closet', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - F', headingforshorting: 'Water Closet', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - A', headingforshorting: 'Shower', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - B', headingforshorting: 'Shower', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - C', headingforshorting: 'Shower', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - D', headingforshorting: 'Shower', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - E', headingforshorting: 'Shower', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - F', headingforshorting: 'Shower', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - A', headingforshorting: 'Wash Basin', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - B', headingforshorting: 'Wash Basin', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - C', headingforshorting: 'Wash Basin', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - D', headingforshorting: 'Wash Basin', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - E', headingforshorting: 'Wash Basin', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - F', headingforshorting: 'Wash Basin', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function sanatortytioletcall() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    sanatortytioletcall();
+                                }
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Sanitary Kitchen") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Kit - Sink', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dish Washer', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash - Sink', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Washing Mac', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash - Point', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking - Point', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Balco. - Point', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Terra. - Point', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function stanatortykitchenandthers() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    stanatortykitchenandthers();
+                                }
+
+
+
+
+
+
+
+
                                 await Activities.updateOne(
                                     { _id: newss },
                                     {
@@ -1622,13 +3657,16 @@ app.post("/add-all-activities", async (req, resp) => {
 
 
 
+
+
+
                 if (newData.categoryname === "Plaster") {
                     const dataArranew = [
                         { subactivityname: 'GF Plaster', activityID: newData._id },
                         { subactivityname: 'FF Plaster', activityID: newData._id },
                         { subactivityname: 'SF Plaster', activityID: newData._id },
                         { subactivityname: 'TF Plaster', activityID: newData._id },
-                        { subactivityname: 'FF Plaster', activityID: newData._id },
+                        { subactivityname: 'FF Plaster.', activityID: newData._id },
                         { subactivityname: 'Tower Plaster', activityID: newData._id },
                         { subactivityname: 'Elevation Plaster', activityID: newData._id },
                     ];
@@ -1641,7 +3679,289 @@ app.post("/add-all-activities", async (req, resp) => {
 
                                 let objID = new mongoose.Types.ObjectId(newDatanew.id)
                                 let newss = new mongoose.Types.ObjectId(newData._id)
-                                console.log(objID);
+
+
+
+                                if (newDatanew.subactivityname === "GF Plaster") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function gfplastercall() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfplastercall();
+                                }
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "FF Plaster") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function ffplastercall() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    ffplastercall();
+                                }
+
+
+
+
+
+                                if (newDatanew.subactivityname === "SF Plaster") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function sfplastercall() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    sfplastercall();
+                                }
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "TF Plaster") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function tfplastercall() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    tfplastercall();
+                                }
+
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "FF Plaster.") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Initial', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Alignment', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Post Plaster', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function gfplastcalln() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfplastcalln();
+                                }
+
+
+
+
+
+
                                 await Activities.updateOne(
                                     { _id: newss },
                                     {
@@ -1706,7 +4026,7 @@ app.post("/add-all-activities", async (req, resp) => {
                         { subactivityname: 'FF Door & Window', activityID: newData._id },
                         { subactivityname: 'SF Door & Window', activityID: newData._id },
                         { subactivityname: 'TF Door & Window', activityID: newData._id },
-                        { subactivityname: 'FF Door & Window', activityID: newData._id },
+                        { subactivityname: 'FF Door & Window.', activityID: newData._id },
                         { subactivityname: 'Towe Door & Window', activityID: newData._id },
                     ];
 
@@ -1718,7 +4038,319 @@ app.post("/add-all-activities", async (req, resp) => {
 
                                 let objID = new mongoose.Types.ObjectId(newDatanew.id)
                                 let newss = new mongoose.Types.ObjectId(newData._id)
-                                console.log(objID);
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "GF Door & Window") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function gfdoorandfarame() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfdoorandfarame();
+                                }
+
+
+
+
+                                if (newDatanew.subactivityname === "FF Door & Window") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function ffdoorandfarame() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    ffdoorandfarame();
+                                }
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "SF Door & Window") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function sflordoorandfarame() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    sflordoorandfarame();
+                                }
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "TF Door & Window") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function thiridefloordoor() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    thiridefloordoor();
+                                }
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "FF Door & Window.") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'W Frame', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'W Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'D Panel', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'W&D Acc.', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function forthfloordoorandwindow() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    forthfloordoorandwindow();
+                                }
+
+
+
+
+
+
+
+
                                 await Activities.updateOne(
                                     { _id: newss },
                                     {
@@ -1746,7 +4378,7 @@ app.post("/add-all-activities", async (req, resp) => {
                         { subactivityname: 'FF Flooring', activityID: newData._id },
                         { subactivityname: 'SF Flooring', activityID: newData._id },
                         { subactivityname: 'TF Flooring', activityID: newData._id },
-                        { subactivityname: 'FF Flooring', activityID: newData._id },
+                        { subactivityname: 'FF Flooring.', activityID: newData._id },
                         { subactivityname: 'Tower Flooring', activityID: newData._id },
                         { subactivityname: 'Terrace Flooring', activityID: newData._id },
                         { subactivityname: 'Staircase', activityID: newData._id },
@@ -1760,7 +4392,463 @@ app.post("/add-all-activities", async (req, resp) => {
 
                                 let objID = new mongoose.Types.ObjectId(newDatanew.id)
                                 let newss = new mongoose.Types.ObjectId(newData._id)
-                                console.log(objID);
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "GF Flooring") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function gfdoorandfarame() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfdoorandfarame();
+                                }
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "FF Flooring") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function gfdoorandfarame() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfdoorandfarame();
+                                }
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "SF Flooring") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function gfdoorandfarame() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfdoorandfarame();
+                                }
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "TF Flooring") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function gfdoorandfarame() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfdoorandfarame();
+                                }
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "FF Flooring.") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Base', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Floor Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Drawing Room', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Dinning Room', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Kitchen', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Bedroom + Wash.', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Powder Wash.', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Wash Area', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Parking', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Garden Area', headingforshorting: 'Skirting', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function gfdoorandfarame() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfdoorandfarame();
+                                }
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Toilet Wall Flooring") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'T - A', headingforshorting: 'Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - B', headingforshorting: 'Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - C', headingforshorting: 'Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - D', headingforshorting: 'Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - E', headingforshorting: 'Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - F', headingforshorting: 'Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - A', headingforshorting: 'Wall', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - B', headingforshorting: 'Wall', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - C', headingforshorting: 'Wall', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - D', headingforshorting: 'Wall', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - E', headingforshorting: 'Wall', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - F', headingforshorting: 'Wall', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - A', headingforshorting: 'Final', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - B', headingforshorting: 'Final', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - C', headingforshorting: 'Final', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - D', headingforshorting: 'Final', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - E', headingforshorting: 'Final', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'T - F', headingforshorting: 'Final', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function gfdoorandfarame() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfdoorandfarame();
+                                }
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Kitchen") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'K - 1', headingforshorting: 'Counter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'K - 2', headingforshorting: 'Counter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'K - 3', headingforshorting: 'Counter', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'K - 1', headingforshorting: 'Slab', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'K - 2', headingforshorting: 'Slab', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'K - 3', headingforshorting: 'Slab', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'K - 1', headingforshorting: 'Wall', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'K - 2', headingforshorting: 'Wall', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'K - 3', headingforshorting: 'Wall', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function gfdoorandfarame() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfdoorandfarame();
+                                }
+
+
+
+
+
+
+
+
+
+                                if (newDatanew.subactivityname === "Staircase") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'Plinth', headingforshorting: 'Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GF', headingforshorting: 'Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'FF', headingforshorting: 'Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'SF', headingforshorting: 'Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Tower', headingforshorting: 'Tile', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Plinth', headingforshorting: 'Vertical', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'GF', headingforshorting: 'Vertical', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'FF', headingforshorting: 'Vertical', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'SF', headingforshorting: 'Vertical', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Tower', headingforshorting: 'Vertical', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function gfdoorandfarame() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfdoorandfarame();
+                                }
+
+
+
                                 await Activities.updateOne(
                                     { _id: newss },
                                     {
@@ -1799,7 +4887,68 @@ app.post("/add-all-activities", async (req, resp) => {
 
                                 let objID = new mongoose.Types.ObjectId(newDatanew.id)
                                 let newss = new mongoose.Types.ObjectId(newData._id)
-                                console.log(objID);
+
+
+
+                                if (newDatanew.subactivityname === "White Wash") {
+
+                                    const dataArranew = [
+                                        { maintitle: 'GF', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'FF', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'SF', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'TF', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                        { maintitle: 'Tower', firstcheck: 'No', secondcheck: 'No', thirdcheck: 'No' },
+                                    ];
+
+                                    async function gfdoorandfarame() {
+                                        for (let i = 0; i < dataArranew.length; i++) {
+                                            try {
+                                                const newDatanewtask = new Snags(dataArranew[i]);
+                                                const savedData = await newDatanewtask.save();
+
+                                                let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                let newss = new mongoose.Types.ObjectId(newDatanew._id)
+
+                                                await SubActivities.updateOne(
+                                                    { _id: newss },
+                                                    {
+                                                        $push: {
+                                                            snagsID: objID
+                                                        }
+                                                    }
+                                                )
+                                            } catch (error) {
+                                                console.error('Error saving data:', error);
+                                            }
+                                        }
+                                    }
+                                    gfdoorandfarame();
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 await Activities.updateOne(
                                     { _id: newss },
                                     {

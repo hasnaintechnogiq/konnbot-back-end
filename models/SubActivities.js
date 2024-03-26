@@ -24,6 +24,10 @@ const subactivitiesSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'checks'
     }],
+    snagsID: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'snags'
+    }],
     imagesID : [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'photosforsubtask'

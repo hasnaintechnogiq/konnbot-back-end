@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const chatschangeinstallmentSchema = mongoose.Schema({
+    name: String,
     usertype: String,
     textdetails: String, 
     date:{type:Date, default: Date.now},

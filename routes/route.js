@@ -15,6 +15,7 @@ const { addNewChatOrderInstallment, getSingleUserChatOrderInstallment, getAllCha
 const { getSingleLeadactivities, addNewActivities, updateActivities, deleteActivities } = require('../controllers/activities-controller.js');
 const { updateChecks, updatesubTask, addCheck, addSubTask, getSubActivitiesWithdetails, addNewUpdateInSubActivity, addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity } = require('../controllers/sub-activites-controller.js');
 const { updateQuotation, deleteQuotationOne, commentsonquatation, getspaceWithRoom, addNewProjectInQuotaion, addNewStructureInQuotation, addNewProjectspaceinQuatation, addSelectedQuotationinLead, getQuotationWithDetails, getAllQuotationInLead } = require('../controllers/quotation-controller.js');
+const { updatesnags } = require('../controllers/snags-controller.js');
 
 // Project routes
 
@@ -148,5 +149,16 @@ router.get("/get-space-with-rooms/:id", getspaceWithRoom)
 router.post("/add-commentsonquatation", commentsonquatation)
 router.delete("/delete-quotation-one/:_id", deleteQuotationOne)
 router.put("/update-quotation/:_id", updateQuotation)
+
+
+
+// Snags
+
+router.put("/update-snags/:_id", updatesnags)
+
+
+
+
+
 
 module.exports = router;

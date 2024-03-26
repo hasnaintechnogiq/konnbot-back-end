@@ -14,7 +14,7 @@ const leadmanagerSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        default: "LeadManager"
+        default: "Lead Manager"
     }
 });
 
