@@ -100,7 +100,7 @@ app.post('/add-ticket-and-upload', upload.array('images', 5), async (req, res) =
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbotbackend.onrender.com/profile/${file.filename}`
+        profile_url: `https://konnbot-back-end.onrender.com/profile/${file.filename}`
     }));
 
 
@@ -264,7 +264,7 @@ app.post('/add-images-in-change-order-upload', upload.array('images', 5), async 
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbotbackend.onrender.com/profile/${file.filename}`
+        profile_url: `https://konnbot-back-end.onrender.com/profile/${file.filename}`
     }));
 
     const result = await ChatsChangeInstallment.create({ ...formData, imgarry });
@@ -390,7 +390,7 @@ app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, r
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbotbackend.onrender.com/profile/${file.filename}`
+        profile_url: `https://konnbot-back-end.onrender.com/profile/${file.filename}`
     }));
 
     const result = await Queryupdates.create({ ...formData, imgarry });
@@ -517,7 +517,7 @@ app.post('/add-delay-with-images', upload.array('images', 5), async (req, res) =
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbotbackend.onrender.com/profile/${file.filename}`
+        profile_url: `https://konnbot-back-end.onrender.com/profile/${file.filename}`
     }));
 
     const result = await Delays.create({ ...formData, imgarry });
@@ -613,7 +613,7 @@ app.post('/upload-images-for-sub-task', upload.array('images', 3), async (req, r
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbotbackend.onrender.com/profile/${file.filename}`
+        profile_url: `https://konnbot-back-end.onrender.com/profile/${file.filename}`
     }));
 
 
@@ -694,7 +694,7 @@ app.post('/upload-profile-image-for-lead-manag', upload.array('images', 1), asyn
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbotbackend.onrender.com/profile/${file.filename}`
+        profile_url: `https://konnbot-back-end.onrender.com/profile/${file.filename}`
     }));
 
 
@@ -736,7 +736,7 @@ app.post('/upload-profile-image-for-manag-dept', upload.array('images', 1), asyn
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbotbackend.onrender.com/profile/${file.filename}`
+        profile_url: `https://konnbot-back-end.onrender.com/profile/${file.filename}`
     }));
 
 
@@ -775,7 +775,7 @@ app.post('/upload-profile-image-for-engineer-yes', upload.array('images', 1), as
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbotbackend.onrender.com/profile/${file.filename}`
+        profile_url: `https://konnbot-back-end.onrender.com/profile/${file.filename}`
     }));
 
 
