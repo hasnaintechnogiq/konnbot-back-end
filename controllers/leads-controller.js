@@ -2,6 +2,22 @@ const mongoose = require('mongoose');
 const User = require('../models/User.js');
 const Lead = require('../models/Lead.js');
 
+var nodemailer = require('nodemailer');
+
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'pushpd2000@gmail.com',
+        pass: 'fmxpxshteaasyklz'
+    }
+});
+
+
+
+
+
+
 const getAllLeads = async (req, res) => {
     try {
         let leads = await Lead.find().populate("projectID")
@@ -37,6 +53,8 @@ const addNewLead = async (req, res) => {
         )
         let single = await User.findOne({ email: req.body.email });
 
+        const { email } = req.body;
+
         if (single) {
             console.log(single._id)
             await Lead.updateOne(
@@ -47,6 +65,32 @@ const addNewLead = async (req, res) => {
                     }
                 }
             )
+        } else if (email) {
+            const mailOptions = {
+                from: 'pushpd2000@gmail.com',
+                to: email,
+                subject: 'Sending Email using Node.js',
+                text: `Project ID: ${lead.id}`
+            };
+
+            // transporter.sendMail(mailOptions, function (error, info) {
+            //     if (error) {
+            //         console.log(error);
+            //         res.status(500).send('Error sending email');
+            //     } else {
+            //         console.log('Email sent: ' + info.response);
+            //         res.send('Email sent successfully');
+            //     }
+            // });
+            try {
+                // Send email
+                await transporter.sendMail(mailOptions);
+                // return res.status(200).json({ message: 'Email sent successfully' });
+            } catch (error) {
+                console.error('Error sending email:', error);
+                // return res.status(500).json({ error: 'Failed to send email' });
+            }
+
         }
         res.send(result);
     } catch (err) {

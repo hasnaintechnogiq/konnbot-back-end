@@ -2,7 +2,7 @@ const Notification = require('../models/Notification.js');
 const NotificationArray = require('../models/NotificationArray.js');
 const NotificationsForAll = require('../models/NotificationsForAll.js');
 const User = require('../models/User.js');
-
+const Manager = require('../models/Manager.js');
 
 const mongoose = require('mongoose');
 
@@ -319,4 +319,54 @@ const newQuotationaddednotification = async (req, resp) => {
 
 
 
-module.exports = { newQuotationaddednotification, statusofInstallmentisChange, statusofTicketChange, quotationFinalizeBytheClient, convertToContractNotificationForAll, getAllNotification, getSingleNotification, addNewNotification, updateNotification, deleteNotification };
+
+
+
+
+const clientAprrovedCo = async (req, resp) => {
+    try {
+        const objecttosave = {
+            pathtoredirect: 'ManagChangeOrderDetails',
+            idtogetdata: req.body.changeorderinstallmentid,
+            notificationtypeorsection: 'The client has approved CO',
+            iconname: 'note-check-outline',
+            param2userID: req.body.param2userID,
+        }
+
+        let notificationall = new NotificationsForAll(objecttosave);
+        const resultnew = await notificationall.save();
+        let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
+
+        const mangidcheck = req.body.managerID
+
+        if (mangidcheck) {
+            let single = await Manager.findOne({ _id: mangidcheck })
+
+            let notifiIDes = single.notificationarrayID
+
+            console.log("go", notifiIDes);
+            await NotificationArray.updateOne(
+                { _id: notifiIDes },
+                {
+                    $push: {
+                        notificationsforallID: objIDnew
+                    }
+                }
+            )
+        }
+
+        return resp.send(resultnew);
+    } catch (err) {
+        resp.status(500).json(err);
+    }
+};
+
+
+
+
+
+
+
+
+
+module.exports = { clientAprrovedCo, newQuotationaddednotification, statusofInstallmentisChange, statusofTicketChange, quotationFinalizeBytheClient, convertToContractNotificationForAll, getAllNotification, getSingleNotification, addNewNotification, updateNotification, deleteNotification };

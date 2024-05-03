@@ -653,7 +653,7 @@ app.post('/upload-profile-image-for-user', upload.array('images', 1), async (req
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbotbackend.onrender.com/profile/${file.filename}`
+        profile_url: `https://konnbot-back-end.onrender.com/profile/${file.filename}`
     }));
 
 
