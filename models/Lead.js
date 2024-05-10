@@ -49,10 +49,10 @@ const LeadsSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
     },
-    projectID: {
+    projectID: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'projects'
-    },
+    }],
     projectstructureID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'projectstructure'
@@ -81,10 +81,10 @@ const LeadsSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'delays'
     }],
-    quotationSelectedID: {
+    quotationSelectedID: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'quotation'
-    },
+    }],
     engineerID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'engineer'

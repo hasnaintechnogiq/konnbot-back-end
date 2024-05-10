@@ -885,9 +885,24 @@ app.post('/upload-documents', upload.single('document'), async (req, res) => {
 // api for add all activities start
 app.post("/add-all-activities", async (req, resp) => {
 
+    let project = new Project();
+
+    const projectresul = await project.save();
+
+    let objectproID = new mongoose.Types.ObjectId(project.id)
+
+    let newcheck = new mongoose.Types.ObjectId(req.body.leadID)
+
+    await Lead.updateOne(
+        { _id: newcheck },
+        {
+            $push: {
+                projectID: objectproID
+            }
+        }
+    )
 
     let singltwo = await Quotation.findById(req.body.quotationSelectedID)
-    // console.log(singltwo.footingstructuretype)
     if (singltwo) {
         var fottingtypecheck = singltwo.footingstructuretype;
     }
@@ -5258,8 +5273,8 @@ app.post("/add-all-activities", async (req, resp) => {
                 }
 
 
-                await Lead.updateOne(
-                    { _id: newss },
+                await Project.updateOne(
+                    { _id: objectproID },
                     {
                         $push: {
                             activitiesID: objID

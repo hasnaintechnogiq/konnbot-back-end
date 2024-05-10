@@ -23,6 +23,18 @@ const projectsSchema = mongoose.Schema({
     spaces: String,
     spacesfloorlevel: String,
     spacesheight: String,
+    todayworkstatus: {
+        type: String,
+        default: "Yes"
+    },
+    reasontostopwork : {
+        type: String,
+        default: "Delay's End"
+    },
+    activitiesID: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'activities'
+    }],
     leadID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'leads'

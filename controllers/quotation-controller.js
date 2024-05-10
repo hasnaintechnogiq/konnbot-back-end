@@ -125,12 +125,11 @@ const addSelectedQuotationinLead = async (req, resp) => {
         await Lead.updateOne(
             { _id: leadID },
             {
-                $set: {
+                $push: {
                     quotationSelectedID: quotationID
                 }
             }
         )
-
 
 
         const objecttosave = {

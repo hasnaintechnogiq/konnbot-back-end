@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Activities = require('../models/Activities.js');
 const Lead = require('../models/Lead.js');
+const Project = require('../models/Project.js');
 
 const addNewActivities = async (req, res) => {
     try {
@@ -27,7 +28,7 @@ const addNewActivities = async (req, res) => {
 
 const getSingleLeadactivities = async (req, resp) => {
     try {
-        let single = await Lead.findById({ _id: req.params._id }).populate({
+        let single = await Project.findById({ _id: req.params._id }).populate({
             path: 'activitiesID',
             populate: {
               path: 'subactivitiesID',

@@ -122,7 +122,6 @@ const deleteLead = async (req, res) => {
 
 const getLeadWithProject = async (req, resp) => {
     const result = await Lead.findOne({ _id: req.params.id })
-        .populate("projectID")
         .populate("projectstructureID")
         .populate({
             path: 'projectspaceID',
@@ -131,9 +130,17 @@ const getLeadWithProject = async (req, resp) => {
                 model: 'rooms'
             }
         })
+        .populate({
+            path: 'projectID',
+            populate: {
+                path: 'activitiesID',
+                model: 'activities'
+            }
+        })
         .populate("noticesID")
         .populate("userID")
         .populate("activitiesID")
+        .populate("quotationSelectedID")
     resp.send(result);
 };
 
