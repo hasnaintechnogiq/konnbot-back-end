@@ -8,6 +8,7 @@ const usersSchema = mongoose.Schema({
     city: String,
     state: String,
     password: String,
+    otp: String,
     leadID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'leads'

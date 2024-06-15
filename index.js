@@ -176,17 +176,6 @@ app.post('/add-ticket-and-upload', upload.array('images', 5), async (req, res) =
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     res.json(result);
     // res.send(imgarry);
 });

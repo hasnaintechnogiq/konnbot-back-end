@@ -3,6 +3,8 @@ const User = require('../models/User.js');
 const UserSiteDetailsDemo = require('../models/UserSiteDetailsDemo.js');
 const NotificationArray = require('../models/NotificationArray.js');
 const Lead = require('../models/Lead.js');
+var nodemailer = require('nodemailer');
+
 
 const getAllUsers = async (req, res) => {
     try {
@@ -121,36 +123,121 @@ const addSiteDetailsForDemo = async (req, resp) => {
 const margeClientToLead = async (req, resp) => {
     try {
 
-         let leadid = await Lead.findById(req.body.leadID)
-         console.log(leadid)
-          if (leadid) {
+        let leadid = await Lead.findById(req.body.leadID)
+        console.log(leadid)
+        if (leadid) {
 
-                let userIDEx = new mongoose.Types.ObjectId(req.body.userID)
-                let leadIDEx = new mongoose.Types.ObjectId(req.body.leadID)
-                console.log(userIDEx);
-                await User.updateOne(
-                    { _id: userIDEx },
-                    {
-                        $set: {
-                            leadID: leadIDEx
-                        }
+            let userIDEx = new mongoose.Types.ObjectId(req.body.userID)
+            let leadIDEx = new mongoose.Types.ObjectId(req.body.leadID)
+            console.log(userIDEx);
+            await User.updateOne(
+                { _id: userIDEx },
+                {
+                    $set: {
+                        leadID: leadIDEx
                     }
-                )
+                }
+            )
 
-                await Lead.updateOne(
-                    { _id: leadIDEx },
-                    {
-                        $set: {
-                            userID: userIDEx
-                        }
+            await Lead.updateOne(
+                { _id: leadIDEx },
+                {
+                    $set: {
+                        userID: userIDEx
                     }
-                )
+                }
+            )
+
+            resp.send("Merge successfully");
+        } else { resp.send("Invalid project ID") }
+
+    } catch (err) {
+        resp.status(500).json(err);
+    }
+};
 
 
-                resp.send("Merge successfully");
-         } else { resp.send("Invalid project ID") }
 
 
+
+
+
+const genarateOtpandsendtoemail = async (req, resp) => {
+    try {
+
+        let single = await User.findOne({ email: req.body.email });
+        const { email } = req.body;
+        if (single) {
+
+            function generateRandomNumber() {
+                return Math.floor(100000 + Math.random() * 900000);
+            }
+
+
+            const randomNumber = generateRandomNumber();
+
+
+            User.findOneAndUpdate(
+                { email: email },
+                { otp: randomNumber },
+                { new: true }
+            )
+                .then(user => {
+                    console.log('User OTP updated:', user);
+                })
+                .catch(err => {
+                    console.error('Error updating user OTP:', err);
+                });
+
+
+
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'pushpd2000@gmail.com',
+                    pass: 'fmxpxshteaasyklz'
+                }
+            });
+
+
+
+            const mailOptions = {
+                from: 'pushpd2000@gmail.com',
+                to: email,
+                subject: 'Sending Email using Node.js',
+                text: `Your 6-digit OTP is: ${randomNumber}`
+            };
+
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    return resp.status(500).json({ error: 'Failed to send email' });
+                } else {
+                    return resp.status(200).json({ message: 'Email sent successfully' });
+                }
+            });
+        } else {
+            return resp.status(200).json({ message: 'Email id does not exist.' });
+        }
+
+
+
+    } catch (err) {
+        resp.status(500).json(err);
+    }
+};
+
+
+
+
+
+const checkotpnow = async (req, resp) => {
+    try {
+        if (req.body.email && req.body.otp) {
+            let user = await User.findOne(req.body).select("-password")
+            if (user) {
+                resp.send(user);
+            } else { resp.send("Wrong Otp") }
+        } else { resp.send("enter email and pass") }
 
     } catch (err) {
         resp.status(500).json(err);
@@ -164,4 +251,9 @@ const margeClientToLead = async (req, resp) => {
 
 
 
-module.exports = { margeClientToLead, getSingleUserSiteInformation, addSiteDetailsForDemo, getAllUsers, getUserWithQueries, getSingleUser, addNewUser, updateUserDetail, deleteUser };
+
+
+
+
+
+module.exports = { checkotpnow, genarateOtpandsendtoemail, margeClientToLead, getSingleUserSiteInformation, addSiteDetailsForDemo, getAllUsers, getUserWithQueries, getSingleUser, addNewUser, updateUserDetail, deleteUser };
