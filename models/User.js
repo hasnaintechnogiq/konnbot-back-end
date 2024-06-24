@@ -4,11 +4,12 @@ const jwt = require('jsonwebtoken');
 const usersSchema = mongoose.Schema({
     name: String,
     number: Number,
-    email: String,
+    email: { type: String, required: true, unique: true },
     city: String,
     state: String,
-    password: String,
+    password: { type: String, required: true },
     otp: String,
+    profile_url: String,
     leadID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'leads'

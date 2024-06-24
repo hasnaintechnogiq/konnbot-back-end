@@ -3,12 +3,14 @@ const jwt = require('jsonwebtoken');
 const User = require('./models/User.js');
  
 const Authenticate = async (req, res, next) => {
- const token = req.body.token;
+    const authHeader = req.header('Authorization');
+    if (!authHeader) {
+        return res.status(401).send('Authorization header missing');
+    }
+    const token = authHeader.replace('Bearer ', '');
     console.log(token)
     try {
-        // request ke through token bhejna padega ye to sirf demo k liye hai 
-        // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTVkOWUzMzZlYmM0MDAyMzZiZDlhODMiLCJpYXQiOjE3MDA2MzQ4MDJ9.wVxmCQzaDMz7PtZRdEw-C2XyXz8bFZjULoHvH_qrooo";
- 
+      
         const verifytoken = jwt.verify(token, "MOHDHASNAINKOUSARANSARIPARASIA");
         const rootuser = await User.findOne({ _id: verifytoken._id, "tokens.token": token })
 

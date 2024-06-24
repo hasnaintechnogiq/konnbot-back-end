@@ -28,7 +28,7 @@ const NotificationsForAll = require('./models/NotificationsForAll.js');
 const NotificationArray = require('./models/NotificationArray.js');
 const Delays = require('./models/Delays.js');
 const ProfileImage = require('./models/ProfileImage.js');
-
+const bcrypt = require('bcryptjs');
 
 
 
@@ -76,6 +76,33 @@ const upload = multer({ storage: storage });
 
 
 app.use('/profile', express.static('upload/images'));
+
+
+
+
+
+app.post('/upload-profile-user-new', upload.single('image'), async (req, res) => {
+
+
+    try {
+        const files = req.file;
+        const formData = req.body;
+        const profile_url = `https://konnbot-back-end.onrender.com/profile/${files.filename}`;
+        console.log(profile_url)
+        let singleUser = await User.findById(formData.userID)
+
+        singleUser.profile_url = profile_url
+
+        singleUser.save();
+
+        res.json({ message: 'Image uploaded successfully' });
+
+    } catch (error) {
+        res.status(500).json({ message: 'Error uploading image', error });
+    }
+});
+
+
 
 
 
@@ -5400,36 +5427,26 @@ app.post("/add-all-installlments", async (req, resp) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-app.post("/register", async (req, resp) => {
-    let data = new User(req.body);
-    const result = await data.save();
-    resp.send(result);
-});
-
 app.post("/login", async (req, resp) => {
-    if (req.body.email && req.body.password) {
-        let user = await User.findOne(req.body).select("-password").populate("imagesID")
-        if (user) {
+    const { email, password } = req.body;
+    try {
+        if (req.body.email && req.body.password) {
+            const user = await User.findOne({ email }).populate("imagesID");
+            if (!user) {
+                return resp.send("no data found")
+            }
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                return resp.send("no data found")
+            }
             const token = await user.generateAuthToken();
             console.log(token);
+            user._doc.tokenCode = token;
             resp.send(user);
-        } else { resp.send("no data found") }
-    } else { resp.send("enter email and pass") }
+        } else { resp.send("enter email and pass") }
+    } catch (err) {
+        res.status(500).send('Error logging in');
+    }
 });
 
 

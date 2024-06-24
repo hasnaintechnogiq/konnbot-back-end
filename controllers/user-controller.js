@@ -4,7 +4,7 @@ const UserSiteDetailsDemo = require('../models/UserSiteDetailsDemo.js');
 const NotificationArray = require('../models/NotificationArray.js');
 const Lead = require('../models/Lead.js');
 var nodemailer = require('nodemailer');
-
+const bcrypt = require('bcryptjs');
 
 const getAllUsers = async (req, res) => {
     try {
@@ -41,15 +41,17 @@ const getSingleUser = async (req, resp) => {
 };
 
 const addNewUser = async (req, res) => {
-    const { email } = req.body;
+    const { email, password, name } = req.body;
     try {
         let existingTeacherByEmail = await User.find({ email })
-        let user = new User(req.body);
+
         if (existingTeacherByEmail.length > 0) {
             res.send('Email already exists');
             console.log("Email already exists")
         } else {
-
+            const hashedPassword = await bcrypt.hash(password, 10);
+            const user = new User({ name ,email, password: hashedPassword });
+  
             const newDocument = new NotificationArray();
             const notifiArray = await newDocument.save();
 
