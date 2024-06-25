@@ -82,10 +82,11 @@ app.use('/profile', express.static('upload/images'));
 
 
 app.post('/upload-profile-user-new', upload.single('image'), async (req, res) => {
-
-
+    const files = req.file;
     try {
-        const files = req.file;
+        if (!files || files.length === 0) {
+            return res.status(400).send('No files were uploaded.');
+        }
         const formData = req.body;
         const profile_url = `https://konnbot-back-end.onrender.com/profile/${files.filename}`;
         console.log(profile_url)
@@ -699,36 +700,62 @@ app.post('/upload-profile-image-for-user', upload.array('images', 1), async (req
 
 
 // Upload images for profile for lead start
-app.post('/upload-profile-image-for-lead-manag', upload.array('images', 1), async (req, res) => {
-    const files = req.files;
-    if (!files || files.length === 0) {
-        return res.status(400).send('No files were uploaded.');
-    }
-    console.log(files)
 
-    const imgarry = files.map((file) => ({
-        originalname: file.originalname,
-        filename: file.filename,
-        path: file.path,
-        profile_url: `https://konnbot-back-end.onrender.com/profile/${file.filename}`
-    }));
-
-
-    const result = await ProfileImage.create({ imgarry });
-
-    let objID = new mongoose.Types.ObjectId(result.id);
-    let newss = new mongoose.Types.ObjectId(req.body.leadmanagerID)
-    console.log(objID);
-    await LeadManager.updateOne(
-        { _id: newss },
-        {
-            $set: {
-                imagesID: objID
-            }
+app.post('/upload-profile-image-for-lead-manag', upload.single('image'), async (req, res) => {
+    const files = req.file;
+    try {
+        if (!files || files.length === 0) {
+            return res.status(400).send('No files were uploaded.');
         }
-    )
-    res.json(result);
+        const formData = req.body;
+        const profile_url = `https://konnbot-back-end.onrender.com/profile/${files.filename}`;
+        console.log(profile_url)
+        let singleUser = await LeadManager.findById(formData.leadmanagerID)
+
+        singleUser.profile_url = profile_url
+
+        singleUser.save();
+
+        res.json({ message: 'Image uploaded successfully' });
+
+    } catch (error) {
+        res.status(500).json({ message: 'Error uploading image', error });
+    }
 });
+
+
+
+
+// app.post('/upload-profile-image-for-lead-manag', upload.array('images', 1), async (req, res) => {
+//     const files = req.files;
+//     if (!files || files.length === 0) {
+//         return res.status(400).send('No files were uploaded.');
+//     }
+//     console.log(files)
+
+//     const imgarry = files.map((file) => ({
+//         originalname: file.originalname,
+//         filename: file.filename,
+//         path: file.path,
+//         profile_url: `https://konnbot-back-end.onrender.com/profile/${file.filename}`
+//     }));
+
+
+//     const result = await ProfileImage.create({ imgarry });
+
+//     let objID = new mongoose.Types.ObjectId(result.id);
+//     let newss = new mongoose.Types.ObjectId(req.body.leadmanagerID)
+//     console.log(objID);
+//     await LeadManager.updateOne(
+//         { _id: newss },
+//         {
+//             $set: {
+//                 imagesID: objID
+//             }
+//         }
+//     )
+//     res.json(result);
+// });
 
 // Upload images for profile for lead end
 
@@ -741,36 +768,30 @@ app.post('/upload-profile-image-for-lead-manag', upload.array('images', 1), asyn
 
 
 // Upload images for profile for Manager start
-app.post('/upload-profile-image-for-manag-dept', upload.array('images', 1), async (req, res) => {
-    const files = req.files;
-    if (!files || files.length === 0) {
-        return res.status(400).send('No files were uploaded.');
-    }
-    console.log(files)
-
-    const imgarry = files.map((file) => ({
-        originalname: file.originalname,
-        filename: file.filename,
-        path: file.path,
-        profile_url: `https://konnbot-back-end.onrender.com/profile/${file.filename}`
-    }));
 
 
-    const result = await ProfileImage.create({ imgarry });
-
-    let objID = new mongoose.Types.ObjectId(result.id);
-    let newss = new mongoose.Types.ObjectId(req.body.managerID)
-    console.log(objID);
-    await Manager.updateOne(
-        { _id: newss },
-        {
-            $set: {
-                imagesID: objID
-            }
+app.post('/upload-profile-image-for-manag-dept', upload.single('image'), async (req, res) => {
+    const files = req.file;
+    try {
+        if (!files || files.length === 0) {
+            return res.status(400).send('No files were uploaded.');
         }
-    )
-    res.json(result);
+        const formData = req.body;
+        const profile_url = `https://konnbot-back-end.onrender.com/profile/${files.filename}`;
+        console.log(profile_url)
+        let singleUser = await Manager.findById(formData.managerID)
+
+        singleUser.profile_url = profile_url
+
+        singleUser.save();
+
+        res.json({ message: 'Image uploaded successfully' });
+
+    } catch (error) {
+        res.status(500).json({ message: 'Error uploading image', error });
+    }
 });
+
 
 // Upload images for profile for Manager end
 
@@ -780,36 +801,30 @@ app.post('/upload-profile-image-for-manag-dept', upload.array('images', 1), asyn
 
 
 // Upload images for profile for Engineer start
-app.post('/upload-profile-image-for-engineer-yes', upload.array('images', 1), async (req, res) => {
-    const files = req.files;
-    if (!files || files.length === 0) {
-        return res.status(400).send('No files were uploaded.');
-    }
-    console.log(files)
-
-    const imgarry = files.map((file) => ({
-        originalname: file.originalname,
-        filename: file.filename,
-        path: file.path,
-        profile_url: `https://konnbot-back-end.onrender.com/profile/${file.filename}`
-    }));
 
 
-    const result = await ProfileImage.create({ imgarry });
-
-    let objID = new mongoose.Types.ObjectId(result.id);
-    let newss = new mongoose.Types.ObjectId(req.body.engineerID)
-    console.log(objID);
-    await Engineer.updateOne(
-        { _id: newss },
-        {
-            $set: {
-                imagesID: objID
-            }
+app.post('/upload-profile-image-for-engineer-yes', upload.single('image'), async (req, res) => {
+    const files = req.file;
+    try {
+        if (!files || files.length === 0) {
+            return res.status(400).send('No files were uploaded.');
         }
-    )
-    res.json(result);
+        const formData = req.body;
+        const profile_url = `https://konnbot-back-end.onrender.com/profile/${files.filename}`;
+        console.log(profile_url)
+        let singleUser = await Engineer.findById(formData.engineerID)
+
+        singleUser.profile_url = profile_url
+
+        singleUser.save();
+
+        res.json({ message: 'Image uploaded successfully' });
+
+    } catch (error) {
+        res.status(500).json({ message: 'Error uploading image', error });
+    }
 });
+
 
 // Upload images for profile for Engineer end
 

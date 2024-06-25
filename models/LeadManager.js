@@ -8,6 +8,7 @@ const leadmanagerSchema = mongoose.Schema({
     city: String,
     state: String,
     password: String,
+    profile_url: String,
     notificationarrayID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'notificationarray'
