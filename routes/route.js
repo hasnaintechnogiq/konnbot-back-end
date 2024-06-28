@@ -58,7 +58,7 @@ router.post("/cliet-approved-co", clientAprrovedCo)
 // Queries routes
 
 router.post("/add-query-update", addQueryUpdate)
-router.get("/get-single-query/:_id", authenticate , getSingleQuery)
+router.get("/get-single-query/:_id", getSingleQuery)
 router.get("/all-queries", getAllQueries)
 router.get("/get-user-all-queries/:_id",  authenticate , getUserAllQueries)
 router.post("/create-queries", addNewQueries)

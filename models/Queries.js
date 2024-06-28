@@ -6,13 +6,14 @@ const QueriesSchema = mongoose.Schema({
     description: String,
     sitename: String,
     querycategory: String,
+    videoPath : String,
     status: {
         type: String,
         default: "Pending"
     },
     profile_url: String,
     imgarry: Array,
-    kisusermh: {
+    userIDtogo: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
     },

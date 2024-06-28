@@ -13,7 +13,7 @@ const getAllQueries = async (req, res) => {
 
 const getUserAllQueries = async (req, resp) => {
     try {
-        let queriessingle = await Queries.find({ kisusermh: req.params._id });
+        let queriessingle = await Queries.find({ userIDtogo: req.params._id });
         resp.send(queriessingle);
     } catch (err) {
         res.status(500).json(err);
@@ -22,7 +22,7 @@ const getUserAllQueries = async (req, resp) => {
 
 const getSingleQuery = async (req, resp) => {
     try {
-        let queriessingle = await Queries.find({ _id: req.params._id }).populate("kisusermh")
+        let queriessingle = await Queries.find({ _id: req.params._id }).populate("userIDtogo")
         .populate("queryupdateID")
         resp.send(queriessingle);
     } catch (err) {

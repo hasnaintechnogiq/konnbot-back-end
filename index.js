@@ -81,6 +81,13 @@ app.use('/profile', express.static('upload/images'));
 
 
 
+
+
+
+
+
+
+
 app.post('/upload-profile-user-new', upload.single('image'), async (req, res) => {
     const files = req.file;
     try {
@@ -106,7 +113,92 @@ app.post('/upload-profile-user-new', upload.single('image'), async (req, res) =>
 
 
 
+app.post('/upload-video-to-create-ticket', upload.single('video'), async (req, res) => {
+    const files = req.file;
+    try {
+        if (!files || files.length === 0) {
+            return res.status(400).send('No files were uploaded.');
+        }
+        const formData = req.body;
 
+        const videoPath = `https://konnbot-back-end.onrender.com/profile/${files.filename}`;
+        const result = await Queries.create({ ...formData, videoPath });
+
+        let objID = new mongoose.Types.ObjectId(result.id);
+        let newss = new mongoose.Types.ObjectId(req.body.userIDtogo)
+        console.log(objID);
+        await User.updateOne(
+            { _id: newss },
+            {
+                $push: {
+                    queriesID: objID
+                }
+            }
+        )
+
+
+
+        const objecttosave = {
+            pathtoredirect: 'TicketDetails',
+            idtogetdata: result.id,
+            notificationtypeorsection: 'Client has created a ticket!',
+            iconname: 'book-plus-outline',
+            param2userID: req.body.userIDtogo,
+        }
+
+        let notificationall = new NotificationsForAll(objecttosave);
+        const resultnew = await notificationall.save();
+        let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
+
+        const engidcheck = req.body.engineerID
+
+        if (engidcheck) {
+            let single = await Engineer.findOne({ _id: engidcheck })
+
+            let notifiIDes = single.notificationarrayID
+
+
+            await NotificationArray.updateOne(
+                { _id: notifiIDes },
+                {
+                    $push: {
+                        notificationsforallID: objIDnew
+                    }
+                }
+            )
+        }
+
+
+        let notificationakl = new NotificationsForAll(objecttosave);
+        const resultntwo = await notificationakl.save();
+        let objIDtwo = new mongoose.Types.ObjectId(notificationakl.id)
+
+        const mangercheck = req.body.managerID
+
+        if (mangercheck) {
+            let single = await Manager.findOne({ _id: mangercheck })
+
+            let notifiIDes = single.notificationarrayID
+
+
+            await NotificationArray.updateOne(
+                { _id: notifiIDes },
+                {
+                    $push: {
+                        notificationsforallID: objIDtwo
+                    }
+                }
+            )
+        }
+
+
+        res.send(result);
+    } catch (error) {
+        res.status(500).json({ message: 'Error uploading video', error });
+    }
+
+
+});
 
 
 
@@ -114,98 +206,102 @@ app.post('/upload-profile-user-new', upload.single('image'), async (req, res) =>
 
 // Handle file upload
 app.post('/add-ticket-and-upload', upload.array('images', 5), async (req, res) => {
-    const files = req.files;
-    if (!files || files.length === 0) {
-        return res.status(400).send('No files were uploaded.');
-    }
-
-    const formData = req.body;
-
-    console.log(files)
-
-
-    const imgarry = files.map((file) => ({
-        originalname: file.originalname,
-        filename: file.filename,
-        path: file.path,
-        profile_url: `https://konnbot-back-end.onrender.com/profile/${file.filename}`
-    }));
-
-
-    const result = await Queries.create({ ...formData, imgarry });
-
-    let objID = new mongoose.Types.ObjectId(result.id);
-    let newss = new mongoose.Types.ObjectId(req.body.kisusermh)
-    console.log(objID);
-    await User.updateOne(
-        { _id: newss },
-        {
-            $push: {
-                queriesID: objID
-            }
+    try {
+        const files = req.files;
+        if (!files || files.length === 0) {
+            return res.status(400).send('No files were uploaded.');
         }
-    )
+
+        const formData = req.body;
+
+        console.log(files)
 
 
-
-    const objecttosave = {
-        pathtoredirect: 'TicketDetails',
-        idtogetdata: result.id,
-        notificationtypeorsection: 'Client has created a ticket!',
-        iconname: 'book-plus-outline',
-        param2userID: req.body.kisusermh,
-    }
-
-    let notificationall = new NotificationsForAll(objecttosave);
-    const resultnew = await notificationall.save();
-    let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
-
-    const engidcheck = req.body.engineerID
-
-    if (engidcheck) {
-        let single = await Engineer.findOne({ _id: engidcheck })
-
-        let notifiIDes = single.notificationarrayID
+        const imgarry = files.map((file) => ({
+            originalname: file.originalname,
+            filename: file.filename,
+            path: file.path,
+            profile_url: `https://konnbot-back-end.onrender.com/profile/${file.filename}`
+        }));
 
 
-        await NotificationArray.updateOne(
-            { _id: notifiIDes },
+        const result = await Queries.create({ ...formData, imgarry });
+
+        let objID = new mongoose.Types.ObjectId(result.id);
+        let newss = new mongoose.Types.ObjectId(req.body.userIDtogo)
+        console.log(objID);
+        await User.updateOne(
+            { _id: newss },
             {
                 $push: {
-                    notificationsforallID: objIDnew
+                    queriesID: objID
                 }
             }
         )
-    }
 
 
-    let notificationakl = new NotificationsForAll(objecttosave);
-    const resultntwo = await notificationakl.save();
-    let objIDtwo = new mongoose.Types.ObjectId(notificationakl.id)
 
-    const mangercheck = req.body.managerID
+        const objecttosave = {
+            pathtoredirect: 'TicketDetails',
+            idtogetdata: result.id,
+            notificationtypeorsection: 'Client has created a ticket!',
+            iconname: 'book-plus-outline',
+            param2userID: req.body.userIDtogo,
+        }
 
-    if (mangercheck) {
-        let single = await Manager.findOne({ _id: mangercheck })
+        let notificationall = new NotificationsForAll(objecttosave);
+        const resultnew = await notificationall.save();
+        let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
 
-        let notifiIDes = single.notificationarrayID
+        const engidcheck = req.body.engineerID
+
+        if (engidcheck) {
+            let single = await Engineer.findOne({ _id: engidcheck })
+
+            let notifiIDes = single.notificationarrayID
 
 
-        await NotificationArray.updateOne(
-            { _id: notifiIDes },
-            {
-                $push: {
-                    notificationsforallID: objIDtwo
+            await NotificationArray.updateOne(
+                { _id: notifiIDes },
+                {
+                    $push: {
+                        notificationsforallID: objIDnew
+                    }
                 }
-            }
-        )
+            )
+        }
+
+
+        let notificationakl = new NotificationsForAll(objecttosave);
+        const resultntwo = await notificationakl.save();
+        let objIDtwo = new mongoose.Types.ObjectId(notificationakl.id)
+
+        const mangercheck = req.body.managerID
+
+        if (mangercheck) {
+            let single = await Manager.findOne({ _id: mangercheck })
+
+            let notifiIDes = single.notificationarrayID
+
+
+            await NotificationArray.updateOne(
+                { _id: notifiIDes },
+                {
+                    $push: {
+                        notificationsforallID: objIDtwo
+                    }
+                }
+            )
+        }
+
+
+
+
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ message: 'Error uploading image', error });
     }
 
-
-
-
-    res.json(result);
-    // res.send(imgarry);
 });
 
 
@@ -5229,24 +5325,6 @@ app.post("/add-all-activities", async (req, resp) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 await Activities.updateOne(
                                     { _id: newss },
                                     {
@@ -5334,46 +5412,53 @@ app.post("/add-all-activities", async (req, resp) => {
 
 // Create Installments start
 app.post("/add-all-installlments", async (req, resp) => {
+    try {
+        const dataArray = [
+            { installmentnum: '1st', installmenttype: 'Footing', leadID: req.body.leadID },
+            { installmentnum: '2nd', installmenttype: 'Plinth', leadID: req.body.leadID },
+            { installmentnum: '3rd', installmenttype: 'RCC Work', leadID: req.body.leadID },
+            { installmentnum: '4th', installmenttype: 'Brick Work', leadID: req.body.leadID },
+            { installmentnum: '5th', installmenttype: 'Electrical', leadID: req.body.leadID },
+            { installmentnum: '6th', installmenttype: 'Plumbing', leadID: req.body.leadID },
+            { installmentnum: '7th', installmenttype: 'Plaster', leadID: req.body.leadID },
+            { installmentnum: '8th', installmenttype: 'Other Interior', leadID: req.body.leadID },
+            { installmentnum: '9th', installmenttype: 'Door & Window', leadID: req.body.leadID },
+            { installmentnum: '10th', installmenttype: 'Flooring', leadID: req.body.leadID },
+            { installmentnum: '11th', installmenttype: 'Paint & Finishes', leadID: req.body.leadID },
+            { installmentnum: '12th', installmenttype: 'Miscellenous', leadID: req.body.leadID },
+        ];
 
-    const dataArray = [
-        { installmentnum: '1st', installmenttype: 'Footing', leadID: req.body.leadID },
-        { installmentnum: '2nd', installmenttype: 'Plinth', leadID: req.body.leadID },
-        { installmentnum: '3rd', installmenttype: 'RCC Work', leadID: req.body.leadID },
-        { installmentnum: '4th', installmenttype: 'Brick Work', leadID: req.body.leadID },
-        { installmentnum: '5th', installmenttype: 'Electrical', leadID: req.body.leadID },
-        { installmentnum: '6th', installmenttype: 'Plumbing', leadID: req.body.leadID },
-        { installmentnum: '7th', installmenttype: 'Plaster', leadID: req.body.leadID },
-        { installmentnum: '8th', installmenttype: 'Other Interior', leadID: req.body.leadID },
-        { installmentnum: '9th', installmenttype: 'Door & Window', leadID: req.body.leadID },
-        { installmentnum: '10th', installmenttype: 'Flooring', leadID: req.body.leadID },
-        { installmentnum: '11th', installmenttype: 'Paint & Finishes', leadID: req.body.leadID },
-        { installmentnum: '12th', installmenttype: 'Miscellenous', leadID: req.body.leadID },
-    ];
 
+        async function saveDataSeq() {
+            for (let i = 0; i < dataArray.length; i++) {
+                try {
+                    const newData = new MyInstallment(dataArray[i]);
+                    const savedData = await newData.save();
+                    let objID = new mongoose.Types.ObjectId(newData.id)
+                    let newss = new mongoose.Types.ObjectId(req.body.leadID)
 
-    async function saveDataSeq() {
-        for (let i = 0; i < dataArray.length; i++) {
-            try {
-                const newData = new MyInstallment(dataArray[i]);
-                const savedData = await newData.save();
-                let objID = new mongoose.Types.ObjectId(newData.id)
-                let newss = new mongoose.Types.ObjectId(req.body.leadID)
-
-                await Lead.updateOne(
-                    { _id: newss },
-                    {
-                        $push: {
-                            installmentID: objID
+                    await Lead.updateOne(
+                        { _id: newss },
+                        {
+                            $push: {
+                                installmentID: objID
+                            }
                         }
+                    )
+                    if (newData.installmentnum === '12th') {
+                        return resp.send("Done");
                     }
-                )
-            } catch (error) {
-                console.error('Error saving data:', error);
+                } catch (error) {
+                    console.error('Error saving data:', error);
+                }
             }
         }
+        saveDataSeq();
+
+    } catch (error) {
+        console.error('Error saving data:', error);
     }
-    saveDataSeq();
-    resp.send("Done");
+
 });
 // Create Installments End
 
@@ -5482,7 +5567,7 @@ app.post("/login", async (req, resp) => {
 
 app.get("/user-profile-picture/:_id", async (req, resp) => {
     try {
-        let single = await User.findOne({ _id: req.params._id }).select("-password").populate("imagesID")
+        let single = await User.findOne({ _id: req.params._id }).select("-password")
         resp.send(single);
     } catch (err) {
         resp.status(500).json(err);
@@ -5491,7 +5576,7 @@ app.get("/user-profile-picture/:_id", async (req, resp) => {
 
 app.get("/lead-profile-picture/:_id", async (req, resp) => {
     try {
-        let single = await LeadManager.findOne({ _id: req.params._id }).select("-password").populate("imagesID")
+        let single = await LeadManager.findOne({ _id: req.params._id }).select("-password")
         resp.send(single);
     } catch (err) {
         resp.status(500).json(err);
@@ -5500,7 +5585,7 @@ app.get("/lead-profile-picture/:_id", async (req, resp) => {
 
 app.get("/manager-profile-picture/:_id", async (req, resp) => {
     try {
-        let single = await Manager.findOne({ _id: req.params._id }).select("-password").populate("imagesID")
+        let single = await Manager.findOne({ _id: req.params._id }).select("-password")
         resp.send(single);
     } catch (err) {
         resp.status(500).json(err);
@@ -5510,7 +5595,7 @@ app.get("/manager-profile-picture/:_id", async (req, resp) => {
 
 app.get("/enginner-profile-picture/:_id", async (req, resp) => {
     try {
-        let single = await Engineer.findOne({ _id: req.params._id }).select("-password").populate("imagesID")
+        let single = await Engineer.findOne({ _id: req.params._id }).select("-password")
         resp.send(single);
     } catch (err) {
         resp.status(500).json(err);
@@ -5538,35 +5623,47 @@ app.get("/enginner-profile-picture/:_id", async (req, resp) => {
 
 
 app.post("/engineer-login", async (req, resp) => {
-    if (req.body.email && req.body.password) {
-        let user = await Engineer.findOne(req.body).select("-password")
-        if (user) {
-            resp.send(user);
-        } else { resp.send("no data found") }
-    } else { resp.send("enter email and pass") }
+    try {
+        if (req.body.email && req.body.password) {
+            let user = await Engineer.findOne(req.body).select("-password")
+            if (user) {
+                resp.send(user);
+            } else { resp.send("no data found") }
+        } else { resp.send("enter email and pass") }
+    } catch (error) {
+        resp.status(500).json(error);
+    }
 });
 
 
 
 
 app.post("/manager-login", async (req, resp) => {
-    if (req.body.email && req.body.password) {
-        let user = await Manager.findOne(req.body).select("-password")
-        if (user) {
-            resp.send(user);
-        } else { resp.send("no data found") }
-    } else { resp.send("enter email and pass") }
+    try {
+        if (req.body.email && req.body.password) {
+            let user = await Manager.findOne(req.body).select("-password")
+            if (user) {
+                resp.send(user);
+            } else { resp.send("no data found") }
+        } else { resp.send("enter email and pass") }
+    } catch (error) {
+        resp.status(500).json(error);
+    }
 });
 
 
 
 app.post("/lead-manager-login", async (req, resp) => {
-    if (req.body.email && req.body.password) {
-        let user = await LeadManager.findOne(req.body).select("-password")
-        if (user) {
-            resp.send(user);
-        } else { resp.send("no data found") }
-    } else { resp.send("enter email and pass") }
+    try {
+        if (req.body.email && req.body.password) {
+            let user = await LeadManager.findOne(req.body).select("-password")
+            if (user) {
+                resp.send(user);
+            } else { resp.send("no data found") }
+        } else { resp.send("enter email and pass") }
+    } catch (error) {
+        resp.status(500).json(error);
+    }
 });
 
 
@@ -5595,41 +5692,25 @@ app.post("/admin-login", async (req, resp) => {
     } else { resp.send("enter email and pass") }
 });
 
-app.post("/add-product", async (req, resp) => {
-    let products = new Product(req.body);
-    const result = await products.save();
-    resp.send(result);
-});
 
-app.get("/get-product",
-    //  authenticate , 
-    async (req, resp) => {
-        let products = await Product.find();
-        // const result = await products.save();
-        resp.send(products);
-    });
 
-app.delete("/delete-product/:_id", async (req, resp) => {
-    console.log(req.params)
-    let data = await Product.deleteOne(req.params);
-    resp.send(data);
+
+
+app.put("/update-new-password/:_id", async (req, resp) => {
+    const { password, otp } = req.body;
+    console.log(password, otp)
+    try {
+        let productsingle = await User.findById(req.params._id);
+        console.log(productsingle)
+        const hashedPassword = await bcrypt.hash(password, 10);
+        productsingle.password = hashedPassword
+        productsingle.save();
+        resp.send(productsingle);
+
+    } catch (error) {
+        resp.status(500).json(error);
+    }
 })
-
-app.get("/get-single-product/:id", async (req, resp) => {
-    let productsingle = await Product.findOne({ _id: req.params.id });
-    // const result = await products.save();
-    resp.send(productsingle);
-});
-
-app.put("/update/:_id", async (req, resp) => {
-    console.log(req.params)
-    let data = await Product.updateOne(
-        req.params,
-        { $set: req.body }
-    );
-    resp.send(data);
-})
-
 
 // Multiple field pe search karne k liye
 
