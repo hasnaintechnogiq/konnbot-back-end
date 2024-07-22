@@ -6,6 +6,8 @@ const Manager = require('../models/Manager.js');
 const LeadManager = require('../models/LeadManager.js');
 const Engineer = require('../models/Engineer.js');
 const NotificationArray = require('../models/NotificationArray.js');
+const PriceList = require('../models/PriceList.js');
+
 
 const getAllapointments = async (req, res) => {
     try {
@@ -100,5 +102,38 @@ const getAllEngineerList = async (req, res) => {
     }
 };
 
+// Price Controller
 
-module.exports = {  getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, getAllEngineerList, getAllLeadsList, getAllManagersList};
+const getPriceList = async (req, res) => {
+    try {
+        let data = await PriceList.find()
+        res.send(data)
+    } catch (err) {
+        res.status(500).json(err);
+    }
+};
+
+const updatePriceList = async (req, resp) => {
+    try {
+        let data = await PriceList.updateOne(
+            req.params,
+            { $set: req.body }
+        );
+        resp.send(data);
+    } catch (error) {
+        resp.status(500).json(error);
+    }
+};
+
+
+const addPriceList = async (req, resp) => {
+    try {
+        let project = new PriceList(req.body);
+        const result = await project.save();
+        resp.send(result);
+    } catch (err) {
+        resp.status(500).json(err);
+    }
+};
+
+module.exports = { addPriceList, updatePriceList, getPriceList, getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, getAllEngineerList, getAllLeadsList, getAllManagersList};

@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 const checksSchema = mongoose.Schema({
-
+    phaseHeadingShow: String,
+    checksHeading: String,
     checksdescription: String,
     checkstatusfor: {
         type: String,

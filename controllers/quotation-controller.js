@@ -204,7 +204,7 @@ const getAllQuotationInLead = async (req, resp) => {
 
 const getspaceWithRoom = async (req, resp) => {
     try {
-        let single = await Quotation.findById({ _id: req.params.id }).populate({
+        let single = await Project.findById({ _id: req.params.id }).populate({
             path: 'projectspaceID',
             populate: {
               path: 'roomsID',

@@ -1,7 +1,13 @@
 const mongoose = require('mongoose');
 
+
+
 const subactivitiesSchema = mongoose.Schema({
     statussubactivity: {
+        type: Number,
+        default: 0
+    },
+    estimateDays: {
         type: Number,
         default: 0
     },
@@ -11,6 +17,10 @@ const subactivitiesSchema = mongoose.Schema({
     activityID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'activities'
+    },
+    projectID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'projects'
     },
     subactivitiesupdateID: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -28,9 +38,13 @@ const subactivitiesSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'snags'
     }],
-    imagesID : [{
+    imagesID: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'photosforsubtask'
+    }],
+    materialsName: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'material'
     }]
 });
 

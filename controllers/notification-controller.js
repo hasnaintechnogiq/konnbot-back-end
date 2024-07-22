@@ -59,7 +59,7 @@ const getSingleNotification = async (req, resp) => {
         let single = await NotificationArray.findOne({ _id: req.params._id }).populate("notificationsforallID");
         resp.send(single);
     } catch (err) {
-        res.status(500).json(err);
+        resp.status(500).json(err);
     }
 };
 
@@ -128,7 +128,7 @@ const convertToContractNotificationForAll = async (req, resp) => {
 
         resp.send({ message: "Done" });
     } catch (err) {
-        res.status(500).json(err);
+        resp.status(500).json(err);
     }
 };
 
@@ -180,7 +180,7 @@ const quotationFinalizeBytheClient = async (req, resp) => {
 
         resp.send({ message: "Done" });
     } catch (err) {
-        res.status(500).json(err);
+        resp.status(500).json(err);
     }
 };
 

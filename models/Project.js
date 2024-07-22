@@ -27,6 +27,14 @@ const projectsSchema = mongoose.Schema({
         type: String,
         default: "Yes"
     },
+    projectspaceID: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'projectspace'
+    }],
+    delaysID: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'delays'
+    }],
     reasontostopwork : {
         type: String,
         default: "Delay's End"

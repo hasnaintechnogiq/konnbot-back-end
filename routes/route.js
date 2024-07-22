@@ -2,7 +2,7 @@ const router = require('express').Router();
 const authenticate = require('../authenticate');
 
 const { getProjectDetail, getSingleProject, deleteProject, addNewProject, updateProjectDetail } = require('../controllers/project-controller.js');
-const { checkotpnow, genarateOtpandsendtoemail, margeClientToLead, getSingleUserSiteInformation, addSiteDetailsForDemo, getAllUsers, getUserWithQueries, getSingleUser, addNewUser, updateUserDetail, deleteUser } = require('../controllers/user-controller.js');
+const { signinbygmail, checkotpnow, genarateOtpandsendtoemail, margeClientToLead, getSingleUserSiteInformation, addSiteDetailsForDemo, getAllUsers, getUserWithQueries, getSingleUser, addNewUser, updateUserDetail, deleteUser } = require('../controllers/user-controller.js');
 const { clientAprrovedCo, newQuotationaddednotification, statusofInstallmentisChange, statusofTicketChange, quotationFinalizeBytheClient, convertToContractNotificationForAll, getAllNotification, getSingleNotification, addNewNotification, updateNotification, deleteNotification } = require('../controllers/notification-controller.js');
 const { addQueryUpdate, getSingleQuery, getAllQueries, getUserAllQueries, addNewQueries, updateQueries, deleteQueries } = require('../controllers/queries-controller.js');
 const { getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, addNewMyInstallment, updateMyInstallment, deleteMyInstallment, addPaidAmount, chatsInstallment } = require('../controllers/myinstallments-controller.js');
@@ -12,11 +12,11 @@ const { addRoom, getAllProjectspaceDetail, getSingleProjectspace, deleteProjects
 const { addNewNotices, getSingleUserNotices, getAllNoticesDetail, deleteNotices, updateNoticesDetail } = require('../controllers/notices-controller.js');
 const { addNewChangeOrderInstallment, getSingleUserChangeOrderInstallment, getAllChangeOrderInstallmentDetail, deleteChangeOrderInstallment, updatechangeOrderInstallmentDetail } = require('../controllers/change-order-installment-controller.js');
 const { addNewChatOrderInstallment, getSingleUserChatOrderInstallment, getAllChatOrderInstallmentDetail, deleteChatOrderInstallment, updateChatOrderInstallmentDetail } = require('../controllers/Chats-Change-Installment-controller.js');
-const { getSingleLeadactivities, addNewActivities, updateActivities, deleteActivities } = require('../controllers/activities-controller.js');
+const { getSingleLeadactivities, addNewActivities, updateActivities, deleteActivities, createAllActivites } = require('../controllers/activities-controller.js');
 const { updateChecks, updatesubTask, addCheck, addSubTask, getSubActivitiesWithdetails, addNewUpdateInSubActivity, addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity } = require('../controllers/sub-activites-controller.js');
 const { addNewQuotation, updateQuotation, deleteQuotationOne, commentsonquatation, getspaceWithRoom, addNewProjectInQuotaion, addNewStructureInQuotation, addNewProjectspaceinQuatation, addSelectedQuotationinLead, getQuotationWithDetails, getAllQuotationInLead } = require('../controllers/quotation-controller.js');
 const { updatesnags } = require('../controllers/snags-controller.js');
-const { getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, getAllEngineerList, getAllLeadsList, getAllManagersList } = require('../controllers/extra-controller.js');
+const { getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, getAllEngineerList, getAllLeadsList, getAllManagersList, getPriceList, updatePriceList, addPriceList } = require('../controllers/extra-controller.js');
 
 // Project routes
 
@@ -39,7 +39,7 @@ router.get("/get-single-user-site-info/:_id", getSingleUserSiteInformation)
 router.post("/marge-client-to-lead", margeClientToLead)
 router.post("/genarate-otp-and-send", genarateOtpandsendtoemail)
 router.post("/check-otp-now", checkotpnow)
-
+router.post("/signin-by-gmail", signinbygmail)
 
 // notification routes 
 
@@ -60,7 +60,7 @@ router.post("/cliet-approved-co", clientAprrovedCo)
 router.post("/add-query-update", addQueryUpdate)
 router.get("/get-single-query/:_id", getSingleQuery)
 router.get("/all-queries", getAllQueries)
-router.get("/get-user-all-queries/:_id",  authenticate , getUserAllQueries)
+router.get("/get-user-all-queries/:_id", authenticate, getUserAllQueries)
 router.post("/create-queries", addNewQueries)
 router.put("/update-queries/:_id", updateQueries)
 router.delete("/delete-queries/:_id", deleteQueries)
@@ -136,6 +136,8 @@ router.get("/get-single-lead-all-activities/:_id", getSingleLeadactivities)
 // router.get("/get-all-order-installment-chat-detail", getAllChatOrderInstallmentDetail)
 router.delete("/delete-activity/:_id", deleteActivities)
 router.put("/update-activity/:_id", updateActivities)
+router.post("/add-all-activities", createAllActivites)
+
 
 // SubActivites
 
@@ -180,5 +182,8 @@ router.post("/add-engiiner-profile", addProfileofEngiiner)
 router.get("/get-all-enginner-list", getAllEngineerList)
 router.get("/get-all-lead-list", getAllLeadsList)
 router.get("/get-all-manager-list", getAllManagersList)
+router.get("/get-price-list", getPriceList)
+router.put("/update-price-list/:_id", updatePriceList)
+router.post("/add-price-list", addPriceList)
 
 module.exports = router;

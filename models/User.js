@@ -7,7 +7,7 @@ const usersSchema = mongoose.Schema({
     email: { type: String, required: true, unique: true },
     city: String,
     state: String,
-    password: { type: String, required: true },
+    password: String,
     otp: String,
     profile_url: String,
     leadID: {

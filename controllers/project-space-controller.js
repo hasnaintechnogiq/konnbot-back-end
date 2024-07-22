@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const Projectspace = require('../models/ProjectSpace.js');
 const Lead = require('../models/Lead.js');
 const Room = require('../models/Room.js');
+const Project = require('../models/Project.js');
+
+
 
 const getAllProjectspaceDetail = async (req, res) => {
     try {
@@ -25,7 +28,7 @@ const getAllProjectspaceDetail = async (req, res) => {
 
 const getSingleProjectspace = async (req, resp) => {
     try {
-        let single = await Lead.findById({ _id: req.params._id }).populate({
+        let single = await Project.findById({ _id: req.params._id }).populate({
             path: 'projectspaceID',
             populate: {
               path: 'roomsID',
@@ -52,9 +55,9 @@ const addNewProjectspace = async (req, resp) => {
         let structure = new Projectspace(req.body);
         const result = await structure.save();
         let objID = new mongoose.Types.ObjectId(structure.id)
-        let newss = new mongoose.Types.ObjectId(req.body.leadID)
+        let newss = new mongoose.Types.ObjectId(req.body.projectID)
         console.log(objID);
-        await Lead.updateOne(
+        await Project.updateOne(
             { _id: newss },
             {
                 $push: {
@@ -102,4 +105,7 @@ const updateProjectspaceDetail = async (req, resp) => {
         resp.status(500).json(error);
     }
 };
+
+
+
 module.exports = { addRoom, getAllProjectspaceDetail, getSingleProjectspace, deleteProjectspace, addNewProjectspace, updateProjectspaceDetail };

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../models/User.js');
 const Lead = require('../models/Lead.js');
+const Project = require('../models/Project.js');
 
 var nodemailer = require('nodemailer');
 
@@ -134,7 +135,10 @@ const getLeadWithProject = async (req, resp) => {
             path: 'projectID',
             populate: {
                 path: 'activitiesID',
-                model: 'activities'
+                populate: {
+                    path: 'subactivitiesID',
+                    model: 'subactivities'
+                }
             }
         })
         .populate("noticesID")
@@ -146,9 +150,14 @@ const getLeadWithProject = async (req, resp) => {
 
 
 const getLeadWithdelays = async (req, resp) => {
-    const result = await Lead.findOne({ _id: req.params.id })
-        .populate("delaysID")
-    resp.send(result);
+    try {
+        const result = await Project.findOne({ _id: req.params.id })
+            .populate("delaysID")
+        resp.send(result);
+    } catch (error) {
+        resp.status(500).json(err);
+    }
+
 };
 
 

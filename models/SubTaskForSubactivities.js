@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const subtaskSchema = mongoose.Schema({
+    phaseHeadingShow: String,
      subtaskdescription: String,
      checkstatus: {
         type: String,
