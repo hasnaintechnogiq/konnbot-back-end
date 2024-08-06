@@ -1735,7 +1735,7 @@ app.put("/date-chng-for-all-sub-activity-by-end-date", async (req, resp) => {
         });
 
         if (!ActivitiesData) {
-            return resp.status(404).json({ error: 'Activity not foundggggggg' });
+            return resp.status(404).json({ error: 'Activity not found' });
         }
         const ArrayDatainArrayofObejects = ActivitiesData.activitiesID;
         const ArrayDataNewAP = ArrayDatainArrayofObejects.reduce((acc, current) => acc.concat(current.subactivitiesID), []);

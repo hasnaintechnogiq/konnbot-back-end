@@ -91,7 +91,7 @@ const convertToContractNotificationForAll = async (req, resp) => {
                 const objecttosave = {
                     pathtoredirect: 'LEAD DETAILS',
                     idtogetdata: req.body.leadID,
-                    notificationtypeorsection: 'The Client has successfully created the contract.',
+                    notificationtypeorsection: 'The client has successfully created the contract.',
                     iconname: 'content-paste',
                     param2userID: req.body.param2userID,
                 }
@@ -146,7 +146,7 @@ const quotationFinalizeBytheClient = async (req, resp) => {
                 const objecttosave = {
                     pathtoredirect: 'LEAD DETAILS',
                     idtogetdata: req.body.leadID,
-                    notificationtypeorsection: 'The Client has successfully finalized the quotation.',
+                    notificationtypeorsection: 'The client has successfully finalized the quotation.',
                     iconname: 'notebook-check',
                     param2userID: req.body.param2userID,
                 }
