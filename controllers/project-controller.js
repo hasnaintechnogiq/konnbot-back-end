@@ -18,7 +18,7 @@ const getSingleProject = async (req, resp) => {
         let single = await Project.findOne({ _id: req.params._id });
         resp.send(single);
     } catch (err) {
-        res.status(500).json(err);
+        resp.status(500).json(err);
     }
 };
 

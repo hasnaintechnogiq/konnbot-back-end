@@ -58,6 +58,56 @@ const getSingleLeadactivities = async (req, resp) => {
 };
 
 
+
+
+
+
+
+const getSingleProjectAllPhotoes = async (req, resp) => {
+    try {
+        let single = await Project.findById({ _id: req.params._id }).populate({
+            path: 'activitiesID',
+            populate: {
+                path: 'subactivitiesID',
+                model: 'subactivities',
+                populate: [
+                    { path: 'imagesID', model: 'photosforsubtask' }
+                ]
+            }
+        });
+        resp.send(single);
+    } catch (err) {
+        resp.status(500).json(err);
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const deleteActivities = async (req, res) => {
     try {
         let data = await Activities.deleteOne(req.params);
@@ -5373,6 +5423,7 @@ const createAllActivites = async (req, resp) => {
 module.exports = {
     createAllActivites,
     getSingleLeadactivities,
+    getSingleProjectAllPhotoes,
     addNewActivities,
     updateActivities,
     deleteActivities

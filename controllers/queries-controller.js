@@ -16,7 +16,7 @@ const getUserAllQueries = async (req, resp) => {
         let queriessingle = await Queries.find({ userIDtogo: req.params._id });
         resp.send(queriessingle);
     } catch (err) {
-        res.status(500).json(err);
+        resp.status(500).json(err);
     }
 };
 
@@ -26,7 +26,7 @@ const getSingleQuery = async (req, resp) => {
         .populate("queryupdateID")
         resp.send(queriessingle);
     } catch (err) {
-        res.status(500).json(err);
+        resp.status(500).json(err);
     }
 };
 

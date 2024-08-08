@@ -21,7 +21,7 @@ const getSingleUserSiteInformation = async (req, resp) => {
         let single = await UserSiteDetailsDemo.findOne({ _id: req.params._id });
         resp.send(single);
     } catch (err) {
-        res.status(500).json(err);
+        resp.status(500).json(err);
     }
 };
 
@@ -36,7 +36,7 @@ const getSingleUser = async (req, resp) => {
         let single = await User.findOne({ _id: req.params._id });
         resp.send(single);
     } catch (err) {
-        res.status(500).json(err);
+        resp.status(500).json(err);
     }
 };
 
