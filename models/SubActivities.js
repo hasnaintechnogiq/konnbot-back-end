@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 
 
 const subactivitiesSchema = mongoose.Schema({
-    statussubactivity: {
-        type: Number,
-        default: 0
+    statussubactivity:  {
+        type: String,
+        default: "On time"
     },
     estimateDays: {
         type: Number,

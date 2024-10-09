@@ -600,7 +600,7 @@ app.post('/add-delay-with-images', upload.array('images', 5), async (req, res) =
             let productsingle = await SubActivities.findById(subactivityID);
 
             if (!productsingle) {
-                return resp.status(404).json({ error: 'Subactivity not found' });
+                return res.status(404).json({ error: 'Subactivity not found' });
             }
 
             const estimateDays = Number(productsingle.estimateDays);
@@ -633,7 +633,7 @@ app.post('/add-delay-with-images', upload.array('images', 5), async (req, res) =
             });
 
             if (!ActivitiesData) {
-                return resp.status(404).json({ error: 'Activity not foundggggggg' });
+                return res.status(404).json({ error: 'Activity not foundggggggg' });
             }
             const ArrayDatainArrayofObejects = ActivitiesData.activitiesID;
             const ArrayDataNewAP = ArrayDatainArrayofObejects.reduce((acc, current) => acc.concat(current.subactivitiesID), []);
@@ -775,7 +775,7 @@ app.post('/add-delay-with-images', upload.array('images', 5), async (req, res) =
         let productsingle = await SubActivities.findById(subactivityID);
 
         if (!productsingle) {
-            return resp.status(404).json({ error: 'Subactivity not found' });
+            return res.status(404).json({ error: 'Subactivity not found' });
         }
 
         const estimateDays = Number(productsingle.estimateDays);
@@ -807,7 +807,7 @@ app.post('/add-delay-with-images', upload.array('images', 5), async (req, res) =
         });
 
         if (!ActivitiesData) {
-            return resp.status(404).json({ error: 'Activity not foundggggggg' });
+            return res.status(404).json({ error: 'Activity not foundggggggg' });
         }
         const ArrayDatainArrayofObejects = ActivitiesData.activitiesID;
         const ArrayDataNewAP = ArrayDatainArrayofObejects.reduce((acc, current) => acc.concat(current.subactivitiesID), []);

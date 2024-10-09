@@ -16,7 +16,7 @@ const { getSingleLeadactivities,getSingleProjectAllPhotoes, addNewActivities, up
 const { updateChecks, updatesubTask, addCheck, addSubTask, getSubActivitiesWithdetails, addNewUpdateInSubActivity, addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity } = require('../controllers/sub-activites-controller.js');
 const { addNewQuotation, updateQuotation, deleteQuotationOne, commentsonquatation, getspaceWithRoom, addNewProjectInQuotaion, addNewStructureInQuotation, addNewProjectspaceinQuatation, addSelectedQuotationinLead, getQuotationWithDetails, getAllQuotationInLead } = require('../controllers/quotation-controller.js');
 const { updatesnags } = require('../controllers/snags-controller.js');
-const { getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, getAllEngineerList, getAllLeadsList, getAllManagersList, getPriceList, updatePriceList, addPriceList } = require('../controllers/extra-controller.js');
+const { CalculationCheckTentetive, getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, getAllEngineerList, getAllLeadsList, getAllManagersList, getPriceList, updatePriceList, addPriceList } = require('../controllers/extra-controller.js');
 
 // Project routes
 
@@ -186,5 +186,10 @@ router.get("/get-all-manager-list", getAllManagersList)
 router.get("/get-price-list", getPriceList)
 router.put("/update-price-list/:_id", updatePriceList)
 router.post("/add-price-list", addPriceList)
+router.post("/check-tentetive-amount", CalculationCheckTentetive)
+
+
+
+
 
 module.exports = router;
