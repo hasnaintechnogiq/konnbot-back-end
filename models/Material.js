@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const materialSchema = mongoose.Schema({
     materailname: String,
     materailquantity: Number,
-    materailAmount: Number,
+    materailUnit: String,
     POstatus: {
         type: String,
         default: "No"

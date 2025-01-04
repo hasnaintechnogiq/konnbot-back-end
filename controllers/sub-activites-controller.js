@@ -4,6 +4,7 @@ const Activities = require('../models/Activities.js');
 const SubActivitiesUpdate = require('../models/SubActivitiesUpdate.js');
 const Subtask = require('../models/SubTaskForSubactivities.js');
 const Checks = require('../models/Checks.js');
+const Material = require('../models/Material.js');
 
 const addNewSubActivity = async (req, res) => {
     try {
@@ -112,7 +113,7 @@ const getSubActivitiesofSingleActivity = async (req, resp) => {
 
 const getSubActivitiesWithdetails = async (req, resp) => {
     try {
-        let single = await SubActivities.findOne({ _id: req.params._id }).populate("subactivitiesupdateID").populate("subtaskID").populate("checksID").populate("imagesID").populate("snagsID");
+        let single = await SubActivities.findOne({ _id: req.params._id }).populate("subactivitiesupdateID").populate("subtaskID").populate("checksID").populate("imagesID").populate("snagsID").populate("materialsName");
         resp.send(single);
     } catch (err) {
         resp.status(500).json(err);
@@ -171,8 +172,22 @@ const updateChecks = async (req, res) => {
     }
 };
 
+const updateMaterial = async (req, res) => {
+    try {
+        console.log(req.params)
+        let data = await Material.updateOne(
+            req.params,
+            { $set: req.body }
+        );
+        res.send(data);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
 module.exports = {
     updateChecks,
+    updateMaterial,
     updatesubTask,
     addCheck,
     addSubTask,
