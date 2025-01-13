@@ -655,8 +655,8 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     FFPW_FFWallConduitingInternalFittingsSingleYTee110MMQuantity: Number,
     FFPW_FFWallConduitingInternalFittingsNahaniTrap110MMQuantity: Number,
     FFPW_FFWallConduitingInternalFittingsVentCowl110MMQuantity: Number,
-    FFPW_FFWallConduitingInternalFittingsBrassElbow20MM2015Quantity: Number, 
-    FFPW_FFWallConduitingInternalFittingsBrassTee20MM2015Quantity: Number, 
+    FFPW_FFWallConduitingInternalFittingsBrassElbow20MM2015Quantity: Number,
+    FFPW_FFWallConduitingInternalFittingsBrassTee20MM2015Quantity: Number,
     FFPW_FFPW_FFWallConduitingInternalFittingsMTA20MM2015Quantity: Number,
     FFPW_FFWallConduitingInternalFittingsFTA20MM2015Quantity: Number,
     FFPW_FFWallConduitingInternalFittingsBush32x20Quantity: Number,
@@ -1982,7 +1982,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     DPW_B1DoorPanellingPUDecoPaintQuantity: Number,
     DPW_B1DoorPanellingHingersQuantity: Number,
     DPW_B1DoorPanellingOtherAccessoriesQuantity: Number,
-    
+
     DPW_B2DoorPanellingDoorAreaWoodenQuantity: Number,
     DPW_B2DoorPanellingDoorPanelAreaHDRMFlushQuantity: Number,
     DPW_B2DoorPanellingMicaVeneerDesignerSheetQuantity: Number,
@@ -2080,8 +2080,8 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     WPW_B1WindowPanellingPolishQuantity: Number,
     WPW_B1WindowPanellingHingesQuantity: Number,
     WPW_B1WindowPanellingOtherAccessoriesQuantity: Number,
- 
-    
+
+
     WPW_B2WindowPanellingAluminiumUPVCSystemQuantity: Number,
     WPW_B2WindowPanellingWoodenPanelQuantity: Number,
     WPW_B2WindowPanellingGlassAsPerRequirementQuantity: Number,
@@ -2089,7 +2089,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     WPW_B2WindowPanellingPolishQuantity: Number,
     WPW_B2WindowPanellingHingesQuantity: Number,
     WPW_B2WindowPanellingOtherAccessoriesQuantity: Number,
- 
+
     WPW_B3WindowPanellingAluminiumUPVCSystemQuantity: Number,
     WPW_B3WindowPanellingWoodenPanelQuantity: Number,
     WPW_B3WindowPanellingGlassAsPerRequirementQuantity: Number,
@@ -2097,7 +2097,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     WPW_B3WindowPanellingPolishQuantity: Number,
     WPW_B3WindowPanellingHingesQuantity: Number,
     WPW_B3WindowPanellingOtherAccessoriesQuantity: Number,
- 
+
     WPW_B4WindowPanellingAluminiumUPVCSystemQuantity: Number,
     WPW_B4WindowPanellingWoodenPanelQuantity: Number,
     WPW_B4WindowPanellingGlassAsPerRequirementQuantity: Number,
@@ -2105,7 +2105,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     WPW_B4WindowPanellingPolishQuantity: Number,
     WPW_B4WindowPanellingHingesQuantity: Number,
     WPW_B4WindowPanellingOtherAccessoriesQuantity: Number,
- 
+
     WPW_GFWindowPanellingAluminiumUPVCSystemQuantity: Number,
     WPW_GFWindowPanellingWoodenPanelQuantity: Number,
     WPW_GFWindowPanellingGlassAsPerRequirementQuantity: Number,
@@ -2113,7 +2113,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     WPW_GFWindowPanellingPolishQuantity: Number,
     WPW_GFWindowPanellingHingesQuantity: Number,
     WPW_GFWindowPanellingOtherAccessoriesQuantity: Number,
- 
+
     WPW_FFWindowPanellingAluminiumUPVCSystemQuantity: Number,
     WPW_FFWindowPanellingWoodenPanelQuantity: Number,
     WPW_FFWindowPanellingGlassAsPerRequirementQuantity: Number,
@@ -2121,7 +2121,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     WPW_FFWindowPanellingPolishQuantity: Number,
     WPW_FFWindowPanellingHingesQuantity: Number,
     WPW_FFWindowPanellingOtherAccessoriesQuantity: Number,
- 
+
     WPW_SFWindowPanellingAluminiumUPVCSystemQuantity: Number,
     WPW_SFWindowPanellingWoodenPanelQuantity: Number,
     WPW_SFWindowPanellingGlassAsPerRequirementQuantity: Number,
@@ -2129,7 +2129,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     WPW_SFWindowPanellingPolishQuantity: Number,
     WPW_SFWindowPanellingHingesQuantity: Number,
     WPW_SFWindowPanellingOtherAccessoriesQuantity: Number,
- 
+
     WPW_TFWindowPanellingAluminiumUPVCSystemQuantity: Number,
     WPW_TFWindowPanellingWoodenPanelQuantity: Number,
     WPW_TFWindowPanellingGlassAsPerRequirementQuantity: Number,
@@ -2137,7 +2137,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     WPW_TFWindowPanellingPolishQuantity: Number,
     WPW_TFWindowPanellingHingesQuantity: Number,
     WPW_TFWindowPanellingOtherAccessoriesQuantity: Number,
- 
+
     WPW_FoFWindowPanellingAluminiumUPVCSystemQuantity: Number,
     WPW_FoFWindowPanellingWoodenPanelQuantity: Number,
     WPW_FoFWindowPanellingGlassAsPerRequirementQuantity: Number,
@@ -2145,7 +2145,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     WPW_FoFWindowPanellingPolishQuantity: Number,
     WPW_FoFWindowPanellingHingesQuantity: Number,
     WPW_FoFWindowPanellingOtherAccessoriesQuantity: Number,
- 
+
     WPW_TowerWindowPanellingAluminiumUPVCSystemQuantity: Number,
     WPW_TowerWindowPanellingWoodenPanelQuantity: Number,
     WPW_TowerWindowPanellingGlassAsPerRequirementQuantity: Number,
@@ -2153,48 +2153,48 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     WPW_TowerWindowPanellingPolishQuantity: Number,
     WPW_TowerWindowPanellingHingesQuantity: Number,
     WPW_TowerWindowPanellingOtherAccessoriesQuantity: Number,
- 
-    
+
+
     PNTW_B1PaintPaint01Quantity: Number,
     PNTW_B1PaintPaint02Quantity: Number,
 
-    
+
     PNTW_B2PaintPaint01Quantity: Number,
     PNTW_B2PaintPaint02Quantity: Number,
 
-    
+
     PNTW_B3PaintPaint01Quantity: Number,
     PNTW_B3PaintPaint02Quantity: Number,
 
-    
+
     PNTW_B4PaintPaint01Quantity: Number,
     PNTW_B4PaintPaint02Quantity: Number,
 
-    
+
     PNTW_GFPaintPaint01Quantity: Number,
     PNTW_GFPaintPaint02Quantity: Number,
 
-    
+
     PNTW_FFPaintPaint01Quantity: Number,
     PNTW_FFPaintPaint02Quantity: Number,
 
-    
+
     PNTW_SFPaintPaint01Quantity: Number,
     PNTW_SFPaintPaint02Quantity: Number,
 
-    
+
     PNTW_TFPaintPaint01Quantity: Number,
     PNTW_TFPaintPaint02Quantity: Number,
 
-    
+
     PNTW_FoFPaintPaint01Quantity: Number,
     PNTW_FoFPaintPaint02Quantity: Number,
 
-    
+
     PNTW_TowerPaintPaint01Quantity: Number,
     PNTW_TowerPaintPaint02Quantity: Number,
 
-    
+
     EXTRP_Side01WhiteCementQuantity: Number,
     EXTRP_Side01WaterproofCoatQuantity: Number,
     EXTRP_Side01TextureExteriorPaintQuantity: Number,
@@ -2254,69 +2254,69 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     SNTW_B1SanitaryMirrorQuantity: Number,
     SNTW_B1SanitaryOtherAccessoriesQuantity: Number,
 
-    
+
     SNTW_B2SanitaryWaterClosetUnitQuantity: Number,
     SNTW_B2SanitaryWashBasinUnitQuantity: Number,
     SNTW_B2SanitaryShowerUnitQuantity: Number,
     SNTW_B2SanitaryMirrorQuantity: Number,
     SNTW_B2SanitaryOtherAccessoriesQuantity: Number,
-    
+
 
     SNTW_B3SanitaryWaterClosetUnitQuantity: Number,
     SNTW_B3SanitaryWashBasinUnitQuantity: Number,
     SNTW_B3SanitaryShowerUnitQuantity: Number,
     SNTW_B3SanitaryMirrorQuantity: Number,
     SNTW_B3SanitaryOtherAccessoriesQuantity: Number,
-    
+
 
     SNTW_B4SanitaryWaterClosetUnitQuantity: Number,
     SNTW_B4SanitaryWashBasinUnitQuantity: Number,
     SNTW_B4SanitaryShowerUnitQuantity: Number,
     SNTW_B4SanitaryMirrorQuantity: Number,
     SNTW_B4SanitaryOtherAccessoriesQuantity: Number,
-    
+
 
     SNTW_GFSanitaryWaterClosetUnitQuantity: Number,
     SNTW_GFSanitaryWashBasinUnitQuantity: Number,
     SNTW_GFSanitaryShowerUnitQuantity: Number,
     SNTW_GFSanitaryMirrorQuantity: Number,
     SNTW_GFSanitaryOtherAccessoriesQuantity: Number,
-    
+
 
     SNTW_FFSanitaryWaterClosetUnitQuantity: Number,
     SNTW_FFSanitaryWashBasinUnitQuantity: Number,
     SNTW_FFSanitaryShowerUnitQuantity: Number,
     SNTW_FFSanitaryMirrorQuantity: Number,
     SNTW_FFSanitaryOtherAccessoriesQuantity: Number,
-    
+
 
     SNTW_SFSanitaryWaterClosetUnitQuantity: Number,
     SNTW_SFSanitaryWashBasinUnitQuantity: Number,
     SNTW_SFSanitaryShowerUnitQuantity: Number,
     SNTW_SFSanitaryMirrorQuantity: Number,
     SNTW_SFSanitaryOtherAccessoriesQuantity: Number,
-    
+
 
     SNTW_TFSanitaryWaterClosetUnitQuantity: Number,
     SNTW_TFSanitaryWashBasinUnitQuantity: Number,
     SNTW_TFSanitaryShowerUnitQuantity: Number,
     SNTW_TFSanitaryMirrorQuantity: Number,
     SNTW_TFSanitaryOtherAccessoriesQuantity: Number,
-    
+
 
     SNTW_FoFSanitaryWaterClosetUnitQuantity: Number,
     SNTW_FoFSanitaryWashBasinUnitQuantity: Number,
     SNTW_FoFSanitaryShowerUnitQuantity: Number,
     SNTW_FoFSanitaryMirrorQuantity: Number,
     SNTW_FoFSanitaryOtherAccessoriesQuantity: Number,
-    
+
 
     SNTW_TowerSanitaryWaterClosetUnitQuantity: Number,
     SNTW_TowerSanitaryWashBasinUnitQuantity: Number,
     SNTW_TowerSanitaryShowerUnitQuantity: Number,
     SNTW_TowerSanitaryMirrorQuantity: Number,
     SNTW_TowerSanitaryOtherAccessoriesQuantity: Number,
-    
+
 
 
 
@@ -2335,7 +2335,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     SWB_SwitchBoardB1Pin_15_16_Amp_Socket_OutletQuantity: Number,
     SWB_SwitchBoardB1Modular_Fan_2_ModuleQuantity: Number,
 
-    
+
     SWB_SwitchBoardB2CP_MB_2_3_ModuleQuantity: Number,
     SWB_SwitchBoardB2CP_MB_4_ModuleQuantity: Number,
     SWB_SwitchBoardB2CP_MB_6_ModuleQuantity: Number,
@@ -2348,7 +2348,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     SWB_SwitchBoardB2Pin_15_16_Amp_Socket_OutletQuantity: Number,
     SWB_SwitchBoardB2Modular_Fan_2_ModuleQuantity: Number,
 
-    
+
     SWB_SwitchBoardB3CP_MB_2_3_ModuleQuantity: Number,
     SWB_SwitchBoardB3CP_MB_4_ModuleQuantity: Number,
     SWB_SwitchBoardB3CP_MB_6_ModuleQuantity: Number,
@@ -2361,7 +2361,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     SWB_SwitchBoardB3Pin_15_16_Amp_Socket_OutletQuantity: Number,
     SWB_SwitchBoardB3Modular_Fan_2_ModuleQuantity: Number,
 
-    
+
     SWB_SwitchBoardB4CP_MB_2_3_ModuleQuantity: Number,
     SWB_SwitchBoardB4CP_MB_4_ModuleQuantity: Number,
     SWB_SwitchBoardB4CP_MB_6_ModuleQuantity: Number,
@@ -2374,7 +2374,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     SWB_SwitchBoardB4Pin_15_16_Amp_Socket_OutletQuantity: Number,
     SWB_SwitchBoardB4Modular_Fan_2_ModuleQuantity: Number,
 
-    
+
     SWB_SwitchBoardGFCP_MB_2_3_ModuleQuantity: Number,
     SWB_SwitchBoardGFCP_MB_4_ModuleQuantity: Number,
     SWB_SwitchBoardGFCP_MB_6_ModuleQuantity: Number,
@@ -2387,7 +2387,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     SWB_SwitchBoardGFPin_15_16_Amp_Socket_OutletQuantity: Number,
     SWB_SwitchBoardGFModular_Fan_2_ModuleQuantity: Number,
 
-    
+
     SWB_SwitchBoardFFCP_MB_2_3_ModuleQuantity: Number,
     SWB_SwitchBoardFFCP_MB_4_ModuleQuantity: Number,
     SWB_SwitchBoardFFCP_MB_6_ModuleQuantity: Number,
@@ -2400,7 +2400,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     SWB_SwitchBoardFFPin_15_16_Amp_Socket_OutletQuantity: Number,
     SWB_SwitchBoardFFModular_Fan_2_ModuleQuantity: Number,
 
-    
+
     SWB_SwitchBoardSFCP_MB_2_3_ModuleQuantity: Number,
     SWB_SwitchBoardSFCP_MB_4_ModuleQuantity: Number,
     SWB_SwitchBoardSFCP_MB_6_ModuleQuantity: Number,
@@ -2413,7 +2413,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     SWB_SwitchBoardSFPin_15_16_Amp_Socket_OutletQuantity: Number,
     SWB_SwitchBoardSFModular_Fan_2_ModuleQuantity: Number,
 
-    
+
     SWB_SwitchBoardTFCP_MB_2_3_ModuleQuantity: Number,
     SWB_SwitchBoardTFCP_MB_4_ModuleQuantity: Number,
     SWB_SwitchBoardTFCP_MB_6_ModuleQuantity: Number,
@@ -2426,7 +2426,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     SWB_SwitchBoardTFPin_15_16_Amp_Socket_OutletQuantity: Number,
     SWB_SwitchBoardTFModular_Fan_2_ModuleQuantity: Number,
 
-    
+
     SWB_SwitchBoardFoFCP_MB_2_3_ModuleQuantity: Number,
     SWB_SwitchBoardFoFCP_MB_4_ModuleQuantity: Number,
     SWB_SwitchBoardFoFCP_MB_6_ModuleQuantity: Number,
@@ -2439,7 +2439,7 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     SWB_SwitchBoardFoFPin_15_16_Amp_Socket_OutletQuantity: Number,
     SWB_SwitchBoardFoFModular_Fan_2_ModuleQuantity: Number,
 
-    
+
     SWB_SwitchBoardTowerCP_MB_2_3_ModuleQuantity: Number,
     SWB_SwitchBoardTowerCP_MB_4_ModuleQuantity: Number,
     SWB_SwitchBoardTowerCP_MB_6_ModuleQuantity: Number,
@@ -2452,78 +2452,78 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     SWB_SwitchBoardTowerPin_15_16_Amp_Socket_OutletQuantity: Number,
     SWB_SwitchBoardTowerModular_Fan_2_ModuleQuantity: Number,
 
-    
+
     Door_Accessories_B1Door_LockQuantity: Number,
     Door_Accessories_B1Door_HandleQuantity: Number,
     Door_Accessories_B1Brass_Hanging_Type_Door_StopperQuantity: Number,
     Door_Accessories_B1Stainless_Steel_Butt_HingesQuantity: Number,
     Door_Accessories_B1Stainless_Steel_Screws_40_MM_Quantity: Number,
 
-    
-    
+
+
     Door_Accessories_B2Door_LockQuantity: Number,
     Door_Accessories_B2Door_HandleQuantity: Number,
     Door_Accessories_B2Brass_Hanging_Type_Door_StopperQuantity: Number,
     Door_Accessories_B2Stainless_Steel_Butt_HingesQuantity: Number,
     Door_Accessories_B2Stainless_Steel_Screws_40_MM_Quantity: Number,
 
-      
+
     Door_Accessories_B3Door_LockQuantity: Number,
     Door_Accessories_B3Door_HandleQuantity: Number,
     Door_Accessories_B3Brass_Hanging_Type_Door_StopperQuantity: Number,
     Door_Accessories_B3Stainless_Steel_Butt_HingesQuantity: Number,
     Door_Accessories_B3Stainless_Steel_Screws_40_MM_Quantity: Number,
 
-      
+
     Door_Accessories_B4Door_LockQuantity: Number,
     Door_Accessories_B4Door_HandleQuantity: Number,
     Door_Accessories_B4Brass_Hanging_Type_Door_StopperQuantity: Number,
     Door_Accessories_B4Stainless_Steel_Butt_HingesQuantity: Number,
     Door_Accessories_B4Stainless_Steel_Screws_40_MM_Quantity: Number,
 
-      
+
     Door_Accessories_GFDoor_LockQuantity: Number,
     Door_Accessories_GFDoor_HandleQuantity: Number,
     Door_Accessories_GFBrass_Hanging_Type_Door_StopperQuantity: Number,
     Door_Accessories_GFStainless_Steel_Butt_HingesQuantity: Number,
     Door_Accessories_GFStainless_Steel_Screws_40_MM_Quantity: Number,
 
-      
+
     Door_Accessories_FFDoor_LockQuantity: Number,
     Door_Accessories_FFDoor_HandleQuantity: Number,
     Door_Accessories_FFBrass_Hanging_Type_Door_StopperQuantity: Number,
     Door_Accessories_FFStainless_Steel_Butt_HingesQuantity: Number,
     Door_Accessories_FFStainless_Steel_Screws_40_MM_Quantity: Number,
 
-      
+
     Door_Accessories_SFDoor_LockQuantity: Number,
     Door_Accessories_SFDoor_HandleQuantity: Number,
     Door_Accessories_SFBrass_Hanging_Type_Door_StopperQuantity: Number,
     Door_Accessories_SFStainless_Steel_Butt_HingesQuantity: Number,
     Door_Accessories_SFStainless_Steel_Screws_40_MM_Quantity: Number,
 
-      
+
     Door_Accessories_TFDoor_LockQuantity: Number,
     Door_Accessories_TFDoor_HandleQuantity: Number,
     Door_Accessories_TFBrass_Hanging_Type_Door_StopperQuantity: Number,
     Door_Accessories_TFStainless_Steel_Butt_HingesQuantity: Number,
     Door_Accessories_TFStainless_Steel_Screws_40_MM_Quantity: Number,
 
-      
+
     Door_Accessories_FoFDoor_LockQuantity: Number,
     Door_Accessories_FoFDoor_HandleQuantity: Number,
     Door_Accessories_FoFBrass_Hanging_Type_Door_StopperQuantity: Number,
     Door_Accessories_FoFStainless_Steel_Butt_HingesQuantity: Number,
     Door_Accessories_FoFStainless_Steel_Screws_40_MM_Quantity: Number,
 
-      
+
     Door_Accessories_TowerDoor_LockQuantity: Number,
     Door_Accessories_TowerDoor_HandleQuantity: Number,
     Door_Accessories_TowerBrass_Hanging_Type_Door_StopperQuantity: Number,
     Door_Accessories_TowerStainless_Steel_Butt_HingesQuantity: Number,
     Door_Accessories_TowerStainless_Steel_Screws_40_MM_Quantity: Number,
 
-    
+
     SCLW_SSRailingSSRailingQuantity: Number,
     SCLW_SSGlassSSRailingQuantity: Number,
     SCLW_SSGlassGlassQuantity: Number,
@@ -2567,7 +2567,457 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     LBR_LabourMS_WorkQuantity: Number,
     LBR_LabourPOP_Contract_BasicQuantity: Number,
     LBR_LabourDoor_Per_FrameQuantity: Number,
-  
+
+
+    // QTD Only
+
+    Site_ClearanceQTD: Number,
+    Road_Level_Layout_LevellingQTD: Number,
+    BS_ExcavationQTD: Number,
+    Shoring_ProtectionQTD: Number,
+    BS_Layout_LevellingQTD: Number,
+    BS_Excavation_IRDLQTD: Number,
+    BS_PCC_IRDLQTD: Number,
+    BS_Footing_Reinforcement_IRDLQTD: Number,
+    BS_Footing_RCC_IRDLQTD: Number,
+    BS_Pedestal_RCC_IRDLQTD: Number,
+    BS_Waterproofing_IRDLQTD: Number,
+    BS_Backfilling_IRDLQTD: Number,
+    BS_Hard_Filling_IRDLQTD: Number,
+    BS_Sewage_Line_IRDLQTD: Number,
+    BS_Raft_Reinforcement_IRDLQTD: Number,
+    BS_Raft_RCC_IRDLQTD: Number,
+    BS_Excavation_IRSLBQTD: Number,
+    BS_PCC_Below_IRSLBQTD: Number,
+    BS_Brick_Work_Around_Footing_Beam_IRSLBQTD: Number,
+    BS_Hard_Filling_IRSLBQTD: Number,
+    BS_Sewage_Line_IRSLBQTD: Number,
+    BS_PCC_Above_IRSLBQTD: Number,
+    BS_Reinforcement_IRSLBQTD: Number,
+    BS_Footing_RCC_IRSLBQTD: Number,
+    BS_Waterproofing_IRSLBQTD: Number,
+    BS_Excavation_IRSLSQTD: Number,
+    BS_PCC_Below_IRSLSQTD: Number,
+    BS_Shuttering_IRSLSQTD: Number,
+    BS_Raft_Reinforcement_IRSLSQTD: Number,
+    BS_Raft_Footing_RCC_IRSLSQTD: Number,
+    BS_Waterproofing_IRSLSQTD: Number,
+    BS_Hard_Filling_IRSLSQTD: Number,
+    BS_Sewage_Line_IRSLSQTD: Number,
+    BS_PCC_Above_IRSLSQTD: Number,
+    BS_Pile_Reinforcement_PRSLBQTD: Number,
+    BS_Pile_Excavation_PRSLBQTD: Number,
+    BS_Pile_RCC_PRSLBQTD: Number,
+    BS_PCC_Below_PRSLBQTD: Number,
+    BS_Brick_Work_around_Footing_Beam_PRSLBQTD: Number,
+    BS_Hard_Filling_PRSLBQTD: Number,
+    BS_Sewage_Line_PRSLBQTD: Number,
+    BS_PCC_Above_PRSLBQTD: Number,
+    BS_Raft_Reinforcement_PRSLBQTD: Number,
+    BS_Raft_RCC_PRSLBQTD: Number,
+    BS_Waterproofing_PRSLBQTD: Number,
+
+    BS_Pile_Reinforcement_PRSLSQTD: Number,
+    BS_Pile_Excavation_PRSLSQTD: Number,
+    BS_Pile_RCC_PRSLSQTD: Number,
+    BS_Sewage_Line_PRSLSQTD: Number,
+    BS_Shuttering_PRSLSQTD: Number,
+    BS_Raft_Reinforcement_PRSLSQTD: Number,
+    BS_Raft_Footing_RCC_PRSLSQTD: Number,
+    BS_Waterproofing_PRSLSQTD: Number,
+    BS_Hard_Filling_PRSLSQTD: Number,
+    BS_PCC_Above_PRSLSQTD: Number,
+    
+    BS_Hard_Filling_Work_RSLQTD: Number,
+    BS_Sewage_Line_RSLQTD: Number,
+    BS_PCC_under_Raft_RSLQTD: Number,
+    BS_Reinforcement_RSLQTD: Number,
+    BS_Raft_RCC_RSLQTD: Number,
+    BS_Waterproofing_RSLQTD: Number,
+
+    B1_Column_Reinforcement_QTD: Number,
+    B1_Curtain_Wall_Shuttering_QTD: Number,
+    B1_RCC_Column_Curtain_Wall_QTD: Number,
+    B1_Waterproofing_QTD: Number,
+    B1_Brick_Work_QTD: Number,
+    B1_Slab_Shuttering_QTD: Number,
+    B1_Slab_Reinforcement_QTD: Number,
+    B1_Slab_Electrical_Conduiting_QTD: Number,
+    B1_Slab_RCC_QTD: Number,
+
+    B2_Column_Reinforcement_QTD: Number,
+    B2_Curtain_Wall_Shuttering_QTD: Number,
+    B2_RCC_Column_Curtain_Wall_QTD: Number,
+    B2_Waterproofing_QTD: Number,
+    B2_Brick_Work_QTD: Number,
+    B2_Slab_Shuttering_QTD: Number,
+    B2_Slab_Reinforcement_QTD: Number,
+    B2_Slab_Electrical_Conduiting_QTD: Number,
+    B2_Slab_RCC_QTD: Number,
+
+    B3_Column_Reinforcement_QTD: Number,
+    B3_Curtain_Wall_Shuttering_QTD: Number,
+    B3_RCC_Column_Curtain_Wall_QTD: Number,
+    B3_Waterproofing_QTD: Number,
+    B3_Brick_Work_QTD: Number,
+    B3_Slab_Shuttering_QTD: Number,
+    B3_Slab_Reinforcement_QTD: Number,
+    B3_Slab_Electrical_Conduiting_QTD: Number,
+    B3_Slab_RCC_QTD: Number,
+
+    B4_Column_Reinforcement_QTD: Number,
+    B4_Curtain_Wall_Shuttering_QTD: Number,
+    B4_RCC_Column_Curtain_Wall_QTD: Number,
+    B4_Waterproofing_QTD: Number,
+    B4_Brick_Work_QTD: Number,
+    B4_Slab_Shuttering_QTD: Number,
+    B4_Slab_Reinforcement_QTD: Number,
+    B4_Slab_Electrical_Conduiting_QTD: Number,
+    B4_Slab_RCC_QTD: Number,
+
+    ISO_Layout_Levelling_QTD: Number,
+    ISO_Excavation_QTD: Number,
+    ISO_Reinforcement_QTD: Number,
+    ISO_PCC_QTD: Number,
+    ISO_Footing_RCC_QTD: Number,
+    ISO_Pedestal_RCC_QTD: Number,
+    ISO_Waterproofing_QTD: Number,
+    ISO_Backfilling_Work_QTD: Number,
+
+    PILE_Layout_Levelling_QTD: Number,
+    PILE_Reinforcement_QTD: Number,
+    PILE_Excavation_QTD: Number,
+    PILE_RCC_QTD: Number,
+
+    RAFT_Layout_Levelling_QTD: Number,
+    RAFT_Excavation_QTD: Number,
+    RAFT_Filling_QTD: Number,
+    RAFT_Sewage_Line_QTD: Number,
+    RAFT_PCC_QTD: Number,
+    RAFT_Reinforcement_QTD: Number,
+    RAFT_RCC_QTD: Number,
+    RAFT_Waterproofing_QTD: Number,
+
+    Filling_up_to_Plinth_Bottom_QTD: Number,
+    PCC_Below_Beam_QTD: Number,
+    Brick_Work_along_the_Plinth_QTD: Number,
+    Filling_Work_in_Gaps_QTD: Number,
+    Reinforcement_Work_QTD: Number,
+    Sewage_Line_Work_QTD: Number,
+    // Anti_Termite_Work_QTD: Number,
+    PCC_Above_QTD: Number,
+    Grade_Slab_Reinforcement_QTD: Number,
+    Grade_Slab_Plinth_RCC_Work_QTD: Number,
+
+    Shuttering_Bottom_QTD: Number,
+    Reinforcement_Work_QTD: Number,
+    Shuttering_Side_QTD: Number,
+    RCC_QTD: Number,
+    Filling_Work_QTD: Number,
+    Sewage_Line_Work_QTD: Number,
+    Anti_Termite_Work_QTD: Number,
+    Grade_Slab_Reinforcement_Work_QTD: Number,
+    Grade_Slab_RCC_Work_QTD: Number,
+
+    GF_Column_Reinforcement_QTD: Number,
+    GF_RCC_Column_QTD: Number,
+    GF_Brick_Work_QTD: Number,
+    GF_Slab_Shuttering_QTD: Number,
+    GF_Slab_Reinforcement_QTD: Number,
+    GF_Slab_Electrical_Conducting_QTD: Number,
+    GF_RCC_Slab_QTD: Number,
+
+    FF_Column_Reinforcement_QTD: Number,
+    FF_RCC_Column_QTD: Number,
+    FF_Brick_Work_QTD: Number,
+    FF_Slab_Shuttering_QTD: Number,
+    FF_Slab_Reinforcement_QTD: Number,
+    FF_Slab_Electrical_Conducting_QTD: Number,
+    FF_RCC_Slab_QTD: Number,
+
+    SF_Column_Reinforcement_QTD: Number,
+    SF_RCC_Column_QTD: Number,
+    SF_Brick_Work_QTD: Number,
+    SF_Slab_Shuttering_QTD: Number,
+    SF_Slab_Reinforcement_QTD: Number,
+    SF_Slab_Electrical_Conducting_QTD: Number,
+    SF_RCC_Slab_QTD: Number,
+
+    TF_Column_Reinforcement_QTD: Number,
+    TF_RCC_Column_QTD: Number,
+    TF_Brick_Work_QTD: Number,
+    TF_Slab_Shuttering_QTD: Number,
+    TF_Slab_Reinforcement_QTD: Number,
+    TF_Slab_Electrical_Conducting_QTD: Number,
+    TF_RCC_Slab_QTD: Number,
+
+    FoF_Column_Reinforcement_QTD: Number,
+    FoF_RCC_Column_QTD: Number,
+    FoF_Brick_Work_QTD: Number,
+    FoF_Slab_Shuttering_QTD: Number,
+    FoF_Slab_Reinforcement_QTD: Number,
+    FoF_Slab_Electrical_Conducting_QTD: Number,
+    FoF_RCC_Slab_QTD: Number,
+
+    Tower_Column_Reinforcement_QTD: Number,
+    Tower_RCC_Column_QTD: Number,
+    Tower_Brick_Work_QTD: Number,
+    Tower_Slab_Shuttering_QTD: Number,
+    Tower_Slab_Reinforcement_QTD: Number,
+    Tower_Slab_Electrical_Conducting_QTD: Number,
+    Tower_RCC_Slab_QTD: Number,
+
+    Door_and_Window_Frame_QTD: Number,
+    B1_Brick_Work_QTD: Number,
+    B2_Brick_Work_QTD: Number,
+    B3_Brick_Work_QTD: Number,
+    B4_Brick_Work_QTD: Number,
+    GF_Brick_Work_QTD: Number,
+    FF_Brick_Work_QTD: Number,
+    SF_Brick_Work_QTD: Number,
+    TF_Brick_Work_QTD: Number,
+    FoF_Brick_Work_QTD: Number,
+    Tower_Brick_Work_QTD: Number,
+
+    B1_Electrical_Conducting_QTD: Number,
+    B2_Electrical_Conducting_QTD: Number,
+    B3_Electrical_Conducting_QTD: Number,
+    B4_Electrical_Conducting_QTD: Number,
+    GF_Electrical_Conducting_QTD: Number,
+    FF_Electrical_Conducting_QTD: Number,
+    SF_Electrical_Conducting_QTD: Number,
+    TF_Electrical_Conducting_QTD: Number,
+    FoF_Electrical_Conducting_QTD: Number,
+    Tower_Electrical_Conducting_QTD: Number,
+
+    B1_Pipe_Work_Below_Floor_Level_QTD: Number,
+    B1_Sunken_Filling_COBA_Waste_QTD: Number,
+    B1_Wall_Conducting_Internal_Fittings_QTD: Number,
+    B1_Waterproofing_QTD: Number,
+ 
+    B2_Pipe_Work_Below_Floor_Level_QTD: Number,
+    B2_Sunken_Filling_COBA_Waste_QTD: Number,
+    B2_Wall_Conducting_Internal_Fittings_QTD: Number,
+    B2_Waterproofing_QTD: Number,
+ 
+    B3_Pipe_Work_Below_Floor_Level_QTD: Number,
+    B3_Sunken_Filling_COBA_Waste_QTD: Number,
+    B3_Wall_Conducting_Internal_Fittings_QTD: Number,
+    B3_Waterproofing_QTD: Number,
+ 
+    B4_Pipe_Work_Below_Floor_Level_QTD: Number,
+    B4_Sunken_Filling_COBA_Waste_QTD: Number,
+    B4_Wall_Conducting_Internal_Fittings_QTD: Number,
+    B4_Waterproofing_QTD: Number,
+ 
+    GF_Pipe_Work_Below_Floor_Level_QTD: Number,
+    GF_Sunken_Filling_COBA_Waste_QTD: Number,
+    GF_Wall_Conducting_Internal_Fittings_QTD: Number,
+    GF_Waterproofing_QTD: Number,
+ 
+    FF_Pipe_Work_Below_Floor_Level_QTD: Number,
+    FF_Sunken_Filling_COBA_Waste_QTD: Number,
+    FF_Wall_Conducting_Internal_Fittings_QTD: Number,
+    FF_Waterproofing_QTD: Number,
+ 
+    SF_Pipe_Work_Below_Floor_Level_QTD: Number,
+    SF_Sunken_Filling_COBA_Waste_QTD: Number,
+    SF_Wall_Conducting_Internal_Fittings_QTD: Number,
+    SF_Waterproofing_QTD: Number,
+ 
+    TF_Pipe_Work_Below_Floor_Level_QTD: Number,
+    TF_Sunken_Filling_COBA_Waste_QTD: Number,
+    TF_Wall_Conducting_Internal_Fittings_QTD: Number,
+    TF_Waterproofing_QTD: Number,
+ 
+    FoF_Pipe_Work_Below_Floor_Level_QTD: Number,
+    FoF_Sunken_Filling_COBA_Waste_QTD: Number,
+    FoF_Wall_Conducting_Internal_Fittings_QTD: Number,
+    FoF_Waterproofing_QTD: Number,
+ 
+    Tower_Pipe_Work_Below_Floor_Level_QTD: Number,
+    Tower_Sunken_Filling_COBA_Waste_QTD: Number,
+    Tower_Wall_Conducting_Internal_Fittings_QTD: Number,
+    Tower_Waterproofing_QTD: Number,
+ 
+    Rain_Water_Harvesting_QTD: Number,
+    AC_QTD: Number,
+    Reverse_Line_QTD: Number,
+    Separate_Individual_Line_Per_Floor_QTD: Number,
+    Water_Tank_QTD: Number,
+    Solar_Heater_Geyser_Line_QTD: Number,
+
+    B1_Plaster_Work_QTD: Number,
+    B2_Plaster_Work_QTD: Number,
+    B3_Plaster_Work_QTD: Number,
+    B4_Plaster_Work_QTD: Number,
+    GF_Plaster_Work_QTD: Number,
+    FF_Plaster_Work_QTD: Number,
+    SF_Plaster_Work_QTD: Number,
+    TF_Plaster_Work_QTD: Number,
+    FoF_Plaster_Work_QTD: Number,
+    Tower_Plaster_Work_QTD: Number,
+
+    Ceiling_Plaster_QTD: Number,
+    Non_Elevation_Side_QTD: Number,
+    Weather_Board_QTD: Number,
+    Elevation_Side_QTD: Number,
+    Punning_QTD: Number,
+
+    B1_Chowkat_Stone_QTD: Number,
+    B2_Chowkat_Stone_QTD: Number,
+    B3_Chowkat_Stone_QTD: Number,
+    B4_Chowkat_Stone_QTD: Number,
+    GF_Chowkat_Stone_QTD: Number,
+    FF_Chowkat_Stone_QTD: Number,
+    SF_Chowkat_Stone_QTD: Number,
+    TF_Chowkat_Stone_QTD: Number,
+    FoF_Chowkat_Stone_QTD: Number,
+    Tower_Chowkat_Stone_QTD: Number,
+
+    Parapet_Work_Railing_Boundary_Wall_QTD: Number,
+    Grill_MS_Work_QTD: Number,
+    Main_Gate_QTD: Number,
+    Back_Side_Cover_QTD: Number,
+    Back_Duct_Cover_QTD: Number,
+    Cut_Out_Cover_QTD: Number,
+    Elevation_QTD: Number,
+    Gazeebo_QTD: Number,
+
+    B1_POP_Framing_QTD: Number,
+    B2_POP_Framing_QTD: Number,
+    B3_POP_Framing_QTD: Number,
+    B4_POP_Framing_QTD: Number,
+    GF_POP_Framing_QTD: Number,
+    FF_POP_Framing_QTD: Number,
+    SF_POP_Framing_QTD: Number,
+    TF_POP_Framing_QTD: Number,
+    FoF_POP_Framing_QTD: Number,
+    Tower_POP_Framing_QTD: Number,
+
+    B1_Wiring_QTD: Number,
+    B2_Wiring_QTD: Number,
+    B3_Wiring_QTD: Number,
+    B4_Wiring_QTD: Number,
+    GF_Wiring_QTD: Number,
+    FF_Wiring_QTD: Number,
+    SF_Wiring_QTD: Number,
+    TF_Wiring_QTD: Number,
+    FoF_Wiring_QTD: Number,
+    Tower_Wiring_QTD: Number,
+
+    B1_Boarding_POP_QTD: Number,
+    B2_Boarding_POP_QTD: Number,
+    B3_Boarding_POP_QTD: Number,
+    B4_Boarding_POP_QTD: Number,
+    GF_Boarding_POP_QTD: Number,
+    FF_Boarding_POP_QTD: Number,
+    SF_Boarding_POP_QTD: Number,
+    TF_Boarding_POP_QTD: Number,
+    FoF_Boarding_POP_QTD: Number,
+    Tower_Boarding_POP_QTD: Number,
+
+    B1_Putty_Primer_Work_QTD: Number,
+    B2_Putty_Primer_Work_QTD: Number,
+    B3_Putty_Primer_Work_QTD: Number,
+    B4_Putty_Primer_Work_QTD: Number,
+    GF_Putty_Primer_Work_QTD: Number,
+    FF_Putty_Primer_Work_QTD: Number,
+    SF_Putty_Primer_Work_QTD: Number,
+    TF_Putty_Primer_Work_QTD: Number,
+    FoF_Putty_Primer_Work_QTD: Number,
+    Tower_Putty_Primer_Work_QTD: Number,
+
+    Balcony_PVC_QTD: Number,
+    Parking_PVC_QTD: Number,
+    Washroom_PVC_QTD: Number,
+
+    B1_Floor_Tiling_QTD: Number,
+    B2_Floor_Tiling_QTD: Number,
+    B3_Floor_Tiling_QTD: Number,
+    B4_Floor_Tiling_QTD: Number,
+    GF_Floor_Tiling_QTD: Number,
+    FF_Floor_Tiling_QTD: Number,
+    SF_Floor_Tiling_QTD: Number,
+    TF_Floor_Tiling_QTD: Number,
+    FoF_Floor_Tiling_QTD: Number,
+    Tower_Floor_Tiling_QTD: Number,
+
+    Other_Area_Vertical_Wall_QTD: Number,
+    Platform_QTD: Number,
+    Granite_Running_QTD: Number,
+    Terrace_Area_Flooring_QTD: Number,
+    Tower_Area_Flooring_QTD: Number,
+    Staircase_QTD: Number,
+    Any_Tank_or_Other_Area_QTD: Number,
+    Ramp_Entrance_Level_QTD: Number,
+    
+    B1_Door_Panelling_QTD: Number,
+    B2_Door_Panelling_QTD: Number,
+    B3_Door_Panelling_QTD: Number,
+    B4_Door_Panelling_QTD: Number,
+    GF_Door_Panelling_QTD: Number,
+    FF_Door_Panelling_QTD: Number,
+    SF_Door_Panelling_QTD: Number,
+    TF_Door_Panelling_QTD: Number,
+    FoF_Door_Panelling_QTD: Number,
+    Tower_Door_Panelling_QTD: Number,
+
+    B1_Window_Panelling_QTD: Number,
+    B2_Window_Panelling_QTD: Number,
+    B3_Window_Panelling_QTD: Number,
+    B4_Window_Panelling_QTD: Number,
+    GF_Window_Panelling_QTD: Number,
+    FF_Window_Panelling_QTD: Number,
+    SF_Window_Panelling_QTD: Number,
+    TF_Window_Panelling_QTD: Number,
+    FoF_Window_Panelling_QTD: Number,
+    Tower_Window_Panelling_QTD: Number,
+
+    B1_Paint_QTD: Number,
+    B2_Paint_QTD: Number,
+    B3_Paint_QTD: Number,
+    B4_Paint_QTD: Number,
+    GF_Paint_QTD: Number,
+    FF_Paint_QTD: Number,
+    SF_Paint_QTD: Number,
+    TF_Paint_QTD: Number,
+    FoF_Paint_QTD: Number,
+    Tower_Paint_QTD: Number,
+
+    Side_01_QTD: Number,
+    Side_02_QTD: Number,
+    Side_03_QTD: Number,
+    Side_04_QTD: Number,
+
+    B1_Sanitary_QTD: Number,
+    B2_Sanitary_QTD: Number,
+    B3_Sanitary_QTD: Number,
+    B4_Sanitary_QTD: Number,
+    GF_Sanitary_QTD: Number,
+    FF_Sanitary_QTD: Number,
+    SF_Sanitary_QTD: Number,
+    TF_Sanitary_QTD: Number,
+    FoF_Sanitary_QTD: Number,
+    Tower_Sanitary_QTD: Number,
+
+    B1_Door_Accessories_Switch_Board_QTD: Number,
+    B2_Door_Accessories_Switch_Board_QTD: Number,
+    B3_Door_Accessories_Switch_Board_QTD: Number,
+    B4_Door_Accessories_Switch_Board_QTD: Number,
+    GF_Door_Accessories_Switch_Board_QTD: Number,
+    FF_Door_Accessories_Switch_Board_QTD: Number,
+    SF_Door_Accessories_Switch_Board_QTD: Number,
+    TF_Door_Accessories_Switch_Board_QTD: Number,
+    FoF_Door_Accessories_Switch_Board_QTD: Number,
+    Tower_Door_Accessories_Switch_Board_QTD: Number,
+
+    Staircase_Railing_QTD: Number,
+    Light_Fixing_and_Fan_QTD: Number,
+    Balcony_Railing_QTD: Number,
+    
+
+
 });
 
 module.exports = mongoose.model("QuantitiesMaterial", QuantitiesMaterialSchema);

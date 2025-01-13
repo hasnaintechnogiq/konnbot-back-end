@@ -126,30 +126,6 @@ const updateActivities = async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const createAllActivites = async (req, resp) => {
     try {
 
@@ -165,22 +141,1468 @@ const createAllActivites = async (req, resp) => {
             { _id: newcheck },
             {
                 $push: {
-                    projectID: objectproID, estimateDays: 4
+                    projectID: objectproID
                 }
             }
         )
 
-        var singltwo = await Quotation.findById(req.body.quotationSelectedID)
-        if (singltwo) {
-            var fottingtypecheck = singltwo.NormalFooting;
+        var quotationSelectedDetails = await Quotation.findById(req.body.quotationSelectedID)
+        if (quotationSelectedDetails) {
+            var fottingtypecheck = quotationSelectedDetails.NormalFooting;
+            var NumbersOfFlorrs = quotationSelectedDetails.FloorGPlus;
+            var NumbersOfBasemetFloor = quotationSelectedDetails.BasementFloor;
+            var InternalPlaster = quotationSelectedDetails.InternalPlaster;
+            var FlaseCeilingTyHNR = quotationSelectedDetails.FlaseCeilingType;
+
+     
         }
         else { var fottingtypecheck = "ISOLATED"; }
 
-        var materlID = await QuantitiesMaterial.findById(singltwo.quantitiesAndMaerialID)
+        var materlID = await QuantitiesMaterial.findById(quotationSelectedDetails.quantitiesAndMaerialID)
 
 
 
-        // console.log(singltwo.Footing[0].materialsName)
+
+
+
+
+        // estimated days calculation Start
+
+
+
+
+
+
+
+
+
+        var SiteClearanceSoil = "YELLOW, RED & MIX";
+        var FINALINPUTSDONE_C18 = SiteClearanceSoil;
+        var QUANTITIESDONE_B6 = FINALINPUTSDONE_C18 === "BLACK COTTON" ? 1 : FINALINPUTSDONE_C18 === "YELLOW, RED & MIX" ? 2 : FINALINPUTSDONE_C18 === "ORDINARY ROCK" ? 3 : FINALINPUTSDONE_C18 === "HARD ROCK" ? 4 : 0;
+
+        var FINALINPUTSDONE_D5 = quotationSelectedDetails.BasementFloor;
+        var QUANTITIESDONE_D6 = FINALINPUTSDONE_D5 === 1 ? 1.5 : FINALINPUTSDONE_D5 === 2 ? 3 : FINALINPUTSDONE_D5 === 3 ? 4.5 : 0;
+
+        var RMCInFooting = "YES";
+        var FINALINPUTSDONE_B46 = RMCInFooting; // not complete
+        var QUANTITIESDONE_G5 = FINALINPUTSDONE_B46 === "YES" ? 1 : 0;
+
+        var StaricaseRailing = "SS";
+        var FINALINPUTSDONE_G104 = StaricaseRailing;  // not complete
+        var QUANTITIESDONE_L4 = FINALINPUTSDONE_G104 === "STANDARD" ? 0 : FINALINPUTSDONE_G104 === "1.25X" ? 1 : FINALINPUTSDONE_G104 === "1.5X" ? 2 : FINALINPUTSDONE_G104 === "1.75X" ? 3 : FINALINPUTSDONE_G104 === "2X" ? 4 : 0;
+        var QUANTITIESDONE_L5 = QUANTITIESDONE_L4 === 0 ? 1 : QUANTITIESDONE_L4 === 1 ? 1.25 : QUANTITIESDONE_L4 === 2 ? 1.5 : QUANTITIESDONE_L4 === 3 ? 1.75 : QUANTITIESDONE_L4 === 4 ? 2 : 0;
+
+
+
+
+
+
+
+
+
+        // Site Mobalization
+        // var FINALINPUTSDONE_B17 = quotationSelectedDetails.SiteClearanceTobeDone;
+        // var SiteClearance_Factor = (FINALINPUTSDONE_B17 === "YES" ? 0.012 : 0.003) / QUANTITIESDONE_L5;
+        // var RoadLevelLayoutLevelling_Factor = 1;
+        // var BSExcavation_Factor = (QUANTITIESDONE_B6 === 1 ? 0.011 : QUANTITIESDONE_B6 === 2 ? 0.011 * 1.25 : QUANTITIESDONE_B6 === 3 ? 0.008 : QUANTITIESDONE_B6 === 4 ? 0.017 : 0) / QUANTITIESDONE_L5;
+        // var ShoringProtection_Factor = (QUANTITIESDONE_D6 === 1.5 ? 0.004 : QUANTITIESDONE_D6 === 3 ? 0.007 : QUANTITIESDONE_D6 === 4.5 ? 0.011 : 0) / QUANTITIESDONE_L5;
+        // var BSLayoutLevelling_Factor = 1;
+
+
+        // var siteClearance_ESTD = Math.ceil(SiteClearance_Factor * Site_ClearanceQTD);
+        // var roadLevelLayoutAndLevelling_ESTD = Road_Level_Layout_LevellingQTD > 0 ? 1 : 0;
+        // var bsExcavation_ESTD = Math.ceil(BSExcavation_Factor * BS_ExcavationQTD);
+        // var shoringProtection_ESTD = Math.ceil(ShoringProtection_Factor * Shoring_ProtectionQTD);
+        // var bsLayoutAndLevelling_ESTD = Math.ceil(BSLayoutLevelling_Factor * BS_Layout_LevellingQTD);
+
+
+
+
+
+        // // Isolater Footing Below the Raft Level - Case 1.1
+
+        // var BSExcavation_IRDL_Factor = (QUANTITIESDONE_B6 === 1 ? 0.011 : QUANTITIESDONE_B6 === 2 ? 0.011 * 1.25 : QUANTITIESDONE_B6 === 3 ? 0.008 : QUANTITIESDONE_B6 === 4 ? 0.017 : 0) / QUANTITIESDONE_L5;
+        // var BSPCC_IRDL_Factor = 0.107 / QUANTITIESDONE_L5;
+        // var BSFootingReinforcement_IRDL_Factor = 0.002 / QUANTITIESDONE_L5;
+        // var BSFootingRCC_IRDL_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : 0.02) / QUANTITIESDONE_L5;
+        // var BSPedestalRCC_IRDL_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : (QUANTITIESDONE_G5 === 2 ? 0.02 : 0)) / QUANTITIESDONE_L5;
+        // var BSWaterproofing_IRDL_Factor = 0.044 / QUANTITIESDONE_L5;
+        // var BSBackfilling_IRDL_Factor = 0.015 / QUANTITIESDONE_L5;
+        // var BSHardFilling_IRDL_Factor = 0.036 / QUANTITIESDONE_L5;
+        // var BSSewageLine_IRDL_Factor = 0.061 / QUANTITIESDONE_L5;
+        // var BSRaftReinforcement_IRDL_Factor = BSFootingReinforcement_IRDL_Factor;
+        // var BSRaftRCC_IRDL_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : (QUANTITIESDONE_G5 === 2 ? 0.02 : 0)) / QUANTITIESDONE_L5;
+
+
+        // var bsExcavation_IRDL_ESTD = Math.ceil(BSExcavation_IRDL_Factor * BS_Excavation_IRDLQTD);
+        // var bsPCC_IRDL_ESTD = Math.ceil(BSPCC_IRDL_Factor * BS_PCC_IRDLQTD);
+        // var bsFootingReinforcement_IRDL_ESTD = Math.ceil(BSFootingReinforcement_IRDL_Factor * BS_Footing_Reinforcement_IRDLQTD);
+        // var bsFootingRCC_IRDL_ESTD = Math.ceil(BSFootingRCC_IRDL_Factor * BS_Footing_RCC_IRDLQTD);
+        // var bsPedestalRCC_IRDL_ESTD = Math.ceil(BSPedestalRCC_IRDL_Factor * BS_Pedestal_RCC_IRDLQTD);
+        // var bsWaterproofing_IRDL_ESTD = Math.ceil(BSWaterproofing_IRDL_Factor * BS_Waterproofing_IRDLQTD);
+        // var bsBackfilling_IRDL_ESTD = Math.ceil(BSBackfilling_IRDL_Factor * BS_Backfilling_IRDLQTD);
+        // var bsHardFilling_IRDL_ESTD = Math.ceil(BSHardFilling_IRDL_Factor * BS_Hard_Filling_IRDLQTD);
+        // var bsSewageLine_IRDL_ESTD = Math.ceil(BSSewageLine_IRDL_Factor * BS_Sewage_Line_IRDLQTD);
+        // var bsRaftReinforcement_IRDL_ESTD = Math.ceil(BS_Raft_Reinforcement_IRDLQTD * BSRaftReinforcement_IRDL_Factor);
+        // var bsRaftRCC_IRDL_ESTD = Math.ceil(BS_Raft_RCC_IRDLQTD * BSRaftRCC_IRDL_Factor);
+
+
+
+
+        // // Isolater Footing with Raft at same level & Brick Work - Case 1.2
+
+
+        // var BSExcavation_IRSLB_Factor = BSExcavation_IRDL_Factor;
+        // var BSPCCBelow_IRSLB_Factor = BSPCC_IRDL_Factor;
+        // var BSBrickWorkAroundFootingBeam_IRSLB_Factor = 0.04 / QUANTITIESDONE_L5;
+        // var BSHardFilling_IRSLB_Factor = BSHardFilling_IRDL_Factor;
+        // var BSSewageLine_IRSLB_Factor = 0.061 / QUANTITIESDONE_L5;
+        // var BSPCCAbove_IRSLB_Factor = BSPCCBelow_IRSLB_Factor;
+        // var BSReinforcement_IRSLB_Factor = BSRaftReinforcement_IRDL_Factor;
+        // var BSFootingRCC_IRSLB_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : QUANTITIESDONE_G5 === 2 ? 0.02 : 0) / QUANTITIESDONE_L5;
+        // var BSWaterproofing_IRSLB_Factor = 0.044 / QUANTITIESDONE_L5;
+
+
+        // var bsExcavation_IRSLB_ESTD = Math.ceil(BS_Excavation_IRSLBQTD * BSExcavation_IRSLB_Factor);
+        // var bsPCCBelow_IRSLB_ESTD = Math.ceil(BS_PCC_Below_IRSLBQTD * BSPCCBelow_IRSLB_Factor);
+        // var bsBrickWorkAroundFootingAndBeam_IRSLB_ESTD = Math.ceil(BS_Brick_Work_Around_Footing_Beam_IRSLBQTD * BSBrickWorkAroundFootingBeam_IRSLB_Factor);
+        // var bsHardFilling_IRSLB_ESTD = Math.ceil(BS_Hard_Filling_IRSLBQTD * BSHardFilling_IRSLB_Factor);
+        // var bsSewageLine_IRSLB_ESTD = Math.ceil(BS_Sewage_Line_IRSLBQTD * BSSewageLine_IRSLB_Factor);
+        // var bsPCCAbove_IRSLB_ESTD = Math.ceil(BS_PCC_Above_IRSLBQTD * BSPCCAbove_IRSLB_Factor);
+        // var bsReinforcement_IRSLB_ESTD = Math.ceil(BS_Reinforcement_IRSLBQTD * BSReinforcement_IRSLB_Factor);
+        // var bsFootingRCC_IRSLB_ESTD = Math.ceil(BS_Footing_RCC_IRSLBQTD * BSFootingRCC_IRSLB_Factor);
+        // var bsWaterproofing_IRSLB_ESTD = Math.ceil(BS_Waterproofing_IRSLBQTD * BSWaterproofing_IRSLB_Factor);
+
+
+
+
+
+        // //  Isolater Footing with Raft at same level & Shuttering - Case 1.3
+
+
+
+        // var BSExcavation_IRSLS_Factor = BSExcavation_IRSLB_Factor;
+        // var BSPCCBelow_IRSLS_Factor = BSPCCBelow_IRSLB_Factor;
+        // var BSShuttering_IRSLS_Factor = 0.013 / QUANTITIESDONE_L5;
+        // var BSRaftReinforcement_IRSLS_Factor = BSReinforcement_IRSLB_Factor;
+        // var BSRaftFootingRCC_IRSLS_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : (QUANTITIESDONE_G5 === 2 ? 0.02 : 0)) / QUANTITIESDONE_L5;
+        // var BSWaterproofing_IRSLS_Factor = 0.044 / QUANTITIESDONE_L5;
+        // var BSHardFilling_IRSLS_Factor = BSHardFilling_IRSLB_Factor;
+        // var BSSewageLine_IRSLS_Factor = 0.061 / QUANTITIESDONE_L5;
+        // var BSPCCAbove_IRSLS_Factor = BSPCCBelow_IRSLS_Factor;
+
+
+
+        // var bsExcavation_IRSLS_ESTD = Math.ceil(BSExcavation_IRSLS_Factor * BS_Excavation_IRSLSQTD);
+        // var bsPCCBelow_IRSLS_ESTD = Math.ceil(BSPCCBelow_IRSLS_Factor * BS_PCC_Below_IRSLSQTD);
+        // var bsShuttering_IRSLS_ESTD = Math.ceil(BSShuttering_IRSLS_Factor * BS_Shuttering_IRSLSQTD);
+        // var bsRaftReinforcement_IRSLS_ESTD = Math.ceil(BSRaftReinforcement_IRSLS_Factor * BS_Raft_Reinforcement_IRSLSQTD);
+        // var bsRaftFootingRCC_IRSLS_ESTD = Math.ceil(BSRaftFootingRCC_IRSLS_Factor * BS_Raft_Footing_RCC_IRSLSQTD);
+        // var bsWaterproofing_IRSLS_ESTD = Math.ceil(BSWaterproofing_IRSLS_Factor * BS_Waterproofing_IRSLSQTD);
+        // var bsHardFilling_IRSLS_ESTD = Math.ceil(BSHardFilling_IRSLS_Factor * BS_Hard_Filling_IRSLSQTD);
+        // var bsSewageLine_IRSLS_ESTD = Math.ceil(BSSewageLine_IRSLS_Factor * BS_Sewage_Line_IRSLSQTD);
+        // var bsPCCAbove_IRSLS_ESTD = Math.ceil(BSPCCAbove_IRSLS_Factor * BS_PCC_Above_IRSLSQTD);
+
+
+
+
+
+
+
+        // // Pile Footing with Raft at the Same Level & Brick Work - Case 2.1
+
+
+        // var bsPileReinforcement_PRSLB_Factor = BSRaftReinforcement_IRSLS_Factor;
+        // var bsPileExcavation_PRSLB_Factor = BSExcavation_IRSLB_Factor;
+        // var bsPileRCC_PRSLB_Factor = BSRaftReinforcement_IRSLS_Factor;
+        // var bsPCCBelow_PRSLB_Factor = BSPCCBelow_IRSLS_Factor;
+        // var bsBrickWorkAroundFootingAndBeam_PRSLB_Factor = 0.04 / QUANTITIESDONE_L5;
+        // var bsHardFilling_PRSLB_Factor = BSHardFilling_IRSLS_Factor;
+        // var bsSewageLine_PRSLB_Factor = 0.061 / QUANTITIESDONE_L5;
+        // var bsPCCAbove_PRSLB_Factor = bsPCCBelow_PRSLB_Factor;
+        // var bsRaftReinforcement_PRSLB_Factor = BSRaftReinforcement_IRSLS_Factor;
+        // var bsRaftRCC_PRSLB_Factor = BSRaftFootingRCC_IRSLS_Factor;
+        // var bsWaterproofing_PRSLB_Factor = 0.044 / QUANTITIESDONE_L5;
+
+
+
+        // var bsPileReinforcement_PRSLB_ESTD = Math.ceil(bsPileReinforcement_PRSLB_Factor * BS_Pile_Reinforcement_PRSLBQTD);
+        // var bsPileExcavation_PRSLB_ESTD = Math.ceil(bsPileExcavation_PRSLB_Factor * BS_Pile_Excavation_PRSLBQTD);
+        // var bsPileRCC_PRSLB_ESTD = Math.ceil(bsPileRCC_PRSLB_Factor * BS_Pile_RCC_PRSLBQTD);
+        // var bsPCCBelow_PRSLB_ESTD = Math.ceil(bsPCCBelow_PRSLB_Factor * BS_PCC_Below_PRSLBQTD);
+        // var bsBrickWorkAroundFootingAndBeam_PRSLB_ESTD = Math.ceil(bsBrickWorkAroundFootingAndBeam_PRSLB_Factor * BS_Brick_Work_around_Footing_Beam_PRSLBQTD);
+        // var bsHardFilling_PRSLB_ESTD = Math.ceil(bsHardFilling_PRSLB_Factor * BS_Hard_Filling_PRSLBQTD);
+        // var bsSewageLine_PRSLB_ESTD = Math.ceil(bsSewageLine_PRSLB_Factor * BS_Sewage_Line_PRSLBQTD);
+        // var bsPCCAbove_PRSLB_ESTD = Math.ceil(bsPCCAbove_PRSLB_Factor * BS_PCC_Above_PRSLBQTD);
+        // var bsRaftReinforcement_PRSLB_ESTD = Math.ceil(bsRaftReinforcement_PRSLB_Factor * BS_Raft_Reinforcement_PRSLBQTD);
+        // var bsRaftRCC_PRSLB_ESTD = Math.ceil(bsRaftRCC_PRSLB_Factor * BS_Raft_RCC_PRSLBQTD);
+        // var bsWaterproofing_PRSLB_ESTD = Math.ceil(bsWaterproofing_PRSLB_Factor * BS_Waterproofing_PRSLBQTD);
+
+
+
+
+
+        // // Pile Footing with Raft at the Same Level & Shuttering Work  - Case 2.2
+
+
+        // var BSPileReinforcement_PRSLS_Factor = bsPileReinforcement_PRSLB_Factor;
+        // var BSPileExcavation_PRSLS_Factor = bsPileExcavation_PRSLB_Factor;
+        // var BSPileRCC_PRSLS_Factor = bsPileRCC_PRSLB_Factor;
+        // var BSSewageLine_PRSLS_Factor = 0.061 / QUANTITIESDONE_L5;
+        // var BSShuttering_PRSLS_Factor = BSShuttering_IRSLS_Factor;
+        // var BSRaftReinforcement_PRSLS_Factor = bsRaftReinforcement_PRSLB_Factor;
+        // var BSRaftFootingRCC_PRSLS_Factor = bsRaftRCC_PRSLB_Factor;
+        // var BSWaterproofing_PRSLS_Factor = 0.044 / QUANTITIESDONE_L5;
+        // var BSHardFilling_PRSLS_Factor = bsHardFilling_PRSLB_Factor;
+        // var BSPCCAbove_PRSLS_Factor = BSPileRCC_PRSLS_Factor;
+
+
+
+        // var bsPileReinforcement_PRSLS_ESTD = Math.ceil(BS_Pile_Reinforcement_PRSLSQTD * BSPileReinforcement_PRSLS_Factor);
+        // var bsPileExcavation_PRSLS_ESTD = Math.ceil(BS_Pile_Excavation_PRSLSQTD * BSPileExcavation_PRSLS_Factor);
+        // var bsPileRCC_PRSLS_ESTD = Math.ceil(BS_Pile_RCC_PRSLSQTD * BSPileRCC_PRSLS_Factor);
+        // var bsSewageLine_PRSLS_ESTD = Math.ceil(BS_Sewage_Line_PRSLSQTD * BSSewageLine_PRSLS_Factor);
+        // var bsShuttering_PRSLS_ESTD = Math.ceil(BS_Shuttering_PRSLSQTD * BSShuttering_PRSLS_Factor);
+        // var bsRaftReinforcement_PRSLS_ESTD = Math.ceil(BS_Raft_Reinforcement_PRSLSQTD * BSRaftReinforcement_PRSLS_Factor);
+        // var bsRaftFootingRCC_PRSLS_ESTD = Math.ceil(BS_Raft_Footing_RCC_PRSLSQTD * BSRaftFootingRCC_PRSLS_Factor);
+        // var bsWaterproofing_PRSLS_ESTD = Math.ceil(BS_Waterproofing_PRSLSQTD * BSWaterproofing_PRSLS_Factor);
+        // var bsHardFilling_PRSLS_ESTD = Math.ceil(BS_Hard_Filling_PRSLSQTD * BSHardFilling_PRSLS_Factor);
+        // var bsPCCAbove_PRSLS_ESTD = Math.ceil(BS_PCC_Above_PRSLSQTD * BSPCCAbove_PRSLS_Factor);
+
+
+
+
+
+
+
+
+
+
+        // // Raft Footing - Case - 3.0
+
+
+        // var BSHardFillingWork_RSL_Factor = BSHardFilling_PRSLS_Factor;
+        // var BSSewageLine_RSL_Factor = 0.061 / QUANTITIESDONE_L5;
+        // var BSPCCUnderRaft_RSL_Factor = bsPCCBelow_PRSLB_Factor;
+        // var BSReinforcement_RSL_Factor = bsRaftReinforcement_PRSLS_ESTD;
+        // var BSRaftRCC_RSL_Factor = BSRaftFootingRCC_PRSLS_Factor;
+        // var BSWaterproofing_RSL_Factor = 0.044 / QUANTITIESDONE_L5;
+
+
+        // var bsHardFillingWork_RSL_ESTD = Math.ceil(BS_Hard_Filling_Work_RSLQTD * BSHardFillingWork_RSL_Factor);
+        // var bsSewageLine_RSL_ESTD = Math.ceil(BS_Sewage_Line_RSLQTD * BSSewageLine_RSL_Factor);
+        // var bsPCCUnderRaft_RSL_ESTD = Math.ceil(BS_PCC_under_Raft_RSLQTD * BSPCCUnderRaft_RSL_Factor);
+        // var bsReinforcement_RSL_ESTD = Math.ceil(BS_Reinforcement_RSLQTD * BSReinforcement_RSL_Factor);
+        // var bsRaftRCC_RSL_ESTD = Math.ceil(BS_Raft_RCC_RSLQTD * BSRaftRCC_RSL_Factor);
+        // var bsWaterproofing_RSL_ESTD = Math.ceil(BS_Waterproofing_RSLQTD * BSWaterproofing_RSL_Factor);
+
+
+
+
+
+
+
+
+        // // B1 RCC Column & Slab Work
+
+
+        // // Column + Curtain Wall
+
+        // var B1ColumnReinforcement_Factor = BSReinforcement_RSL_Factor;
+        // var B1CurtainWallShuttering_Factor = 0.039 / QUANTITIESDONE_L5;
+        // var B1RCCColumnCurtainWall_Factor = 0.02 / QUANTITIESDONE_L5;
+        // var B1Waterproofing_Factor = 0.044 / QUANTITIESDONE_L5;
+
+        // // Slab + Beam
+
+        // var B1BrickWork_Factor = 0.333 / QUANTITIESDONE_L5;
+        // var B1SlabShuttering_Factor = 0.037 / QUANTITIESDONE_L5;
+        // var B1SlabReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        // var B1SlabElectricalConducting_Factor = 1;
+        // var B1SlabRCC_Factor = 0.04 / QUANTITIESDONE_L5;
+
+
+
+
+        // // Column + Curtain Wall
+
+        // var b1ColumnReinforcement_ESTD = Math.ceil(B1_Column_Reinforcement_QTD * B1ColumnReinforcement_Factor);
+        // var b1CurtainWallShuttering_ESTD = Math.ceil(B1_Curtain_Wall_Shuttering_QTD * B1CurtainWallShuttering_Factor);
+        // var b1RCCColumnAndCurtainWall_ESTD = Math.ceil(B1_RCC_Column_Curtain_Wall_QTD * B1RCCColumnCurtainWall_Factor);
+        // var b1Waterproofing_ESTD = Math.ceil(B1_Waterproofing_QTD * B1Waterproofing_Factor);
+
+        // // Slab + Beam
+
+        // var b1BrickWork_ESTD = Math.ceil(B1_Brick_Work_QTD * B1BrickWork_Factor);
+        // var b1SlabShuttering_ESTD = Math.ceil(B1_Slab_Shuttering_QTD * B1SlabShuttering_Factor);
+        // var b1SlabReinforcement_ESTD = Math.ceil(B1_Slab_Reinforcement_QTD * B1SlabReinforcement_Factor);
+        // var b1SlabElectricalConduiting_ESTD = B1_Slab_Electrical_Conduiting_QTD > 0 ? 1 : 0;
+        // var b1SlabRCC_ESTD = Math.ceil(B1_Slab_RCC_QTD * B1SlabRCC_Factor);
+
+
+
+
+
+
+
+
+
+        // // B2 RCC Column & Slab Work
+
+        // // Column + Curtain Wall
+
+
+        // var B2ColumnReinforcement_Factor = BSReinforcement_RSL_Factor;
+        // var B2CurtainWallShuttering_Factor = 0.039 / QUANTITIESDONE_L5;
+        // var B2RCCColumnCurtainWall_Factor = 0.02 / QUANTITIESDONE_L5;
+        // var B2Waterproofing_Factor = 0.044 / QUANTITIESDONE_L5;
+
+        // // Slab + Beam
+
+        // var B2BrickWork_Factor = 0.333 / QUANTITIESDONE_L5;
+        // var B2SlabShuttering_Factor = 0.037 / QUANTITIESDONE_L5;
+        // var B2SlabReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        // var B2SlabElectricalConducting_Factor = 1;
+        // var B2SlabRCC_Factor = 0.04 / QUANTITIESDONE_L5;
+
+
+
+
+        // // Column + Curtain Wall
+
+        // var b2ColumnReinforcement_ESTD = Math.ceil(B2_Column_Reinforcement_QTD * B2ColumnReinforcement_Factor);
+        // var b2CurtainWallShuttering_ESTD = Math.ceil(B2_Curtain_Wall_Shuttering_QTD * B2CurtainWallShuttering_Factor);
+        // var b2RCCColumnAndCurtainWall_ESTD = Math.ceil(B2_RCC_Column_Curtain_Wall_QTD * B2RCCColumnCurtainWall_Factor);
+        // var b2Waterproofing_ESTD = Math.ceil(B2_Waterproofing_QTD * B2Waterproofing_Factor);
+
+        // // Slab + Beam
+
+        // var b2BrickWork_ESTD = Math.ceil(B2_Brick_Work_QTD * B2BrickWork_Factor);
+        // var b2SlabShuttering_ESTD = Math.ceil(B2_Slab_Shuttering_QTD * B2SlabShuttering_Factor);
+        // var b2SlabReinforcement_ESTD = Math.ceil(B2_Slab_Reinforcement_QTD * B2SlabReinforcement_Factor);
+        // var b2SlabElectricalConduiting_ESTD = B2_Slab_Electrical_Conduiting_QTD > 0 ? 1 : 0;
+        // var b2SlabRCC_ESTD = Math.ceil(B2_Slab_RCC_QTD * B2SlabRCC_Factor);
+
+
+
+
+
+
+
+
+
+        // // B3 RCC Column & Slab Work
+
+        // // Column + Curtain Wall
+
+
+        // var B3ColumnReinforcement_Factor = BSReinforcement_RSL_Factor;
+        // var B3CurtainWallShuttering_Factor = 0.039 / QUANTITIESDONE_L5;
+        // var B3RCCColumnCurtainWall_Factor = 0.02 / QUANTITIESDONE_L5;
+        // var B3Waterproofing_Factor = 0.044 / QUANTITIESDONE_L5;
+
+        // // Slab + Beam
+
+        // var B3BrickWork_Factor = 0.333 / QUANTITIESDONE_L5;
+        // var B3SlabShuttering_Factor = 0.037 / QUANTITIESDONE_L5;
+        // var B3SlabReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        // var B3SlabElectricalConducting_Factor = 1;
+        // var B3SlabRCC_Factor = 0.04 / QUANTITIESDONE_L5;
+
+
+
+
+        // // Column + Curtain Wall
+
+        // var b3ColumnReinforcement_ESTD = Math.ceil(B3_Column_Reinforcement_QTD * B3ColumnReinforcement_Factor);
+        // var b3CurtainWallShuttering_ESTD = Math.ceil(B3_Curtain_Wall_Shuttering_QTD * B3CurtainWallShuttering_Factor);
+        // var b3RCCColumnAndCurtainWall_ESTD = Math.ceil(B3_RCC_Column_Curtain_Wall_QTD * B3RCCColumnCurtainWall_Factor);
+        // var b3Waterproofing_ESTD = Math.ceil(B3_Waterproofing_QTD * B3Waterproofing_Factor);
+
+        // // Slab + Beam
+
+        // var b3BrickWork_ESTD = Math.ceil(B3_Brick_Work_QTD * B3BrickWork_Factor);
+        // var b3SlabShuttering_ESTD = Math.ceil(B3_Slab_Shuttering_QTD * B3SlabShuttering_Factor);
+        // var b3SlabReinforcement_ESTD = Math.ceil(B3_Slab_Reinforcement_QTD * B3SlabReinforcement_Factor);
+        // var b3SlabElectricalConduiting_ESTD = B3_Slab_Electrical_Conduiting_QTD > 0 ? 1 : 0;
+        // var b3SlabRCC_ESTD = Math.ceil(B3_Slab_RCC_QTD * B3SlabRCC_Factor);
+
+
+
+
+
+
+
+        // // B4 RCC Column & Slab Work
+
+        // // Column + Curtain Wall
+
+
+        // var B4ColumnReinforcement_Factor = BSReinforcement_RSL_Factor;
+        // var B4CurtainWallShuttering_Factor = 0.039 / QUANTITIESDONE_L5;
+        // var B4RCCColumnCurtainWall_Factor = 0.02 / QUANTITIESDONE_L5;
+        // var B4Waterproofing_Factor = 0.044 / QUANTITIESDONE_L5;
+
+        // // Slab + Beam
+
+        // var B4BrickWork_Factor = 0.333 / QUANTITIESDONE_L5;
+        // var B4SlabShuttering_Factor = 0.037 / QUANTITIESDONE_L5;
+        // var B4SlabReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        // var B4SlabElectricalConducting_Factor = 1;
+        // var B4SlabRCC_Factor = 0.04 / QUANTITIESDONE_L5;
+
+
+
+
+        // // Column + Curtain Wall
+
+        // var b4ColumnReinforcement_ESTD = Math.ceil(B4_Column_Reinforcement_QTD * B4ColumnReinforcement_Factor);
+        // var b4CurtainWallShuttering_ESTD = Math.ceil(B4_Curtain_Wall_Shuttering_QTD * B4CurtainWallShuttering_Factor);
+        // var b4RCCColumnAndCurtainWall_ESTD = Math.ceil(B4_RCC_Column_Curtain_Wall_QTD * B4RCCColumnCurtainWall_Factor);
+        // var b4Waterproofing_ESTD = Math.ceil(B4_Waterproofing_QTD * B4Waterproofing_Factor);
+
+        // // Slab + Beam
+
+        // var b4BrickWork_ESTD = Math.ceil(B4_Brick_Work_QTD * B4BrickWork_Factor);
+        // var b4SlabShuttering_ESTD = Math.ceil(B4_Slab_Shuttering_QTD * B4SlabShuttering_Factor);
+        // var b4SlabReinforcement_ESTD = Math.ceil(B4_Slab_Reinforcement_QTD * B4SlabReinforcement_Factor);
+        // var b4SlabElectricalConduiting_ESTD = B4_Slab_Electrical_Conduiting_QTD > 0 ? 1 : 0;
+        // var b4SlabRCC_ESTD = Math.ceil(B4_Slab_RCC_QTD * B4SlabRCC_Factor);
+
+
+
+
+
+
+
+        // Isloated Footing
+
+        var ISOLayoutLevelling_Factor = 1;
+        var ISOExcavation_Factor = QUANTITIESDONE_B6 === 1 ? 0.016 : QUANTITIESDONE_B6 === 2 ? 0.016 * 1.25 : QUANTITIESDONE_B6 === 3 ? 0.008 : QUANTITIESDONE_B6 === 4 ? 0.017 : 0;
+        var ISOReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        var ISOPCC_Factor = 0.107 / QUANTITIESDONE_L5;
+        var ISOFootingRCC_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : (QUANTITIESDONE_G5 === 2 ? 0.02 : 0)) / QUANTITIESDONE_L5;
+        var ISOPedestalRCC_Factor = ISOFootingRCC_Factor;
+        var ISOWaterproofing_Factor = 0.044 / QUANTITIESDONE_L5;
+        var ISOBackfillingWork_Factor = 0.015 / QUANTITIESDONE_L5;
+
+
+        var isoLayoutAndLevelling_ESTD = materlID.ISO_Layout_Levelling_QTD > 0 ? 1 : 0;
+        var isoExcavation_ESTD = Math.ceil(materlID.ISO_Excavation_QTD * ISOExcavation_Factor);
+        var isoReinforcement_ESTD = Math.ceil(materlID.ISO_Reinforcement_QTD * ISOReinforcement_Factor);
+        var isoPCC_ESTD = Math.ceil(materlID.ISO_PCC_QTD * ISOPCC_Factor);
+        var isoFootingRCC_ESTD = Math.ceil(materlID.ISO_Footing_RCC_QTD * ISOFootingRCC_Factor);
+        var isoPedestalRCC_ESTD = Math.ceil(materlID.ISO_Pedestal_RCC_QTD * ISOPedestalRCC_Factor);
+        var isoWaterproofing_ESTD = Math.ceil(materlID.ISO_Waterproofing_QTD * ISOWaterproofing_Factor);
+        var isoBackfillingWork_ESTD = Math.ceil(materlID.ISO_Backfilling_Work_QTD * ISOBackfillingWork_Factor);
+
+
+
+
+
+        // Pile Footing
+
+
+        var PILELayoutLevelling_Factor = 1;
+        var PILEReinforcement_Factor = ISOReinforcement_Factor;
+        var PILEExcavation_Factor = ISOExcavation_Factor;
+        var PILERCC_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : (QUANTITIESDONE_G5 === 2 ? 0.02 : 0)) / QUANTITIESDONE_L5;
+
+
+        var pileLayoutAndLevelling_ESTD = materlID.PILE_Layout_Levelling_QTD > 0 ? 1 : 0;
+        var pileReinforcement_ESTD = Math.ceil(materlID.PILE_Reinforcement_QTD * PILEReinforcement_Factor);
+        var pileExcavation_ESTD = Math.ceil(materlID.PILE_Excavation_QTD * PILEExcavation_Factor);
+        var pileRCC_ESTD = Math.ceil(materlID.PILE_RCC_QTD * PILERCC_Factor);
+
+
+
+
+
+
+
+
+        // Raft Footing
+
+
+
+        var RAFTLayoutLevelling_Factor = 1;
+        var RAFTExcavation_Factor = ISOExcavation_Factor;
+        var RAFTFilling_Factor = ISOBackfillingWork_Factor;
+        var RAFTSewageLine_Factor = 0.061 / QUANTITIESDONE_L5;
+        var RAFTPCC_Factor = ISOPCC_Factor;
+        var RAFTReinforcement_Factor = PILEReinforcement_Factor;
+        var RAFTRCC_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : (QUANTITIESDONE_G5 === 2 ? 0.02 : 0)) / QUANTITIESDONE_L5;
+        var RAFTWaterproofing_Factor = ISOWaterproofing_Factor;
+
+
+        var raftLayoutAndLevelling_ESTD = materlID.RAFT_Layout_Levelling_QTD > 0 ? 1 : 0;
+        var raftExcavation_ESTD = Math.ceil(materlID.RAFT_Excavation_QTD * RAFTExcavation_Factor);
+        var raftFilling_ESTD = Math.ceil(materlID.RAFT_Filling_QTD * RAFTFilling_Factor);
+        var raftSewageLine_ESTD = Math.ceil(materlID.RAFT_Sewage_Line_QTD * RAFTSewageLine_Factor);
+        var raftPCC_ESTD = Math.ceil(materlID.RAFT_PCC_QTD * RAFTPCC_Factor);
+        var raftReinforcement_ESTD = Math.ceil(materlID.RAFT_Reinforcement_QTD * RAFTReinforcement_Factor);
+        var raftRCC_ESTD = Math.ceil(materlID.RAFT_RCC_QTD * RAFTRCC_Factor);
+        var raftWaterproofing_ESTD = Math.ceil(materlID.RAFT_Waterproofing_QTD * RAFTWaterproofing_Factor);
+
+
+
+
+
+        // // Plinth Work - Case - 01
+
+
+        // var FillingUpToPlinthBottom_Factor = 0.036 / QUANTITIESDONE_L5;
+        // var PCCBelowBeam_Factor = RAFTPCC_Factor;
+        // var BrickWorkAlongThePlinth_Factor = 0.04 / QUANTITIESDONE_L5;
+        // var FillingWorkInGaps_Factor = ISOBackfillingWork_Factor;
+        // var ReinforcementWork_Factor = RAFTReinforcement_Factor;
+        // var SewageLineWork_Factor = 0.061 / QUANTITIESDONE_L5;
+        var AntiTermiteWork_Factor = 0.333 / QUANTITIESDONE_L5;
+        // var PCCAbove_Factor = RAFTPCC_Factor;
+        // var GradeSlabReinforcement_Factor = RAFTReinforcement_Factor;
+        // var GradeSlabPlinthRCCWork_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : (QUANTITIESDONE_G5 === 2 ? 0.02 : 0)) / QUANTITIESDONE_L5;
+
+
+
+        // var fillingUpToPlinthBottom_ESTD = Math.ceil(Filling_up_to_Plinth_Bottom_QTD * FillingUpToPlinthBottom_Factor);
+        // var pccBelowBeam_ESTD = Math.ceil(PCC_Below_Beam_QTD * PCCBelowBeam_Factor);
+        // var brickWorkAlongThePlinth_ESTD = Math.ceil(Brick_Work_along_the_Plinth_QTD * BrickWorkAlongThePlinth_Factor);
+        // var fillingWorkInGaps_ESTD = Math.ceil(Filling_Work_in_Gaps_QTD * FillingWorkInGaps_Factor);
+        // var reinforcementWork_ESTD = Math.ceil(Reinforcement_Work_QTD * ReinforcementWork_Factor);
+        // var sewageLineWork_ESTD = Math.ceil(Sewage_Line_Work_QTD * SewageLineWork_Factor);
+        // var antiTermiteWork_ESTD = Anti_Termite_Work_QTD > 0 ? 1 : 0;
+        // var pccAbove_ESTD = Math.ceil(PCC_Above_QTD * PCCAbove_Factor);
+        // var gradeSlabReinforcement_ESTD = Math.ceil(Grade_Slab_Reinforcement_QTD * GradeSlabReinforcement_Factor);
+        // var gradeSlabAndPlinthRCCWork_ESTD = Math.ceil(Grade_Slab_Plinth_RCC_Work_QTD * GradeSlabPlinthRCCWork_Factor);
+
+
+        // Plinth Work - Case - 02
+
+
+
+        var ShutteringBottom_Factor = 0.013 / QUANTITIESDONE_L5;
+        var ReinforcementWork_Factor = RAFTReinforcement_Factor;
+        var ShutteringSide_Factor = ShutteringBottom_Factor;
+        var RCC_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : (QUANTITIESDONE_G5 === 2 ? 0.02 : 0)) / QUANTITIESDONE_L5;
+        var FillingWork_Factor = ISOBackfillingWork_Factor;
+        var SewageLineWork_Factor = 0.061 / QUANTITIESDONE_L5;
+        var AntiTermiteWork_Factor = AntiTermiteWork_Factor;
+        var GradeSlabReinforcementWork_Factor = RAFTReinforcement_Factor;
+        var GradeSlabRCCWork_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : (QUANTITIESDONE_G5 === 2 ? 0.02 : 0)) / QUANTITIESDONE_L5;
+
+
+        var shutteringBottom_ESTD = Math.ceil(materlID.Shuttering_Bottom_QTD * ShutteringBottom_Factor);
+        var reinforcementWork_ESTD = Math.ceil(materlID.Reinforcement_Work_QTD * ReinforcementWork_Factor);
+        var shutteringSide_ESTD = Math.ceil(materlID.Shuttering_Side_QTD * ShutteringSide_Factor);
+        var rcc_ESTD = Math.ceil(materlID.RCC_QTD * RCC_Factor);
+        var fillingWork_ESTD = Math.ceil(materlID.Filling_Work_QTD * FillingWork_Factor);
+        var sewageLineWork_ESTD = Math.ceil(materlID.Sewage_Line_Work_QTD * SewageLineWork_Factor);
+        var antiTermiteWork_ESTD = materlID.Anti_Termite_Work_QTD > 0 ? 1 : 0;
+        var gradeSlabReinforcementWork_ESTD = Math.ceil(materlID.Grade_Slab_Reinforcement_Work_QTD * GradeSlabReinforcementWork_Factor);
+        var gradeSlabRCCWork_ESTD = Math.ceil(materlID.Grade_Slab_RCC_Work_QTD * GradeSlabRCCWork_Factor);
+
+
+
+
+        // Ground Floor 
+
+
+
+        var GFColumnReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        var GFRCCColumn_Factor = 0.04 / QUANTITIESDONE_L5;
+        var GFBrickWork_Factor = 0.333 / QUANTITIESDONE_L5;
+        var GFSlabShuttering_Factor = 0.037 / QUANTITIESDONE_L5;
+        var GFSlabReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        var GFSlabElectricalConducting_Factor = 1;
+        var GFRCCSlab_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : (QUANTITIESDONE_G5 === 2 ? 0.02 : 0)) / QUANTITIESDONE_L5;
+
+
+
+        var gfColumnReinforcement_ESTD = Math.ceil(materlID.GF_Column_Reinforcement_QTD * GFColumnReinforcement_Factor);
+        var gfRCCColumn_ESTD = Math.ceil(materlID.GF_RCC_Column_QTD * GFRCCColumn_Factor);
+        var gfBrickWork_ESTD = Math.ceil(materlID.GF_Brick_Work_QTD * GFBrickWork_Factor);
+        var gfSlabShuttering_ESTD = Math.ceil(materlID.GF_Slab_Shuttering_QTD * GFSlabShuttering_Factor);
+        var gfSlabReinforcement_ESTD = Math.ceil(materlID.GF_Slab_Reinforcement_QTD * GFSlabReinforcement_Factor);
+        // var gfSlabElectricalConducting_ESTD = materlID.GF_Slab_Electrical_Conducting_QTD > 0 ? 1 : 0;
+        var gfRCCSlab_ESTD = Math.ceil(materlID.GF_RCC_Slab_QTD * GFRCCSlab_Factor);
+
+
+
+
+
+
+
+        // First Floor 
+
+
+
+
+        var FFColumnReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        var FFRCCColumn_Factor = 0.04 / QUANTITIESDONE_L5;
+        var FFBrickWork_Factor = 0.333 / QUANTITIESDONE_L5;
+        var FFSlabShuttering_Factor = 0.037 / QUANTITIESDONE_L5;
+        var FFSlabReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        var FFSlabElectricalConducting_Factor = 1;
+        var FFRCCSlab_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : (QUANTITIESDONE_G5 === 2 ? 0.02 : 0)) / QUANTITIESDONE_L5;
+
+
+
+        var FfColumnReinforcement_ESTD = Math.ceil(materlID.FF_Column_Reinforcement_QTD * FFColumnReinforcement_Factor);
+        var FfRCCColumn_ESTD = Math.ceil(materlID.FF_RCC_Column_QTD * FFRCCColumn_Factor);
+        var FfBrickWork_ESTD = Math.ceil(materlID.FF_Brick_Work_QTD * FFBrickWork_Factor);
+        var FfSlabShuttering_ESTD = Math.ceil(materlID.FF_Slab_Shuttering_QTD * FFSlabShuttering_Factor);
+        var FfSlabReinforcement_ESTD = Math.ceil(materlID.FF_Slab_Reinforcement_QTD * FFSlabReinforcement_Factor);
+        // var FfSlabElectricalConducting_ESTD = materlID.FF_Slab_Electrical_Conducting_QTD > 0 ? 1 : 0;
+        var FfRCCSlab_ESTD = Math.ceil(materlID.FF_RCC_Slab_QTD * FFRCCSlab_Factor);
+
+
+
+
+
+
+
+        // Second Floor
+
+
+
+
+        var SFColumnReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        var SFRCCColumn_Factor = 0.04 / QUANTITIESDONE_L5;
+        var SFBrickWork_Factor = 0.333 / QUANTITIESDONE_L5;
+        var SFSlabShuttering_Factor = 0.037 / QUANTITIESDONE_L5;
+        var SFSlabReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        var SFSlabElectricalConducting_Factor = 1;
+        var SFRCCSlab_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : (QUANTITIESDONE_G5 === 2 ? 0.02 : 0)) / QUANTITIESDONE_L5;
+
+
+
+        var SfColumnReinforcement_ESTD = Math.ceil(materlID.SF_Column_Reinforcement_QTD * SFColumnReinforcement_Factor);
+        var SfRCCColumn_ESTD = Math.ceil(materlID.SF_RCC_Column_QTD * SFRCCColumn_Factor);
+        var SfBrickWork_ESTD = Math.ceil(materlID.SF_Brick_Work_QTD * SFBrickWork_Factor);
+        var SfSlabShuttering_ESTD = Math.ceil(materlID.SF_Slab_Shuttering_QTD * SFSlabShuttering_Factor);
+        var SfSlabReinforcement_ESTD = Math.ceil(materlID.SF_Slab_Reinforcement_QTD * SFSlabReinforcement_Factor);
+        // var SfSlabElectricalConducting_ESTD = materlID.SF_Slab_Electrical_Conducting_QTD > 0 ? 1 : 0;
+        var SfRCCSlab_ESTD = Math.ceil(materlID.SF_RCC_Slab_QTD * SFRCCSlab_Factor);
+
+
+
+
+
+        // Third Floor 
+
+
+
+        var TFColumnReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        var TFRCCColumn_Factor = 0.04 / QUANTITIESDONE_L5;
+        var TFBrickWork_Factor = 0.333 / QUANTITIESDONE_L5;
+        var TFSlabShuttering_Factor = 0.037 / QUANTITIESDONE_L5;
+        var TFSlabReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        var TFSlabElectricalConducting_Factor = 1;
+        var TFRCCSlab_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : (QUANTITIESDONE_G5 === 2 ? 0.02 : 0)) / QUANTITIESDONE_L5;
+
+
+
+        var TfColumnReinforcement_ESTD = Math.ceil(materlID.TF_Column_Reinforcement_QTD * TFColumnReinforcement_Factor);
+        var TfRCCColumn_ESTD = Math.ceil(materlID.TF_RCC_Column_QTD * TFRCCColumn_Factor);
+        var TfBrickWork_ESTD = Math.ceil(materlID.TF_Brick_Work_QTD * TFBrickWork_Factor);
+        var TfSlabShuttering_ESTD = Math.ceil(materlID.TF_Slab_Shuttering_QTD * TFSlabShuttering_Factor);
+        var TfSlabReinforcement_ESTD = Math.ceil(materlID.TF_Slab_Reinforcement_QTD * TFSlabReinforcement_Factor);
+        // var TfSlabElectricalConducting_ESTD = materlID.TF_Slab_Electrical_Conducting_QTD > 0 ? 1 : 0;
+        var TfRCCSlab_ESTD = Math.ceil(materlID.TF_RCC_Slab_QTD * TFRCCSlab_Factor);
+
+
+
+
+
+        // Fourth Floor
+
+
+
+        var FoFColumnReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        var FoFRCCColumn_Factor = 0.04 / QUANTITIESDONE_L5;
+        var FoFBrickWork_Factor = 0.333 / QUANTITIESDONE_L5;
+        var FoFSlabShuttering_Factor = 0.037 / QUANTITIESDONE_L5;
+        var FoFSlabReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        var FoFSlabElectricalConducting_Factor = 1;
+        var FoFRCCSlab_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : (QUANTITIESDONE_G5 === 2 ? 0.02 : 0)) / QUANTITIESDONE_L5;
+
+
+
+        var FofColumnReinforcement_ESTD = Math.ceil(materlID.FoF_Column_Reinforcement_QTD * FoFColumnReinforcement_Factor);
+        var FofRCCColumn_ESTD = Math.ceil(materlID.FoF_RCC_Column_QTD * FoFRCCColumn_Factor);
+        var FofBrickWork_ESTD = Math.ceil(materlID.FoF_Brick_Work_QTD * FoFBrickWork_Factor);
+        var FofSlabShuttering_ESTD = Math.ceil(materlID.FoF_Slab_Shuttering_QTD * FoFSlabShuttering_Factor);
+        var FofSlabReinforcement_ESTD = Math.ceil(materlID.FoF_Slab_Reinforcement_QTD * FoFSlabReinforcement_Factor);
+        // var FofSlabElectricalConducting_ESTD = materlID.FoF_Slab_Electrical_Conducting_QTD > 0 ? 1 : 0;
+        var FofRCCSlab_ESTD = Math.ceil(materlID.FoF_RCC_Slab_QTD * FoFRCCSlab_Factor);
+
+
+
+
+
+
+
+
+        // Tower Floor 
+
+
+
+        var TowerColumnReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        var TowerRCCColumn_Factor = 0.04 / QUANTITIESDONE_L5;
+        var TowerBrickWork_Factor = 0.333 / QUANTITIESDONE_L5;
+        var TowerSlabShuttering_Factor = 0.037 / QUANTITIESDONE_L5;
+        var TowerSlabReinforcement_Factor = 0.002 / QUANTITIESDONE_L5;
+        var TowerSlabElectricalConducting_Factor = 1;
+        var TowerRCCSlab_Factor = (QUANTITIESDONE_G5 === 1 ? 0.04 : (QUANTITIESDONE_G5 === 2 ? 0.02 : 0)) / QUANTITIESDONE_L5;
+
+
+
+        var TowerColumnReinforcement_ESTD = Math.ceil(materlID.Tower_Column_Reinforcement_QTD * TowerColumnReinforcement_Factor);
+        var TowerRCCColumn_ESTD = Math.ceil(materlID.Tower_RCC_Column_QTD * TowerRCCColumn_Factor);
+        var TowerBrickWork_ESTD = Math.ceil(materlID.Tower_Brick_Work_QTD * TowerBrickWork_Factor);
+        var TowerSlabShuttering_ESTD = Math.ceil(materlID.Tower_Slab_Shuttering_QTD * TowerSlabShuttering_Factor);
+        var TowerSlabReinforcement_ESTD = Math.ceil(materlID.Tower_Slab_Reinforcement_QTD * TowerSlabReinforcement_Factor);
+        // var TowerSlabElectricalConducting_ESTD = materlID.Tower_Slab_Electrical_Conducting_QTD > 0 ? 1 : 0;
+        var TowerRCCSlab_ESTD = Math.ceil(materlID.Tower_RCC_Slab_QTD * TowerRCCSlab_Factor);
+
+
+
+
+
+
+        // Brick Work
+
+
+        var DoorWindowWoodenMSFrame_Factor = 0.667 / QUANTITIESDONE_L5;
+        var B1BrickWork_Factor = 0.467 / QUANTITIESDONE_L5;
+        var B2BrickWork_Factor = 0.467 / QUANTITIESDONE_L5;
+        var B3BrickWork_Factor = 0.467 / QUANTITIESDONE_L5;
+        var B4BrickWork_Factor = 0.467 / QUANTITIESDONE_L5;
+        var GFBrickWork_Factor = 0.467 / QUANTITIESDONE_L5;
+        var FFBrickWork_Factor = 0.467 / QUANTITIESDONE_L5;
+        var SFBrickWork_Factor = 0.467 / QUANTITIESDONE_L5;
+        var TFBrickWork_Factor = 0.467 / QUANTITIESDONE_L5;
+        var FoFBrickWork_Factor = 0.467 / QUANTITIESDONE_L5;
+        var TowerBrickWork_Factor = 0.467 / QUANTITIESDONE_L5;
+
+
+
+        // var doorAndWindowWoodenMSFrame_ESTD = Math.ceil(Door_and_Window_Frame_QTD * DoorWindowWoodenMSFrame_Factor);
+        var b1BrickWork_ESTD = Math.ceil(materlID.B1_Brick_Work_QTD * B1BrickWork_Factor);
+        var b2BrickWork_ESTD = Math.ceil(materlID.B2_Brick_Work_QTD * B2BrickWork_Factor);
+        var b3BrickWork_ESTD = Math.ceil(materlID.B3_Brick_Work_QTD * B3BrickWork_Factor);
+        var b4BrickWork_ESTD = Math.ceil(materlID.B4_Brick_Work_QTD * B4BrickWork_Factor);
+        var Real_gfBrickWork_ESTD = Math.ceil(materlID.GF_Brick_Work_QTD * GFBrickWork_Factor);
+        var ffBrickWork_ESTD = Math.ceil(materlID.FF_Brick_Work_QTD * FFBrickWork_Factor);
+        var sfBrickWork_ESTD = Math.ceil(materlID.SF_Brick_Work_QTD * SFBrickWork_Factor);
+        var tfBrickWork_ESTD = Math.ceil(materlID.TF_Brick_Work_QTD * TFBrickWork_Factor);
+        var fofBrickWork_ESTD = Math.ceil(materlID.FoF_Brick_Work_QTD * FoFBrickWork_Factor);
+        var towerBrickWork_ESTD = Math.ceil(materlID.Tower_Brick_Work_QTD * TowerBrickWork_Factor);
+
+
+
+
+
+
+
+        // Electrical Wall Conditing
+
+
+        var B1ElectricalConducting_Factor = 0.049 / QUANTITIESDONE_L5;
+        var B2ElectricalConducting_Factor = 0.049 / QUANTITIESDONE_L5;
+        var B3ElectricalConducting_Factor = 0.049 / QUANTITIESDONE_L5;
+        var B4ElectricalConducting_Factor = 0.049 / QUANTITIESDONE_L5;
+        var GFElectricalConducting_Factor = 0.049 / QUANTITIESDONE_L5;
+        var FFElectricalConducting_Factor = 0.049 / QUANTITIESDONE_L5;
+        var SFElectricalConducting_Factor = 0.049 / QUANTITIESDONE_L5;
+        var TFElectricalConducting_Factor = 0.049 / QUANTITIESDONE_L5;
+        var FoFElectricalConducting_Factor = 0.049 / QUANTITIESDONE_L5;
+        var TowerElectricalConducting_Factor = 0.049 / QUANTITIESDONE_L5;
+
+
+        var b1ElectricalConduiting_ESTD = Math.ceil(materlID.B1_Electrical_Conducting_QTD * B1ElectricalConducting_Factor);
+        var b2ElectricalConduiting_ESTD = Math.ceil(materlID.B2_Electrical_Conducting_QTD * B2ElectricalConducting_Factor);
+        var b3ElectricalConduiting_ESTD = Math.ceil(materlID.B3_Electrical_Conducting_QTD * B3ElectricalConducting_Factor);
+        var b4ElectricalConduiting_ESTD = Math.ceil(materlID.B4_Electrical_Conducting_QTD * B4ElectricalConducting_Factor);
+        var gfElectricalConduiting_ESTD = Math.ceil(materlID.GF_Electrical_Conducting_QTD * GFElectricalConducting_Factor);
+        var ffElectricalConduiting_ESTD = Math.ceil(materlID.FF_Electrical_Conducting_QTD * FFElectricalConducting_Factor);
+        var sfElectricalConduiting_ESTD = Math.ceil(materlID.SF_Electrical_Conducting_QTD * SFElectricalConducting_Factor);
+        var tfElectricalConduiting_ESTD = Math.ceil(materlID.TF_Electrical_Conducting_QTD * TFElectricalConducting_Factor);
+        var fofElectricalConduiting_ESTD = Math.ceil(materlID.FoF_Electrical_Conducting_QTD * FoFElectricalConducting_Factor);
+        var towerElectricalConduiting_ESTD = Math.ceil(materlID.Tower_Electrical_Conducting_QTD * TowerElectricalConducting_Factor);
+
+
+
+
+
+
+
+
+        // Plumbing 
+
+
+
+
+        // var B1PipeWorkBelowFloorLevel_Factor = 0.019 / QUANTITIESDONE_L5;
+        // var B1SunkenFillingCOBAWaste_Factor = 0.058 / QUANTITIESDONE_L5;
+        // var B1WallConductingInternalFittings_Factor = 0.022 / QUANTITIESDONE_L5;
+        // var B1Waterproofing_Factor = 0.044 / QUANTITIESDONE_L5;
+
+
+
+        // var b1PipeWorkBelowFloorLevel_ESTD = Math.ceil(B1_Pipe_Work_Below_Floor_Level_QTD * B1PipeWorkBelowFloorLevel_Factor);
+        // var b1SunkenFillingCOBAWaste_ESTD = Math.ceil(B1_Sunken_Filling_COBA_Waste_QTD * B1SunkenFillingCOBAWaste_Factor);
+        // var b1WallConduitingInternalFittings_ESTD = Math.ceil(B1_Wall_Conducting_Internal_Fittings_QTD * B1WallConductingInternalFittings_Factor);
+        // var b1Waterproofing_ESTD = Math.ceil(B1_Waterproofing_QTD * B1Waterproofing_Factor);
+
+
+
+
+        // var B2PipeWorkBelowFloorLevel_Factor = 0.019 / QUANTITIESDONE_L5;
+        // var B2SunkenFillingCOBAWaste_Factor = 0.058 / QUANTITIESDONE_L5;
+        // var B2WallConductingInternalFittings_Factor = 0.022 / QUANTITIESDONE_L5;
+        // var B2Waterproofing_Factor = 0.044 / QUANTITIESDONE_L5;
+
+
+
+        // var b2PipeWorkBelowFloorLevel_ESTD = Math.ceil(B2_Pipe_Work_Below_Floor_Level_QTD * B2PipeWorkBelowFloorLevel_Factor);
+        // var b2SunkenFillingCOBAWaste_ESTD = Math.ceil(B2_Sunken_Filling_COBA_Waste_QTD * B2SunkenFillingCOBAWaste_Factor);
+        // var b2WallConduitingInternalFittings_ESTD = Math.ceil(B2_Wall_Conducting_Internal_Fittings_QTD * B2WallConductingInternalFittings_Factor);
+        // var b2Waterproofing_ESTD = Math.ceil(B2_Waterproofing_QTD * B2Waterproofing_Factor);
+
+
+
+
+        // var B3PipeWorkBelowFloorLevel_Factor = 0.019 / QUANTITIESDONE_L5;
+        // var B3SunkenFillingCOBAWaste_Factor = 0.058 / QUANTITIESDONE_L5;
+        // var B3WallConductingInternalFittings_Factor = 0.022 / QUANTITIESDONE_L5;
+        // var B3Waterproofing_Factor = 0.044 / QUANTITIESDONE_L5;
+
+
+
+        // var b3PipeWorkBelowFloorLevel_ESTD = Math.ceil(B3_Pipe_Work_Below_Floor_Level_QTD * B3PipeWorkBelowFloorLevel_Factor);
+        // var b3SunkenFillingCOBAWaste_ESTD = Math.ceil(B3_Sunken_Filling_COBA_Waste_QTD * B3SunkenFillingCOBAWaste_Factor);
+        // var b3WallConduitingInternalFittings_ESTD = Math.ceil(B3_Wall_Conducting_Internal_Fittings_QTD * B3WallConductingInternalFittings_Factor);
+        // var b3Waterproofing_ESTD = Math.ceil(B3_Waterproofing_QTD * B3Waterproofing_Factor);
+
+
+
+
+
+        // var B4PipeWorkBelowFloorLevel_Factor = 0.019 / QUANTITIESDONE_L5;
+        // var B4SunkenFillingCOBAWaste_Factor = 0.058 / QUANTITIESDONE_L5;
+        // var B4WallConductingInternalFittings_Factor = 0.022 / QUANTITIESDONE_L5;
+        // var B4Waterproofing_Factor = 0.044 / QUANTITIESDONE_L5;
+
+
+
+        // var b4PipeWorkBelowFloorLevel_ESTD = Math.ceil(B4_Pipe_Work_Below_Floor_Level_QTD * B4PipeWorkBelowFloorLevel_Factor);
+        // var b4SunkenFillingCOBAWaste_ESTD = Math.ceil(B4_Sunken_Filling_COBA_Waste_QTD * B4SunkenFillingCOBAWaste_Factor);
+        // var b4WallConduitingInternalFittings_ESTD = Math.ceil(B4_Wall_Conducting_Internal_Fittings_QTD * B4WallConductingInternalFittings_Factor);
+        // var b4Waterproofing_ESTD = Math.ceil(B4_Waterproofing_QTD * B4Waterproofing_Factor);
+
+
+
+
+
+
+
+        var GFPipeWorkBelowFloorLevel_Factor = 0.019 / QUANTITIESDONE_L5;
+        var GFSunkenFillingCOBAWaste_Factor = 0.058 / QUANTITIESDONE_L5;
+        var GFWallConductingInternalFittings_Factor = 0.022 / QUANTITIESDONE_L5;
+        var GFWaterproofing_Factor = 0.044 / QUANTITIESDONE_L5;
+
+
+
+        var GFPipeWorkBelowFloorLevel_ESTD = Math.ceil(materlID.GF_Pipe_Work_Below_Floor_Level_QTD * GFPipeWorkBelowFloorLevel_Factor);
+        var GFSunkenFillingCOBAWaste_ESTD = Math.ceil(materlID.GF_Sunken_Filling_COBA_Waste_QTD * GFSunkenFillingCOBAWaste_Factor);
+        // var GFWallConduitingInternalFittings_ESTD = Math.ceil(materlID.GF_Wall_Conducting_Internal_Fittings_QTD * GFWallConductingInternalFittings_Factor);
+        var GFWaterproofing_ESTD = Math.ceil(materlID.GF_Waterproofing_QTD * GFWaterproofing_Factor);
+
+
+
+
+
+
+
+
+        var FFPipeWorkBelowFloorLevel_Factor = 0.019 / QUANTITIESDONE_L5;
+        var FFSunkenFillingCOBAWaste_Factor = 0.058 / QUANTITIESDONE_L5;
+        var FFWallConductingInternalFittings_Factor = 0.022 / QUANTITIESDONE_L5;
+        var FFWaterproofing_Factor = 0.044 / QUANTITIESDONE_L5;
+
+
+
+        var FFPipeWorkBelowFloorLevel_ESTD = Math.ceil(materlID.FF_Pipe_Work_Below_Floor_Level_QTD * FFPipeWorkBelowFloorLevel_Factor);
+        var FFSunkenFillingCOBAWaste_ESTD = Math.ceil(materlID.FF_Sunken_Filling_COBA_Waste_QTD * FFSunkenFillingCOBAWaste_Factor);
+        // var FFWallConduitingInternalFittings_ESTD = Math.ceil(materlID.FF_Wall_Conducting_Internal_Fittings_QTD * FFWallConductingInternalFittings_Factor);
+        var FFWaterproofing_ESTD = Math.ceil(materlID.FF_Waterproofing_QTD * FFWaterproofing_Factor);
+
+
+
+
+
+
+
+        var SFPipeWorkBelowFloorLevel_Factor = 0.019 / QUANTITIESDONE_L5;
+        var SFSunkenFillingCOBAWaste_Factor = 0.058 / QUANTITIESDONE_L5;
+        var SFWallConductingInternalFittings_Factor = 0.022 / QUANTITIESDONE_L5;
+        var SFWaterproofing_Factor = 0.044 / QUANTITIESDONE_L5;
+
+
+
+        var SFPipeWorkBelowFloorLevel_ESTD = Math.ceil(materlID.SF_Pipe_Work_Below_Floor_Level_QTD * SFPipeWorkBelowFloorLevel_Factor);
+        var SFSunkenFillingCOBAWaste_ESTD = Math.ceil(materlID.SF_Sunken_Filling_COBA_Waste_QTD * SFSunkenFillingCOBAWaste_Factor);
+        // var SFWallConduitingInternalFittings_ESTD = Math.ceil(materlID.SF_Wall_Conducting_Internal_Fittings_QTD * SFWallConductingInternalFittings_Factor);
+        var SFWaterproofing_ESTD = Math.ceil(materlID.SF_Waterproofing_QTD * SFWaterproofing_Factor);
+
+
+
+
+
+        var TFPipeWorkBelowFloorLevel_Factor = 0.019 / QUANTITIESDONE_L5;
+        var TFSunkenFillingCOBAWaste_Factor = 0.058 / QUANTITIESDONE_L5;
+        var TFWallConductingInternalFittings_Factor = 0.022 / QUANTITIESDONE_L5;
+        var TFWaterproofing_Factor = 0.044 / QUANTITIESDONE_L5;
+
+
+
+        var TFPipeWorkBelowFloorLevel_ESTD = Math.ceil(materlID.TF_Pipe_Work_Below_Floor_Level_QTD * TFPipeWorkBelowFloorLevel_Factor);
+        var TFSunkenFillingCOBAWaste_ESTD = Math.ceil(materlID.TF_Sunken_Filling_COBA_Waste_QTD * TFSunkenFillingCOBAWaste_Factor);
+        // var TFWallConduitingInternalFittings_ESTD = Math.ceil(materlID.TF_Wall_Conducting_Internal_Fittings_QTD * TFWallConductingInternalFittings_Factor);
+        var TFWaterproofing_ESTD = Math.ceil(materlID.TF_Waterproofing_QTD * TFWaterproofing_Factor);
+
+
+
+
+
+
+        var FoFPipeWorkBelowFloorLevel_Factor = 0.019 / QUANTITIESDONE_L5;
+        var FoFSunkenFillingCOBAWaste_Factor = 0.058 / QUANTITIESDONE_L5;
+        var FoFWallConductingInternalFittings_Factor = 0.022 / QUANTITIESDONE_L5;
+        var FoFWaterproofing_Factor = 0.044 / QUANTITIESDONE_L5;
+
+
+
+        var FoFPipeWorkBelowFloorLevel_ESTD = Math.ceil(materlID.FoF_Pipe_Work_Below_Floor_Level_QTD * FoFPipeWorkBelowFloorLevel_Factor);
+        var FoFSunkenFillingCOBAWaste_ESTD = Math.ceil(materlID.FoF_Sunken_Filling_COBA_Waste_QTD * FoFSunkenFillingCOBAWaste_Factor);
+        // var FoFWallConduitingInternalFittings_ESTD = Math.ceil(materlID.FoF_Wall_Conducting_Internal_Fittings_QTD * FoFWallConductingInternalFittings_Factor);
+        var FoFWaterproofing_ESTD = Math.ceil(materlID.FoF_Waterproofing_QTD * FoFWaterproofing_Factor);
+
+
+
+
+
+
+        var TowerPipeWorkBelowFloorLevel_Factor = 0.019 / QUANTITIESDONE_L5;
+        var TowerSunkenFillingCOBAWaste_Factor = 0.058 / QUANTITIESDONE_L5;
+        var TowerWallConductingInternalFittings_Factor = 0.022 / QUANTITIESDONE_L5;
+        var TowerWaterproofing_Factor = 0.044 / QUANTITIESDONE_L5;
+
+
+
+        var TowerPipeWorkBelowFloorLevel_ESTD = Math.ceil(materlID.Tower_Pipe_Work_Below_Floor_Level_QTD * TowerPipeWorkBelowFloorLevel_Factor);
+        var TowerSunkenFillingCOBAWaste_ESTD = Math.ceil(materlID.Tower_Sunken_Filling_COBA_Waste_QTD * TowerSunkenFillingCOBAWaste_Factor);
+        // var TowerWallConduitingInternalFittings_ESTD = Math.ceil(materlID.Tower_Wall_Conducting_Internal_Fittings_QTD * TowerWallConductingInternalFittings_Factor);
+        var TowerWaterproofing_ESTD = Math.ceil(materlID.Tower_Waterproofing_QTD * TowerWaterproofing_Factor);
+
+
+
+
+
+        var RainWaterHarvesting_Factor = 0.032 / QUANTITIESDONE_L5;
+        var AC_Factor = 0.022 / QUANTITIESDONE_L5;
+        var ReverseLine_Factor = 0.022 / QUANTITIESDONE_L5;
+        var SeparateIndividualLinePerFloor_Factor = 0.022 / QUANTITIESDONE_L5;
+        var WaterTank_Factor = 1 / QUANTITIESDONE_L5;
+        var SolarHeaterGeyserLine_Factor = 0.022 / QUANTITIESDONE_L5;
+
+
+        // var rainWaterHarvesting_ESTD = Math.ceil(Rain_Water_Harvesting_QTD * RainWaterHarvesting_Factor);
+        var ac_ESTD = Math.ceil(materlID.AC_QTD * AC_Factor);
+        // var reverseLine_ESTD = Math.ceil(Reverse_Line_QTD * ReverseLine_Factor);
+        // var separateIndividualLinePerFloor_ESTD = Math.ceil(Separate_Individual_Line_Per_Floor_QTD * SeparateIndividualLinePerFloor_Factor);
+        // var waterTank_ESTD = Math.ceil(Water_Tank_QTD * WaterTank_Factor);
+        // var solarHeaterGeyserLine_ESTD = Math.ceil(Solar_Heater_Geyser_Line_QTD * SolarHeaterGeyserLine_Factor);
+
+
+
+
+
+        // Plaster
+
+
+
+
+        var B1PlasterWork_Factor = 0.011 / QUANTITIESDONE_L5;
+        var B2PlasterWork_Factor = 0.011 / QUANTITIESDONE_L5;
+        var B3PlasterWork_Factor = 0.011 / QUANTITIESDONE_L5;
+        var B4PlasterWork_Factor = 0.011 / QUANTITIESDONE_L5;
+        var GFPlasterWork_Factor = 0.011 / QUANTITIESDONE_L5;
+        var FFPlasterWork_Factor = 0.011 / QUANTITIESDONE_L5;
+        var SFPlasterWork_Factor = 0.011 / QUANTITIESDONE_L5;
+        var TFPlasterWork_Factor = 0.011 / QUANTITIESDONE_L5;
+        var FoFPlasterWork_Factor = 0.011 / QUANTITIESDONE_L5;
+        var TowerPlasterWork_Factor = 0.011 / QUANTITIESDONE_L5;
+
+        var ceilingPlaster_Factor = 0.011 / QUANTITIESDONE_L5;
+        var nonElevationSide_Factor = 0.015 / QUANTITIESDONE_L5;
+        var weatherBoard_Factor = 0.105 / QUANTITIESDONE_L5;
+        var elevationSide_Factor = 0.02 / QUANTITIESDONE_L5;
+        var punning_Factor = 0.04 / QUANTITIESDONE_L5;
+
+
+
+        var b1PlasterWork_ESTD = Math.ceil(materlID.B1_Plaster_Work_QTD * B1PlasterWork_Factor);
+        var b2PlasterWork_ESTD = Math.ceil(materlID.B2_Plaster_Work_QTD * B2PlasterWork_Factor);
+        var b3PlasterWork_ESTD = Math.ceil(materlID.B3_Plaster_Work_QTD * B3PlasterWork_Factor);
+        var b4PlasterWork_ESTD = Math.ceil(materlID.B4_Plaster_Work_QTD * B4PlasterWork_Factor);
+        var gfPlasterWork_ESTD = Math.ceil(materlID.GF_Plaster_Work_QTD * GFPlasterWork_Factor);
+        var ffPlasterWork_ESTD = Math.ceil(materlID.FF_Plaster_Work_QTD * FFPlasterWork_Factor);
+        var sfPlasterWork_ESTD = Math.ceil(materlID.SF_Plaster_Work_QTD * SFPlasterWork_Factor);
+        var tfPlasterWork_ESTD = Math.ceil(materlID.TF_Plaster_Work_QTD * TFPlasterWork_Factor);
+        var fofPlasterWork_ESTD = Math.ceil(materlID.FoF_Plaster_Work_QTD * FoFPlasterWork_Factor);
+        var towerPlasterWork_ESTD = Math.ceil(materlID.Tower_Plaster_Work_QTD * TowerPlasterWork_Factor);
+
+
+        var ceilingPlaster_ESTD = materlID.Ceiling_Plaster_QTD === 0 ? 0 : b1PlasterWork_ESTD + b2PlasterWork_ESTD + b3PlasterWork_ESTD + b4PlasterWork_ESTD + gfPlasterWork_ESTD + ffPlasterWork_ESTD + sfPlasterWork_ESTD + tfPlasterWork_ESTD + fofPlasterWork_ESTD + towerPlasterWork_ESTD;
+        var nonElevationSide_ESTD = Math.ceil(materlID.Non_Elevation_Side_QTD * nonElevationSide_Factor);
+        var weatherBoard_ESTD = Math.ceil(materlID.Weather_Board_QTD * weatherBoard_Factor);
+        var elevationSide_ESTD = Math.ceil(materlID.Elevation_Side_QTD * elevationSide_Factor);
+        var punning_ESTD = Math.ceil(materlID.Punning_QTD * punning_Factor);
+
+
+
+
+
+
+
+        // Chowkat Work - Wooden | Granite
+
+
+
+        var B1ChowkatStone_Factor = 0.067 / QUANTITIESDONE_L5;
+        //Anuj
+        var B2ChowkatStone_Factor = 0.067 / QUANTITIESDONE_L5;
+        var B3ChowkatStone_Factor = 0.067 / QUANTITIESDONE_L5;
+        var B4ChowkatStone_Factor = 0.067 / QUANTITIESDONE_L5;
+        var GFChowkatStone_Factor = 0.067 / QUANTITIESDONE_L5;
+        var FFChowkatStone_Factor = 0.067 / QUANTITIESDONE_L5;
+        var SFChowkatStone_Factor = 0.067 / QUANTITIESDONE_L5;
+        var TFChowkatStone_Factor = 0.067 / QUANTITIESDONE_L5;
+        var FoFChowkatStone_Factor = 0.067 / QUANTITIESDONE_L5;
+        var TowerChowkatStone_Factor = 0.067 / QUANTITIESDONE_L5;
+        //Anuj
+        var ParapetWorkRailingBoundaryWall_Factor = B1ChowkatStone_Factor;
+        var GrillMSWork_Factor = 0.01 / QUANTITIESDONE_L5;
+        var MainGate_Factor = 0.01 / QUANTITIESDONE_L5;
+        var BackSideCover_Factor = 0.01 / QUANTITIESDONE_L5;
+        var BackDuctCover_Factor = 0.01 / QUANTITIESDONE_L5;
+        var CutOutCover_Factor = 0.01 / QUANTITIESDONE_L5;
+        var Elevation_Factor = 0.01 / QUANTITIESDONE_L5;
+        var Gazeebo_Factor = 0.01 / QUANTITIESDONE_L5;
+
+
+
+
+
+        var b1ChowkatStone_ESTD = Math.ceil(materlID.B1_Chowkat_Stone_QTD * B1ChowkatStone_Factor);
+        //Anuj
+        var b2ChowkatStone_ESTD = Math.ceil(materlID.B2_Chowkat_Stone_QTD * B2ChowkatStone_Factor);
+        var b3ChowkatStone_ESTD = Math.ceil(materlID.B3_Chowkat_Stone_QTD * B3ChowkatStone_Factor);
+        var b4ChowkatStone_ESTD = Math.ceil(materlID.B4_Chowkat_Stone_QTD * B4ChowkatStone_Factor);
+        var gfChowkatStone_ESTD = Math.ceil(materlID.GF_Chowkat_Stone_QTD * GFChowkatStone_Factor);
+        var ffChowkatStone_ESTD = Math.ceil(materlID.FF_Chowkat_Stone_QTD * FFChowkatStone_Factor);
+        var sfChowkatStone_ESTD = Math.ceil(materlID.SF_Chowkat_Stone_QTD * SFChowkatStone_Factor);
+        var tfChowkatStone_ESTD = Math.ceil(materlID.TF_Chowkat_Stone_QTD * TFChowkatStone_Factor);
+        var fofChowkatStone_ESTD = Math.ceil(materlID.FoF_Chowkat_Stone_QTD * FoFChowkatStone_Factor);
+        var towerChowkatStone_ESTD = Math.ceil(materlID.Tower_Chowkat_Stone_QTD * TowerChowkatStone_Factor);
+        //Anuj
+        var parapetWorkRailingBoundaryWall_ESTD = Math.ceil(materlID.Parapet_Work_Railing_Boundary_Wall_QTD * ParapetWorkRailingBoundaryWall_Factor);
+        var grillMSWork_ESTD = Math.ceil(materlID.Grill_MS_Work_QTD * GrillMSWork_Factor);
+        var mainGate_ESTD = Math.ceil(materlID.Main_Gate_QTD * MainGate_Factor);
+        var backSideCover_ESTD = Math.ceil(materlID.Back_Side_Cover_QTD * BackSideCover_Factor);
+        var backDuctCover_ESTD = Math.ceil(materlID.Back_Duct_Cover_QTD * BackDuctCover_Factor);
+        var cutOutCover_ESTD = Math.ceil(materlID.Cut_Out_Cover_QTD * CutOutCover_Factor);
+        var elevation_ESTD = Math.ceil(materlID.Elevation_QTD * Elevation_Factor);
+        var gazeebo_ESTD = Math.ceil(materlID.Gazeebo_QTD * Gazeebo_Factor);
+
+
+
+
+
+        //Anuj
+        //POP Framing 
+        var b1PopFraming_Factor = 0.05 / QUANTITIESDONE_L5;
+        var b2PopFraming_Factor = 0.05 / QUANTITIESDONE_L5;
+        var b3PopFraming_Factor = 0.05 / QUANTITIESDONE_L5;
+        var b4PopFraming_Factor = 0.05 / QUANTITIESDONE_L5;
+        var gfPopFraming_Factor = 0.05 / QUANTITIESDONE_L5;
+        var ffPopFraming_Factor = 0.05 / QUANTITIESDONE_L5;
+        var sfPopFraming_Factor = 0.05 / QUANTITIESDONE_L5;
+        var tfPopFraming_Factor = 0.05 / QUANTITIESDONE_L5;
+        var fofPopFraming_Factor = 0.05 / QUANTITIESDONE_L5;
+        var towerPopFraming_Factor = 0.05 / QUANTITIESDONE_L5;
+
+
+        var balconyPVC_Factor = 0.05 / QUANTITIESDONE_L5;
+        var parkingPVC_Factor = 0.05 / QUANTITIESDONE_L5;
+        var washroomPVC_Factor = 0.05 / QUANTITIESDONE_L5;
+
+
+
+        var b1PopFraming_ESTD = Math.ceil(materlID.B1_POP_Framing_QTD * b1PopFraming_Factor);
+        var b2PopFraming_ESTD = Math.ceil(materlID.B2_POP_Framing_QTD * b2PopFraming_Factor);
+        var b3PopFraming_ESTD = Math.ceil(materlID.B3_POP_Framing_QTD * b3PopFraming_Factor);
+        var b4PopFraming_ESTD = Math.ceil(materlID.B4_POP_Framing_QTD * b4PopFraming_Factor);
+        var gfPopFraming_ESTD = Math.ceil(materlID.GF_POP_Framing_QTD * gfPopFraming_Factor);
+        var ffPopFraming_ESTD = Math.ceil(materlID.FF_POP_Framing_QTD * ffPopFraming_Factor);
+        var sfPopFraming_ESTD = Math.ceil(materlID.SF_POP_Framing_QTD * sfPopFraming_Factor);
+        var tfPopFraming_ESTD = Math.ceil(materlID.TF_POP_Framing_QTD * tfPopFraming_Factor);
+        var fofPopFraming_ESTD = Math.ceil(materlID.FoF_POP_Framing_QTD * fofPopFraming_Factor);
+        var towerPopFraming_ESTD = Math.ceil(materlID.Tower_POP_Framing_QTD * towerPopFraming_Factor);
+
+        var OnebalconyPVC_ESTD = Math.ceil(materlID.Balcony_PVC_QTD * balconyPVC_Factor);
+        var OneparkingPVC_ESTD = Math.ceil(materlID.Parking_PVC_QTD * parkingPVC_Factor);
+        var OnewashroomPVC_ESTD = Math.ceil(materlID.Washroom_PVC_QTD * washroomPVC_Factor);
+
+
+
+
+        // //Anuj
+        // //Wiring 
+
+        // var b1Wiring_Factor = 0.76 / QUANTITIESDONE_L5;
+        // var b2Wiring_Factor = 0.76 / QUANTITIESDONE_L5;
+        // var b3Wiring_Factor = 0.76 / QUANTITIESDONE_L5;
+        // var b4Wiring_Factor = 0.76 / QUANTITIESDONE_L5;
+        // var gfWiring_Factor = 0.76 / QUANTITIESDONE_L5;
+        // var ffWiring_Factor = 0.76 / QUANTITIESDONE_L5;
+        // var sfWiring_Factor = 0.76 / QUANTITIESDONE_L5;
+        // var tfWiring_Factor = 0.76 / QUANTITIESDONE_L5;
+        // var fofWiring_Factor = 0.76 / QUANTITIESDONE_L5;
+        // var towerWiring_Factor = 0.76 / QUANTITIESDONE_L5;
+
+
+        // //Anuj
+        // var b1Wiring_ESTD = Math.ceil(B1_Wiring_QTD * b1Wiring_Factor);
+        // var b2Wiring_ESTD = Math.ceil(B2_Wiring_QTD * b2Wiring_Factor);
+        // var b3Wiring_ESTD = Math.ceil(B3_Wiring_QTD * b3Wiring_Factor);
+        // var b4Wiring_ESTD = Math.ceil(B4_Wiring_QTD * b4Wiring_Factor);
+        // var gfWiring_ESTD = Math.ceil(GF_Wiring_QTD * gfWiring_Factor);
+        // var ffWiring_ESTD = Math.ceil(FF_Wiring_QTD * ffWiring_Factor);
+        // var sfWiring_ESTD = Math.ceil(SF_Wiring_QTD * sfWiring_Factor);
+        // var tfWiring_ESTD = Math.ceil(TF_Wiring_QTD * tfWiring_Factor);
+        // var fofWiring_ESTD = Math.ceil(FoF_Wiring_QTD * fofWiring_Factor);
+        // var towerWiring_ESTD = Math.ceil(Tower_Wiring_QTD * towerWiring_Factor);
+
+
+        // //Anuj
+        // //Flase Ceiling Covering Work
+
+        // var b1BoardingPOP_Factor = 0.061 / QUANTITIESDONE_L5;
+        // var b2BoardingPOP_Factor = 0.061 / QUANTITIESDONE_L5;
+        // var b3BoardingPOP_Factor = 0.061 / QUANTITIESDONE_L5;
+        // var b4BoardingPOP_Factor = 0.061 / QUANTITIESDONE_L5;
+        // var gfBoardingPOP_Factor = 0.061 / QUANTITIESDONE_L5;
+        // var ffBoardingPOP_Factor = 0.061 / QUANTITIESDONE_L5;
+        // var sfBoardingPOP_Factor = 0.061 / QUANTITIESDONE_L5;
+        // var tfBoardingPOP_Factor = 0.061 / QUANTITIESDONE_L5;
+        // var fofBoardingPOP_Factor = 0.061 / QUANTITIESDONE_L5;
+        // var towerBoardingPOP_Factor = 0.061 / QUANTITIESDONE_L5;
+
+
+        // //Anuj
+
+        // var b1BoardingPOP_ESTD = Math.ceil(B1_Boarding_POP_QTD * b1BoardingPOP_Factor);
+        // var b2BoardingPOP_ESTD = Math.ceil(B2_Boarding_POP_QTD * b2BoardingPOP_Factor);
+        // var b3BoardingPOP_ESTD = Math.ceil(B3_Boarding_POP_QTD * b3BoardingPOP_Factor);
+        // var b4BoardingPOP_ESTD = Math.ceil(B4_Boarding_POP_QTD * b4BoardingPOP_Factor);
+        // var gfBoardingPOP_ESTD = Math.ceil(GF_Boarding_POP_QTD * gfBoardingPOP_Factor);
+        // var ffBoardingPOP_ESTD = Math.ceil(FF_Boarding_POP_QTD * ffBoardingPOP_Factor);
+        // var sfBoardingPOP_ESTD = Math.ceil(SF_Boarding_POP_QTD * sfBoardingPOP_Factor);
+        // var tfBoardingPOP_ESTD = Math.ceil(TF_Boarding_POP_QTD * tfBoardingPOP_Factor);
+        // var fofBoardingPOP_ESTD = Math.ceil(FoF_Boarding_POP_QTD * fofBoardingPOP_Factor);
+        // var towerBoardingPOP_ESTD = Math.ceil(Tower_Boarding_POP_QTD * towerBoardingPOP_Factor);
+
+
+
+        //Anuj
+        //Internal White Wash Work
+        var FINALINPUTSDONE_I90 = quotationSelectedDetails.NumberofPuttyCoat;
+        var ALGORITHUMDONE_H373 = FINALINPUTSDONE_I90;
+
+        var b1PuttyWorkPrimerWork_Factor = 0.01 * ALGORITHUMDONE_H373 / QUANTITIESDONE_L5;
+        var b2PuttyWorkPrimerWork_Factor = 0.01 * ALGORITHUMDONE_H373 / QUANTITIESDONE_L5;
+        var b3PuttyWorkPrimerWork_Factor = 0.01 * ALGORITHUMDONE_H373 / QUANTITIESDONE_L5;
+        var b4PuttyWorkPrimerWork_Factor = 0.01 * ALGORITHUMDONE_H373 / QUANTITIESDONE_L5;
+        var gfPuttyWorkPrimerWork_Factor = 0.01 * ALGORITHUMDONE_H373 / QUANTITIESDONE_L5;
+        var ffPuttyWorkPrimerWork_Factor = 0.01 * ALGORITHUMDONE_H373 / QUANTITIESDONE_L5;
+        var sfPuttyWorkPrimerWork_Factor = 0.01 * ALGORITHUMDONE_H373 / QUANTITIESDONE_L5;
+        var tfPuttyWorkPrimerWork_Factor = 0.01 * ALGORITHUMDONE_H373 / QUANTITIESDONE_L5;
+        var fofPuttyWorkPrimerWork_Factor = 0.01 * ALGORITHUMDONE_H373 / QUANTITIESDONE_L5;
+        var towerPuttyWorkPrimerWork_Factor = 0.01 * ALGORITHUMDONE_H373 / QUANTITIESDONE_L5;
+
+        var balconyPVC_Factor = 0.01 * ALGORITHUMDONE_H373 / QUANTITIESDONE_L5;
+        var parkingPVC_Factor = 0.01 * ALGORITHUMDONE_H373 / QUANTITIESDONE_L5;
+        var washroomPVC_Factor = 0.01 * ALGORITHUMDONE_H373 / QUANTITIESDONE_L5;
+
+        //Anuj
+        var b1PuttyWorkPrimerWork_ESTD = Math.ceil(materlID.B1_Putty_Primer_Work_QTD * b1PuttyWorkPrimerWork_Factor);
+        var b2PuttyWorkPrimerWork_ESTD = Math.ceil(materlID.B2_Putty_Primer_Work_QTD * b2PuttyWorkPrimerWork_Factor);
+        var b3PuttyWorkPrimerWork_ESTD = Math.ceil(materlID.B3_Putty_Primer_Work_QTD * b3PuttyWorkPrimerWork_Factor);
+        var b4PuttyWorkPrimerWork_ESTD = Math.ceil(materlID.B4_Putty_Primer_Work_QTD * b4PuttyWorkPrimerWork_Factor);
+        var gfPuttyWorkPrimerWork_ESTD = Math.ceil(materlID.GF_Putty_Primer_Work_QTD * gfPuttyWorkPrimerWork_Factor);
+        var ffPuttyWorkPrimerWork_ESTD = Math.ceil(materlID.FF_Putty_Primer_Work_QTD * ffPuttyWorkPrimerWork_Factor);
+        var sfPuttyWorkPrimerWork_ESTD = Math.ceil(materlID.SF_Putty_Primer_Work_QTD * sfPuttyWorkPrimerWork_Factor);
+        var tfPuttyWorkPrimerWork_ESTD = Math.ceil(materlID.TF_Putty_Primer_Work_QTD * tfPuttyWorkPrimerWork_Factor);
+        var fofPuttyWorkPrimerWork_ESTD = Math.ceil(materlID.FoF_Putty_Primer_Work_QTD * fofPuttyWorkPrimerWork_Factor);
+        var towerPuttyWorkPrimerWork_ESTD = Math.ceil(materlID.Tower_Putty_Primer_Work_QTD * towerPuttyWorkPrimerWork_Factor);
+
+
+        var balconyPVC_ESTD = Math.ceil(materlID.Balcony_PVC_QTD * balconyPVC_Factor);
+        var parkingPVC_ESTD = Math.ceil(materlID.Parking_PVC_QTD * parkingPVC_Factor);
+        var washroomPVC_ESTD = Math.ceil(materlID.Washroom_PVC_QTD * washroomPVC_Factor);
+
+
+
+
+        //Anuj
+        // Tiling Work
+
+        var b1FloorTiling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var b2FloorTiling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var b3FloorTiling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var b4FloorTiling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var gfFloorTiling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var ffFloorTiling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var sfFloorTiling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var tfFloorTiling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var sfFloorTiling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var towerFloorTiling_Factor = 0.047 / QUANTITIESDONE_L5;
+
+        var otherAreaVerticalWall_Factor = 0.167 / QUANTITIESDONE_L5;
+        var platform_Factor = 0.047 / QUANTITIESDONE_L5;
+        var graniteRunning_Factor = 0.047 / QUANTITIESDONE_L5;
+        var terraceAreaFlooring_Factor = 0.047 / QUANTITIESDONE_L5;
+        var towerAreaFlooring_Factor = 0.047 / QUANTITIESDONE_L5;
+        var staircase_Factor = 0.047 / QUANTITIESDONE_L5;
+        var anyTankOrOtherArea_Factor = 0.047 / QUANTITIESDONE_L5;
+        var rampEntranceLevel_Factor = 0.047 / QUANTITIESDONE_L5;
+
+        // Anuj
+        var b1FloorTiling_ESTD = Math.ceil(materlID.B1_Floor_Tiling_QTD * b1FloorTiling_Factor);
+        var b2FloorTiling_ESTD = Math.ceil(materlID.B2_Floor_Tiling_QTD * b2FloorTiling_Factor);
+        var b3FloorTiling_ESTD = Math.ceil(materlID.B3_Floor_Tiling_QTD * b3FloorTiling_Factor);
+        var b4FloorTiling_ESTD = Math.ceil(materlID.B4_Floor_Tiling_QTD * b4FloorTiling_Factor);
+        var gfFloorTiling_ESTD = Math.ceil(materlID.GF_Floor_Tiling_QTD * gfFloorTiling_Factor);
+        var ffFloorTiling_ESTD = Math.ceil(materlID.FF_Floor_Tiling_QTD * ffFloorTiling_Factor);
+        var sfFloorTiling_ESTD = Math.ceil(materlID.SF_Floor_Tiling_QTD * sfFloorTiling_Factor);
+        var tfFloorTiling_ESTD = Math.ceil(materlID.TF_Floor_Tiling_QTD * tfFloorTiling_Factor);
+        var fofFloorTiling_ESTD = Math.ceil(materlID.FoF_Floor_Tiling_QTD * sfFloorTiling_Factor);
+        var towerFloorTiling_ESTD = Math.ceil(materlID.Tower_Floor_Tiling_QTD * towerFloorTiling_Factor);
+
+        var otherAreaVerticalWall_ESTD = Math.ceil(materlID.Other_Area_Vertical_Wall_QTD * otherAreaVerticalWall_Factor);
+        var platform_ESTD = Math.ceil(materlID.Platform_QTD * platform_Factor);
+        var graniteRunning_ESTD = Math.ceil(materlID.Granite_Running_QTD * graniteRunning_Factor);
+        var terraceAreaFlooring_ESTD = Math.ceil(materlID.Terrace_Area_Flooring_QTD * terraceAreaFlooring_Factor);
+        var towerAreaFlooring_ESTD = Math.ceil(materlID.Tower_Area_Flooring_QTD * towerAreaFlooring_Factor);
+        var staircase_ESTD = Math.ceil(materlID.Staircase_QTD * staircase_Factor);
+        var anyTankOrOtherArea_ESTD = Math.ceil(materlID.Any_Tank_or_Other_Area_QTD * anyTankOrOtherArea_Factor);
+        var rampEntranceLevel_ESTD = Math.ceil(materlID.Ramp_Entrance_Level_QTD * rampEntranceLevel_Factor);
+
+
+
+
+
+        // // Anuj 
+        // // Door & Window
+
+        // var b1DoorPanelling_Factor = 0.067 / QUANTITIESDONE_L5;
+        // var b2DoorPanelling_Factor = 0.067 / QUANTITIESDONE_L5;
+        // var b3DoorPanelling_Factor = 0.067 / QUANTITIESDONE_L5;
+        // var b4DoorPanelling_Factor = 0.067 / QUANTITIESDONE_L5;
+        // var gfDoorPanelling_Factor = 0.067 / QUANTITIESDONE_L5;
+        // var ffDoorPanelling_Factor = 0.067 / QUANTITIESDONE_L5;
+        // var sfDoorPanelling_Factor = 0.067 / QUANTITIESDONE_L5;
+        // var tfDoorPanelling_Factor = 0.067 / QUANTITIESDONE_L5;
+        // var fofDoorPanelling_Factor = 0.067 / QUANTITIESDONE_L5;
+        // var towerDoorPanelling_Factor = 0.067 / QUANTITIESDONE_L5;
+
+        // Anuj
+
+        var b1WindowPanelling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var b2WindowPanelling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var b3WindowPanelling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var b4WindowPanelling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var gfWindowPanelling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var ffWindowPanelling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var sfWindowPanelling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var tfWindowPanelling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var fofWindowPanelling_Factor = 0.047 / QUANTITIESDONE_L5;
+        var towerWindowPanelling_Factor = 0.047 / QUANTITIESDONE_L5;
+
+
+
+        // // Anuj
+        // var b1DoorPanelling_ESTD = Math.ceil(B1_Door_Panelling_QTD * b1DoorPanelling_Factor);
+        // var b2DoorPanelling_ESTD = Math.ceil(B2_Door_Panelling_QTD * b2DoorPanelling_Factor);
+        // var b3DoorPanelling_ESTD = Math.ceil(B3_Door_Panelling_QTD * b3DoorPanelling_Factor);
+        // var b4DoorPanelling_ESTD = Math.ceil(B4_Door_Panelling_QTD * b4DoorPanelling_Factor);
+        // var gfDoorPanelling_ESTD = Math.ceil(GF_Door_Panelling_QTD * gfDoorPanelling_Factor);
+        // var ffDoorPanelling_ESTD = Math.ceil(FF_Door_Panelling_QTD * ffDoorPanelling_Factor);
+        // var sfDoorPanelling_ESTD = Math.ceil(SF_Door_Panelling_QTD * sfDoorPanelling_Factor);
+        // var tfDoorPanelling_ESTD = Math.ceil(TF_Door_Panelling_QTD * tfDoorPanelling_Factor);
+        // var fofDoorPanelling_ESTD = Math.ceil(FoF_Door_Panelling_QTD * fofDoorPanelling_Factor);
+        // var towerDoorPanelling_ESTD = Math.ceil(Tower_Door_Panelling_QTD * towerDoorPanelling_Factor);
+
+
+        // Anuj
+        var b1WindowPanelling_ESTD = Math.ceil(materlID.B1_Window_Panelling_QTD * b1WindowPanelling_Factor);
+        var b2WindowPanelling_ESTD = Math.ceil(materlID.B2_Window_Panelling_QTD * b2WindowPanelling_Factor);
+        var b3WindowPanelling_ESTD = Math.ceil(materlID.B3_Window_Panelling_QTD * b3WindowPanelling_Factor);
+        var b4WindowPanelling_ESTD = Math.ceil(materlID.B4_Window_Panelling_QTD * b4WindowPanelling_Factor);
+        var gfWindowPanelling_ESTD = Math.ceil(materlID.GF_Window_Panelling_QTD * gfWindowPanelling_Factor);
+        var ffWindowPanelling_ESTD = Math.ceil(materlID.FF_Window_Panelling_QTD * ffWindowPanelling_Factor);
+        var sfWindowPanelling_ESTD = Math.ceil(materlID.SF_Window_Panelling_QTD * sfWindowPanelling_Factor);
+        var tfWindowPanelling_ESTD = Math.ceil(materlID.TF_Window_Panelling_QTD * tfWindowPanelling_Factor);
+        var fofWindowPanelling_ESTD = Math.ceil(materlID.FoF_Window_Panelling_QTD * fofWindowPanelling_Factor);
+        var towerWindowPanelling_ESTD = Math.ceil(materlID.Tower_Window_Panelling_QTD * towerWindowPanelling_Factor);
+
+
+
+        // Anuj
+        // Paint Work
+
+        var b1Paint_Factor = 0.015 / QUANTITIESDONE_L5;
+        var b2Paint_Factor = 0.015 / QUANTITIESDONE_L5;
+        var b3Paint_Factor = 0.015 / QUANTITIESDONE_L5;
+        var b4Paint_Factor = 0.015 / QUANTITIESDONE_L5;
+        var gfPaint_Factor = 0.015 / QUANTITIESDONE_L5;
+        var ffPaint_Factor = 0.015 / QUANTITIESDONE_L5;
+        var sfPaint_Factor = 0.015 / QUANTITIESDONE_L5;
+        var tfPaint_Factor = 0.015 / QUANTITIESDONE_L5;
+        var fofPaint_Factor = 0.015 / QUANTITIESDONE_L5;
+        var towerPaint_Factor = 0.015 / QUANTITIESDONE_L5;
+
+
+        var side01_Factor = 0.020 / QUANTITIESDONE_L5;
+        var side02_Factor = 0.020 / QUANTITIESDONE_L5;
+        var side03_Factor = 0.020 / QUANTITIESDONE_L5;
+        var side04_Factor = 0.020 / QUANTITIESDONE_L5;
+
+
+        // Anuj
+        var b1Paint_ESTD = Math.ceil(materlID.B1_Paint_QTD * b1Paint_Factor);
+        var b2Paint_ESTD = Math.ceil(materlID.B2_Paint_QTD * b2Paint_Factor);
+        var b3Paint_ESTD = Math.ceil(materlID.B3_Paint_QTD * b3Paint_Factor);
+        var b4Paint_ESTD = Math.ceil(materlID.B4_Paint_QTD * b4Paint_Factor);
+        var gfPaint_ESTD = Math.ceil(materlID.GF_Paint_QTD * gfPaint_Factor);
+        var ffPaint_ESTD = Math.ceil(materlID.FF_Paint_QTD * ffPaint_Factor);
+        var sfPaint_ESTD = Math.ceil(materlID.SF_Paint_QTD * sfPaint_Factor);
+        var tfPaint_ESTD = Math.ceil(materlID.TF_Paint_QTD * tfPaint_Factor);
+        var fofPaint_ESTD = Math.ceil(materlID.FoF_Paint_QTD * fofPaint_Factor);
+        var towerPaint_ESTD = Math.ceil(materlID.Tower_Paint_QTD * towerPaint_Factor);
+
+
+
+        var side01_ESTD = Math.ceil(materlID.Side_01_QTD * side01_Factor);
+        var side02_ESTD = Math.ceil(materlID.Side_02_QTD * side02_Factor);
+        var side03_ESTD = Math.ceil(materlID.Side_03_QTD * side03_Factor);
+        var side04_ESTD = Math.ceil(materlID.Side_04_QTD * side04_Factor);
+
+
+
+
+        // Anuj
+        // Sanitary, Door Handels & Final Finishes
+
+        var b1Sanitary_Factor = 1;
+        var b2Sanitary_Factor = 1;
+        var b3Sanitary_Factor = 1;
+        var b4Sanitary_Factor = 1;
+        var gfSanitary_Factor = 1;
+        var ffSanitary_Factor = 1;
+        var sfSanitary_Factor = 1;
+        var tfSanitary_Factor = 1;
+        var fofSanitary_Factor = 1;
+        var towerSanitary_Factor = 1;
+
+
+        var b1DoorAccessoriesSwitchBoard_Factor = 0.250;
+        var b2DoorAccessoriesSwitchBoard_Factor = 0.250;
+        var b3DoorAccessoriesSwitchBoard_Factor = 0.250;
+        var b4DoorAccessoriesSwitchBoard_Factor = 0.250;
+        var gfDoorAccessoriesSwitchBoard_Factor = 0.250;
+        var ffDoorAccessoriesSwitchBoard_Factor = 0.250;
+        var sfDoorAccessoriesSwitchBoard_Factor = 0.250;
+        var tfDoorAccessoriesSwitchBoard_Factor = 0.250;
+        var fofDoorAccessoriesSwitchBoard_Factor = 0.250;
+        var towerDoorAccessoriesSwitchBoard_Factor = 0.250;
+
+
+        var staircaseRailing_Factor = 0.018 / QUANTITIESDONE_L5;
+        var lightFixingAndFan_Factor = 0.250;
+        var balconyRailing_Factor = 0.018 / QUANTITIESDONE_L5;
+
+
+
+
+        // Anuj
+
+        var b1Sanitary_ESTD = Math.ceil(materlID.B1_Sanitary_QTD * b1Sanitary_Factor);
+        var b2Sanitary_ESTD = Math.ceil(materlID.B2_Sanitary_QTD * b2Sanitary_Factor);
+        var b3Sanitary_ESTD = Math.ceil(materlID.B3_Sanitary_QTD * b3Sanitary_Factor);
+        var b4Sanitary_ESTD = Math.ceil(materlID.B4_Sanitary_QTD * b4Sanitary_Factor);
+        var gfSanitary_ESTD = Math.ceil(materlID.GF_Sanitary_QTD * gfSanitary_Factor);
+        var ffSanitary_ESTD = Math.ceil(materlID.FF_Sanitary_QTD * ffSanitary_Factor);
+        var sfSanitary_ESTD = Math.ceil(materlID.SF_Sanitary_QTD * sfSanitary_Factor);
+        var tfSanitary_ESTD = Math.ceil(materlID.TF_Sanitary_QTD * tfSanitary_Factor);
+        var fofSanitary_ESTD = Math.ceil(materlID.FoF_Sanitary_QTD * fofSanitary_Factor);
+        var towerSanitary_ESTD = Math.ceil(materlID.Tower_Sanitary_QTD * towerSanitary_Factor);
+
+
+        var b1DoorAccessoriesSwitchBoard_ESTD = Math.ceil(materlID.B1_Door_Accessories_Switch_Board_QTD * b1DoorAccessoriesSwitchBoard_Factor);
+        var b2DoorAccessoriesSwitchBoard_ESTD = Math.ceil(materlID.B2_Door_Accessories_Switch_Board_QTD * b2DoorAccessoriesSwitchBoard_Factor);
+        var b3DoorAccessoriesSwitchBoard_ESTD = Math.ceil(materlID.B3_Door_Accessories_Switch_Board_QTD * b3DoorAccessoriesSwitchBoard_Factor);
+        var b4DoorAccessoriesSwitchBoard_ESTD = Math.ceil(materlID.B4_Door_Accessories_Switch_Board_QTD * b4DoorAccessoriesSwitchBoard_Factor);
+        var gfDoorAccessoriesSwitchBoard_ESTD = Math.ceil(materlID.GF_Door_Accessories_Switch_Board_QTD * gfDoorAccessoriesSwitchBoard_Factor);
+        var ffDoorAccessoriesSwitchBoard_ESTD = Math.ceil(materlID.FF_Door_Accessories_Switch_Board_QTD * ffDoorAccessoriesSwitchBoard_Factor);
+        var sfDoorAccessoriesSwitchBoard_ESTD = Math.ceil(materlID.SF_Door_Accessories_Switch_Board_QTD * sfDoorAccessoriesSwitchBoard_Factor);
+        var tfDoorAccessoriesSwitchBoard_ESTD = Math.ceil(materlID.TF_Door_Accessories_Switch_Board_QTD * tfDoorAccessoriesSwitchBoard_Factor);
+        var fofDoorAccessoriesSwitchBoard_ESTD = Math.ceil(materlID.FoF_Door_Accessories_Switch_Board_QTD * fofDoorAccessoriesSwitchBoard_Factor);
+        var towerDoorAccessoriesSwitchBoard_ESTD = Math.ceil(materlID.Tower_Door_Accessories_Switch_Board_QTD * towerDoorAccessoriesSwitchBoard_Factor);
+
+
+        var staircaseRailing_ESTD = Math.ceil(materlID.Staircase_Railing_QTD * staircaseRailing_Factor);
+        // var lightFixingAndFan_ESTD = Math.ceil(Light_Fixing_and_Fan_QTD * lightFixingAndFan_Factor);
+        var balconyRailing_ESTD = Math.ceil(materlID.Balcony_Railing_QTD * balconyRailing_Factor);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // estimated days calculation Start End 
+
+        // console.log(quotationSelectedDetails.Footing[0].materialsName)
         var dataArrytocheck = [
             // { categoryname: 'Basement Footing', leadID: req.body.leadID },
             // { categoryname: 'RCC Column & Slab Work', leadID: req.body.leadID },
@@ -206,6 +1628,9 @@ const createAllActivites = async (req, resp) => {
 
         async function saveDataSequentially() {
             for (let i = 0; i < dataArrytocheck.length; i++) {
+                if (dataArrytocheck[i].categoryname === "Flase Ceiling Covering Work" && FlaseCeilingTyHNR === "NO FALSE CEILING" ) {
+                    continue; // Skip this iteration
+                }
                 try {
                     const newData = new Activities(dataArrytocheck[i]);
                     const savedData = await newData.save();
@@ -7195,36 +8620,36 @@ const createAllActivites = async (req, resp) => {
 
                         if (fottingtypecheck === "ISOLATED") {
                             var dataArrayBasicFooting = [
-                                { subactivityname: 'ISO - Layout & Levelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'ISO - Excavation', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'ISO - Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'ISO - PCC', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'ISO - Footing RCC', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'ISO - Pedestal RCC', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'ISO - Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'ISO - Backfilling Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 }
+                                { subactivityname: 'ISO - Layout & Levelling', activityID: newData._id, projectID: objectproID, estimateDays: isoLayoutAndLevelling_ESTD },
+                                { subactivityname: 'ISO - Excavation', activityID: newData._id, projectID: objectproID, estimateDays: isoExcavation_ESTD },
+                                { subactivityname: 'ISO - Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: isoReinforcement_ESTD },
+                                { subactivityname: 'ISO - PCC', activityID: newData._id, projectID: objectproID, estimateDays: isoPCC_ESTD },
+                                { subactivityname: 'ISO - Footing RCC', activityID: newData._id, projectID: objectproID, estimateDays: isoFootingRCC_ESTD },
+                                { subactivityname: 'ISO - Pedestal RCC', activityID: newData._id, projectID: objectproID, estimateDays: isoPedestalRCC_ESTD },
+                                { subactivityname: 'ISO - Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: isoWaterproofing_ESTD },
+                                { subactivityname: 'ISO - Backfilling Work', activityID: newData._id, projectID: objectproID, estimateDays: isoBackfillingWork_ESTD }
                             ];
                         }
 
                         if (fottingtypecheck === "PILE") {
                             var dataArrayBasicFooting = [
-                                { subactivityname: 'PILE -  Layout & Levelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'PILE -  Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'PILE -  Excavation', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'PILE -  RCC', activityID: newData._id, projectID: objectproID, estimateDays: 4 }
+                                { subactivityname: 'PILE -  Layout & Levelling', activityID: newData._id, projectID: objectproID, estimateDays: pileLayoutAndLevelling_ESTD },
+                                { subactivityname: 'PILE -  Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: pileReinforcement_ESTD },
+                                { subactivityname: 'PILE -  Excavation', activityID: newData._id, projectID: objectproID, estimateDays: pileExcavation_ESTD },
+                                { subactivityname: 'PILE -  RCC', activityID: newData._id, projectID: objectproID, estimateDays: pileRCC_ESTD }
                             ];
                         }
 
                         if (fottingtypecheck === "RAFT") {
                             var dataArrayBasicFooting = [
-                                { subactivityname: 'RAFT - Layout & Levelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'RAFT - Excavation', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'RAFT - Filling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'RAFT - Sewage Line', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'RAFT - PCC', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'RAFT - Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'RAFT - RCC', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                                { subactivityname: 'RAFT - Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                                { subactivityname: 'RAFT - Layout & Levelling', activityID: newData._id, projectID: objectproID, estimateDays: raftLayoutAndLevelling_ESTD },
+                                { subactivityname: 'RAFT - Excavation', activityID: newData._id, projectID: objectproID, estimateDays: raftExcavation_ESTD },
+                                { subactivityname: 'RAFT - Filling', activityID: newData._id, projectID: objectproID, estimateDays: raftFilling_ESTD },
+                                { subactivityname: 'RAFT - Sewage Line', activityID: newData._id, projectID: objectproID, estimateDays: raftSewageLine_ESTD },
+                                { subactivityname: 'RAFT - PCC', activityID: newData._id, projectID: objectproID, estimateDays: raftPCC_ESTD },
+                                { subactivityname: 'RAFT - Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: raftReinforcement_ESTD },
+                                { subactivityname: 'RAFT - RCC', activityID: newData._id, projectID: objectproID, estimateDays: raftRCC_ESTD },
+                                { subactivityname: 'RAFT - Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: raftWaterproofing_ESTD },
 
 
                             ];
@@ -9684,15 +11109,15 @@ const createAllActivites = async (req, resp) => {
 
 
                         var dataArrayPlinthWork = [
-                            { subactivityname: 'Shuttering Bottom', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Reinforcement Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Shuttering Side', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'RCC', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Filling Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Sewage Line Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Anti Termite Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Grade Slab Reinforcement Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Grade Slab RCC Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 }
+                            { subactivityname: 'Shuttering Bottom', activityID: newData._id, projectID: objectproID, estimateDays: shutteringBottom_ESTD },
+                            { subactivityname: 'Reinforcement Work', activityID: newData._id, projectID: objectproID, estimateDays: reinforcementWork_ESTD },
+                            { subactivityname: 'Shuttering Side', activityID: newData._id, projectID: objectproID, estimateDays: shutteringSide_ESTD },
+                            { subactivityname: 'RCC', activityID: newData._id, projectID: objectproID, estimateDays: rcc_ESTD },
+                            { subactivityname: 'Filling Work', activityID: newData._id, projectID: objectproID, estimateDays: fillingWork_ESTD },
+                            { subactivityname: 'Sewage Line Work', activityID: newData._id, projectID: objectproID, estimateDays: sewageLineWork_ESTD },
+                            { subactivityname: 'Anti Termite Work', activityID: newData._id, projectID: objectproID, estimateDays: antiTermiteWork_ESTD },
+                            { subactivityname: 'Grade Slab Reinforcement Work', activityID: newData._id, projectID: objectproID, estimateDays: gradeSlabReinforcementWork_ESTD },
+                            { subactivityname: 'Grade Slab RCC Work', activityID: newData._id, projectID: objectproID, estimateDays: gradeSlabRCCWork_ESTD }
                         ];
 
 
@@ -11365,58 +12790,61 @@ const createAllActivites = async (req, resp) => {
 
                     if (newData.categoryname === "Column, Beam & Slab RCC Work") {
                         const dataArranew = [
-                            { subactivityname: 'GF Column Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF RCC Column', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF Slab Shuttering', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF Slab Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF Slab Electrical Conducting', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF RCC Slab', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'GF Column Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: gfColumnReinforcement_ESTD, TempID: 0 },
+                            { subactivityname: 'GF RCC Column', activityID: newData._id, projectID: objectproID, estimateDays: gfRCCColumn_ESTD, TempID: 0 },
+                            { subactivityname: 'GF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: gfBrickWork_ESTD, TempID: 0 },
+                            { subactivityname: 'GF Slab Shuttering', activityID: newData._id, projectID: objectproID, estimateDays: gfSlabShuttering_ESTD, TempID: 0 },
+                            { subactivityname: 'GF Slab Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: gfSlabReinforcement_ESTD, TempID: 0 },
+                            { subactivityname: 'GF Slab Electrical Conducting', activityID: newData._id, projectID: objectproID, estimateDays: 1, TempID: 0 },
+                            { subactivityname: 'GF RCC Slab', activityID: newData._id, projectID: objectproID, estimateDays: gfRCCSlab_ESTD, TempID: 0 },
 
-                            { subactivityname: 'FF Column Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF RCC Column', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF Slab Shuttering', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF Slab Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF Slab Electrical Conducting', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF RCC Slab', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'FF Column Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: FfColumnReinforcement_ESTD, TempID: 1 },
+                            { subactivityname: 'FF RCC Column', activityID: newData._id, projectID: objectproID, estimateDays: FfRCCColumn_ESTD, TempID: 1 },
+                            { subactivityname: 'FF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: FfBrickWork_ESTD, TempID: 1 },
+                            { subactivityname: 'FF Slab Shuttering', activityID: newData._id, projectID: objectproID, estimateDays: FfSlabShuttering_ESTD, TempID: 1 },
+                            { subactivityname: 'FF Slab Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: FfSlabReinforcement_ESTD, TempID: 1 },
+                            { subactivityname: 'FF Slab Electrical Conducting', activityID: newData._id, projectID: objectproID, estimateDays: 1, TempID: 1 },
+                            { subactivityname: 'FF RCC Slab', activityID: newData._id, projectID: objectproID, estimateDays: FfRCCSlab_ESTD, TempID: 1 },
 
-                            { subactivityname: 'SF Column Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF RCC Column', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF Slab Shuttering', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF Slab Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF Slab Electrical Conducting', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF RCC Slab', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'SF Column Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: SfColumnReinforcement_ESTD, TempID: 2 },
+                            { subactivityname: 'SF RCC Column', activityID: newData._id, projectID: objectproID, estimateDays: SfRCCColumn_ESTD, TempID: 2 },
+                            { subactivityname: 'SF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: SfBrickWork_ESTD, TempID: 2 },
+                            { subactivityname: 'SF Slab Shuttering', activityID: newData._id, projectID: objectproID, estimateDays: SfSlabShuttering_ESTD, TempID: 2 },
+                            { subactivityname: 'SF Slab Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: SfSlabReinforcement_ESTD, TempID: 2 },
+                            { subactivityname: 'SF Slab Electrical Conducting', activityID: newData._id, projectID: objectproID, estimateDays: 1, TempID: 2 },
+                            { subactivityname: 'SF RCC Slab', activityID: newData._id, projectID: objectproID, estimateDays: SfRCCSlab_ESTD, TempID: 2 },
 
-                            { subactivityname: 'TF Column Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF RCC Column', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF Slab Shuttering', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF Slab Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF Slab Electrical Conducting', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF RCC Slab', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'TF Column Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: TfColumnReinforcement_ESTD, TempID: 3 },
+                            { subactivityname: 'TF RCC Column', activityID: newData._id, projectID: objectproID, estimateDays: TfRCCColumn_ESTD, TempID: 3 },
+                            { subactivityname: 'TF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: TfBrickWork_ESTD, TempID: 3 },
+                            { subactivityname: 'TF Slab Shuttering', activityID: newData._id, projectID: objectproID, estimateDays: TfSlabShuttering_ESTD, TempID: 3 },
+                            { subactivityname: 'TF Slab Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: TfSlabReinforcement_ESTD, TempID: 3 },
+                            { subactivityname: 'TF Slab Electrical Conducting', activityID: newData._id, projectID: objectproID, estimateDays: 1, TempID: 3 },
+                            { subactivityname: 'TF RCC Slab', activityID: newData._id, projectID: objectproID, estimateDays: TfRCCSlab_ESTD, TempID: 3 },
 
-                            { subactivityname: 'FoF Column Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF RCC Column', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF Slab Shuttering', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF Slab Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF Slab Electrical Conducting', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF RCC Slab', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'FoF Column Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: FofColumnReinforcement_ESTD, TempID: 4 },
+                            { subactivityname: 'FoF RCC Column', activityID: newData._id, projectID: objectproID, estimateDays: FofRCCColumn_ESTD, TempID: 4 },
+                            { subactivityname: 'FoF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: FofBrickWork_ESTD, TempID: 4 },
+                            { subactivityname: 'FoF Slab Shuttering', activityID: newData._id, projectID: objectproID, estimateDays: FofSlabShuttering_ESTD, TempID: 4 },
+                            { subactivityname: 'FoF Slab Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: FofSlabReinforcement_ESTD, TempID: 4 },
+                            { subactivityname: 'FoF Slab Electrical Conducting', activityID: newData._id, projectID: objectproID, estimateDays: 1, TempID: 4 },
+                            { subactivityname: 'FoF RCC Slab', activityID: newData._id, projectID: objectproID, estimateDays: FofRCCSlab_ESTD, TempID: 4 },
 
-                            { subactivityname: 'Tower Column Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower RCC Column', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower Slab Shuttering', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower Slab Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower Slab Electrical Conducting', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower RCC Slab', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'Tower Column Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: TowerColumnReinforcement_ESTD },
+                            { subactivityname: 'Tower RCC Column', activityID: newData._id, projectID: objectproID, estimateDays: TowerRCCColumn_ESTD },
+                            { subactivityname: 'Tower Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: TowerBrickWork_ESTD },
+                            { subactivityname: 'Tower Slab Shuttering', activityID: newData._id, projectID: objectproID, estimateDays: TowerSlabShuttering_ESTD },
+                            { subactivityname: 'Tower Slab Reinforcement', activityID: newData._id, projectID: objectproID, estimateDays: TowerSlabReinforcement_ESTD },
+                            { subactivityname: 'Tower Slab Electrical Conducting', activityID: newData._id, projectID: objectproID, estimateDays: 1 },
+                            { subactivityname: 'Tower RCC Slab', activityID: newData._id, projectID: objectproID, estimateDays: TowerRCCSlab_ESTD },
 
                         ];
 
                         async function miscellenousCalling() {
                             for (let i = 0; i < dataArranew.length; i++) {
+                                if (dataArranew[i].TempID === 1 && NumbersOfFlorrs < 1 || dataArranew[i].TempID === 2 && NumbersOfFlorrs < 2 || dataArranew[i].TempID === 3 && NumbersOfFlorrs < 3 || dataArranew[i].TempID === 4 && NumbersOfFlorrs < 4) {
+                                    continue; // Skip this iteration
+                                }
                                 try {
                                     const newDatanew = new SubActivities(dataArranew[i]);
                                     const savedData = await newDatanew.save();
@@ -16644,21 +18072,24 @@ const createAllActivites = async (req, resp) => {
 
                     if (newData.categoryname === "Brick Work") {
                         const dataArrBrickWor = [
-                            { subactivityname: 'Door & Window (Wooden |MS) Frame', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B1 - Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 - Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 - Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 - Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 }
+                            { subactivityname: 'Door & Window (Wooden |MS) Frame', activityID: newData._id, projectID: objectproID, estimateDays: 1 },
+                            { subactivityname: 'B1 - Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: b1BrickWork_ESTD, TempID: 11 },
+                            { subactivityname: 'B2 - Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: b2BrickWork_ESTD, TempID: 22 },
+                            { subactivityname: 'B3 - Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: b3BrickWork_ESTD, TempID: 33 },
+                            { subactivityname: 'B4 - Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: b4BrickWork_ESTD, TempID: 44 },
+                            { subactivityname: 'GF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: Real_gfBrickWork_ESTD, TempID: 0 },
+                            { subactivityname: 'FF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: ffBrickWork_ESTD, TempID: 1 },
+                            { subactivityname: 'SF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: sfBrickWork_ESTD, TempID: 2 },
+                            { subactivityname: 'TF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: tfBrickWork_ESTD, TempID: 3 },
+                            { subactivityname: 'FoF Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: fofBrickWork_ESTD, TempID: 4 },
+                            { subactivityname: 'Tower Brick Work', activityID: newData._id, projectID: objectproID, estimateDays: towerBrickWork_ESTD }
                         ];
 
                         async function BricWrkCheck() {
                             for (let i = 0; i < dataArrBrickWor.length; i++) {
+                                if (dataArrBrickWor[i].TempID === 1 && NumbersOfFlorrs < 1 || dataArrBrickWor[i].TempID === 2 && NumbersOfFlorrs < 2 || dataArrBrickWor[i].TempID === 3 && NumbersOfFlorrs < 3 || dataArrBrickWor[i].TempID === 4 && NumbersOfFlorrs < 4 || dataArrBrickWor[i].TempID === 11 && NumbersOfBasemetFloor === 0 || dataArrBrickWor[i].TempID === 22 && NumbersOfBasemetFloor === 0 || dataArrBrickWor[i].TempID === 33 && NumbersOfBasemetFloor === 0 || dataArrBrickWor[i].TempID === 44 && NumbersOfBasemetFloor === 0) {
+                                    continue; // Skip this iteration
+                                }
                                 try {
                                     const newDatanew = new SubActivities(dataArrBrickWor[i]);
                                     const savedData = await newDatanew.save();
@@ -17972,20 +19403,23 @@ const createAllActivites = async (req, resp) => {
 
                     if (newData.categoryname === "Electrical Wall Conditing") {
                         const dataArranew = [
-                            { subactivityname: 'B1 - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: 4 }
+                            { subactivityname: 'B1 - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: b1ElectricalConduiting_ESTD, TempID: 11 },
+                            { subactivityname: 'B2 - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: b2ElectricalConduiting_ESTD, TempID: 22 },
+                            { subactivityname: 'B3 - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: b3ElectricalConduiting_ESTD, TempID: 33 },
+                            { subactivityname: 'B4 - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: b4ElectricalConduiting_ESTD, TempID: 44 },
+                            { subactivityname: 'GF - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: gfElectricalConduiting_ESTD },
+                            { subactivityname: 'FF - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: ffElectricalConduiting_ESTD, TempID: 1 },
+                            { subactivityname: 'SF - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: sfElectricalConduiting_ESTD, TempID: 2 },
+                            { subactivityname: 'TF - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: tfElectricalConduiting_ESTD, TempID: 3 },
+                            { subactivityname: 'FoF - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: fofElectricalConduiting_ESTD, TempID: 4 },
+                            { subactivityname: 'Tower - Electrical Conduting', activityID: newData._id, projectID: objectproID, estimateDays: towerElectricalConduiting_ESTD }
                         ];
 
                         async function miscellenousCalling() {
                             for (let i = 0; i < dataArranew.length; i++) {
+                                if (dataArranew[i].TempID === 1 && NumbersOfFlorrs < 1 || dataArranew[i].TempID === 2 && NumbersOfFlorrs < 2 || dataArranew[i].TempID === 3 && NumbersOfFlorrs < 3 || dataArranew[i].TempID === 4 && NumbersOfFlorrs < 4 || dataArranew[i].TempID === 11 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 22 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 33 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 44 && NumbersOfBasemetFloor === 0) {
+                                    continue; // Skip this iteration
+                                }
                                 try {
                                     const newDatanew = new SubActivities(dataArranew[i]);
                                     const savedData = await newDatanew.save();
@@ -19244,58 +20678,58 @@ const createAllActivites = async (req, resp) => {
                     if (newData.categoryname === "Plumbing") {
 
                         const dataArranew = [
-                            { subactivityname: 'B1 - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B1 - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B1 -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B1 -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'B1 - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 11 },
+                            { subactivityname: 'B1 - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 11 },
+                            { subactivityname: 'B1 -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 11 },
+                            { subactivityname: 'B1 -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 11 },
 
-                            { subactivityname: 'B2 - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'B2 - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 22 },
+                            { subactivityname: 'B2 - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 22 },
+                            { subactivityname: 'B2 -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 22 },
+                            { subactivityname: 'B2 -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 22 },
 
-                            { subactivityname: 'B3 - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'B3 - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 33 },
+                            { subactivityname: 'B3 - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 33 },
+                            { subactivityname: 'B3 -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 33 },
+                            { subactivityname: 'B3 -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 33 },
 
-                            { subactivityname: 'B4 - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'B4 - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 44 },
+                            { subactivityname: 'B4 - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 44 },
+                            { subactivityname: 'B4 -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 44 },
+                            { subactivityname: 'B4 -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 44 },
 
-                            { subactivityname: 'GF - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'GF - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: GFPipeWorkBelowFloorLevel_ESTD },
+                            { subactivityname: 'GF - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: GFSunkenFillingCOBAWaste_ESTD },
                             { subactivityname: 'GF -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'GF -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: GFWaterproofing_ESTD },
 
-                            { subactivityname: 'FF - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'FF - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: FFPipeWorkBelowFloorLevel_ESTD, TempID: 1 },
+                            { subactivityname: 'FF - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: FFSunkenFillingCOBAWaste_ESTD, TempID: 1 },
+                            { subactivityname: 'FF -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 1 },
+                            { subactivityname: 'FF -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: FFWaterproofing_ESTD, TempID: 1 },
 
-                            { subactivityname: 'SF - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'SF - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: SFPipeWorkBelowFloorLevel_ESTD, TempID: 2 },
+                            { subactivityname: 'SF - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: SFSunkenFillingCOBAWaste_ESTD, TempID: 2 },
+                            { subactivityname: 'SF -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 2 },
+                            { subactivityname: 'SF -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: SFWaterproofing_ESTD, TempID: 2 },
 
-                            { subactivityname: 'TF - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'TF - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: TFPipeWorkBelowFloorLevel_ESTD, TempID: 3 },
+                            { subactivityname: 'TF - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: TFSunkenFillingCOBAWaste_ESTD, TempID: 3 },
+                            { subactivityname: 'TF -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 3 },
+                            { subactivityname: 'TF -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: TFWaterproofing_ESTD, TempID: 3 },
 
-                            { subactivityname: 'FoF - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'FoF - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: FoFPipeWorkBelowFloorLevel_ESTD, TempID: 4 },
+                            { subactivityname: 'FoF - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: FoFSunkenFillingCOBAWaste_ESTD, TempID: 4 },
+                            { subactivityname: 'FoF -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 4 },
+                            { subactivityname: 'FoF -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: FoFWaterproofing_ESTD, TempID: 4 },
 
-                            { subactivityname: 'Tower - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'Tower - Pipe Work below Floor Level', activityID: newData._id, projectID: objectproID, estimateDays: TowerPipeWorkBelowFloorLevel_ESTD },
+                            { subactivityname: 'Tower - Sunken Filling - COBA |Waste', activityID: newData._id, projectID: objectproID, estimateDays: TowerSunkenFillingCOBAWaste_ESTD },
                             { subactivityname: 'Tower -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'Tower -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: TowerWaterproofing_ESTD },
 
                             { subactivityname: 'Rain Water Harvesting ', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'AC', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'AC', activityID: newData._id, projectID: objectproID, estimateDays: ac_ESTD },
                             { subactivityname: 'Reverse Line', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
                             { subactivityname: 'Seperate | Individual Line per Floor', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
                             { subactivityname: 'Water Tank', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
@@ -19306,6 +20740,9 @@ const createAllActivites = async (req, resp) => {
 
                         async function miscellenousCalling() {
                             for (let i = 0; i < dataArranew.length; i++) {
+                                if (dataArranew[i].TempID === 1 && NumbersOfFlorrs < 1 || dataArranew[i].TempID === 2 && NumbersOfFlorrs < 2 || dataArranew[i].TempID === 3 && NumbersOfFlorrs < 3 || dataArranew[i].TempID === 4 && NumbersOfFlorrs < 4 || dataArranew[i].TempID === 11 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 22 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 33 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 44 && NumbersOfBasemetFloor === 0) {
+                                    continue; // Skip this iteration
+                                }
                                 try {
                                     const newDatanew = new SubActivities(dataArranew[i]);
                                     const savedData = await newDatanew.save();
@@ -25066,39 +26503,6 @@ const createAllActivites = async (req, resp) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                     await Activities.updateOne(
                                         { _id: newss },
                                         {
@@ -25122,27 +26526,30 @@ const createAllActivites = async (req, resp) => {
 
 
                     if (newData.categoryname === "Plaster") {
-                        var InternalPlaster = "Normal";
+
                         const dataArranew = [
-                            { subactivityname: 'B1 - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Ceiling Plaster', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Non Elevation Side', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Weather Board', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Elevation Side', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Punning', activityID: newData._id, projectID: objectproID, estimateDays: 4 }
+                            { subactivityname: 'B1 - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: b1PlasterWork_ESTD, TempID: 11 },
+                            { subactivityname: 'B2 - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: b2PlasterWork_ESTD, TempID: 22 },
+                            { subactivityname: 'B3 - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: b3PlasterWork_ESTD, TempID: 33 },
+                            { subactivityname: 'B4 - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: b4PlasterWork_ESTD, TempID: 44 },
+                            { subactivityname: 'GF - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: gfPlasterWork_ESTD },
+                            { subactivityname: 'FF - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: ffPlasterWork_ESTD, TempID: 1 },
+                            { subactivityname: 'SF - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: sfPlasterWork_ESTD, TempID: 2 },
+                            { subactivityname: 'TF - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: tfPlasterWork_ESTD, TempID: 3 },
+                            { subactivityname: 'FoF - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: fofPlasterWork_ESTD, TempID: 4 },
+                            { subactivityname: 'Tower - Plaster Work', activityID: newData._id, projectID: objectproID, estimateDays: towerPlasterWork_ESTD },
+                            { subactivityname: 'Ceiling Plaster', activityID: newData._id, projectID: objectproID, estimateDays: ceilingPlaster_ESTD },
+                            { subactivityname: 'Non Elevation Side', activityID: newData._id, projectID: objectproID, estimateDays: nonElevationSide_ESTD },
+                            { subactivityname: 'Weather Board', activityID: newData._id, projectID: objectproID, estimateDays: weatherBoard_ESTD },
+                            { subactivityname: 'Elevation Side', activityID: newData._id, projectID: objectproID, estimateDays: elevationSide_ESTD },
+                            { subactivityname: 'Punning', activityID: newData._id, projectID: objectproID, estimateDays: punning_ESTD }
                         ];
 
                         async function miscellenousCalling() {
                             for (let i = 0; i < dataArranew.length; i++) {
+                                if (dataArranew[i].TempID === 1 && NumbersOfFlorrs < 1 || dataArranew[i].TempID === 2 && NumbersOfFlorrs < 2 || dataArranew[i].TempID === 3 && NumbersOfFlorrs < 3 || dataArranew[i].TempID === 4 && NumbersOfFlorrs < 4 || dataArranew[i].TempID === 11 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 22 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 33 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 44 && NumbersOfBasemetFloor === 0) {
+                                    continue; // Skip this iteration
+                                }
                                 try {
                                     const newDatanew = new SubActivities(dataArranew[i]);
                                     const savedData = await newDatanew.save();
@@ -25564,17 +26971,17 @@ const createAllActivites = async (req, resp) => {
 
                                     if (newDatanew.subactivityname === "GF - Plaster Work") {
 
-                                        if (InternalPlaster === "Normal") {
+                                        if (InternalPlaster === "GYPSUM PLASTER") {
+                                            var dataArGGFN = [
+                                                { materailname: 'Gypsum Plaster', materailquantity: materlID.GFGypsumPlasterQuantity, materailUnit: 'BAG - 20 kg' },
+                                            ]
+                                        } else {
                                             var dataArGGFN = [
                                                 { materailname: 'Cement', materailquantity: materlID.GFPlasterWorkCementQuantity, materailUnit: 'BAG' },
                                                 { materailname: 'Sand', materailquantity: materlID.GFPlasterWorkSandQuantity, materailUnit: 'CUFT' },
                                                 { materailname: 'Chicken Mesh', materailquantity: materlID.GFPlasterWorkChickenMeshQuantity, materailUnit: '150  RUFT' },
                                                 { materailname: 'Waterproofing', materailquantity: materlID.GFPlasterWorkWaterproofingQuantity, materailUnit: 'LITER' },
 
-                                            ]
-                                        } else {
-                                            var dataArGGFN = [
-                                                { materailname: 'Gypsum Plaster', materailquantity: materlID.GFGypsumPlasterQuantity, materailUnit: 'BAG - 20 kg' },
                                             ]
                                         }
 
@@ -25611,17 +27018,17 @@ const createAllActivites = async (req, resp) => {
                                     if (newDatanew.subactivityname === "FF - Plaster Work") {
 
 
-                                        if (InternalPlaster === "Normal") {
+                                        if (InternalPlaster === "GYPSUM PLASTER") {
+                                            var dataArNMBV = [
+                                                { materailname: 'Gypsum Plaster', materailquantity: materlID.FFGypsumPlasterQuantity, materailUnit: 'BAG - 20 kg' },
+                                            ]
+                                        } else {
                                             var dataArNMBV = [
                                                 { materailname: 'Cement', materailquantity: materlID.FFPlasterWorkCementQuantity, materailUnit: 'BAG' },
                                                 { materailname: 'Sand', materailquantity: materlID.FFPlasterWorkSandQuantity, materailUnit: 'CUFT' },
                                                 { materailname: 'Chicken Mesh', materailquantity: materlID.FFPlasterWorkChickenMeshQuantity, materailUnit: '150  RUFT' },
                                                 { materailname: 'Waterproofing', materailquantity: materlID.FFPlasterWorkWaterproofingQuantity, materailUnit: 'LITER' },
 
-                                            ]
-                                        } else {
-                                            var dataArNMBV = [
-                                                { materailname: 'Gypsum Plaster', materailquantity: materlID.FFGypsumPlasterQuantity, materailUnit: 'BAG - 20 kg' },
                                             ]
                                         }
 
@@ -25657,17 +27064,17 @@ const createAllActivites = async (req, resp) => {
                                     if (newDatanew.subactivityname === "SF - Plaster Work") {
 
 
-                                        if (InternalPlaster === "Normal") {
+                                        if (InternalPlaster === "GYPSUM PLASTER") {
+                                            var dataAPOIUU = [
+                                                { materailname: 'Gypsum Plaster', materailquantity: materlID.SFGypsumPlasterQuantity, materailUnit: 'BAG - 20 kg' },
+                                            ]
+                                        } else {
                                             var dataAPOIUU = [
                                                 { materailname: 'Cement', materailquantity: materlID.SFPlasterWorkCementQuantity, materailUnit: 'BAG' },
                                                 { materailname: 'Sand', materailquantity: materlID.SFPlasterWorkSandQuantity, materailUnit: 'CUFT' },
                                                 { materailname: 'Chicken Mesh', materailquantity: materlID.SFPlasterWorkChickenMeshQuantity, materailUnit: '150  RUFT' },
                                                 { materailname: 'Waterproofing', materailquantity: materlID.SFPlasterWorkWaterproofingQuantity, materailUnit: 'LITER' },
 
-                                            ]
-                                        } else {
-                                            var dataAPOIUU = [
-                                                { materailname: 'Gypsum Plaster', materailquantity: materlID.SFGypsumPlasterQuantity, materailUnit: 'BAG - 20 kg' },
                                             ]
                                         }
 
@@ -25702,17 +27109,18 @@ const createAllActivites = async (req, resp) => {
 
                                     if (newDatanew.subactivityname === "TF - Plaster Work") {
 
-                                        if (InternalPlaster === "Normal") {
+                                        if (InternalPlaster === "GYPSUM PLASTER") {
+                                            var dataARRTYUIO = [
+                                                { materailname: 'Gypsum Plaster', materailquantity: materlID.TFGypsumPlasterQuantity, materailUnit: 'BAG - 20 kg' },
+                                            ]
+                                        } else {
+
                                             var dataARRTYUIO = [
                                                 { materailname: 'Cement', materailquantity: materlID.TFPlasterWorkCementQuantity, materailUnit: 'BAG' },
                                                 { materailname: 'Sand', materailquantity: materlID.TFPlasterWorkSandQuantity, materailUnit: 'CUFT' },
                                                 { materailname: 'Chicken Mesh', materailquantity: materlID.TFPlasterWorkChickenMeshQuantity, materailUnit: '150  RUFT' },
                                                 { materailname: 'Waterproofing', materailquantity: materlID.TFPlasterWorkWaterproofingQuantity, materailUnit: 'LITER' },
 
-                                            ]
-                                        } else {
-                                            var dataARRTYUIO = [
-                                                { materailname: 'Gypsum Plaster', materailquantity: materlID.TFGypsumPlasterQuantity, materailUnit: 'BAG - 20 kg' },
                                             ]
                                         }
 
@@ -25748,17 +27156,17 @@ const createAllActivites = async (req, resp) => {
                                     if (newDatanew.subactivityname === "FoF - Plaster Work") {
 
 
-                                        if (InternalPlaster === "Normal") {
+                                        if (InternalPlaster === "GYPSUM PLASTER") {
+                                            var dataArVBGHN = [
+                                                { materailname: 'Gypsum Plaster', materailquantity: materlID.FoFGypsumPlasterQuantity, materailUnit: 'BAG - 20 kg' },
+                                            ]
+                                        } else {
                                             var dataArVBGHN = [
                                                 { materailname: 'Cement', materailquantity: materlID.FoFPlasterWorkCementQuantity, materailUnit: 'BAG' },
                                                 { materailname: 'Sand', materailquantity: materlID.FoFPlasterWorkSandQuantity, materailUnit: 'CUFT' },
                                                 { materailname: 'Chicken Mesh', materailquantity: materlID.FoFPlasterWorkChickenMeshQuantity, materailUnit: '150  RUFT' },
                                                 { materailname: 'Waterproofing', materailquantity: materlID.FoFPlasterWorkWaterproofingQuantity, materailUnit: 'LITER' },
 
-                                            ]
-                                        } else {
-                                            var dataArVBGHN = [
-                                                { materailname: 'Gypsum Plaster', materailquantity: materlID.FoFGypsumPlasterQuantity, materailUnit: 'BAG - 20 kg' },
                                             ]
                                         }
 
@@ -25799,17 +27207,18 @@ const createAllActivites = async (req, resp) => {
                                     if (newDatanew.subactivityname === "Tower - Plaster Work") {
 
 
-                                        if (InternalPlaster === "Normal") {
+                                        if (InternalPlaster === "GYPSUM PLASTER") {
+                                            var dataArLKJHBNM = [
+                                                { materailname: 'Gypsum Plaster', materailquantity: materlID.TowerPlasterWorCementQuantity, materailUnit: 'BAG - 20 kg' },
+                                            ]
+                                        } else {
+
                                             var dataArLKJHBNM = [
                                                 { materailname: 'Cement', materailquantity: materlID.TowerPlasterWorkCementQuantity, materailUnit: 'BAG' },
                                                 { materailname: 'Sand', materailquantity: materlID.TowerPlasterWorkSandQuantity, materailUnit: 'CUFT' },
                                                 { materailname: 'Chicken Mesh', materailquantity: materlID.TowerPlasterWorkChickenMeshQuantity, materailUnit: '150  RUFT' },
                                                 { materailname: 'Waterproofing', materailquantity: materlID.TowerPlasterWorkWaterproofingQuantity, materailUnit: 'LITER' },
 
-                                            ]
-                                        } else {
-                                            var dataArLKJHBNM = [
-                                                { materailname: 'Gypsum Plaster', materailquantity: materlID.TowerPlasterWorCementQuantity, materailUnit: 'BAG - 20 kg' },
                                             ]
                                         }
 
@@ -26738,29 +28147,32 @@ const createAllActivites = async (req, resp) => {
 
                     if (newData.categoryname === "Chowkat Work - Wooden | Granite") {
                         const dataArranew = [
-                            { subactivityname: 'B1 - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Parapet Work + Railing + Boundary Wall', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Grill MS Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Main Gate', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Back Side Cover', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Back Duct Cover', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Cut Out Cover', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Elevation', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Gazeebo', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'B1 - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: b1ChowkatStone_ESTD, TempID: 11 },
+                            { subactivityname: 'B2 - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: b2ChowkatStone_ESTD, TempID: 22 },
+                            { subactivityname: 'B3 - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: b3ChowkatStone_ESTD, TempID: 33 },
+                            { subactivityname: 'B4 - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: b4ChowkatStone_ESTD, TempID: 44 },
+                            { subactivityname: 'GF - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: gfChowkatStone_ESTD },
+                            { subactivityname: 'FF - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: ffChowkatStone_ESTD, TempID: 1 },
+                            { subactivityname: 'SF - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: sfChowkatStone_ESTD, TempID: 2 },
+                            { subactivityname: 'TF - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: tfChowkatStone_ESTD, TempID: 3 },
+                            { subactivityname: 'FoF - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: fofChowkatStone_ESTD, TempID: 4 },
+                            { subactivityname: 'Tower - Chowkat Stone', activityID: newData._id, projectID: objectproID, estimateDays: towerChowkatStone_ESTD },
+                            { subactivityname: 'Parapet Work + Railing + Boundary Wall', activityID: newData._id, projectID: objectproID, estimateDays: parapetWorkRailingBoundaryWall_ESTD },
+                            { subactivityname: 'Grill MS Work', activityID: newData._id, projectID: objectproID, estimateDays: grillMSWork_ESTD },
+                            { subactivityname: 'Main Gate', activityID: newData._id, projectID: objectproID, estimateDays: mainGate_ESTD },
+                            { subactivityname: 'Back Side Cover', activityID: newData._id, projectID: objectproID, estimateDays: backSideCover_ESTD },
+                            { subactivityname: 'Back Duct Cover', activityID: newData._id, projectID: objectproID, estimateDays: backDuctCover_ESTD },
+                            { subactivityname: 'Cut Out Cover', activityID: newData._id, projectID: objectproID, estimateDays: cutOutCover_ESTD },
+                            { subactivityname: 'Elevation', activityID: newData._id, projectID: objectproID, estimateDays: elevation_ESTD },
+                            { subactivityname: 'Gazeebo', activityID: newData._id, projectID: objectproID, estimateDays: gazeebo_ESTD },
 
                         ];
 
                         async function miscellenousCalling() {
                             for (let i = 0; i < dataArranew.length; i++) {
+                                if (dataArranew[i].TempID === 1 && NumbersOfFlorrs < 1 || dataArranew[i].TempID === 2 && NumbersOfFlorrs < 2 || dataArranew[i].TempID === 3 && NumbersOfFlorrs < 3 || dataArranew[i].TempID === 4 && NumbersOfFlorrs < 4 || dataArranew[i].TempID === 11 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 22 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 33 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 44 && NumbersOfBasemetFloor === 0) {
+                                    continue; // Skip this iteration
+                                }
                                 try {
                                     const newDatanew = new SubActivities(dataArranew[i]);
                                     const savedData = await newDatanew.save();
@@ -28437,23 +29849,26 @@ const createAllActivites = async (req, resp) => {
 
                     if (newData.categoryname === "POP Framing") {
                         const dataArranew = [
-                            { subactivityname: 'B1 - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Balcony - PVC', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Parking - PVC', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Washroom - PVC', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'B1 - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: b1PopFraming_ESTD, TempID: 11 },
+                            { subactivityname: 'B2 - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: b2PopFraming_ESTD, TempID: 22 },
+                            { subactivityname: 'B3 - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: b3PopFraming_ESTD, TempID: 33 },
+                            { subactivityname: 'B4 - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: b4PopFraming_ESTD, TempID: 44 },
+                            { subactivityname: 'GF - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: gfPopFraming_ESTD },
+                            { subactivityname: 'FF - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: ffPopFraming_ESTD, TempID: 1 },
+                            { subactivityname: 'SF - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: sfPopFraming_ESTD, TempID: 2 },
+                            { subactivityname: 'TF - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: tfPopFraming_ESTD, TempID: 3 },
+                            { subactivityname: 'FoF - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: fofPopFraming_ESTD, TempID: 4 },
+                            { subactivityname: 'Tower - POP Framing', activityID: newData._id, projectID: objectproID, estimateDays: towerPopFraming_ESTD },
+                            { subactivityname: 'Balcony - PVC', activityID: newData._id, projectID: objectproID, estimateDays: OnebalconyPVC_ESTD },
+                            { subactivityname: 'Parking - PVC', activityID: newData._id, projectID: objectproID, estimateDays: OneparkingPVC_ESTD },
+                            { subactivityname: 'Washroom - PVC', activityID: newData._id, projectID: objectproID, estimateDays: OnewashroomPVC_ESTD },
                         ];
 
                         async function miscellenousCalling() {
                             for (let i = 0; i < dataArranew.length; i++) {
+                                if (dataArranew[i].TempID === 1 && NumbersOfFlorrs < 1 || dataArranew[i].TempID === 2 && NumbersOfFlorrs < 2 || dataArranew[i].TempID === 3 && NumbersOfFlorrs < 3 || dataArranew[i].TempID === 4 && NumbersOfFlorrs < 4 || dataArranew[i].TempID === 11 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 22 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 33 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 44 && NumbersOfBasemetFloor === 0) {
+                                    continue; // Skip this iteration
+                                }
                                 try {
                                     const newDatanew = new SubActivities(dataArranew[i]);
                                     const savedData = await newDatanew.save();
@@ -29938,20 +31353,23 @@ const createAllActivites = async (req, resp) => {
 
                     if (newData.categoryname === "Wiring") {
                         const dataArranew = [
-                            { subactivityname: 'B1 - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'B1 - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 11 },
+                            { subactivityname: 'B2 - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 22 },
+                            { subactivityname: 'B3 - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 33 },
+                            { subactivityname: 'B4 - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 44 },
                             { subactivityname: 'GF - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'FF - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 1 },
+                            { subactivityname: 'SF - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 2 },
+                            { subactivityname: 'TF - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 3 },
+                            { subactivityname: 'FoF - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 4 },
                             { subactivityname: 'Tower - Wiring', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
                         ];
 
                         async function miscellenousCalling() {
                             for (let i = 0; i < dataArranew.length; i++) {
+                                if (dataArranew[i].TempID === 1 && NumbersOfFlorrs < 1 || dataArranew[i].TempID === 2 && NumbersOfFlorrs < 2 || dataArranew[i].TempID === 3 && NumbersOfFlorrs < 3 || dataArranew[i].TempID === 4 && NumbersOfFlorrs < 4 || dataArranew[i].TempID === 11 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 22 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 33 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 44 && NumbersOfBasemetFloor === 0) {
+                                    continue; // Skip this iteration
+                                }
                                 try {
                                     const newDatanew = new SubActivities(dataArranew[i]);
                                     const savedData = await newDatanew.save();
@@ -31182,23 +32600,28 @@ const createAllActivites = async (req, resp) => {
 
                     if (newData.categoryname === "Flase Ceiling Covering Work") {
 
-                        var FlaseCeilingTyHNR = "Normal";
+              
 
                         const dataArranew = [
-                            { subactivityname: 'B1 - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'B1 - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 11 },
+                            { subactivityname: 'B2 - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 22 },
+                            { subactivityname: 'B3 - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 33 },
+                            { subactivityname: 'B4 - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 44 },
                             { subactivityname: 'GF - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'FF - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 1 },
+                            { subactivityname: 'SF - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 2 },
+                            { subactivityname: 'TF - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 3 },
+                            { subactivityname: 'FoF - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 4 },
                             { subactivityname: 'Tower - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
                         ];
 
                         async function miscellenousCalling() {
                             for (let i = 0; i < dataArranew.length; i++) {
+
+                                if (dataArranew[i].TempID === 1 && NumbersOfFlorrs < 1 || dataArranew[i].TempID === 2 && NumbersOfFlorrs < 2 || dataArranew[i].TempID === 3 && NumbersOfFlorrs < 3 || dataArranew[i].TempID === 4 && NumbersOfFlorrs < 4 || dataArranew[i].TempID === 11 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 22 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 33 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 44 && NumbersOfBasemetFloor === 0) {
+                                    continue; // Skip this iteration
+                                }
+
                                 try {
                                     const newDatanew = new SubActivities(dataArranew[i]);
                                     const savedData = await newDatanew.save();
@@ -31541,7 +32964,7 @@ const createAllActivites = async (req, resp) => {
                                     if (newDatanew.subactivityname === "GF - Boarding | POP") {
 
 
-                                        if (FlaseCeilingTyHNR === "Normal") {
+                                        if (FlaseCeilingTyHNR === "GYPSUM BOARD") {
                                             var dataArASWEDAS = [
                                                 { materailname: 'Gypsum Board', materailquantity: materlID.FCGB_GFBoardingPOPGypsumBoardQuantity, materailUnit: 'SQM' },
                                                 { materailname: 'Joint Filler', materailquantity: materlID.FCGB_GFBoardingPOPJointFillerQuantity, materailUnit: 'KG' },
@@ -31589,7 +33012,7 @@ const createAllActivites = async (req, resp) => {
 
 
 
-                                        if (FlaseCeilingTyHNR === "Normal") {
+                                        if (FlaseCeilingTyHNR === "GYPSUM BOARD") {
                                             var dataArraSWEDQAZCnew = [
                                                 { materailname: 'Gypsum Board', materailquantity: materlID.FCGB_FFBoardingPOPGypsumBoardQuantity, materailUnit: 'SQM' },
                                                 { materailname: 'Joint Filler', materailquantity: materlID.FCGB_FFBoardingPOPJointFillerQuantity, materailUnit: 'KG' },
@@ -31637,7 +33060,7 @@ const createAllActivites = async (req, resp) => {
                                     if (newDatanew.subactivityname === "SF - Boarding | POP") {
 
 
-                                        if (FlaseCeilingTyHNR === "Normal") {
+                                        if (FlaseCeilingTyHNR === "GYPSUM BOARD") {
                                             var dataArraneLKHGBBw = [
                                                 { materailname: 'Gypsum Board', materailquantity: materlID.FCGB_SFBoardingPOPGypsumBoardQuantity, materailUnit: 'SQM' },
                                                 { materailname: 'Joint Filler', materailquantity: materlID.FCGB_SFBoardingPOPJointFillerQuantity, materailUnit: 'KG' },
@@ -31682,7 +33105,7 @@ const createAllActivites = async (req, resp) => {
 
                                     if (newDatanew.subactivityname === "TF - Boarding | POP") {
 
-                                        if (FlaseCeilingTyHNR === "Normal") {
+                                        if (FlaseCeilingTyHNR === "GYPSUM BOARD") {
                                             var dataArrAPLKDFGanew = [
                                                 { materailname: 'Gypsum Board', materailquantity: materlID.FCGB_TFBoardingPOPGypsumBoardQuantity, materailUnit: 'SQM' },
                                                 { materailname: 'Joint Filler', materailquantity: materlID.FCGB_TFBoardingPOPJointFillerQuantity, materailUnit: 'KG' },
@@ -31728,7 +33151,7 @@ const createAllActivites = async (req, resp) => {
 
                                     if (newDatanew.subactivityname === "FoF - Boarding | POP") {
 
-                                        if (FlaseCeilingTyHNR === "Normal") {
+                                        if (FlaseCeilingTyHNR === "GYPSUM BOARD") {
                                             var daQWyyhgtaArranew = [
                                                 { materailname: 'Gypsum Board', materailquantity: materlID.FCGB_FoFBoardingPOPGypsumBoardQuantity, materailUnit: 'SQM' },
                                                 { materailname: 'Joint Filler', materailquantity: materlID.FCGB_FoFBoardingPOPJointFillerQuantity, materailUnit: 'KG' },
@@ -31771,7 +33194,7 @@ const createAllActivites = async (req, resp) => {
 
                                     if (newDatanew.subactivityname === "Tower - Boarding | POP") {
 
-                                        if (FlaseCeilingTyHNR === "Normal") {
+                                        if (FlaseCeilingTyHNR === "GYPSUM BOARD") {
                                             var dataTTTTTArranew = [
                                                 { materailname: 'Gypsum Board', materailquantity: materlID.FCGB_TowerBoardingPOPGypsumBoardQuantity, materailUnit: 'SQM' },
                                                 { materailname: 'Joint Filler', materailquantity: materlID.FCGB_TowerBoardingPOPJointFillerQuantity, materailUnit: 'KG' },
@@ -32242,23 +33665,26 @@ const createAllActivites = async (req, resp) => {
 
                     if (newData.categoryname === "Internal White Wash Work") {
                         const dataArranew = [
-                            { subactivityname: 'B1 - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Balcony - PVC', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Parking - PVC', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Washroom - PVC', activityID: newData._id, projectID: objectproID, estimateDays: 4 }
+                            { subactivityname: 'B1 - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: b1PuttyWorkPrimerWork_ESTD, TempID: 11 },
+                            { subactivityname: 'B2 - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: b2PuttyWorkPrimerWork_ESTD, TempID: 22 },
+                            { subactivityname: 'B3 - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: b3PuttyWorkPrimerWork_ESTD, TempID: 33 },
+                            { subactivityname: 'B4 - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: b4PuttyWorkPrimerWork_ESTD, TempID: 44 },
+                            { subactivityname: 'GF - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: gfPuttyWorkPrimerWork_ESTD },
+                            { subactivityname: 'FF - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: ffPuttyWorkPrimerWork_ESTD, TempID: 1 },
+                            { subactivityname: 'SF - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: sfPuttyWorkPrimerWork_ESTD, TempID: 2 },
+                            { subactivityname: 'TF - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: tfPuttyWorkPrimerWork_ESTD, TempID: 3 },
+                            { subactivityname: 'FoF - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: fofPuttyWorkPrimerWork_ESTD, TempID: 4 },
+                            { subactivityname: 'Tower - Putty Work & Primer Work', activityID: newData._id, projectID: objectproID, estimateDays: towerPuttyWorkPrimerWork_ESTD },
+                            { subactivityname: 'Balcony - PVC', activityID: newData._id, projectID: objectproID, estimateDays: balconyPVC_ESTD },
+                            { subactivityname: 'Parking - PVC', activityID: newData._id, projectID: objectproID, estimateDays: parkingPVC_ESTD },
+                            { subactivityname: 'Washroom - PVC', activityID: newData._id, projectID: objectproID, estimateDays: washroomPVC_ESTD }
                         ];
 
                         async function miscellenousCalling() {
                             for (let i = 0; i < dataArranew.length; i++) {
+                                if (dataArranew[i].TempID === 1 && NumbersOfFlorrs < 1 || dataArranew[i].TempID === 2 && NumbersOfFlorrs < 2 || dataArranew[i].TempID === 3 && NumbersOfFlorrs < 3 || dataArranew[i].TempID === 4 && NumbersOfFlorrs < 4 || dataArranew[i].TempID === 11 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 22 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 33 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 44 && NumbersOfBasemetFloor === 0) {
+                                    continue; // Skip this iteration
+                                }
                                 try {
                                     const newDatanew = new SubActivities(dataArranew[i]);
                                     const savedData = await newDatanew.save();
@@ -32605,38 +34031,41 @@ const createAllActivites = async (req, resp) => {
                         var TerraceAreaFloorinASD = "CobaTilling";
 
                         const dataArranew = [
-                            { subactivityname: 'B1 - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'B1 - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 11 },
+                            { subactivityname: 'B2 - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 22 },
+                            { subactivityname: 'B3 - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 33 },
+                            { subactivityname: 'B4 - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 44 },
                             { subactivityname: 'GF - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'FF - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 1 },
+                            { subactivityname: 'SF - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 2 },
+                            { subactivityname: 'TF - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 3 },
+                            { subactivityname: 'FoF - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 4 },
                             { subactivityname: 'Tower - Washroom Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B1 - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Other Area Vertical Wall', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Platform', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Granite Running', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Terrace Area Flooring', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower Area Flooring', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Staircase', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Any Tank or Other Area', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Ramp - Entrace Level', activityID: newData._id, projectID: objectproID, estimateDays: 4 }
+                            { subactivityname: 'B1 - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: b1FloorTiling_ESTD, TempID: 11 },
+                            { subactivityname: 'B2 - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: b2FloorTiling_ESTD, TempID: 22 },
+                            { subactivityname: 'B3 - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: b3FloorTiling_ESTD, TempID: 33 },
+                            { subactivityname: 'B4 - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: b4FloorTiling_ESTD, TempID: 44 },
+                            { subactivityname: 'GF - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: gfFloorTiling_ESTD },
+                            { subactivityname: 'FF - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: ffFloorTiling_ESTD, TempID: 1 },
+                            { subactivityname: 'SF - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: sfFloorTiling_ESTD, TempID: 2 },
+                            { subactivityname: 'TF - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: tfFloorTiling_ESTD, TempID: 3 },
+                            { subactivityname: 'FoF - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: fofFloorTiling_ESTD, TempID: 4 },
+                            { subactivityname: 'Tower - Floor Tiling', activityID: newData._id, projectID: objectproID, estimateDays: towerFloorTiling_ESTD },
+                            { subactivityname: 'Other Area Vertical Wall', activityID: newData._id, projectID: objectproID, estimateDays: otherAreaVerticalWall_ESTD },
+                            { subactivityname: 'Platform', activityID: newData._id, projectID: objectproID, estimateDays: platform_ESTD },
+                            { subactivityname: 'Granite Running', activityID: newData._id, projectID: objectproID, estimateDays: graniteRunning_ESTD },
+                            { subactivityname: 'Terrace Area Flooring', activityID: newData._id, projectID: objectproID, estimateDays: terraceAreaFlooring_ESTD },
+                            { subactivityname: 'Tower Area Flooring', activityID: newData._id, projectID: objectproID, estimateDays: towerAreaFlooring_ESTD },
+                            { subactivityname: 'Staircase', activityID: newData._id, projectID: objectproID, estimateDays: staircase_ESTD },
+                            { subactivityname: 'Any Tank or Other Area', activityID: newData._id, projectID: objectproID, estimateDays: anyTankOrOtherArea_ESTD },
+                            { subactivityname: 'Ramp - Entrace Level', activityID: newData._id, projectID: objectproID, estimateDays: rampEntranceLevel_ESTD }
                         ];
 
                         async function miscellenousCalling() {
                             for (let i = 0; i < dataArranew.length; i++) {
+                                if (dataArranew[i].TempID === 1 && NumbersOfFlorrs < 1 || dataArranew[i].TempID === 2 && NumbersOfFlorrs < 2 || dataArranew[i].TempID === 3 && NumbersOfFlorrs < 3 || dataArranew[i].TempID === 4 && NumbersOfFlorrs < 4 || dataArranew[i].TempID === 11 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 22 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 33 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 44 && NumbersOfBasemetFloor === 0) {
+                                    continue; // Skip this iteration
+                                }
                                 try {
                                     const newDatanew = new SubActivities(dataArranew[i]);
                                     const savedData = await newDatanew.save();
@@ -35946,30 +37375,34 @@ const createAllActivites = async (req, resp) => {
 
                     if (newData.categoryname === "Door & Window") {
                         const dataArranew = [
-                            { subactivityname: 'B1 - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'B1 - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 11 },
+                            { subactivityname: 'B2 - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 22 },
+                            { subactivityname: 'B3 - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 33 },
+                            { subactivityname: 'B4 - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 44 },
                             { subactivityname: 'GF - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'FF - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 1 },
+                            { subactivityname: 'SF - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 2 },
+                            { subactivityname: 'TF - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 3 },
+                            { subactivityname: 'FoF - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 4 },
                             { subactivityname: 'Tower - Door Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B1 - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'B1 - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: b1WindowPanelling_ESTD, TempID: 11 },
+                            { subactivityname: 'B2 - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: b2WindowPanelling_ESTD, TempID: 22 },
+                            { subactivityname: 'B3 - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: b3WindowPanelling_ESTD, TempID: 33 },
+                            { subactivityname: 'B4 - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: b4WindowPanelling_ESTD, TempID: 44 },
+                            { subactivityname: 'GF - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: gfWindowPanelling_ESTD },
+                            { subactivityname: 'FF - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: ffWindowPanelling_ESTD, TempID: 1 },
+                            { subactivityname: 'SF - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: sfWindowPanelling_ESTD, TempID: 2 },
+                            { subactivityname: 'TF - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: tfWindowPanelling_ESTD, TempID: 3 },
+                            { subactivityname: 'FoF - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: fofWindowPanelling_ESTD, TempID: 4 },
+                            { subactivityname: 'Tower - Window Panelling', activityID: newData._id, projectID: objectproID, estimateDays: towerWindowPanelling_ESTD },
                         ];
 
                         async function miscellenousCalling() {
                             for (let i = 0; i < dataArranew.length; i++) {
+
+                                if (dataArranew[i].TempID === 1 && NumbersOfFlorrs < 1 || dataArranew[i].TempID === 2 && NumbersOfFlorrs < 2 || dataArranew[i].TempID === 3 && NumbersOfFlorrs < 3 || dataArranew[i].TempID === 4 && NumbersOfFlorrs < 4 || dataArranew[i].TempID === 11 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 22 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 33 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 44 && NumbersOfBasemetFloor === 0) {
+                                    continue; // Skip this iteration
+                                }
                                 try {
                                     const newDatanew = new SubActivities(dataArranew[i]);
                                     const savedData = await newDatanew.save();
@@ -38266,24 +39699,27 @@ const createAllActivites = async (req, resp) => {
 
                     if (newData.categoryname === "Paint Work") {
                         const dataArranew = [
-                            { subactivityname: 'B1 - Paint', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 - Paint', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 - Paint', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 - Paint', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF - Paint', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF - Paint', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF - Paint', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF - Paint', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF - Paint', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower - Paint', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Side - 01', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Side - 02', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Side - 03', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Side - 04', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'B1 - Paint', activityID: newData._id, projectID: objectproID, estimateDays: b1Paint_ESTD, TempID: 11 },
+                            { subactivityname: 'B2 - Paint', activityID: newData._id, projectID: objectproID, estimateDays: b2Paint_ESTD, TempID: 22 },
+                            { subactivityname: 'B3 - Paint', activityID: newData._id, projectID: objectproID, estimateDays: b3Paint_ESTD, TempID: 3 },
+                            { subactivityname: 'B4 - Paint', activityID: newData._id, projectID: objectproID, estimateDays: b4Paint_ESTD, TempID: 44 },
+                            { subactivityname: 'GF - Paint', activityID: newData._id, projectID: objectproID, estimateDays: gfPaint_ESTD },
+                            { subactivityname: 'FF - Paint', activityID: newData._id, projectID: objectproID, estimateDays: ffPaint_ESTD, TempID: 1 },
+                            { subactivityname: 'SF - Paint', activityID: newData._id, projectID: objectproID, estimateDays: sfPaint_ESTD, TempID: 2 },
+                            { subactivityname: 'TF - Paint', activityID: newData._id, projectID: objectproID, estimateDays: tfPaint_ESTD, TempID: 3 },
+                            { subactivityname: 'FoF - Paint', activityID: newData._id, projectID: objectproID, estimateDays: fofPaint_ESTD, TempID: 4 },
+                            { subactivityname: 'Tower - Paint', activityID: newData._id, projectID: objectproID, estimateDays: towerPaint_ESTD },
+                            { subactivityname: 'Side - 01', activityID: newData._id, projectID: objectproID, estimateDays: side01_ESTD },
+                            { subactivityname: 'Side - 02', activityID: newData._id, projectID: objectproID, estimateDays: side02_ESTD },
+                            { subactivityname: 'Side - 03', activityID: newData._id, projectID: objectproID, estimateDays: side03_ESTD },
+                            { subactivityname: 'Side - 04', activityID: newData._id, projectID: objectproID, estimateDays: side04_ESTD },
                         ];
 
                         async function miscellenousCalling() {
                             for (let i = 0; i < dataArranew.length; i++) {
+                                if (dataArranew[i].TempID === 1 && NumbersOfFlorrs < 1 || dataArranew[i].TempID === 2 && NumbersOfFlorrs < 2 || dataArranew[i].TempID === 3 && NumbersOfFlorrs < 3 || dataArranew[i].TempID === 4 && NumbersOfFlorrs < 4 || dataArranew[i].TempID === 11 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 22 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 33 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 44 && NumbersOfBasemetFloor === 0) {
+                                    continue; // Skip this iteration
+                                }
                                 try {
                                     const newDatanew = new SubActivities(dataArranew[i]);
                                     const savedData = await newDatanew.save();
@@ -40037,33 +41473,36 @@ const createAllActivites = async (req, resp) => {
                         var BalconyRailingType = "SS";
 
                         const dataArranew = [
-                            { subactivityname: 'B1 - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B1 - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B2 - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B3 - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'B4 - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'GF - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FF - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'SF - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'TF - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'FoF - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Tower - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Staricase Railing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'B1 - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: b1Sanitary_ESTD, TempID: 11 },
+                            { subactivityname: 'B2 - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: b2Sanitary_ESTD, TempID: 22 },
+                            { subactivityname: 'B3 - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: b3Sanitary_ESTD, TempID: 33 },
+                            { subactivityname: 'B4 - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: b4Sanitary_ESTD, TempID: 44 },
+                            { subactivityname: 'GF - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: gfSanitary_ESTD },
+                            { subactivityname: 'FF - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: ffSanitary_ESTD, TempID: 1 },
+                            { subactivityname: 'SF - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: sfSanitary_ESTD, TempID: 2 },
+                            { subactivityname: 'TF - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: tfSanitary_ESTD, TempID: 3 },
+                            { subactivityname: 'FoF - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: fofSanitary_ESTD, TempID: 4 },
+                            { subactivityname: 'Tower - Sanitary', activityID: newData._id, projectID: objectproID, estimateDays: towerSanitary_ESTD },
+                            { subactivityname: 'B1 - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: b1DoorAccessoriesSwitchBoard_ESTD, TempID: 11 },
+                            { subactivityname: 'B2 - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: b2DoorAccessoriesSwitchBoard_ESTD, TempID: 22 },
+                            { subactivityname: 'B3 - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: b3DoorAccessoriesSwitchBoard_ESTD, TempID: 33 },
+                            { subactivityname: 'B4 - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: b4DoorAccessoriesSwitchBoard_ESTD, TempID: 44 },
+                            { subactivityname: 'GF - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: gfDoorAccessoriesSwitchBoard_ESTD },
+                            { subactivityname: 'FF - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: ffDoorAccessoriesSwitchBoard_ESTD, TempID: 1 },
+                            { subactivityname: 'SF - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: sfDoorAccessoriesSwitchBoard_ESTD, TempID: 2 },
+                            { subactivityname: 'TF - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: tfDoorAccessoriesSwitchBoard_ESTD, TempID: 3 },
+                            { subactivityname: 'FoF - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: fofDoorAccessoriesSwitchBoard_ESTD, TempID: 4 },
+                            { subactivityname: 'Tower - Door Accessories + Switch Board', activityID: newData._id, projectID: objectproID, estimateDays: towerDoorAccessoriesSwitchBoard_ESTD },
+                            { subactivityname: 'Staricase Railing', activityID: newData._id, projectID: objectproID, estimateDays: staircaseRailing_ESTD },
                             { subactivityname: 'Light Fixing & Fan', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Balcony Railing', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'Balcony Railing', activityID: newData._id, projectID: objectproID, estimateDays: balconyRailing_ESTD },
                         ];
 
                         async function miscellenousCalling() {
                             for (let i = 0; i < dataArranew.length; i++) {
+                                if (dataArranew[i].TempID === 1 && NumbersOfFlorrs < 1 || dataArranew[i].TempID === 2 && NumbersOfFlorrs < 2 || dataArranew[i].TempID === 3 && NumbersOfFlorrs < 3 || dataArranew[i].TempID === 4 && NumbersOfFlorrs < 4 || dataArranew[i].TempID === 11 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 22 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 33 && NumbersOfBasemetFloor === 0 || dataArranew[i].TempID === 44 && NumbersOfBasemetFloor === 0) {
+                                    continue; // Skip this iteration
+                                }
                                 try {
                                     const newDatanew = new SubActivities(dataArranew[i]);
                                     const savedData = await newDatanew.save();
@@ -40688,7 +42127,7 @@ const createAllActivites = async (req, resp) => {
                                         const dataArranew = [
                                             { materailname: 'Light - 01', materailquantity: materlID.LF_Light_01Quantity, materailUnit: 'NOS.' },
                                             { materailname: 'Fan', materailquantity: materlID.LF_FanQuantity, materailUnit: 'NOS.' },
-                                       
+
                                         ];
 
                                         async function SteelReinforcementfunHGHCall() {
@@ -41674,21 +43113,6 @@ const createAllActivites = async (req, resp) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     await Project.updateOne(
                         { _id: objectproID },
                         {
@@ -41710,18 +43134,6 @@ const createAllActivites = async (req, resp) => {
         resp.status(500).json(error);
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
