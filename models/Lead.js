@@ -8,6 +8,7 @@ const LeadsSchema = mongoose.Schema({
         type: String,
         default: "Not Intrested"
     },
+    ScopeofWork: String,
     quotationstatus: {
         type: String,
         default: "Yes"
@@ -24,7 +25,7 @@ const LeadsSchema = mongoose.Schema({
         type: String,
         default: "Yes"
     },
-    reasontostopwork : {
+    reasontostopwork: {
         type: String,
         default: "Delay's End"
     },
