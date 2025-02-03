@@ -8716,7 +8716,7 @@ const createAllActivites = async (req, resp) => {
                                             { materailname: 'Rope', materailquantity: materlID.NFI_LayoutLevellingRopeQuantity, materailUnit: 'FEET' },
                                         ];
 
-                                        async function SteelReinforcementfunHGHCall() {
+                                        async function SteelRel() {
                                             for (let i = 0; i < dataArranew.length; i++) {
                                                 try {
                                                     const newDatanewtask = new Material(dataArranew[i]);
@@ -8739,7 +8739,7 @@ const createAllActivites = async (req, resp) => {
                                                 }
                                             }
                                         }
-                                        SteelReinforcementfunHGHCall();
+                                        SteelRel();
                                     }
 
 
@@ -13330,24 +13330,27 @@ const createAllActivites = async (req, resp) => {
                                     if (newDatanew.subactivityname === "GF Column Reinforcement") {
 
                                         const dataArranew = [
-                                            { floorsequence: 'Bas 1' },
-                                            { floorsequence: 'Bas 2' },
-                                            { floorsequence: 'Bas 3' },
-                                            { floorsequence: 'Bas 4' },
+                                            // { floorsequence: 'Bas 1' },
+                                            // { floorsequence: 'Bas 2' },
+                                            // { floorsequence: 'Bas 3' },
+                                            // { floorsequence: 'Bas 4' },
                                             { floorsequence: 'Ground' },
-                                            { floorsequence: 'First' },
-                                            { floorsequence: 'Second' },
-                                            { floorsequence: 'Third' },
-                                            { floorsequence: 'Fourth' },
+                                            { floorsequence: '1st' , TempID: 1},
+                                            { floorsequence: '2nd' , TempID: 2},
+                                            { floorsequence: '3rd' , TempID: 3},
+                                            { floorsequence: '4th' , TempID: 4},
                                             { floorsequence: 'Tower' },
 
                                         ];
 
-                                        const startpoint = 4;
+                      
 
 
                                         async function floorCreateFunction() {
-                                            for (let i = startpoint; i < dataArranew.length; i++) {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                if (dataArranew[i].TempID === 1 && NumbersOfFlorrs < 1 || dataArranew[i].TempID === 2 && NumbersOfFlorrs < 2 || dataArranew[i].TempID === 3 && NumbersOfFlorrs < 3 || dataArranew[i].TempID === 4 && NumbersOfFlorrs < 4) {
+                                                    continue; // Skip this iteration
+                                                }
                                                 try {
                                                     const newDatanewtask = new Projectspace(dataArranew[i]);
                                                     const savedData = await newDatanewtask.save();

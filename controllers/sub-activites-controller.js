@@ -100,6 +100,28 @@ const addCheck = async (req, res) => {
 
 
 
+const addMatreial = async (req, res) => {
+    try {
+        let data = new Material(req.body);
+        const result = await data.save();
+
+        let objID = new mongoose.Types.ObjectId(data.id)
+        let newss = new mongoose.Types.ObjectId(req.body.subactivityID)
+        console.log(objID);
+        await SubActivities.updateOne(
+            { _id: newss },
+            {
+                $push: {
+                    materialsName: objID
+                }
+            }
+        )
+        res.send(result);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+};
+
 const getSubActivitiesofSingleActivity = async (req, resp) => {
     try {
         let single = await Activities.findOne({ _id: req.params._id }).populate("subactivitiesID");
@@ -190,6 +212,7 @@ module.exports = {
     updateMaterial,
     updatesubTask,
     addCheck,
+    addMatreial,
     addSubTask,
     getSubActivitiesWithdetails,
     addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity, addNewUpdateInSubActivity
