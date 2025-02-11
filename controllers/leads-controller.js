@@ -39,6 +39,12 @@ const getSingleLead = async (req, resp) => {
 
 const addNewLead = async (req, res) => {
     try {
+
+        let leadCheck = await Lead.findOne({ email: req.body.email });
+ 
+        if (leadCheck) {
+            return res.send("Already");
+        }
         let lead = new Lead(req.body);
         const result = await lead.save();
         let objID = new mongoose.Types.ObjectId(lead.id)
