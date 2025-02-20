@@ -68,7 +68,8 @@ const storage = multer.diskStorage({
         cb(null, './upload/images');
     },
     filename: (req, file, cb) => {
-        return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+        const randomDigit = Math.floor(100000 + Math.random() * 900000);
+        return cb(null, `${file.fieldname}_${Date.now()}_${randomDigit}${path.extname(file.originalname)}`)
     },
 });
 

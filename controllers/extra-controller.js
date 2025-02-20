@@ -301,7 +301,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var FullExcavation = "Individual Footing";
         var IfIsolatedDepth = 5;
         var ColumnFactor = 100;
-        var BeamFactor = 0.15;
+        var BeamBackFactor = 0.15;
 
         // Curtain Wall below Plinth
 
@@ -609,12 +609,21 @@ const CalculationCheckTentetive = async (req, resp) => {
         var FINALINPUTSDONE_I31 = project.BasementFloor === 0 ? (FINALINPUTSDONE_G31 === "ISOLATED" ? 1 : FINALINPUTSDONE_G31 === "PILE" ? 2 : FINALINPUTSDONE_G31 === "RAFT" ? 3 : 0) : 0;
         var FINALINPUTSDONE_G32 = project.FullExcavation;
         var FINALINPUTSDONE_I32 = project.IfIsolatedDepth;
-        var FINALINPUTSDONE_G39 = ColumnFactor;  // not complete
-        var FINALINPUTSDONE_I39 = project.BeamFactor;
-
+        var FINALINPUTSDONE_G39 = project.ColumnFactor; 
+        var FINALINPUTSDONE_I39 = project.BeamBackFactor;
+        var InptForALGORITHUMDONE_B93 = project.InptForALGORITHUMDONE_B93;
+        var InptForColumnWidthALGORITHUMDONE_C93 = project.InptForColumnWidthALGORITHUMDONE_C93;
+        var ReinsformentFactorALGORITHUMDONE_D93 = project.ReinsformentFactorALGORITHUMDONE_D93;
+        
+        var footinglengthfeetbACKALGORITHUMDONE_A63 = project.footinglengthfeetbACKALGORITHUMDONE_A63;
+        var footingwidthBackfeetAlgorithumB63 = project.footingwidthBackfeetAlgorithumB63;
+        var bwidthBackinch = project.bwidthBackinch;
+        var bdepthBackinch = project.bdepthBackinch;
+        
+        
         // Curtain Wall below Plinth
 
-        var FINALINPUTSDONE_I42 = Lift === "YES" ? Math.max(project.RoadtoPlinth - project.RoadLeveltoExistingAvgSiteLevel, 3) : 0;
+        var FINALINPUTSDONE_I42 = Lift === "YES" ? Math.max(project.RoadtoPlinth - project.RoadLeveltoExistingAvgSiteLevel, 2) : 0;
         var FINALINPUTSDONE_G43 = project.CurtainWallType;
 
 
@@ -658,16 +667,16 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         // Tank
 
-        var FINALINPUTSDONE_L3 = UGWTTank; // not complete
+        var FINALINPUTSDONE_L3 = project.UGWTTank; 
         var FINALINPUTSDONE_M3 = project.UGWTTankCapM3;
         var FINALINPUTSDONE_N3 = project.UGWTTankTypeN3;
         var FINALINPUTSDONE_L4 = OHTank; // not complete
         var FINALINPUTSDONE_M4 = OHTankCapacityM4; // not complete
         var FINALINPUTSDONE_N4 = OHTankTypeN4; // not complete
-        var FINALINPUTSDONE_L5 = SepticTank; // not complete
+        var FINALINPUTSDONE_L5 = project.SepticTank; 
         var FINALINPUTSDONE_M5 = SepticTankCapacityM5;
         var FINALINPUTSDONE_N5 = SepticTankTypeN5; // not complete
-        var FINALINPUTSDONE_L6 = FireTank; // not complete
+        var FINALINPUTSDONE_L6 = project.FireTank; 
         var FINALINPUTSDONE_M6 = FireTankCapacityM6;
         var FINALINPUTSDONE_N6 = FireTankTypeN6; // not complete
 
@@ -1656,13 +1665,13 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
 
-        var ALGORITHUMDONE_B93 = ALGORITHUMDONE_G35 === 1 ? 0.2 : ALGORITHUMDONE_G35 === 2 ? 0.3 : ALGORITHUMDONE_G35 === 3 ? 0.4 : 0.2;
-        var ALGORITHUMDONE_C93 = ALGORITHUMDONE_G35 === 1 ? 0.4 : ALGORITHUMDONE_G35 === 2 ? 0.5 : ALGORITHUMDONE_G35 === 3 ? 0.6 : 0.4;
+        var ALGORITHUMDONE_B93 = InptForALGORITHUMDONE_B93;
+        var ALGORITHUMDONE_C93 = InptForColumnWidthALGORITHUMDONE_C93;
 
         var ALGORITHUMDONE_F17 = FINALINPUTSDONE_C33 / FINALINPUTSDONE_G39;
         var ALGORITHUMDONE_G61 = ALGORITHUMDONE_H17 === 1 ? ALGORITHUMDONE_F17 : 0;
         var ALGORITHUMDONE_I61 = ALGORITHUMDONE_G61 === 0 ? 0 : ALGORITHUMDONE_F17 * ((FINALINPUTSDONE_I32 + FINALINPUTSDONE_C20 + 1) / 3.28) * ALGORITHUMDONE_C93 * ALGORITHUMDONE_B93;
-        var ALGORITHUMDONE_D93 = ALGORITHUMDONE_G35 === 1 ? 0.02 : ALGORITHUMDONE_G35 === 2 ? 0.025 : ALGORITHUMDONE_G35 === 3 ? 0.03 : 0.02;
+        var ALGORITHUMDONE_D93 = ReinsformentFactorALGORITHUMDONE_D93;
         var ALGORITHUMDONE_J61 = ALGORITHUMDONE_D93 * ALGORITHUMDONE_I61 * 7850;
         var ALGORITHUMDONE_G71 = ALGORITHUMDONE_D21 === "ISO + RAFT" ? ALGORITHUMDONE_J61 : 0;
 
@@ -1750,8 +1759,8 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_H17 = FINALINPUTSDONE_G10;
         var ALGORITHUMDONE_G35 = FINALINPUTSDONE_G30;
 
-        var ALGORITHUMDONE_A63 = ALGORITHUMDONE_H17 === 1 ? (ALGORITHUMDONE_G35 === 1 ? 1.5 : ALGORITHUMDONE_G35 === 2 ? 1.8 : ALGORITHUMDONE_G35 === 3 ? 2.4 : 1.5) : 0;
-        var ALGORITHUMDONE_B63 = ALGORITHUMDONE_H17 === 1 ? (ALGORITHUMDONE_G35 === 1 ? 1.5 : ALGORITHUMDONE_G35 === 2 ? 1.8 : ALGORITHUMDONE_G35 === 3 ? 2.4 : 1.5) : 0;
+        var ALGORITHUMDONE_A63 = footinglengthfeetbACKALGORITHUMDONE_A63;
+        var ALGORITHUMDONE_B63 = footingwidthBackfeetAlgorithumB63;
 
         var ALGORITHUMDONE_D21 = FINALINPUTSDONE_G9;
 
@@ -2626,9 +2635,9 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var ALGORITHUMDONE_E166 = ALGORITHUMDONE_B166 === 1 ? ALGORITHUMDONE_J126 / (ALGORITHUMDONE_B166 + ALGORITHUMDONE_B167 + ALGORITHUMDONE_B168 + ALGORITHUMDONE_B169 + ALGORITHUMDONE_B170 + ALGORITHUMDONE_B171 + ALGORITHUMDONE_B162 + ALGORITHUMDONE_B163 + ALGORITHUMDONE_B164 + ALGORITHUMDONE_B165) : 0;
 
-        var ALGORITHUMDONE_C96 = ALGORITHUMDONE_G35 == 1 ? 0.4 : ALGORITHUMDONE_G35 == 2 ? 0.5 : ALGORITHUMDONE_G35 == 3 ? 0.6 : 0.4;
+        var ALGORITHUMDONE_C96 = bdepthBackinch;
 
-
+        console.log("cccccccccccccccccccccccccccccccvvvvvvvvvvvvvvvv", bwidthBackinch)
 
         var ALGORITHUMDONE_F180 = 0.05;
 
@@ -2686,7 +2695,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_D99 = ALGORITHUMDONE_G35 === 1 ? 0.0125 : ALGORITHUMDONE_G35 === 2 ? 0.015 : ALGORITHUMDONE_G35 === 3 ? 0.02 : 0.0125;
         var ALGORITHUMDONE_G103 = ALGORITHUMDONE_C103 * 7850 * ALGORITHUMDONE_D99;
 
-        var ALGORITHUMDONE_B96 = ALGORITHUMDONE_G35 === 1 ? 0.2 : ALGORITHUMDONE_G35 === 2 ? 0.3 : ALGORITHUMDONE_G35 === 3 ? 0.4 : 0.2;
+        var ALGORITHUMDONE_B96 = bwidthBackinch;
 
         var ALGORITHUMDONE_I126 = (FINALINPUTSDONE_L11 === "YES" ? (FINALINPUTSDONE_N12 === "FRAMED STRUCTURE" ? (FINALINPUTSDONE_L13 === "FULL RCC" ? ((ALGORITHUMDONE_C126 + ALGORITHUMDONE_C128) * 2) * (ALGORITHUMDONE_B8 + FINALINPUTSDONE_D5 + 1) * ALGORITHUMDONE_B9 * 0.2 : 0) : 0) : 0) * ALGORITHUMDONE_A126;
 
