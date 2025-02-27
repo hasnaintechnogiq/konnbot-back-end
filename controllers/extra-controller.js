@@ -458,12 +458,18 @@ const CalculationCheckTentetive = async (req, resp) => {
         var Guage = "AVERAGE";
 
 
+        // Plumbing Accessories
 
+        var ToughendGlass = "NO";
+        var PlumbingMirror = "NO";
+        var ConTankType = "HALF BODY";
+        var WCType = "WALL HUNG";
+        var WashBasinType = "COUNTER TOP";
+        var WBTapType = "ON COUNTER";
+        var ShowerInteralBo = "DIVERTER";
+        var NahaniiTrap = "SHORT";
 
-
-
-
-
+        
         ////////////////////////////////////
         var FINALINPUTSDONE_D3 = project.SiteArea;
         var FINALINPUTSDONE_B4 = project.SiteLength;
@@ -609,18 +615,25 @@ const CalculationCheckTentetive = async (req, resp) => {
         var FINALINPUTSDONE_I31 = project.BasementFloor === 0 ? (FINALINPUTSDONE_G31 === "ISOLATED" ? 1 : FINALINPUTSDONE_G31 === "PILE" ? 2 : FINALINPUTSDONE_G31 === "RAFT" ? 3 : 0) : 0;
         var FINALINPUTSDONE_G32 = project.FullExcavation;
         var FINALINPUTSDONE_I32 = project.IfIsolatedDepth;
-        var FINALINPUTSDONE_G39 = project.ColumnFactor; 
+        var FINALINPUTSDONE_G39 = project.ColumnFactor;
         var FINALINPUTSDONE_I39 = project.BeamBackFactor;
         var InptForALGORITHUMDONE_B93 = project.InptForALGORITHUMDONE_B93;
         var InptForColumnWidthALGORITHUMDONE_C93 = project.InptForColumnWidthALGORITHUMDONE_C93;
         var ReinsformentFactorALGORITHUMDONE_D93 = project.ReinsformentFactorALGORITHUMDONE_D93;
-        
+
         var footinglengthfeetbACKALGORITHUMDONE_A63 = project.footinglengthfeetbACKALGORITHUMDONE_A63;
         var footingwidthBackfeetAlgorithumB63 = project.footingwidthBackfeetAlgorithumB63;
         var bwidthBackinch = project.bwidthBackinch;
         var bdepthBackinch = project.bdepthBackinch;
-        
-        
+        var slabBackthicknessinch = project.slabBackthicknessinch;
+        var sreinforcementBackfactor = project.sreinforcementBackfactor;
+        var curtainwallwidthBackfeet = project.curtainwallwidthBackfeet;
+        var curtainwallreinforcementBackfactor = project.curtainwallreinforcementBackfactor;
+        var gradeslabBackthicknessinch = project.gradeslabBackthicknessinch;
+        var gradesreinforcementBackfactor = project.gradesreinforcementBackfactor;
+
+
+
         // Curtain Wall below Plinth
 
         var FINALINPUTSDONE_I42 = Lift === "YES" ? Math.max(project.RoadtoPlinth - project.RoadLeveltoExistingAvgSiteLevel, 2) : 0;
@@ -667,16 +680,16 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         // Tank
 
-        var FINALINPUTSDONE_L3 = project.UGWTTank; 
+        var FINALINPUTSDONE_L3 = project.UGWTTank;
         var FINALINPUTSDONE_M3 = project.UGWTTankCapM3;
         var FINALINPUTSDONE_N3 = project.UGWTTankTypeN3;
         var FINALINPUTSDONE_L4 = OHTank; // not complete
         var FINALINPUTSDONE_M4 = OHTankCapacityM4; // not complete
         var FINALINPUTSDONE_N4 = OHTankTypeN4; // not complete
-        var FINALINPUTSDONE_L5 = project.SepticTank; 
+        var FINALINPUTSDONE_L5 = project.SepticTank;
         var FINALINPUTSDONE_M5 = SepticTankCapacityM5;
         var FINALINPUTSDONE_N5 = SepticTankTypeN5; // not complete
-        var FINALINPUTSDONE_L6 = project.FireTank; 
+        var FINALINPUTSDONE_L6 = project.FireTank;
         var FINALINPUTSDONE_M6 = FireTankCapacityM6;
         var FINALINPUTSDONE_N6 = FireTankTypeN6; // not complete
 
@@ -780,6 +793,18 @@ const CalculationCheckTentetive = async (req, resp) => {
         var FINALINPUTSDONE_L111 = project.GrillType;
         var FINALINPUTSDONE_N111 = project.Guage;
 
+
+        // Plumbing Accessories
+
+
+        var FINALINPUTSDONE_B108 = ToughendGlass; // not complete
+        var FINALINPUTSDONE_D108 = PlumbingMirror; // not complete
+        var FINALINPUTSDONE_B109 = ConTankType; // not complete
+        var FINALINPUTSDONE_D109 = WCType; // not complete
+        var FINALINPUTSDONE_B110 = WashBasinType; // not complete
+        var FINALINPUTSDONE_D110 = WBTapType; // not complete
+        var FINALINPUTSDONE_B111 = ShowerInteralBo; // not complete
+        var FINALINPUTSDONE_D111 = NahaniiTrap; // not complete
 
         ///////////////////////////////////////////////////////
 
@@ -1602,7 +1627,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_B63 = ALGORITHUMDONE_H17 === 1 ? (ALGORITHUMDONE_G35 === 1 ? 1.5 : ALGORITHUMDONE_G35 === 2 ? 1.8 : ALGORITHUMDONE_G35 === 3 ? 2.4 : 1.5) : 0;
 
         var ALGORITHUMDONE_D21 = FINALINPUTSDONE_G9;
-        
+
 
         var ALGORITHUMDONE_F17 = Math.ceil(FINALINPUTSDONE_C33 / FINALINPUTSDONE_G39);
         var ALGORITHUMDONE_G67 = ALGORITHUMDONE_D21 === "ISO + RAFT" ? ALGORITHUMDONE_A63 * ALGORITHUMDONE_B63 * 0.1 * ALGORITHUMDONE_F17 : 0;
@@ -2374,12 +2399,12 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var ALGORITHUMDONE_D19 = FINALINPUTSDONE_I39;
         var ALGORITHUMDONE_H102 = (ALGORITHUMDONE_B26 * ALGORITHUMDONE_D19) / 0.2;
-        var ALGORITHUMDONE_C95 = ALGORITHUMDONE_G35 === 1 ? 0.3 : ALGORITHUMDONE_G35 === 2 ? 0.35 : ALGORITHUMDONE_G35 === 3 ? 0.4 : 0.3;
+        var ALGORITHUMDONE_C95 = curtainwallwidthBackfeet;
 
 
         var ALGORITHUMDONE_B102 = ALGORITHUMDONE_B40 === 0 ? ALGORITHUMDONE_B26 * ALGORITHUMDONE_C95 * ALGORITHUMDONE_D19 : ALGORITHUMDONE_B40 * ALGORITHUMDONE_C95 * ALGORITHUMDONE_D19;
 
-        var ALGORITHUMDONE_D95 = ALGORITHUMDONE_G35 === 1 ? 0.015 : ALGORITHUMDONE_G35 === 2 ? 0.02 : ALGORITHUMDONE_G35 === 3 ? 0.03 : 0.0225;
+        var ALGORITHUMDONE_D95 = curtainwallreinforcementBackfactor;
 
         var ALGORITHUMDONE_F102 = ALGORITHUMDONE_B102 * ALGORITHUMDONE_D95 * 7850;
 
@@ -2405,9 +2430,9 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_D15 = ALGORITHUMDONE_C15 * ALGORITHUMDONE_B15;
 
 
-        var ALGORITHUMDONE_B98 = ALGORITHUMDONE_G35 === 1 ? 0.1 : ALGORITHUMDONE_G35 === 2 ? 0.15 : ALGORITHUMDONE_G35 === 3 ? 0.2 : 0.1;
+        var ALGORITHUMDONE_B98 = gradeslabBackthicknessinch;
         var ALGORITHUMDONE_C102 = ALGORITHUMDONE_B98 * ALGORITHUMDONE_B5;
-        var ALGORITHUMDONE_D98 = 0.0065;
+        var ALGORITHUMDONE_D98 = gradesreinforcementBackfactor;
         var ALGORITHUMDONE_G102 = ALGORITHUMDONE_C102 * 7850 * ALGORITHUMDONE_D98;
 
 
@@ -2690,9 +2715,9 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_F103 = ALGORITHUMDONE_B103 * ALGORITHUMDONE_D95 * 7850;
 
 
-        var ALGORITHUMDONE_B99 = ALGORITHUMDONE_G35 === 1 ? 0.125 : ALGORITHUMDONE_G35 === 2 ? 0.15 : ALGORITHUMDONE_G35 === 3 ? 0.2 : 0.125;
+        var ALGORITHUMDONE_B99 = slabBackthicknessinch;
         var ALGORITHUMDONE_C103 = ALGORITHUMDONE_B99 * ALGORITHUMDONE_B26;
-        var ALGORITHUMDONE_D99 = ALGORITHUMDONE_G35 === 1 ? 0.0125 : ALGORITHUMDONE_G35 === 2 ? 0.015 : ALGORITHUMDONE_G35 === 3 ? 0.02 : 0.0125;
+        var ALGORITHUMDONE_D99 = sreinforcementBackfactor;
         var ALGORITHUMDONE_G103 = ALGORITHUMDONE_C103 * 7850 * ALGORITHUMDONE_D99;
 
         var ALGORITHUMDONE_B96 = bwidthBackinch;

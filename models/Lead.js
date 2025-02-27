@@ -93,8 +93,8 @@ const LeadsSchema = mongoose.Schema({
     managerID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'manager'
-    }
-
+    },
+    Createdate:{type:Date, default: Date.now},
 });
 
 module.exports = mongoose.model("leads", LeadsSchema);
