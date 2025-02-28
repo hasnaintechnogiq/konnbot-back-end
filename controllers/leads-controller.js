@@ -149,6 +149,8 @@ const getLeadWithProject = async (req, resp) => {
         })
         .populate("noticesID")
         .populate("userID")
+        .populate("engineerID")
+        .populate("managerID")
         .populate("activitiesID")
         .populate("quotationSelectedID")
         .populate("quotationID")
