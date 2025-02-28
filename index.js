@@ -96,7 +96,7 @@ app.post('/upload-profile-user-new', upload.single('image'), async (req, res) =>
             return res.status(400).send('No files were uploaded.');
         }
         const formData = req.body;
-        const profile_url = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
+        const profile_url = `https://konnbot-back-end-13-02-2025.onrender.com/profile/${files.filename}`;
         console.log(profile_url)
         let singleUser = await User.findById(formData.userID)
 
@@ -122,7 +122,7 @@ app.post('/upload-video-to-create-ticket', upload.single('video'), async (req, r
         }
         const formData = req.body;
 
-        const videoPath = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
+        const videoPath = `https://konnbot-back-end-13-02-2025.onrender.com/profile/${files.filename}`;
         const result = await Queries.create({ ...formData, videoPath });
 
         let objID = new mongoose.Types.ObjectId(result.id);
@@ -223,7 +223,7 @@ app.post('/add-ticket-and-upload', upload.array('images', 5), async (req, res) =
             originalname: file.originalname,
             filename: file.filename,
             path: file.path,
-            profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
+            profile_url: `https://konnbot-back-end-13-02-2025.onrender.com/profile/${file.filename}`
         }));
 
 
@@ -379,7 +379,7 @@ app.post('/add-images-in-change-order-upload', upload.array('images', 5), async 
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
+        profile_url: `https://konnbot-back-end-13-02-2025.onrender.com/profile/${file.filename}`
     }));
 
     const result = await ChatsChangeInstallment.create({ ...formData, imgarry });
@@ -505,7 +505,7 @@ app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, r
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
+        profile_url: `https://konnbot-back-end-13-02-2025.onrender.com/profile/${file.filename}`
     }));
 
     const result = await Queryupdates.create({ ...formData, imgarry });
@@ -751,7 +751,7 @@ app.post('/add-delay-with-images', upload.array('images', 5), async (req, res) =
             originalname: file.originalname,
             filename: file.filename,
             path: file.path,
-            profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
+            profile_url: `https://konnbot-back-end-13-02-2025.onrender.com/profile/${file.filename}`
         }));
 
         const result = await Delays.create({ ...formData, imgarry });
@@ -964,7 +964,7 @@ app.post('/upload-images-for-sub-task', upload.array('images', 3), async (req, r
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
+        profile_url: `https://konnbot-back-end-13-02-2025.onrender.com/profile/${file.filename}`
     }));
 
 
@@ -1004,7 +1004,7 @@ app.post('/upload-profile-image-for-user', upload.array('images', 1), async (req
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
+        profile_url: `https://konnbot-back-end-13-02-2025.onrender.com/profile/${file.filename}`
     }));
 
 
@@ -1042,7 +1042,7 @@ app.post('/upload-profile-image-for-lead-manag', upload.single('image'), async (
             return res.status(400).send('No files were uploaded.');
         }
         const formData = req.body;
-        const profile_url = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
+        const profile_url = `https://konnbot-back-end-13-02-2025.onrender.com/profile/${files.filename}`;
         console.log(profile_url)
         let singleUser = await LeadManager.findById(formData.leadmanagerID)
 
@@ -1071,7 +1071,7 @@ app.post('/upload-profile-image-for-lead-manag', upload.single('image'), async (
 //         originalname: file.originalname,
 //         filename: file.filename,
 //         path: file.path,
-//         profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
+//         profile_url: `https://konnbot-back-end-13-02-2025.onrender.com/profile/${file.filename}`
 //     }));
 
 
@@ -1111,7 +1111,7 @@ app.post('/upload-profile-image-for-manag-dept', upload.single('image'), async (
             return res.status(400).send('No files were uploaded.');
         }
         const formData = req.body;
-        const profile_url = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
+        const profile_url = `https://konnbot-back-end-13-02-2025.onrender.com/profile/${files.filename}`;
         console.log(profile_url)
         let singleUser = await Manager.findById(formData.managerID)
 
@@ -1144,7 +1144,7 @@ app.post('/upload-profile-image-for-engineer-yes', upload.single('image'), async
             return res.status(400).send('No files were uploaded.');
         }
         const formData = req.body;
-        const profile_url = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
+        const profile_url = `https://konnbot-back-end-13-02-2025.onrender.com/profile/${files.filename}`;
         console.log(profile_url)
         let singleUser = await Engineer.findById(formData.engineerID)
 
