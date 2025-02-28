@@ -84,7 +84,15 @@ const addPaidAmount = async (req, res) => {
             }
         )
 
+        console.log('req.body', req.body)
+        let productsingle = await MyInstallment.findById(req.body.installmentID);
 
+        console.log('productsingle', productsingle)
+        const updatNew = productsingle.paidamount + Number(req.body.paidamountn);
+
+        productsingle.paidamount =  updatNew;
+
+        await productsingle.save();
 
 
         const objecttosave = {
@@ -116,9 +124,6 @@ const addPaidAmount = async (req, res) => {
                 }
             )
         }
-
-
-
 
 
 
@@ -162,7 +167,7 @@ const chatsInstallment = async (req, resp) => {
 
         const { userID, managerID } = req.body
         console.log(userID)
-        if(userID && req.body.usertype !== "user"){
+        if (userID && req.body.usertype !== "user") {
             let single = await User.findOne({ _id: userID })
 
             let notifiIDes = single.notificationarrayID
@@ -194,7 +199,7 @@ const chatsInstallment = async (req, resp) => {
 
 
 
-        if(managerID){
+        if (managerID) {
             let single = await Manager.findOne({ _id: managerID })
 
             let notifiIDes = single.notificationarrayID
