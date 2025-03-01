@@ -44,7 +44,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: '*' }));
 
 const Routes = require("./routes/route.js")
 
@@ -96,7 +96,7 @@ app.post('/upload-profile-user-new', upload.single('image'), async (req, res) =>
             return res.status(400).send('No files were uploaded.');
         }
         const formData = req.body;
-        const profile_url = `https://konnbot-back-end-13-02-2025.onrender.com/profile/${files.filename}`;
+        const profile_url = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
         console.log(profile_url)
         let singleUser = await User.findById(formData.userID)
 
@@ -122,7 +122,7 @@ app.post('/upload-video-to-create-ticket', upload.single('video'), async (req, r
         }
         const formData = req.body;
 
-        const videoPath = `https://konnbot-back-end-13-02-2025.onrender.com/profile/${files.filename}`;
+        const videoPath = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
         const result = await Queries.create({ ...formData, videoPath });
 
         let objID = new mongoose.Types.ObjectId(result.id);
@@ -158,7 +158,7 @@ app.post('/upload-video-to-create-ticket', upload.single('video'), async (req, r
 
             let notifiIDes = single.notificationarrayID
 
-            
+
 
             await NotificationArray.updateOne(
                 { _id: notifiIDes },
@@ -223,7 +223,7 @@ app.post('/add-ticket-and-upload', upload.array('images', 5), async (req, res) =
             originalname: file.originalname,
             filename: file.filename,
             path: file.path,
-            profile_url: `https://konnbot-back-end-13-02-2025.onrender.com/profile/${file.filename}`
+            profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
         }));
 
 
@@ -379,7 +379,7 @@ app.post('/add-images-in-change-order-upload', upload.array('images', 5), async 
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbot-back-end-13-02-2025.onrender.com/profile/${file.filename}`
+        profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
     }));
 
     const result = await ChatsChangeInstallment.create({ ...formData, imgarry });
@@ -505,7 +505,7 @@ app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, r
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbot-back-end-13-02-2025.onrender.com/profile/${file.filename}`
+        profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
     }));
 
     const result = await Queryupdates.create({ ...formData, imgarry });
@@ -751,7 +751,7 @@ app.post('/add-delay-with-images', upload.array('images', 5), async (req, res) =
             originalname: file.originalname,
             filename: file.filename,
             path: file.path,
-            profile_url: `https://konnbot-back-end-13-02-2025.onrender.com/profile/${file.filename}`
+            profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
         }));
 
         const result = await Delays.create({ ...formData, imgarry });
@@ -964,7 +964,7 @@ app.post('/upload-images-for-sub-task', upload.array('images', 3), async (req, r
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbot-back-end-13-02-2025.onrender.com/profile/${file.filename}`
+        profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
     }));
 
 
@@ -1004,7 +1004,7 @@ app.post('/upload-profile-image-for-user', upload.array('images', 1), async (req
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbot-back-end-13-02-2025.onrender.com/profile/${file.filename}`
+        profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
     }));
 
 
@@ -1042,7 +1042,7 @@ app.post('/upload-profile-image-for-lead-manag', upload.single('image'), async (
             return res.status(400).send('No files were uploaded.');
         }
         const formData = req.body;
-        const profile_url = `https://konnbot-back-end-13-02-2025.onrender.com/profile/${files.filename}`;
+        const profile_url = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
         console.log(profile_url)
         let singleUser = await LeadManager.findById(formData.leadmanagerID)
 
@@ -1071,7 +1071,7 @@ app.post('/upload-profile-image-for-lead-manag', upload.single('image'), async (
 //         originalname: file.originalname,
 //         filename: file.filename,
 //         path: file.path,
-//         profile_url: `https://konnbot-back-end-13-02-2025.onrender.com/profile/${file.filename}`
+//         profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
 //     }));
 
 
@@ -1111,7 +1111,7 @@ app.post('/upload-profile-image-for-manag-dept', upload.single('image'), async (
             return res.status(400).send('No files were uploaded.');
         }
         const formData = req.body;
-        const profile_url = `https://konnbot-back-end-13-02-2025.onrender.com/profile/${files.filename}`;
+        const profile_url = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
         console.log(profile_url)
         let singleUser = await Manager.findById(formData.managerID)
 
@@ -1144,7 +1144,7 @@ app.post('/upload-profile-image-for-engineer-yes', upload.single('image'), async
             return res.status(400).send('No files were uploaded.');
         }
         const formData = req.body;
-        const profile_url = `https://konnbot-back-end-13-02-2025.onrender.com/profile/${files.filename}`;
+        const profile_url = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
         console.log(profile_url)
         let singleUser = await Engineer.findById(formData.engineerID)
 
@@ -1186,8 +1186,8 @@ app.post('/upload-profile-image-for-engineer-yes', upload.single('image'), async
 // app.use('/documents', express.static('uploads'));
 // upload documents for Quotation
 app.post('/upload-documents', upload.single('document'), async (req, res) => {
-    const formData = req.body;
-    console.log(formData)
+    console.log(req.file);  // Check if file is received
+    console.log(req.body);  // Check if QuotationID is received
     try {
         const { originalname, size, mimetype, filename } = req.file;
         const newDocument = new DocumentForQuotation({
@@ -1236,20 +1236,35 @@ app.post('/upload-documents', upload.single('document'), async (req, res) => {
 
 // Create Installments start
 app.post("/add-all-installlments", async (req, resp) => {
+    const TotalAmountIs = Number(req.body.totalAmount);
+
+    const firstInstall = TotalAmountIs * 0.12;
+    const secondInstall = TotalAmountIs * 0.10;
+    const thirdInstall = TotalAmountIs * 0.08;
+    const fourthInstall = TotalAmountIs * 0.12;
+    const fifthInstall = TotalAmountIs * 0.08;
+    const sixInstall = TotalAmountIs * 0.09;
+    const sevenstInstall = TotalAmountIs * 0.04;
+    const eightInstall = TotalAmountIs * 0.06;
+    const nineInstall = TotalAmountIs * 0.02;
+    const tenInstall = TotalAmountIs * 0.11;
+    const elevenInstall = TotalAmountIs * 0.10;
+    const towlInstall = TotalAmountIs * 0.08;
+
     try {
         const dataArray = [
-            { installmentnum: '1st', installmenttype: 'Footing', leadID: req.body.leadID },
-            { installmentnum: '2nd', installmenttype: 'Plinth', leadID: req.body.leadID },
-            { installmentnum: '3rd', installmenttype: 'RCC Work', leadID: req.body.leadID },
-            { installmentnum: '4th', installmenttype: 'Brick Work', leadID: req.body.leadID },
-            { installmentnum: '5th', installmenttype: 'Electrical', leadID: req.body.leadID },
-            { installmentnum: '6th', installmenttype: 'Plumbing', leadID: req.body.leadID },
-            { installmentnum: '7th', installmenttype: 'Plaster', leadID: req.body.leadID },
-            { installmentnum: '8th', installmenttype: 'Other Interior', leadID: req.body.leadID },
-            { installmentnum: '9th', installmenttype: 'Door & Window', leadID: req.body.leadID },
-            { installmentnum: '10th', installmenttype: 'Flooring', leadID: req.body.leadID },
-            { installmentnum: '11th', installmenttype: 'Paint & Finishes', leadID: req.body.leadID },
-            { installmentnum: '12th', installmenttype: 'Miscellenous', leadID: req.body.leadID },
+            { installmentnum: '1st', installmenttype: 'Footing', leadID: req.body.leadID, afteraddchangeorderamount: firstInstall, installmentamount: firstInstall },
+            { installmentnum: '2nd', installmenttype: 'Plinth', leadID: req.body.leadID, afteraddchangeorderamount: secondInstall, installmentamount: secondInstall },
+            { installmentnum: '3rd', installmenttype: 'RCC Work', leadID: req.body.leadID, afteraddchangeorderamount: thirdInstall, installmentamount: thirdInstall },
+            { installmentnum: '4th', installmenttype: 'Brick Work', leadID: req.body.leadID, afteraddchangeorderamount: fourthInstall, installmentamount: fourthInstall },
+            { installmentnum: '5th', installmenttype: 'Electrical', leadID: req.body.leadID, afteraddchangeorderamount: fifthInstall, installmentamount: fifthInstall },
+            { installmentnum: '6th', installmenttype: 'Plumbing', leadID: req.body.leadID, afteraddchangeorderamount: sixInstall, installmentamount: sixInstall },
+            { installmentnum: '7th', installmenttype: 'Plaster', leadID: req.body.leadID, afteraddchangeorderamount: sevenstInstall, installmentamount: sevenstInstall },
+            { installmentnum: '8th', installmenttype: 'Other Interior', leadID: req.body.leadID, afteraddchangeorderamount: eightInstall, installmentamount: eightInstall },
+            { installmentnum: '9th', installmenttype: 'Door & Window', leadID: req.body.leadID, afteraddchangeorderamount: nineInstall, installmentamount: nineInstall },
+            { installmentnum: '10th', installmenttype: 'Flooring', leadID: req.body.leadID, afteraddchangeorderamount: tenInstall, installmentamount: tenInstall },
+            { installmentnum: '11th', installmenttype: 'Paint & Finishes', leadID: req.body.leadID, afteraddchangeorderamount: elevenInstall, installmentamount: elevenInstall },
+            { installmentnum: '12th', installmenttype: 'Miscellenous', leadID: req.body.leadID, afteraddchangeorderamount: towlInstall, installmentamount: towlInstall },
         ];
 
 
