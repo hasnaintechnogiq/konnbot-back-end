@@ -210,8 +210,8 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
         var Kitchenshape = "L - SHAPE";
-        var RMCInFooting = "YES";
-        var RMCInSuper = "YES";
+        var RMCInFooting = "NO";
+        var RMCInSuper = "NO";
 
         var WashroomLength = 7;
         var WashroomWidth = 5;
@@ -308,6 +308,8 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var Lift = "YES";
         var CurtainWallType = "BRICK";
+        var CurtainPlinthBottom = "BRICK";
+
 
         // Plumbing Work
 
@@ -426,6 +428,8 @@ const CalculationCheckTentetive = async (req, resp) => {
         var BoundaryWallN74 = 5;
         var TerraceTilingWork = "P.C.C + WATERPROOFING";
         var TowerTIlingWork = "P.C.C + WATERPROOFING";
+        var FlooringNichesFirstL66 = "YES";
+        var FlooringNichesFirstN66 = "YES";
 
 
         // Door
@@ -469,13 +473,14 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ShowerInteralBo = "DIVERTER";
         var NahaniiTrap = "SHORT";
 
-        
+
         ////////////////////////////////////
         var FINALINPUTSDONE_D3 = project.SiteArea;
         var FINALINPUTSDONE_B4 = project.SiteLength;
         var FINALINPUTSDONE_D4 = project.SiteBreath;
 
         var FINALINPUTSDONE_B3 = project.SiteArea;
+        var Total_BuildUp_Area = project.Total_BuildUp_Area;
 
 
         var FINALINPUTSDONE_D5 = project.BasementFloor;
@@ -490,7 +495,10 @@ const CalculationCheckTentetive = async (req, resp) => {
         var FINALINPUTSDONE_C12 = project.OffsetRight;
         var FINALINPUTSDONE_C13 = project.OffsetBack;
         var FINALINPUTSDONE_C14 = project.OffsetLeft;
+        var FINALINPUTSDONE_D11 = project.OffsetFrontInNUmber;
+        var FINALINPUTSDONE_D12 = project.OffsetRightInNUmber;
         var FINALINPUTSDONE_D13 = project.OffsetBackInNUmber;
+        var FINALINPUTSDONE_D14 = project.OffsetLeftInNUmber;
         var FINALINPUTSDONE_B17 = project.SiteClearanceTobeDone;
         var FINALINPUTSDONE_D17 = project.SiteClearanceThick;
         var FINALINPUTSDONE_C18 = SiteClearanceSoil; // not complete not there
@@ -630,6 +638,8 @@ const CalculationCheckTentetive = async (req, resp) => {
         var curtainwallwidthBackfeet = project.curtainwallwidthBackfeet;
         var curtainwallreinforcementBackfactor = project.curtainwallreinforcementBackfactor;
         var gradeslabBackthicknessinch = project.gradeslabBackthicknessinch;
+        var curtainwalllengthBackfeet = project.curtainwalllengthBackfeet;
+
         var gradesreinforcementBackfactor = project.gradesreinforcementBackfactor;
 
 
@@ -638,6 +648,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var FINALINPUTSDONE_I42 = Lift === "YES" ? Math.max(project.RoadtoPlinth - project.RoadLeveltoExistingAvgSiteLevel, 2) : 0;
         var FINALINPUTSDONE_G43 = project.CurtainWallType;
+        var FINALINPUTSDONE_G46 = CurtainPlinthBottom;
 
 
         // Plumbing Work
@@ -760,6 +771,8 @@ const CalculationCheckTentetive = async (req, resp) => {
         var FINALINPUTSDONE_N74 = project.BoundaryWallN74;
         var FINALINPUTSDONE_L76 = project.TerraceTilingWork;
         var FINALINPUTSDONE_N76 = project.TowerTIlingWork;
+        var FINALINPUTSDONE_L66 = FlooringNichesFirstL66;
+        var FINALINPUTSDONE_N66 = FlooringNichesFirstN66;
 
 
         // Door
@@ -1056,6 +1069,11 @@ const CalculationCheckTentetive = async (req, resp) => {
         var AllDriveScrewsCost = Allprice.AllDriveScrewsCost;
         var GSSoffitCleatCost = Allprice.GSSoffitCleatCost;
         var GSNutsBoltsCost = Allprice.GSNutsBoltsCost;
+        var PLUMBINGSolventCost = Allprice.PLUMBINGSolventCost;
+        var PVCPipeCost = Allprice.PVCPipeCost;
+        var ClipsCost = Allprice.ClipsCost;
+
+
         var GSConnectingClipsCost = Allprice.GSConnectingClipsCost;
         var GSAngelHangerCost = Allprice.GSAngelHangerCost;
         var GSIntermediateChannelCost = Allprice.GSIntermediateChannelCost;
@@ -1228,7 +1246,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         // Factor Start
 
 
-        var COSTINGANDINSTALLMENTDONED4 = 35.31 / 150;
+        var COSTINGANDINSTALLMENTDONED4 = 35.31 / 275;
         var COSTINGANDINSTALLMENTDONED5 = 0.12 / 10;
 
         var COSTINGANDINSTALLMENTDONED6 = QUANTITIESDONE_B6 === 1 ? 35.31 / 600 : QUANTITIESDONE_B6 === 2 ? 35.31 / 500 : QUANTITIESDONE_B6 === 3 ? 35.31 / 300 : QUANTITIESDONE_B6 === 4 ? 35.31 / 100 : 0;
@@ -1253,6 +1271,10 @@ const CalculationCheckTentetive = async (req, resp) => {
         var COSTINGANDINSTALLMENTDONED37 = 3;
         var COSTINGANDINSTALLMENTDONED38 = 6;
         var COSTINGANDINSTALLMENTDONED39 = 0.22 * 0.25 * 1000 / 50;
+        var COSTINGINSTALLMENTDONE_D40 = 0.224 * (0.38 * 1000 / 50) / 10;
+
+
+
         var COSTINGINSTALLMENTDONE_D41 = 0.144 * (0.38 * 1000 / 50) / 10;
 
         var COSTINGANDINSTALLMENTDONED42 = 0.4 * 35.31;
@@ -1288,6 +1310,9 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var COSTINGANDINSTALLMENTDONED93 = 30;
         var COSTINGANDINSTALLMENTDONED94 = 385;
+        var COSTINGINSTALLMENTDONE_D95 = 400;
+
+
         var COSTINGANDINSTALLMENTDONED99 = 9.5;
         var COSTINGANDINSTALLMENTDONED114 = 0.1 * 0.625 * 35.31;
         var COSTINGANDINSTALLMENTDONED115 = 1 * 0.375 / 5 * 1440 / 50 * 0.1;
@@ -1346,6 +1371,9 @@ const CalculationCheckTentetive = async (req, resp) => {
         var COSTINGINSTALLMENTDONE_D174 = 1;
         var COSTINGINSTALLMENTDONE_D176 = 1;
         var COSTINGINSTALLMENTDONE_D177 = 1;
+        var COSTINGINSTALLMENTDONE_D178 = 1.05 * 3.28
+        var COSTINGINSTALLMENTDONE_D179 = 4;
+        var COSTINGINSTALLMENTDONE_D180 = 1 / 2.73;
 
         var COSTINGINSTALLMENTDONE_D183 = 8;
         var COSTINGINSTALLMENTDONE_D184 = 5;
@@ -1582,7 +1610,9 @@ const CalculationCheckTentetive = async (req, resp) => {
         var BS_ExcavationQTD = QUANTITIESDONE_B4 === 0 ? 0 : ALGORITHUMDONE_E40 + ALGORITHUMDONE_E41 + ALGORITHUMDONE_E42 + ALGORITHUMDONE_E43;
 
 
-        var BW_SiteClearanceVolumeMT = (QUANTITIESDONE_L6 === 1 ? 0 : (FINALINPUTSDONE_B17 === "YES" ? Site_ClearanceQTD : 0));
+
+        var BW_SiteClearanceVolumeMT = QUANTITIESDONE_L6 === 1 ? (FINALINPUTSDONE_B17 === "YES" ? Site_ClearanceQTD : 0) : 0;
+
         var BW_SiteClearanceSurfaceMT = (QUANTITIESDONE_L6 === 1 ? 0 : (FINALINPUTSDONE_B17 === "NO" ? Site_ClearanceQTD : 0));
         var BW_LayoutLevellingMT = (QUANTITIESDONE_L6 === 1 ? 0 : Road_Level_Layout_LevellingQTD);
         var BW_ExcavationMT = BS_ExcavationQTD;
@@ -1592,6 +1622,8 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
         var BW_SiteClearanceVolumeJCBProclainQuantity = BW_SiteClearanceVolumeMT * COSTINGANDINSTALLMENTDONED4;
+
+
         var BW_SiteClearanceVolumeTrolleyQuantity = Math.ceil(BW_SiteClearanceVolumeJCBProclainQuantity < 200 ? BW_SiteClearanceVolumeMT * COSTINGANDINSTALLMENTDONED9 : BW_SiteClearanceVolumeMT * COSTINGANDINSTALLMENTDONED11);
         var BW_SiteClearanceSurfaceJCBProclainQuantity = Math.ceil(COSTINGANDINSTALLMENTDONED5 * BW_SiteClearanceSurfaceMT);
         var BW_LayoutLevellingChunaQuantity = COSTINGANDINSTALLMENTDONED13 * BW_LayoutLevellingMT;
@@ -1600,6 +1632,8 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
         var BW_SiteClearanceVolumeJCBProclainAmount = JCBSiteCleaningVolumeCost * BW_SiteClearanceVolumeJCBProclainQuantity;
+
+
         var BW_SiteClearanceVolumeTrolleyAmount = BW_SiteClearanceVolumeTrolleyQuantity * TrolleyCost;
         var BW_SiteClearanceSurfaceJCBProclainAmount = BW_SiteClearanceSurfaceJCBProclainQuantity * JCBSiteCleaningSurfaceCost;
         var BW_LayoutLevellingChunaAmount = ChunaCost * BW_LayoutLevellingChunaQuantity;
@@ -1643,7 +1677,9 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_B7 = FINALINPUTSDONE_D4 / 3.28;
         var ALGORITHUMDONE_K43 = FINALINPUTSDONE_D32;
 
-        var ALGORITHUMDONE_C257 = ((FINALINPUTSDONE_G7 === 4 ? ALGORITHUMDONE_K43 * (ALGORITHUMDONE_E349 + ALGORITHUMDONE_F349) * 1.5 : (FINALINPUTSDONE_G7 === 3 ? ALGORITHUMDONE_K42 * (ALGORITHUMDONE_E349 + ALGORITHUMDONE_F349) * 1.5 : (FINALINPUTSDONE_G7 === 2 ? ALGORITHUMDONE_K41 * (ALGORITHUMDONE_E349 + 349) * 1.5 : (FINALINPUTSDONE_G7 === 1 ? ALGORITHUMDONE_K40 * (ALGORITHUMDONE_E349 + ALGORITHUMDONE_F349) * 1.5 : 0))))) + (ALGORITHUMDONE_B6 + ALGORITHUMDONE_B7);
+
+        var ALGORITHUMDONE_C257 = FINALINPUTSDONE_D5 === 0 ? 0 : (FINALINPUTSDONE_G7 === 4 ? ((ALGORITHUMDONE_K43 * (ALGORITHUMDONE_E349 + ALGORITHUMDONE_F349)) + (4 * ALGORITHUMDONE_B9)) * 1.5 : FINALINPUTSDONE_G7 === 3 ? ((ALGORITHUMDONE_K42 * (ALGORITHUMDONE_E349 + ALGORITHUMDONE_F349)) + (3 * ALGORITHUMDONE_B9)) * 1.5 : FINALINPUTSDONE_G7 === 2 ? ((ALGORITHUMDONE_K41 * (ALGORITHUMDONE_E349 + ALGORITHUMDONE_F349)) + (2 * ALGORITHUMDONE_B9)) * 1.5 : FINALINPUTSDONE_G7 === 1 ? ((ALGORITHUMDONE_K40 * (ALGORITHUMDONE_E349 + ALGORITHUMDONE_F349)) + (4 * ALGORITHUMDONE_B9)) * 1.5 : 0) + (ALGORITHUMDONE_B6 + ALGORITHUMDONE_B7)
+
 
         var QUANTITIESDONE_D4 = FINALINPUTSDONE_G10;
         var QUANTITIESDONE_D5 = FINALINPUTSDONE_I10;
@@ -1693,7 +1729,10 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_B93 = InptForALGORITHUMDONE_B93;
         var ALGORITHUMDONE_C93 = InptForColumnWidthALGORITHUMDONE_C93;
 
-        var ALGORITHUMDONE_F17 = FINALINPUTSDONE_C33 / FINALINPUTSDONE_G39;
+        var ALGORITHUMDONE_F17 = Math.ceil(FINALINPUTSDONE_C33 / FINALINPUTSDONE_G39)
+
+
+
         var ALGORITHUMDONE_G61 = ALGORITHUMDONE_H17 === 1 ? ALGORITHUMDONE_F17 : 0;
         var ALGORITHUMDONE_I61 = ALGORITHUMDONE_G61 === 0 ? 0 : ALGORITHUMDONE_F17 * ((FINALINPUTSDONE_I32 + FINALINPUTSDONE_C20 + 1) / 3.28) * ALGORITHUMDONE_C93 * ALGORITHUMDONE_B93;
         var ALGORITHUMDONE_D93 = ReinsformentFactorALGORITHUMDONE_D93;
@@ -1780,7 +1819,10 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_B19 = FINALINPUTSDONE_I32 / 3.28;
 
         var ALGORITHUMDONE_B26 = FINALINPUTSDONE_C33 / 10.76;
-        var ALGORITHUMDONE_E26 = Math.round((ALGORITHUMDONE_B26 * 10.76) / FINALINPUTSDONE_G39);
+        var ALGORITHUMDONE_E26 = Math.ceil((ALGORITHUMDONE_B26 * 10.76) / FINALINPUTSDONE_G39);
+
+
+
         var ALGORITHUMDONE_H17 = FINALINPUTSDONE_G10;
         var ALGORITHUMDONE_G35 = FINALINPUTSDONE_G30;
 
@@ -1795,33 +1837,42 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_E7 = FINALINPUTSDONE_B13;
         var ALGORITHUMDONE_E8 = FINALINPUTSDONE_B14;
 
-        var ALGORITHUMDONE_H5 = FINALINPUTSDONE_B8 === "NO" ? 0 : (FINALINPUTSDONE_C11 === "OFFSET" ? ALGORITHUMDONE_B6 - (ALGORITHUMDONE_E5 === "ROAD" ? 5 : 0) : 0);
-        var ALGORITHUMDONE_H6 = FINALINPUTSDONE_B8 === "NO" ? 0 : (FINALINPUTSDONE_C12 === "OFFSET" ? ALGORITHUMDONE_B7 - (ALGORITHUMDONE_E6 === "ROAD" ? 5 : 0) : 0);
-        var ALGORITHUMDONE_H7 = FINALINPUTSDONE_B8 === "NO" ? 0 : (FINALINPUTSDONE_C13 === "OFFSET" ? ALGORITHUMDONE_B6 - (ALGORITHUMDONE_E7 === "ROAD" ? 5 : 0) : 0);
+        // var ALGORITHUMDONE_H5 = FINALINPUTSDONE_B8 === "NO" ? 0 : (FINALINPUTSDONE_C11 === "OFFSET" ? ALGORITHUMDONE_B6 - (ALGORITHUMDONE_E5 === "ROAD" ? 5 : 0) : 0);
+        var ALGORITHUMDONE_G5 = FINALINPUTSDONE_D11 / 3.28;
+        var ALGORITHUMDONE_G7 = FINALINPUTSDONE_D13 / 3.28;
+        var ALGORITHUMDONE_H5 = FINALINPUTSDONE_B8 === "NO" ? 0 : FINALINPUTSDONE_C11 === "OFFSET" ? (ALGORITHUMDONE_B6 / 2) + (ALGORITHUMDONE_G5 * 2) : 0;
+
+        var ALGORITHUMDONE_H6 = FINALINPUTSDONE_B8 === "NO" ? 0 : FINALINPUTSDONE_C12 === "OFFSET" ? ALGORITHUMDONE_B7 : 0;
+        var ALGORITHUMDONE_H7 = FINALINPUTSDONE_B8 === "NO" ? 0 : FINALINPUTSDONE_C13 === "OFFSET" ? (ALGORITHUMDONE_B6 / 2) + ALGORITHUMDONE_G7 : 0;
         var ALGORITHUMDONE_H8 = FINALINPUTSDONE_B8 === "NO" ? 0 : (FINALINPUTSDONE_C14 === "OFFSET" ? ALGORITHUMDONE_B7 - (ALGORITHUMDONE_E8 === "ROAD" ? 5 : 0) : 0);
 
 
+
         var ALGORITHUMDONE_K19 = ALGORITHUMDONE_H5 + ALGORITHUMDONE_H6 + ALGORITHUMDONE_H7 + ALGORITHUMDONE_H8;
+
+
 
         var ALGORITHUMDONE_F26 = Math.ceil((ALGORITHUMDONE_K19 / 3.28) + 1);
 
 
 
         var ALGORITHUMDONE_B26 = FINALINPUTSDONE_C33 / 10.76;
-        var ALGORITHUMDONE_E26 = Math.round((ALGORITHUMDONE_B26 * 10.76) / FINALINPUTSDONE_G39);
+        var ALGORITHUMDONE_E26 = Math.ceil((ALGORITHUMDONE_B26 * 10.76) / FINALINPUTSDONE_G39);
 
         var ALGORITHUMDONE_F21 = FINALINPUTSDONE_I31;
 
         var ALGORITHUMDONE_K17 = FINALINPUTSDONE_G32 === "FULL EXCAVATION" ? 1 : 0;
         var ALGORITHUMDONE_A78 = ALGORITHUMDONE_F21 === 1 ? (ALGORITHUMDONE_G35 === 1 ? 1.5 : ALGORITHUMDONE_G35 === 2 ? 1.8 : ALGORITHUMDONE_G35 === 3 ? 2.4 : 1.5) : 0;
         var ALGORITHUMDONE_B78 = ALGORITHUMDONE_F21 === 1 ? (ALGORITHUMDONE_G35 === 1 ? 1.5 : ALGORITHUMDONE_G35 === 2 ? 1.8 : ALGORITHUMDONE_G35 === 3 ? 2.4 : 1.5) : 0;
-        var ALGORITHUMDONE_B5 = FINALINPUTSDONE_B3 / 10.76
+        var ALGORITHUMDONE_B5 = FINALINPUTSDONE_B3 / 10.76;
         var ALGORITHUMDONE_G78 = ALGORITHUMDONE_F21 === 1 ? (ALGORITHUMDONE_K17 === 0 ? (ALGORITHUMDONE_A78 * ALGORITHUMDONE_B78) * (ALGORITHUMDONE_E26 + ALGORITHUMDONE_F26) * ALGORITHUMDONE_B19 * 1.25 : ALGORITHUMDONE_B5 * 1.1 * ALGORITHUMDONE_B19) : 0;
 
 
 
         var ALGORITHUMDONE_C78 = ALGORITHUMDONE_F21 === 1 ? (ALGORITHUMDONE_G35 === 1 ? 0.4 : ALGORITHUMDONE_G35 === 2 ? 0.5 : ALGORITHUMDONE_G35 === 3 ? 0.6 : 0.4) : 0
-        var ALGORITHUMDONE_G80 = ALGORITHUMDONE_F21 === 1 ? (ALGORITHUMDONE_A78 * ALGORITHUMDONE_B78 * ALGORITHUMDONE_C78 * ALGORITHUMDONE_F17) : 0
+        var ALGORITHUMDONE_G80 = ALGORITHUMDONE_F21 === 1 ? (ALGORITHUMDONE_A78 * ALGORITHUMDONE_B78 * ALGORITHUMDONE_C78 * ALGORITHUMDONE_F17) : 0;
+
+
         var ALGORITHUMDONE_D78 = ALGORITHUMDONE_F21 === 1 ? (ALGORITHUMDONE_G35 === 1 ? 0.0125 : ALGORITHUMDONE_G35 === 2 ? 0.015 : ALGORITHUMDONE_G35 === 3 ? 0.0175 : 0.0125) : 0
         var ALGORITHUMDONE_G82 = ALGORITHUMDONE_G80 * ALGORITHUMDONE_D78 * 7850;
 
@@ -1856,6 +1907,8 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ISO_Layout_Levelling_QTD = QUANTITIESDONE_B5 === 1 ? 1 : 0;
         var ISO_Excavation_QTD = QUANTITIESDONE_B5 === 1 ? ALGORITHUMDONE_G78 : 0;
         var ISO_Reinforcement_QTD = QUANTITIESDONE_B5 === 1 ? ALGORITHUMDONE_G82 + ALGORITHUMDONE_G83 : 0;
+
+
         var ISO_PCC_QTD = QUANTITIESDONE_B5 === 1 ? ALGORITHUMDONE_G79 : 0;
         var ISO_Footing_RCC_QTD = QUANTITIESDONE_B5 === 1 ? ALGORITHUMDONE_G80 : 0;
         var ISO_Pedestal_RCC_QTD = QUANTITIESDONE_B5 === 1 ? ALGORITHUMDONE_G81 : 0;
@@ -1887,6 +1940,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var NFI_ReinforcementTMTReinforcementQuantity = Math.ceil(NFI_ReinforcementTMTMT * COSTINGANDINSTALLMENTDONED47);
         var NFI_ReinforcementTMTBindingWireQuantity = Math.ceil(NFI_ReinforcementTMTMT * COSTINGANDINSTALLMENTDONED48);
         var NFI_ReinforcementTMTCoverBlockQuantity = Math.ceil(NFI_ReinforcementTMTMT * COSTINGANDINSTALLMENTDONED33);
+
 
         var NFI_PCCStoneAggregate20MMQuantity = Math.ceil(NFI_PCCMT * COSTINGANDINSTALLMENTDONED35);
         var NFI_PCCPortlandCementQuantity = Math.ceil(NFI_PCCMT * COSTINGANDINSTALLMENTDONED37);
@@ -1977,6 +2031,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var NFI_ISO_ReinforcementTMT_TotalAmount = NFI_ReinforcementTMTReinforcementAmount + NFI_ReinforcementTMTBindingWireAmount + NFI_ReinforcementTMTCoverBlockAmount;
 
+
         var NFI_ISO_PCC_TotalAmount = NFI_PCCStoneAggregate20MMAmount + NFI_PCCPortlandCementAmount + NFI_PCCCourseSandAmount;
 
         var NFI_ISO_FootingRCC_TotalAmount = NFI_FootingRCCStoneAggregate20MMAmount + NFI_FootingRCCPortlandCementAmount + NFI_FootingRCCCourseSandAmount + NFI_FootingRCCAdmixtureWaterproofAmount + NFI_FootingRCCRMCAmount;
@@ -2008,6 +2063,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_D84 = ALGORITHUMDONE_F21 === 2 ? (ALGORITHUMDONE_G35 === 1 ? 0.0125 : ALGORITHUMDONE_G35 === 2 ? 0.015 : ALGORITHUMDONE_G35 === 3 ? 0.0175 : 0.02) : 0;
         var ALGORITHUMDONE_A82 = ALGORITHUMDONE_F21 === 2 ? (ALGORITHUMDONE_G35 === 1 ? 0.3 : ALGORITHUMDONE_G35 === 2 ? 0.35 : ALGORITHUMDONE_G35 === 3 ? 0.4 : 0.3) : 0;
         var ALGORITHUMDONE_H80 = ALGORITHUMDONE_F21 === 2 ? ((3.14 * ALGORITHUMDONE_A82 * ALGORITHUMDONE_A82 / 4) * ALGORITHUMDONE_D82 * ALGORITHUMDONE_E26) * ALGORITHUMDONE_C82 * 1.25 : 0;
+
         var ALGORITHUMDONE_H82 = ALGORITHUMDONE_H80 * ALGORITHUMDONE_D84 * 7850;
 
 
@@ -2164,14 +2220,12 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_B115 = FINALINPUTSDONE_L5 === "YES" ? FINALINPUTSDONE_M5 : 0;
         var ALGORITHUMDONE_E115 = (ALGORITHUMDONE_B115 / 1000) / (ALGORITHUMDONE_C115 * ALGORITHUMDONE_D115);
 
-        var ALGORITHUMDONE_F113 = ALGORITHUMDONE_B113 === 0 ? 0 : (((ALGORITHUMDONE_C113 + ALGORITHUMDONE_E113) * 2 * ALGORITHUMDONE_D113) * (FINALINPUTSDONE_N3 === "FULL RCC" ? 0.2 : FINALINPUTSDONE_N3 === "HALF RCC + HALF BRICK" ? 0.1 : 0)) + ((ALGORITHUMDONE_G35 === 1 ? 0.1 : ALGORITHUMDONE_G35 === 2 ? 0.125 : ALGORITHUMDONE_G35 === 3 ? 0.15 : 0.1) * (ALGORITHUMDONE_C113 * ALGORITHUMDONE_E113 * 2));
+
+        var ALGORITHUMDONE_F113 = ALGORITHUMDONE_B113 === 0 ? 0 : ((ALGORITHUMDONE_C113 + ALGORITHUMDONE_E113) * 2 * ALGORITHUMDONE_D113 * (FINALINPUTSDONE_N3 === "FULL RCC" ? 0.2 : FINALINPUTSDONE_N3 === "HALF BRICK + HALF RCC" ? 0.1 : 0)) + ((ALGORITHUMDONE_G35 === 1 ? 0.125 : ALGORITHUMDONE_G35 === 2 ? 0.15 : ALGORITHUMDONE_G35 === 3 ? 0.2 : 0.1) * (ALGORITHUMDONE_C113 * ALGORITHUMDONE_E113 * 2));
 
 
 
-
-
-        var ALGORITHUMDONE_F115 = (ALGORITHUMDONE_B115 === 0 ? 0 : (((ALGORITHUMDONE_C115 + ALGORITHUMDONE_E115) * 2 * ALGORITHUMDONE_D115) * (FINALINPUTSDONE_N5 === "FULL RCC" ? 0.2 : (FINALINPUTSDONE_N5 === "HALF RCC + HALF BRICK" ? 0.1 : 0))) + ((ALGORITHUMDONE_G35 === 1 ? 0.1 : (ALGORITHUMDONE_G35 === 2 ? 0.125 : (ALGORITHUMDONE_G35 === 3 ? 0.15 : 0.1))) * (ALGORITHUMDONE_C115 * ALGORITHUMDONE_E115 * 2)));
-
+        var ALGORITHUMDONE_F115 = ALGORITHUMDONE_B115 === 0 ? 0 : ((ALGORITHUMDONE_C115 + ALGORITHUMDONE_E115) * 2 * ALGORITHUMDONE_D115 * (FINALINPUTSDONE_N5 === "FULL RCC" ? 0.2 : FINALINPUTSDONE_N5 === "HALF BRICK + HALF RCC" ? 0.1 : 0)) + ((ALGORITHUMDONE_G35 === 1 ? 0.125 : ALGORITHUMDONE_G35 === 2 ? 0.15 : ALGORITHUMDONE_G35 === 3 ? 0.2 : 0.1) * (ALGORITHUMDONE_C115 * ALGORITHUMDONE_E115 * 2));
 
 
 
@@ -2185,7 +2239,10 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_C114 = 1.5;
         var ALGORITHUMDONE_D114 = 1.5;
         var ALGORITHUMDONE_E114 = (ALGORITHUMDONE_B114 / 1000) / (ALGORITHUMDONE_C114 * ALGORITHUMDONE_D114);
-        var ALGORITHUMDONE_F114 = ALGORITHUMDONE_B114 === 0 ? 0 : (((ALGORITHUMDONE_C114 + ALGORITHUMDONE_E114) * 2 * ALGORITHUMDONE_D114) * (FINALINPUTSDONE_N4 === "FULL RCC" ? 0.2 : (FINALINPUTSDONE_N4 === "HALF RCC + HALF BRICK" ? 0.1 : 0))) + ((ALGORITHUMDONE_G35 === 1 ? 0.1 : ALGORITHUMDONE_G35 === 2 ? 0.125 : ALGORITHUMDONE_G35 === 3 ? 0.15 : 0.1) * (ALGORITHUMDONE_C114 * ALGORITHUMDONE_E114 * 2));
+
+
+        var ALGORITHUMDONE_F114 = ALGORITHUMDONE_B114 === 0 ? 0 : ((ALGORITHUMDONE_C114 + ALGORITHUMDONE_E114) * 2 * ALGORITHUMDONE_D114 * (FINALINPUTSDONE_N4 === "FULL RCC" ? 0.2 : FINALINPUTSDONE_N4 === "HALF BRICK + HALF RCC" ? 0.1 : 0)) + ((ALGORITHUMDONE_G35 === 1 ? 0.125 : ALGORITHUMDONE_G35 === 2 ? 0.15 : ALGORITHUMDONE_G35 === 3 ? 0.2 : 0.1) * (ALGORITHUMDONE_C114 * ALGORITHUMDONE_E114 * 2));
+
         var ALGORITHUMDONE_B116 = FINALINPUTSDONE_L6 === "YES" ? FINALINPUTSDONE_M6 : 0;
         var ALGORITHUMDONE_C116 = 1.8;
         var ALGORITHUMDONE_D116 = 1.8;
@@ -2193,9 +2250,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
 
-
-        var ALGORITHUMDONE_F116 = ALGORITHUMDONE_B116 === 0 ? 0 : (((ALGORITHUMDONE_C116 + ALGORITHUMDONE_E116) * 2 * ALGORITHUMDONE_D116) * (FINALINPUTSDONE_N6 === "FULL RCC" ? 0.2 : (FINALINPUTSDONE_N6 === "HALF RCC + HALF BRICK" ? 0.1 : 0))) + ((ALGORITHUMDONE_G35 === 1 ? 0.1 : ALGORITHUMDONE_G35 === 2 ? 0.125 : ALGORITHUMDONE_G35 === 3 ? 0.15 : 0.1) * (ALGORITHUMDONE_C116 * ALGORITHUMDONE_E116 * 2));
-
+        var ALGORITHUMDONE_F116 = ALGORITHUMDONE_B116 === 0 ? 0 : ((ALGORITHUMDONE_C116 + ALGORITHUMDONE_E116) * 2 * ALGORITHUMDONE_D116 * (FINALINPUTSDONE_N6 === "FULL RCC" ? 0.2 : FINALINPUTSDONE_N6 === "HALF BRICK + HALF RCC" ? 0.1 : 0)) + ((ALGORITHUMDONE_G35 === 1 ? 0.125 : ALGORITHUMDONE_G35 === 2 ? 0.15 : ALGORITHUMDONE_G35 === 3 ? 0.2 : 0.1) * (ALGORITHUMDONE_C116 * ALGORITHUMDONE_E116 * 2));
 
 
         var ALGORITHUMDONE_C160 = ALGORITHUMDONE_B160 === 1 ? (ALGORITHUMDONE_E126 + ALGORITHUMDONE_F126 + (FINALINPUTSDONE_N13 === "YES" ? ALGORITHUMDONE_G126 : ALGORITHUMDONE_G126 / 2) + ALGORITHUMDONE_F113 + ALGORITHUMDONE_F114 + ALGORITHUMDONE_F115 + ALGORITHUMDONE_F116) : 0;
@@ -2384,32 +2439,22 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         // Normal Footing - Raft End
 
-        // Plinth Work & Garde Slab - Shuttering Start
+        // Plinth Work & Grade Slab - Brick Start 
 
 
 
 
 
+        var QUANTITIESDONE_G4 = FINALINPUTSDONE_D5 === 0 ? (FINALINPUTSDONE_G46 === "BRICK" ? 1 : 2) : 0;
 
-
-
-
-
-
-
-        var ALGORITHUMDONE_D19 = FINALINPUTSDONE_I39;
-        var ALGORITHUMDONE_H102 = (ALGORITHUMDONE_B26 * ALGORITHUMDONE_D19) / 0.2;
         var ALGORITHUMDONE_C95 = curtainwallwidthBackfeet;
-
-
+        var ALGORITHUMDONE_D19 = FINALINPUTSDONE_I39;
+        var ALGORITHUMDONE_H102 = (ALGORITHUMDONE_B5 * ALGORITHUMDONE_D19) / 0.2;
         var ALGORITHUMDONE_B102 = ALGORITHUMDONE_B40 === 0 ? ALGORITHUMDONE_B26 * ALGORITHUMDONE_C95 * ALGORITHUMDONE_D19 : ALGORITHUMDONE_B40 * ALGORITHUMDONE_C95 * ALGORITHUMDONE_D19;
 
         var ALGORITHUMDONE_D95 = curtainwallreinforcementBackfactor;
 
         var ALGORITHUMDONE_F102 = ALGORITHUMDONE_B102 * ALGORITHUMDONE_D95 * 7850;
-
-
-
         var ALGORITHUMDONE_E128 = ALGORITHUMDONE_E126 * 0.0135 * 7850;
         var ALGORITHUMDONE_F128 = (ALGORITHUMDONE_G35 === 1 ? 0.0175 : ALGORITHUMDONE_G35 === 2 ? 0.02 : ALGORITHUMDONE_G35 === 3 ? 0.0225 : 0.02) * ALGORITHUMDONE_F126 * 7850;
         var ALGORITHUMDONE_G128 = (ALGORITHUMDONE_G35 === 1 ? 0.0125 : ALGORITHUMDONE_G35 === 2 ? 0.015 : ALGORITHUMDONE_G35 === 3 ? 0.0175 : 0.0125) * ALGORITHUMDONE_G126 * 7850;
@@ -2420,7 +2465,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_D160 = ALGORITHUMDONE_B160 === 1 ? (ALGORITHUMDONE_E128 + ALGORITHUMDONE_F128 + (FINALINPUTSDONE_N13 === "YES" ? ALGORITHUMDONE_G128 : ALGORITHUMDONE_G128 / 2) + ALGORITHUMDONE_G113 + ALGORITHUMDONE_G114 + ALGORITHUMDONE_G115 + ALGORITHUMDONE_G116) : 0;
         var ALGORITHUMDONE_E102 = ALGORITHUMDONE_D160;
 
-        var ALGORITHUMDONE_H102 = (ALGORITHUMDONE_B26 * ALGORITHUMDONE_D19) / 0.2;
+
 
         var ALGORITHUMDONE_I102 = ALGORITHUMDONE_H102 * 2;
 
@@ -2437,13 +2482,209 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
 
+        var ALGORITHUMDONE_B95 = curtainwalllengthBackfeet;
 
-        var QUANTITIESDONE_G4 = 2;
+        var ALGORITHUMDONE_B14 = ALGORITHUMDONE_B5;
+        var ALGORITHUMDONE_A84 = ALGORITHUMDONE_F21 === 2 ? (ALGORITHUMDONE_D67 === 1 ? 0.75 : (ALGORITHUMDONE_D67 === 2 || ALGORITHUMDONE_D67 === 3 ? 1.8 : 1.8)) : 0;
+
+        var ALGORITHUMDONE_B84 = ALGORITHUMDONE_F21 === 2 ? (ALGORITHUMDONE_D82 === 1 ? 0.75 : (ALGORITHUMDONE_D82 === 2 ? 0.6 : (ALGORITHUMDONE_D82 === 3 ? 1.8 : 0.6))) : 0;
+
+        var ALGORITHUMDONE_C84 = ALGORITHUMDONE_F21 === 2 ? (ALGORITHUMDONE_G35 === 1 ? 0.4 : (ALGORITHUMDONE_G35 === 2 ? 0.5 : (ALGORITHUMDONE_G35 === 3 ? 0.6 : 0.4))) : 0;
+
+        var ALGORITHUMDONE_H81 = ALGORITHUMDONE_F21 === 2 ? (ALGORITHUMDONE_A84 * ALGORITHUMDONE_B84 * ALGORITHUMDONE_C84 * 1.1 * ALGORITHUMDONE_E26) + (ALGORITHUMDONE_A84 * ALGORITHUMDONE_B84 * ALGORITHUMDONE_C84 * 0.375 * ALGORITHUMDONE_F26) : 0;
+
+
+
+        var ALGORITHUMDONE_H83 = ALGORITHUMDONE_H81 * ALGORITHUMDONE_D84 * 7850;
+
+
+
+
+        var FillingUpToPlinthBottom_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 1 ? ALGORITHUMDONE_B5 * (((FINALINPUTSDONE_C20 + FINALINPUTSDONE_C19) / 3.28) - ALGORITHUMDONE_C95) : 0)) : 0;
+
+        var SewageLineWork_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 1 ? ALGORITHUMDONE_C259 + ALGORITHUMDONE_C262 : 0)) : 0;
+
+        var PCCBelowBeam_QTD = (QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 1 ? ALGORITHUMDONE_H102 * 0.2 * 0.1 : 0)) : 0) + (1.2 * 0.075 * SewageLineWork_QTD);
+
+        var BrickWorkAlongThePlinth_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 1 ? ALGORITHUMDONE_H102 * ALGORITHUMDONE_B95 * ((FINALINPUTSDONE_C20 / 3.28) - ALGORITHUMDONE_C95) : 0)) : 0;
+
+
+
+        var FillingWorkInGaps_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 1 ? ALGORITHUMDONE_B14 * (1 - ALGORITHUMDONE_D19) * ALGORITHUMDONE_C95 : 0)) : 0;
+
+        var ReinforcementWork_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 1 ? ALGORITHUMDONE_F102 + ALGORITHUMDONE_E102 + (QUANTITIESDONE_B5 === 2 ? ALGORITHUMDONE_H83 : 0) : 0)) : 0;
+
+
+
+        var AntiTermiteWork_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 1 ? ALGORITHUMDONE_B26 : 0)) : 0;
+
+        var PCCAbove_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 1 ? ALGORITHUMDONE_B26 * (1 - ALGORITHUMDONE_D19) * 0.1 : 0)) : 0;
+
+        var GradeSlabReinforcement_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 1 ? ALGORITHUMDONE_G102 : 0)) : 0;
+
+        var GradeSlabPlinthRCCWork_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_B5 === 2 ? (QUANTITIESDONE_G4 === 1 ? ALGORITHUMDONE_H81 + ALGORITHUMDONE_B102 + ALGORITHUMDONE_C102 + ALGORITHUMDONE_D102 : 0) : (QUANTITIESDONE_B5 === 1 ? ALGORITHUMDONE_B102 + ALGORITHUMDONE_C102 + ALGORITHUMDONE_D102 : 0))) : 0;
+
+
+
+
+        var PWB_FillingUpToPlinthBottom_MT = FillingUpToPlinthBottom_QTD;
+        var PWB_PCCBelowBeam_MT = PCCBelowBeam_QTD;
+        var PWB_BrickWorkAlongThePlinth_MT = BrickWorkAlongThePlinth_QTD;
+        var PWB_FillingWorkInGaps_MT = FillingWorkInGaps_QTD;
+        var PWB_ReinforcementWork_MT = ReinforcementWork_QTD;
+        var PWB_SewageLineWork_MT = SewageLineWork_QTD;
+        var PWB_AntiTermiteWork_MT = AntiTermiteWork_QTD;
+        var PWB_PCCAbove_MT = PCCAbove_QTD;
+        var PWB_GradeSlabReinforcement_MT = GradeSlabReinforcement_QTD;
+        var PWB_GradeSlabPlinthRCCWork_MT = GradeSlabPlinthRCCWork_QTD;
+
+
+        // Quantity
+
+        var PWB_FillingUpToPlinth_KopraGittiSoilQuantity = PWB_FillingUpToPlinthBottom_MT * 35.31;
+        var PWB_FillingUpToPlinth_JCBQuantity = QUANTITIESDONE_L6 === 1 ? 0 : Math.ceil(PWB_FillingUpToPlinthBottom_MT * COSTINGANDINSTALLMENTDONED8)
+
+
+        var PWB_StoneAggregate20MMQuantity = Math.ceil(PWB_PCCBelowBeam_MT * COSTINGANDINSTALLMENTDONED35);
+        var PWB_PortlandCementQuantity = Math.ceil(PWB_PCCBelowBeam_MT * COSTINGANDINSTALLMENTDONED37);
+        var PWB_CourseSandQuantity = Math.ceil(PWB_PCCBelowBeam_MT * COSTINGANDINSTALLMENTDONED42);
+
+        var PWB_BrickWorkFlyAshQuantity = Math.ceil(PWB_BrickWorkAlongThePlinth_MT * COSTINGINSTALLMENTDONE_D95);
+        var PWB_BrickWorkPortlandCementQuantity = Math.ceil(PWB_BrickWorkAlongThePlinth_MT * COSTINGANDINSTALLMENTDONED39);
+        var PWB_BrickWorkCourseSandQuantity = Math.ceil(PWB_BrickWorkAlongThePlinth_MT * COSTINGANDINSTALLMENTDONED44);
+
+        var PWB_FillingWork_KopraGittiSoilQuantity = PWB_FillingWorkInGaps_MT * 35.31;
+        var PWB_FillingWork_JCBQuantity = QUANTITIESDONE_L6 === 1 ? 0 : Math.ceil(PWB_FillingWorkInGaps_MT * COSTINGANDINSTALLMENTDONED8);
+
+
+        var PWB_ReinforcementQuantity = Math.ceil(PWB_ReinforcementWork_MT * COSTINGANDINSTALLMENTDONED47);
+
+
+        var PWB_BindingWireQuantity = Math.ceil(PWB_ReinforcementWork_MT * COSTINGANDINSTALLMENTDONED48);
+        var PWB_CoverBlockQuantity = Math.ceil(PWB_ReinforcementWork_MT * COSTINGANDINSTALLMENTDONED34);
+
+        var PWB_Pipe6InchQuantity = Math.ceil(PWB_SewageLineWork_MT * COSTINGANDINSTALLMENTDONED73 / 20) * 20;
+        var PWB_PTrapQuantity = PWB_SewageLineWork_MT === 0 ? 0 : ALGORITHUMDONE_G274 + ALGORITHUMDONE_I274 + ALGORITHUMDONE_J274;
+        var PWB_SolventQuantity = PWB_SewageLineWork_MT === 0 ? 0 : 1;
+        var PWB_NahaniTrapQuantity = PWB_PTrapQuantity;
+        var PWB_Degree90Quantity = PWB_PTrapQuantity;
+        var PWB_JunctionQuantity = PWB_PTrapQuantity;
+
+
+        var PWB_ChemicalPheripheryQuantity = FINALINPUTSDONE_C22 === "HOLE AT PHERIPHERY" ? Math.floor(PWB_AntiTermiteWork_MT * COSTINGANDINSTALLMENTDONED89) : (FINALINPUTSDONE_C22 === "PIPING SYSTEM" ? 0 : 0);
+        var PWB_ChemicalSprayQuantity = FINALINPUTSDONE_C22 === "CHEMICAL SPRAY" ? Math.floor(PWB_AntiTermiteWork_MT * COSTINGANDINSTALLMENTDONED88) : 0;
+        var PWB_PipingLengthQuantity = FINALINPUTSDONE_C22 === "PIPE SYSTEM" ? Math.sqrt(PWB_AntiTermiteWork_MT) * COSTINGANDINSTALLMENTDONED90 : 0;
+
+        var PWB_PCCAboveStoneAggregate20MMQuantity = Math.ceil(PWB_PCCAbove_MT * COSTINGANDINSTALLMENTDONED35);
+        var PWB_PCCAbovePortlandCementQuantity = Math.ceil(PWB_PCCAbove_MT * COSTINGANDINSTALLMENTDONED37);
+        var PWB_PCCAboveCourseSandQuantity = Math.ceil(PWB_PCCAbove_MT * COSTINGANDINSTALLMENTDONED42);
+
+        var PWB_GradeSlab_ReinforcementQuantity = Math.ceil(PWB_GradeSlabReinforcement_MT * COSTINGANDINSTALLMENTDONED47);
+        var PWB_GradeSlab_BindingWireQuantity = Math.ceil(PWB_GradeSlabReinforcement_MT * COSTINGANDINSTALLMENTDONED48);
+        var PWB_GradeSlab_CoverBlockQuantity = Math.ceil(PWB_GradeSlabReinforcement_MT * COSTINGANDINSTALLMENTDONED34);
+
+        var PWB_RCCStoneAggregate20MMQuantity = QUANTITIESDONE_G5 === 1 ? 0 : Math.ceil(COSTINGANDINSTALLMENTDONED36 * PWB_GradeSlabPlinthRCCWork_MT);
+        var PWB_RCCPortlandCementQuantity = QUANTITIESDONE_G5 === 1 ? 0 : Math.ceil(PWB_GradeSlabPlinthRCCWork_MT * COSTINGANDINSTALLMENTDONED38);
+        var PWB_RCCCourseSandQuantity = QUANTITIESDONE_G5 === 1 ? 0 : Math.ceil(PWB_GradeSlabPlinthRCCWork_MT * COSTINGANDINSTALLMENTDONED43);
+        var PWB_RCCAdmixtureWaterproofQuantity = QUANTITIESDONE_G5 === 1 ? 0 : Math.ceil(PWB_GradeSlabPlinthRCCWork_MT * COSTINGANDINSTALLMENTDONED50);
+        var PWB_RCCRMCQuantity = Math.ceil(QUANTITIESDONE_G5 === 1 ? PWB_GradeSlabPlinthRCCWork_MT : 0);
+
+
+        // Unit Cost
+
+
+        var PWB_HardBackfillingKopraGittiSoilUnitCost = (FINALINPUTSDONE_C23 === "KOPRA") ? KopraBoulderCost : (FINALINPUTSDONE_C23 === "GIRRA GITTI") ? GirraGittiCost : (FINALINPUTSDONE_C23 === "MORRUM") ? MorrumCost : 0;
+        var PWB_PlinthRCCRMCUnitCost = (PWB_RCCRMCQuantity < RMCWithPumpCost) ? RMCWithoutPumpCost : 0;
+
+
+        // Amount
+
+        var PWB_FillingUpToPlinth_KopraGittiSoil_Amount = PWB_FillingUpToPlinth_KopraGittiSoilQuantity * PWB_HardBackfillingKopraGittiSoilUnitCost;
+        var PWB_FillingUpToPlinth_JCB_Amount = PWB_FillingUpToPlinth_JCBQuantity * JCBHardfillingCost;
+
+
+        var PWB_StoneAggregate20MM_Amount = PWB_StoneAggregate20MMQuantity * StoneAggregate20MM_PCCCost;
+        var PWB_PortlandCement_Amount = PWB_PortlandCementQuantity * PortlandCementPCCCost;
+        var PWB_CourseSand_Amount = PWB_CourseSandQuantity * CourseSandPCCCost;
+
+        var PWB_BrickWorkFlyAsh_Amount = PWB_BrickWorkFlyAshQuantity * FlyAshBrickCost;
+        var PWB_BrickWorkPortlandCement_Amount = PWB_BrickWorkPortlandCementQuantity * PortlandCementBrickMortorCost;
+        var PWB_BrickWorkCourseSand_Amount = PWB_BrickWorkCourseSandQuantity * CourseSandBrickMortorCost;
+
+        var PWB_FillingWork_KopraGittiSoil_Amount = PWB_FillingWork_KopraGittiSoilQuantity * PWB_HardBackfillingKopraGittiSoilUnitCost;
+        var PWB_FillingWork_JCB_Amount = PWB_FillingWork_JCBQuantity * JCBHardfillingCost;
+
+
+        var PWB_Reinforcement_Amount = PWB_ReinforcementQuantity * ReinforcementCost;
+        var PWB_BindingWire_Amount = PWB_BindingWireQuantity * BindingWireCost;
+        var PWB_CoverBlock_Amount = PWB_CoverBlockQuantity * CoverBlock02BeamHorizontalCost;
+
+        var PWB_Pipe6Inch_Amount = PWB_Pipe6InchQuantity * Pipe6InchCost;
+        var PWB_PTrap_Amount = PWB_PTrapQuantity * PTrapCost;
+        var PWB_Solvent_Amount = PWB_SolventQuantity * SolventCost;
+        var PWB_NahaniTrap_Amount = PWB_NahaniTrapQuantity * NahaniTrapCost;
+        var PWB_Degree90_Amount = PWB_Degree90Quantity * Degree90Cost;
+        var PWB_Junction_Amount = PWB_JunctionQuantity * JunctionCost;
+
+
+        var PWB_ChemicalPheriphery_Amount = PWB_ChemicalPheripheryQuantity * ChemicalWithWaterAtPeripheryCost;
+        var PWB_ChemicalSpray_Amount = PWB_ChemicalSprayQuantity * ChemicalSprayCost;
+        var PWB_PipingLength_Amount = PWB_PipingLengthQuantity * PipingLengthCost;
+
+        var PWB_PCCAboveStoneAggregate20MM_Amount = PWB_PCCAboveStoneAggregate20MMQuantity * StoneAggregate20MM_PCCCost;
+        var PWB_PCCAbovePortlandCement_Amount = PWB_PCCAbovePortlandCementQuantity * PortlandCementPCCCost;
+        var PWB_PCCAboveCourseSand_Amount = PWB_PCCAboveCourseSandQuantity * CourseSandPCCCost;
+
+        var PWB_GradeSlab_Reinforcement_Amount = PWB_GradeSlab_ReinforcementQuantity * ReinforcementCost;
+        var PWB_GradeSlab_BindingWire_Amount = PWB_GradeSlab_BindingWireQuantity * BindingWireCost;
+        var PWB_GradeSlab_CoverBlock_Amount = PWB_GradeSlab_CoverBlockQuantity * CoverBlock02BeamHorizontalCost;
+
+        var PWB_RCCStoneAggregate20MM_Amount = PWB_RCCStoneAggregate20MMQuantity * StoneAggregate20MM_RCCCost;
+        var PWB_RCCPortlandCement_Amount = PWB_RCCPortlandCementQuantity * PortlandCementRCCCost;
+        var PWB_RCCCourseSand_Amount = PWB_RCCCourseSandQuantity * CourseSandRCCCost;
+        var PWB_RCCAdmixtureWaterproof_Amount = PWB_RCCAdmixtureWaterproofQuantity * AdmixtureWaterproofRCCCost;
+        var PWB_RCCRMC_Amount = PWB_RCCRMCQuantity * PWB_PlinthRCCRMCUnitCost;
+
+
+        // Total 
+
+        var FillingUpToPlinthBottom_TotalAmount = PWB_FillingUpToPlinth_KopraGittiSoil_Amount + PWB_FillingUpToPlinth_JCB_Amount;
+        var PCCBelowBeam_TotalAmount = PWB_StoneAggregate20MM_Amount + PWB_PortlandCement_Amount + PWB_CourseSand_Amount;
+        var BrickWorkAlongThePlinth_TotalAmount = PWB_BrickWorkFlyAsh_Amount + PWB_BrickWorkPortlandCement_Amount + PWB_BrickWorkCourseSand_Amount;
+
+
+        var FillingWorkInGaps_TotalAmount = PWB_FillingWork_KopraGittiSoil_Amount + PWB_FillingWork_JCB_Amount;
+        var ReinforcementWork_TotalAmount = PWB_Reinforcement_Amount + PWB_BindingWire_Amount + PWB_CoverBlock_Amount;
+
+
+        var SewageLineWork_TotalAmount = PWB_Pipe6Inch_Amount + PWB_PTrap_Amount + PWB_Solvent_Amount + PWB_NahaniTrap_Amount + PWB_Degree90_Amount + PWB_Junction_Amount;
+        var AntiTermiteWork_TotalAmount = PWB_ChemicalPheriphery_Amount + PWB_ChemicalSpray_Amount + PWB_PipingLength_Amount;
+        var PCCAbove_TotalAmount = PWB_PCCAboveStoneAggregate20MM_Amount + PWB_PCCAbovePortlandCement_Amount + PWB_PCCAboveCourseSand_Amount;
+        var GradeSlabReinforcement_TotalAmount = PWB_GradeSlab_Reinforcement_Amount + PWB_GradeSlab_BindingWire_Amount + PWB_GradeSlab_CoverBlock_Amount;
+        var GradeSlabPlinthRCCWork_TotalAmount = PWB_RCCStoneAggregate20MM_Amount + PWB_RCCPortlandCement_Amount + PWB_RCCCourseSand_Amount + PWB_RCCAdmixtureWaterproof_Amount + PWB_RCCRMC_Amount;
+
+
+
+        var Plinth_Work_Grade_Slab_Brick_Total = FillingUpToPlinthBottom_TotalAmount + PCCBelowBeam_TotalAmount + BrickWorkAlongThePlinth_TotalAmount + FillingWorkInGaps_TotalAmount + ReinforcementWork_TotalAmount + SewageLineWork_TotalAmount + AntiTermiteWork_TotalAmount + PCCAbove_TotalAmount + GradeSlabReinforcement_TotalAmount + GradeSlabPlinthRCCWork_TotalAmount;
+
+
+
+
+
+
+
+
+        // Plinth Work & Grade Slab - Brick End 
+
+        // Plinth Work & Garde Slab - Shuttering Start
+
+
+
 
         var Shuttering_Bottom_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 2 ? ALGORITHUMDONE_H102 : 0)) : 0;
-        var Reinforcement_Work_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 2 ? ALGORITHUMDONE_F102 + ALGORITHUMDONE_E102 : 0)) : 0;
+        var Reinforcement_Work_QTD = QUANTITIESDONE_B4 === 0 ? ((QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 2 ? ALGORITHUMDONE_F102 + ALGORITHUMDONE_E102 : 0) + (QUANTITIESDONE_B5 === 2 ? (QUANTITIESDONE_G4 === 1 ? 0 : ALGORITHUMDONE_H83) : 0))) : 0;
         var Shuttering_Side_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 2 ? ALGORITHUMDONE_I102 : 0)) : 0;
-        var RCC_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 2 ? ALGORITHUMDONE_B102 + ALGORITHUMDONE_D102 : 0)) : 0;
+        var RCC_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 2 ? ALGORITHUMDONE_B102 + ALGORITHUMDONE_D102 + ALGORITHUMDONE_H81 : 0)) : 0;
         var Filling_Work_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 2 ? ALGORITHUMDONE_D15 : 0)) : 0;
         var Sewage_Line_Work_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 2 ? ALGORITHUMDONE_C259 + ALGORITHUMDONE_C262 : 0)) : 0;
         var Anti_Termite_Work_QTD = QUANTITIESDONE_B4 === 0 ? (QUANTITIESDONE_B5 === 3 ? 0 : (QUANTITIESDONE_G4 === 2 ? ALGORITHUMDONE_B5 : 0)) : 0;
@@ -2497,7 +2738,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
         var PWS_AntiTemriteChemicalSprayQuantity = FINALINPUTSDONE_C22 === "CHEMICAL SPRAY" ? Math.floor(PWS_AntiTemriteMT * COSTINGANDINSTALLMENTDONED88) : 0;
-        var PWS_AntiTemritePipingLengthQuantity = FINALINPUTSDONE_C22 === "PIPIING SYSTEM" ? Math.sqrt(PWS_AntiTemriteMT) * COSTINGANDINSTALLMENTDONED90 : 0;
+        var PWS_AntiTemritePipingLengthQuantity = FINALINPUTSDONE_C22 === "PIPE SYSTEM" ? Math.sqrt(PWS_AntiTemriteMT) * COSTINGANDINSTALLMENTDONED90 : 0;
 
         var PWS_ReinforcementTMTTwoReinforcementQuantity = Math.ceil(PWS_ReinforcementTMTTwoMT * COSTINGANDINSTALLMENTDONED47);
         var PWS_ReinforcementTMTTwoBindingWireQuantity = Math.ceil(PWS_ReinforcementTMTTwoMT * COSTINGANDINSTALLMENTDONED48);
@@ -2619,9 +2860,10 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var ALGORITHUMDONE_D121 = ALGORITHUMDONE_D26;
 
-        var ALGORITHUMDONE_E121 = FINALINPUTSDONE_I42 / 3.28;
+        var ALGORITHUMDONE_E121 = FINALINPUTSDONE_I42 / 3.28 - ALGORITHUMDONE_C95;
 
-        var ALGORITHUMDONE_I121 = FINALINPUTSDONE_G43 === "BRICK" ? (ALGORITHUMDONE_C121 + ALGORITHUMDONE_D121) * ALGORITHUMDONE_E121 * 0.2 : 0;
+        var ALGORITHUMDONE_I121 = FINALINPUTSDONE_G43 === "BRICK" ? (ALGORITHUMDONE_C121 + (ALGORITHUMDONE_D121 * 2)) * ALGORITHUMDONE_E121 * 0.2 : 0;
+
 
         var ALGORITHUMDONE_I113 = FINALINPUTSDONE_N3 === "HALF RCC + HALF BRICK" ? ((ALGORITHUMDONE_C113 + 0.2 + ALGORITHUMDONE_E113 + 0.2) * 2 * (ALGORITHUMDONE_D113 + 0.3) * 0.1) : 0;
 
@@ -2662,7 +2904,6 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var ALGORITHUMDONE_C96 = bdepthBackinch;
 
-        console.log("cccccccccccccccccccccccccccccccvvvvvvvvvvvvvvvv", bwidthBackinch)
 
         var ALGORITHUMDONE_F180 = 0.05;
 
@@ -2707,8 +2948,13 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var ALGORITHUMDONE_B180 = ALGORITHUMDONE_B176 === 1 ? ALGORITHUMDONE_C176 : ALGORITHUMDONE_B177 === 1 ? ALGORITHUMDONE_C177 : ALGORITHUMDONE_B178 === 1 ? ALGORITHUMDONE_C178 : ALGORITHUMDONE_F176 === 1 ? ALGORITHUMDONE_G176 : ALGORITHUMDONE_F177 === 1 ? ALGORITHUMDONE_G177 : ALGORITHUMDONE_F178 === 1 ? ALGORITHUMDONE_G178 : ALGORITHUMDONE_J176 === 1 ? ALGORITHUMDONE_K176 : ALGORITHUMDONE_J177 === 1 ? ALGORITHUMDONE_K177 : ALGORITHUMDONE_J178 === 1 ? ALGORITHUMDONE_K178 : 0;
         var ALGORITHUMDONE_J180 = ALGORITHUMDONE_F180 + ALGORITHUMDONE_B180;
+        var ALGORITHUMDONE_O259 = FINALINPUTSDONE_L66 === "YES" ? 1.2 * FINALINPUTSDONE_H3 / 3.28 * 0.1 : 0;
 
-        var ALGORITHUMDONE_D189 = (ALGORITHUMDONE_C189 * (ALGORITHUMDONE_B9 - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E160 + ALGORITHUMDONE_E166;
+        var ALGORITHUMDONE_O260 = FINALINPUTSDONE_N66 === "YES" ? ALGORITHUMDONE_F349 * FINALINPUTSDONE_H3 / 3.28 * 0.1 : 0;
+
+
+        var ALGORITHUMDONE_D189 = (ALGORITHUMDONE_C189 * (ALGORITHUMDONE_B9 - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E160 + ALGORITHUMDONE_E166 + ((ALGORITHUMDONE_O259 + ALGORITHUMDONE_O260) * ALGORITHUMDONE_G26)
+
 
 
         var ALGORITHUMDONE_B103 = ALGORITHUMDONE_B26 * ALGORITHUMDONE_C96 * ALGORITHUMDONE_D19;
@@ -3127,11 +3373,12 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_I95 = (ALGORITHUMDONE_C94 * 0.2 * ALGORITHUMDONE_B9 * 1.15) * (ALGORITHUMDONE_F27 / 1.5);
         var ALGORITHUMDONE_J95 = ALGORITHUMDONE_D93 * (ALGORITHUMDONE_H95 + ALGORITHUMDONE_I95) * 7850;
 
-
+        var ALGORITHUMDONE_G27 = FINALINPUTSDONE_D34;
 
         var ALGORITHUMDONE_C190 = ALGORITHUMDONE_B27;
         var ALGORITHUMDONE_E167 = ALGORITHUMDONE_B167 === 1 ? ALGORITHUMDONE_J126 / (ALGORITHUMDONE_B166 + ALGORITHUMDONE_B167 + ALGORITHUMDONE_B168 + ALGORITHUMDONE_B169 + ALGORITHUMDONE_B170 + ALGORITHUMDONE_B171 + ALGORITHUMDONE_B162 + ALGORITHUMDONE_B163 + ALGORITHUMDONE_B164 + ALGORITHUMDONE_B165) : 0;
-        var ALGORITHUMDONE_D190 = (ALGORITHUMDONE_C190 * (ALGORITHUMDONE_B9 - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E167;
+        var ALGORITHUMDONE_D190 = (ALGORITHUMDONE_C190 * (ALGORITHUMDONE_B9 - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E167 + ((ALGORITHUMDONE_O259 + ALGORITHUMDONE_O260) * ALGORITHUMDONE_G27)
+
 
         var ALGORITHUMDONE_J104 = ALGORITHUMDONE_B27;
 
@@ -3158,7 +3405,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_F208 = Math.ceil(((ALGORITHUMDONE_C190 * 0.6) / (200 / 10.76)));
         var ALGORITHUMDONE_B416 = ALGORITHUMDONE_F208;
         var ALGORITHUMDONE_C416 = ALGORITHUMDONE_B416 * ALGORITHUMDONE_H397;
-        var ALGORITHUMDONE_G27 = FINALINPUTSDONE_D34;
+
         var ALGORITHUMDONE_I275 = ALGORITHUMDONE_G27;
         var ALGORITHUMDONE_H416 = ALGORITHUMDONE_I275 * ALGORITHUMDONE_H398;
 
@@ -3347,7 +3594,8 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var ALGORITHUMDONE_E168 = ALGORITHUMDONE_B168 === 1 ? ALGORITHUMDONE_J126 / (ALGORITHUMDONE_B166 + ALGORITHUMDONE_B167 + ALGORITHUMDONE_B168 + ALGORITHUMDONE_B169 + ALGORITHUMDONE_B170 + ALGORITHUMDONE_B171 + ALGORITHUMDONE_B162 + ALGORITHUMDONE_B163 + ALGORITHUMDONE_B164 + ALGORITHUMDONE_B165) : 0;
         var ALGORITHUMDONE_C191 = ALGORITHUMDONE_B28;
-        var ALGORITHUMDONE_D191 = (ALGORITHUMDONE_C191 * (ALGORITHUMDONE_B9 - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E168;
+        var ALGORITHUMDONE_G28 = FINALINPUTSDONE_D35;
+        var ALGORITHUMDONE_D191 = (ALGORITHUMDONE_C191 * (ALGORITHUMDONE_B9 - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E168 + ((ALGORITHUMDONE_O259 + ALGORITHUMDONE_O260) * ALGORITHUMDONE_G28);
 
 
         var ALGORITHUMDONE_J105 = ALGORITHUMDONE_B28;
@@ -3381,7 +3629,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var ALGORITHUMDONE_C417 = ALGORITHUMDONE_B417 * ALGORITHUMDONE_H397;
 
-        var ALGORITHUMDONE_G28 = FINALINPUTSDONE_D35;
+
         var ALGORITHUMDONE_I276 = ALGORITHUMDONE_G28;
         var ALGORITHUMDONE_H417 = ALGORITHUMDONE_I276 * ALGORITHUMDONE_H398;
 
@@ -3585,7 +3833,9 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var ALGORITHUMDONE_E169 = ALGORITHUMDONE_B169 === 1 ? ALGORITHUMDONE_J126 / (ALGORITHUMDONE_B166 + ALGORITHUMDONE_B167 + ALGORITHUMDONE_B168 + ALGORITHUMDONE_B169 + ALGORITHUMDONE_B170 + ALGORITHUMDONE_B171 + ALGORITHUMDONE_B162 + ALGORITHUMDONE_B163 + ALGORITHUMDONE_B164 + ALGORITHUMDONE_B165) : 0;
         var ALGORITHUMDONE_C192 = ALGORITHUMDONE_B29;
-        var ALGORITHUMDONE_D192 = (ALGORITHUMDONE_C192 * (ALGORITHUMDONE_B9 - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E169;
+        var ALGORITHUMDONE_G29 = FINALINPUTSDONE_D36;
+        var ALGORITHUMDONE_D192 = (ALGORITHUMDONE_C192 * (ALGORITHUMDONE_B9 - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E169 + ((ALGORITHUMDONE_O259 + ALGORITHUMDONE_O260) * ALGORITHUMDONE_G29);
+
 
         var ALGORITHUMDONE_J106 = ALGORITHUMDONE_B29;
 
@@ -3607,7 +3857,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_F210 = Math.ceil(((ALGORITHUMDONE_C192 * 0.6) / (200 / 10.76)));
         var ALGORITHUMDONE_B418 = ALGORITHUMDONE_F210;
         var ALGORITHUMDONE_C418 = ALGORITHUMDONE_B418 * ALGORITHUMDONE_H397;
-        var ALGORITHUMDONE_G29 = FINALINPUTSDONE_D36;
+
         var ALGORITHUMDONE_I277 = ALGORITHUMDONE_G29;
         var ALGORITHUMDONE_H418 = ALGORITHUMDONE_I277 * ALGORITHUMDONE_H398;
 
@@ -3788,7 +4038,9 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var ALGORITHUMDONE_E170 = ALGORITHUMDONE_B170 === 1 ? ALGORITHUMDONE_J126 / (ALGORITHUMDONE_B166 + ALGORITHUMDONE_B167 + ALGORITHUMDONE_B168 + ALGORITHUMDONE_B169 + ALGORITHUMDONE_B170 + ALGORITHUMDONE_B171 + ALGORITHUMDONE_B162 + ALGORITHUMDONE_B163 + ALGORITHUMDONE_B164 + ALGORITHUMDONE_B165) : 0;
         var ALGORITHUMDONE_C193 = ALGORITHUMDONE_B30;
-        var ALGORITHUMDONE_D193 = (ALGORITHUMDONE_C193 * (ALGORITHUMDONE_B9 - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E170;
+        var ALGORITHUMDONE_G30 = FINALINPUTSDONE_D37;
+        var ALGORITHUMDONE_D193 = (ALGORITHUMDONE_C193 * (ALGORITHUMDONE_B9 - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E170 + ((ALGORITHUMDONE_O259 + ALGORITHUMDONE_O260) * ALGORITHUMDONE_G30)
+
 
         var ALGORITHUMDONE_J107 = ALGORITHUMDONE_B30;
 
@@ -3811,7 +4063,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_B419 = ALGORITHUMDONE_F211;
         var ALGORITHUMDONE_C419 = ALGORITHUMDONE_B419 * ALGORITHUMDONE_H397;
 
-        var ALGORITHUMDONE_G30 = FINALINPUTSDONE_D37;
+
         var ALGORITHUMDONE_I278 = ALGORITHUMDONE_G30;
         var ALGORITHUMDONE_H419 = ALGORITHUMDONE_I278 * ALGORITHUMDONE_H398;
 
@@ -4006,7 +4258,9 @@ const CalculationCheckTentetive = async (req, resp) => {
         // Doubt
         var ALGORITHUMDONE_E171 = ALGORITHUMDONE_B171 === 1 ? (ALGORITHUMDONE_J126 / (ALGORITHUMDONE_B166 + ALGORITHUMDONE_B167 + ALGORITHUMDONE_B168 + ALGORITHUMDONE_B169 + ALGORITHUMDONE_B170 + ALGORITHUMDONE_B171 + ALGORITHUMDONE_B162 + ALGORITHUMDONE_B163 + ALGORITHUMDONE_B164 + ALGORITHUMDONE_B165)) + ALGORITHUMDONE_I114 + ALGORITHUMDONE_I116 : ALGORITHUMDONE_I114 + ALGORITHUMDONE_I116;
         var ALGORITHUMDONE_C194 = ALGORITHUMDONE_B31;
-        var ALGORITHUMDONE_D194 = (ALGORITHUMDONE_C194 * (ALGORITHUMDONE_B9 - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E171;
+        var ALGORITHUMDONE_G31 = FINALINPUTSDONE_D38;
+        var ALGORITHUMDONE_D194 = (ALGORITHUMDONE_C194 * (ALGORITHUMDONE_B9 - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E171 + ((ALGORITHUMDONE_O259 + ALGORITHUMDONE_O260) * ALGORITHUMDONE_G31);
+
 
         var ALGORITHUMDONE_J108 = ALGORITHUMDONE_B31;
 
@@ -4019,8 +4273,14 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
 
-        var ALGORITHUMDONE_D171 = ALGORITHUMDONE_B170 === 1 ? (ALGORITHUMDONE_H128 + ALGORITHUMDONE_I128 + ALGORITHUMDONE_F137 + ALGORITHUMDONE_G137 + ALGORITHUMDONE_F142 + ALGORITHUMDONE_G142 + ALGORITHUMDONE_E142 + ALGORITHUMDONE_E137) / (ALGORITHUMDONE_B166 + ALGORITHUMDONE_B167 + ALGORITHUMDONE_B168 + ALGORITHUMDONE_B169 + ALGORITHUMDONE_B170 + ALGORITHUMDONE_B171 + ALGORITHUMDONE_B162 + ALGORITHUMDONE_B163 + ALGORITHUMDONE_B164 + ALGORITHUMDONE_B165) + (ALGORITHUMDONE_I153 + ALGORITHUMDONE_I156 + ALGORITHUMDONE_G114 + ALGORITHUMDONE_G116) : 0;
+
+
+
+        var ALGORITHUMDONE_D171 = ALGORITHUMDONE_B171 === 1 ? (ALGORITHUMDONE_H128 + ALGORITHUMDONE_I128 + ALGORITHUMDONE_F137 + ALGORITHUMDONE_G137 + ALGORITHUMDONE_F142 + ALGORITHUMDONE_G142 + ALGORITHUMDONE_E142 + ALGORITHUMDONE_E137) / (ALGORITHUMDONE_B166 + ALGORITHUMDONE_B167 + ALGORITHUMDONE_B168 + ALGORITHUMDONE_B169 + ALGORITHUMDONE_B170 + ALGORITHUMDONE_B171 + ALGORITHUMDONE_B162 + ALGORITHUMDONE_B163 + ALGORITHUMDONE_B164 + ALGORITHUMDONE_B165) + ALGORITHUMDONE_I153 + ALGORITHUMDONE_I156 : 0 + ALGORITHUMDONE_G114 + ALGORITHUMDONE_G116;
+
+
         var ALGORITHUMDONE_E108 = ALGORITHUMDONE_D171;
+
 
 
 
@@ -4032,7 +4292,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_B420 = ALGORITHUMDONE_F212;
         var ALGORITHUMDONE_C420 = ALGORITHUMDONE_B420 * ALGORITHUMDONE_H397;
 
-        var ALGORITHUMDONE_G31 = FINALINPUTSDONE_D38;
+
         var ALGORITHUMDONE_I279 = ALGORITHUMDONE_G31;
         var ALGORITHUMDONE_H420 = ALGORITHUMDONE_I279 * ALGORITHUMDONE_H398;
 
@@ -4205,6 +4465,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var SSRCC_TF_ToSlabReinforcement_ToatalAmount = SSRT_SlabBeamReinforcementReinforcementAmount + SSRT_SlabBeamReinforcementBindingWireAmount + SSRT_SlabBeamReinforcementCoverBlockAmount;
 
+
         var SSRCC_TF_ToSlabElectricalConducting_ToatalAmount = SSRT_SlabBeamRCCConduit25mmAmount + SSRT_SlabBeamRCCPVCcouplers25mmAmount + SSRT_SlabBeamRCCPVCbend25mmAmount + SSRT_SlabBeamRCCFanBoxAmount + SSRT_SlabBeamRCCLightBoxAmount + SSRT_SlabBeamRCCTapeAmount + SSRT_SlabBeamRCCConnectorAmount;
 
 
@@ -4214,6 +4475,9 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
         var Tower_Floor_Work_RCC_Super_Structure = SSRCC_TF_ToColumnReinforcement_ToatalAmount + SSRCC_TF_ToRCCColumn_ToatalAmount + SSRCC_TF_ToBricWork_ToatalAmount + SSRCC_TF_ToSlabShuttering_ToatalAmount + SSRCC_TF_ToSlabReinforcement_ToatalAmount + SSRCC_TF_ToSlabElectricalConducting_ToatalAmount + SSRCC_TF_ToRCCSlab_ToatalAmount;
+
+
+
 
         // SSRCC_TF_ToSlabElectricalConducting_ToatalAmount wrong 
         // Tower Floor Work - RCC Super Structure End
@@ -4300,24 +4564,34 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_E162 = ALGORITHUMDONE_B162 === 1 ? ALGORITHUMDONE_J126 / (ALGORITHUMDONE_B166 + ALGORITHUMDONE_B167 + ALGORITHUMDONE_B168 + ALGORITHUMDONE_B169 + ALGORITHUMDONE_B170 + ALGORITHUMDONE_B171 + ALGORITHUMDONE_B162 + ALGORITHUMDONE_B163 + ALGORITHUMDONE_B164 + ALGORITHUMDONE_B165) : 0;
 
         var ALGORITHUMDONE_C185 = ALGORITHUMDONE_B40;
-        var ALGORITHUMDONE_D185 = ((ALGORITHUMDONE_C185) * ((FINALINPUTSDONE_I7 / 3.28) - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E159 + ALGORITHUMDONE_E162;
 
+
+        var ALGORITHUMDONE_K47 = 0;
+
+        var ALGORITHUMDONE_D185 = (ALGORITHUMDONE_C185 * (FINALINPUTSDONE_I7 / 3.28 - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E159 + ALGORITHUMDONE_E162 + ((ALGORITHUMDONE_O259 + ALGORITHUMDONE_O260) * (ALGORITHUMDONE_K40 + ALGORITHUMDONE_K47))
 
 
         var ALGORITHUMDONE_E163 = ALGORITHUMDONE_B163 === 1 ? ALGORITHUMDONE_J126 / (ALGORITHUMDONE_B166 + ALGORITHUMDONE_B167 + ALGORITHUMDONE_B168 + ALGORITHUMDONE_B169 + ALGORITHUMDONE_B170 + ALGORITHUMDONE_B171 + ALGORITHUMDONE_B162 + ALGORITHUMDONE_B163 + ALGORITHUMDONE_B164 + ALGORITHUMDONE_B165) : 0;
 
 
         var ALGORITHUMDONE_C186 = ALGORITHUMDONE_B41;
-        var ALGORITHUMDONE_D186 = (ALGORITHUMDONE_C186 * ((FINALINPUTSDONE_I7 / 3.28) - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E163;
+        var ALGORITHUMDONE_K48 = 0;
+
+        var ALGORITHUMDONE_D186 = (ALGORITHUMDONE_C186 * (FINALINPUTSDONE_I7 / 3.28 - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E163 + ((ALGORITHUMDONE_O259 + ALGORITHUMDONE_O260) * (ALGORITHUMDONE_K41 + ALGORITHUMDONE_K48))
+
 
         var ALGORITHUMDONE_E164 = ALGORITHUMDONE_B164 === 1 ? ALGORITHUMDONE_J126 / (ALGORITHUMDONE_B166 + ALGORITHUMDONE_B167 + ALGORITHUMDONE_B168 + ALGORITHUMDONE_B169 + ALGORITHUMDONE_B170 + ALGORITHUMDONE_B171 + ALGORITHUMDONE_B162 + ALGORITHUMDONE_B163 + ALGORITHUMDONE_B164) : 0;
         var ALGORITHUMDONE_C187 = ALGORITHUMDONE_B42;
-        var ALGORITHUMDONE_D187 = (ALGORITHUMDONE_C187 * ((FINALINPUTSDONE_I7 / 3.28) - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E164;
+        var ALGORITHUMDONE_K49 = 0;
+        var ALGORITHUMDONE_D187 = (ALGORITHUMDONE_C187 * (FINALINPUTSDONE_I7 / 3.28 - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E164 + ((ALGORITHUMDONE_O259 + ALGORITHUMDONE_O260) * (ALGORITHUMDONE_K42 + ALGORITHUMDONE_K49))
+
 
 
         var ALGORITHUMDONE_E165 = ALGORITHUMDONE_B156 === 0 ? 0 : Math.ceil(ALGORITHUMDONE_B9 / 0.175);
         var ALGORITHUMDONE_C188 = ALGORITHUMDONE_B43;
-        var ALGORITHUMDONE_D188 = ((ALGORITHUMDONE_C188 * ((FINALINPUTSDONE_I7 / 3.28) - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E165);
+
+        var ALGORITHUMDONE_K50 = 0;
+        var ALGORITHUMDONE_D188 = (ALGORITHUMDONE_C188 * (FINALINPUTSDONE_I7 / 3.28 - ALGORITHUMDONE_C96) * ALGORITHUMDONE_J180) + ALGORITHUMDONE_E165 + ((ALGORITHUMDONE_O259 + ALGORITHUMDONE_O260) * (ALGORITHUMDONE_K43 + ALGORITHUMDONE_K50));
 
         var ALGORITHUMDONE_D195 = ((ALGORITHUMDONE_B6 + ALGORITHUMDONE_B7) * 2 * FINALINPUTSDONE_K42 * FINALINPUTSDONE_K41) / 3.28;
 
@@ -4453,6 +4727,8 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
         var BWRB_FFBrickWorkCommonBurntClay75DQuantity = (FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_FFBrickWorkMT * COSTINGANDINSTALLMENTDONED94) : 0;
+
+
         var BWRB_FFBrickWorkPortlandCementQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_FFBrickWorkMT * COSTINGANDINSTALLMENTDONED39) + (BWRB_FFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED37) : 0);
         var BWRB_FFBrickWorkCourseSandQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_FFBrickWorkMT * COSTINGANDINSTALLMENTDONED44) + (BWRB_FFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED42) : 0);
         var BWRB_FFBrickWorkStoneAggregate20MMQuantity = Math.ceil(COSTINGANDINSTALLMENTDONED99 * BWRB_FFBrickWorkMT);
@@ -4588,6 +4864,8 @@ const CalculationCheckTentetive = async (req, resp) => {
         var BWRB_GFBrickWorkMSDoorWindowFrameAmount = BWRB_GFBrickWorkMSDoorWindowFrameQuantity * MSWindowFrameCost;
 
         var BWRB_FFBrickWorkCommonBurntClay75DAmount = BWRB_FFBrickWorkCommonBurntClay75DQuantity * BWRB_CommonBurntClay75DUnitCost;
+
+
         var BWRB_FFBrickWorkPortlandCementAmount = BWRB_FFBrickWorkPortlandCementQuantity * PortlandCementBrickMortorCost;
         var BWRB_FFBrickWorkCourseSandAmount = BWRB_FFBrickWorkCourseSandQuantity * CourseSandBrickMortorCost;
         var BWRB_FFBrickWorkStoneAggregate20MMAmount = 0;
@@ -5195,11 +5473,20 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_C266 = FINALINPUTSDONE_D42;
         var ALGORITHUMDONE_H266 = (ALGORITHUMDONE_B266 + ALGORITHUMDONE_C266) * 1.25 / 3.28;
         var ALGORITHUMDONE_C274 = ALGORITHUMDONE_G26 * ALGORITHUMDONE_H266;
-        var ALGORITHUMDONE_I266 = 0.9758364312;
+
+        var ALGORITHUMDONE_B17 = ALGORITHUMDONE_G35 === 1 ? 0.4 : ALGORITHUMDONE_G35 === 2 ? 0.45 : ALGORITHUMDONE_G35 === 3 ? 0.5 : 0.4
+
+
+        var ALGORITHUMDONE_I266 = ((ALGORITHUMDONE_B266 * ALGORITHUMDONE_C266) / 10.76) * (FINALINPUTSDONE_I68 === "COBA" ? (ALGORITHUMDONE_B17 - ALGORITHUMDONE_B99) / 0.1 : ALGORITHUMDONE_B17 - ALGORITHUMDONE_B99);
+
         var ALGORITHUMDONE_D274 = ALGORITHUMDONE_G26 * ALGORITHUMDONE_I266;
         var ALGORITHUMDONE_K266 = FINALINPUTSDONE_G69 === "YES" ? (((ALGORITHUMDONE_B266 + ALGORITHUMDONE_C266) * FINALINPUTSDONE_H69 * 2 / 10.76) + (ALGORITHUMDONE_B266 * ALGORITHUMDONE_C266 / 10.76)) * 1.15 : 0;
         var ALGORITHUMDONE_F274 = ALGORITHUMDONE_G26 * ALGORITHUMDONE_K266;
-        var ALGORITHUMDONE_H270 = "WALL MIXER";
+
+        var ALGORITHUMDONE_G270 = ALGORITHUMDONE_K40;
+
+        var ALGORITHUMDONE_H270 = FINALINPUTSDONE_D110 === "ON WALL + DIVERTER" ? 1 * ALGORITHUMDONE_G270 : 0;
+
         var ALGORITHUMDONE_K270 = "DIVERTER";
 
 
@@ -5237,7 +5524,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var GFPW_GFSunkenFillingCOBAWasteCementQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(GFPW_GFSunkenFillingCOBAWasteMT * COSTINGANDINSTALLMENTDONED115) : 0;
         var GFPW_GFSunkenFillingCOBAWasteSandQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(COSTINGANDINSTALLMENTDONED116 * GFPW_GFSunkenFillingCOBAWasteMT) : 0;
         var GFPW_GFSunkenFillingCOBAWasteWaterproofingQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(GFPW_GFSunkenFillingCOBAWasteMT * 0.2) : 0;
-        var GFPW_GFSunkenFillingCOBAWasteFillingMalbaQuantity = FINALINPUTSDONE_I68 === "MALBA" ? GFPW_GFSunkenFillingCOBAWasteMT * 0.1 : 0;
+        var GFPW_GFSunkenFillingCOBAWasteFillingMalbaQuantity = FINALINPUTSDONE_I68 === "MALBA" ? GFPW_GFSunkenFillingCOBAWasteMT : 0;
         var GFPW_GFSunkenFillingCOBAWasteFillingCementQuantity = FINALINPUTSDONE_I68 === "MALBA" ? Math.ceil(GFPW_GFSunkenFillingCOBAWasteMT * 0.1 / 5 * 1440 / 50) : 0;
         var GFPW_GFSunkenFillingCOBAWasteFillingPolymerCementiousCoatQuantity = FINALINPUTSDONE_I68 === "MALBA" ? GFPW_GFSunkenFillingCOBAWasteMT * 10.76 : 0;
 
@@ -5456,7 +5743,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var FFPW_FFSunkenFillingCOBAWasteCementQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(FFPW_FFSunkenFillingCOBAWasteMT * COSTINGANDINSTALLMENTDONED115) : 0;
         var FFPW_FFSunkenFillingCOBAWasteSandQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(COSTINGANDINSTALLMENTDONED116 * FFPW_FFSunkenFillingCOBAWasteMT) : 0;
         var FFPW_FFSunkenFillingCOBAWasteWaterproofingQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(FFPW_FFSunkenFillingCOBAWasteMT * 0.2) : 0;
-        var FFPW_FFSunkenFillingCOBAWasteFillingMalbaQuantity = FINALINPUTSDONE_I68 === "MALBA" ? FFPW_FFSunkenFillingCOBAWasteMT * 0.1 : 0;
+        var FFPW_FFSunkenFillingCOBAWasteFillingMalbaQuantity = FINALINPUTSDONE_I68 === "MALBA" ? FFPW_FFSunkenFillingCOBAWasteMT : 0;
         var FFPW_FFSunkenFillingCOBAWasteFillingCementQuantity = FINALINPUTSDONE_I68 === "MALBA" ? Math.ceil(FFPW_FFSunkenFillingCOBAWasteMT * 0.1 / 5 * 1440 / 50) : 0;
         var FFPW_FFSunkenFillingCOBAWasteFillingPolymerCementiousCoatQuantity = FINALINPUTSDONE_I68 === "MALBA" ? FFPW_FFSunkenFillingCOBAWasteMT * 10.76 : 0;
 
@@ -5658,7 +5945,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var SFPW_SFSunkenFillingCOBAWasteCementQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(SFPW_SFSunkenFillingCOBAWasteMT * COSTINGANDINSTALLMENTDONED115) : 0;
         var SFPW_SFSunkenFillingCOBAWasteSandQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(COSTINGANDINSTALLMENTDONED116 * SFPW_SFSunkenFillingCOBAWasteMT) : 0;
         var SFPW_SFSunkenFillingCOBAWasteWaterproofingQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(SFPW_SFSunkenFillingCOBAWasteMT * 0.2) : 0;
-        var SFPW_SFSunkenFillingCOBAWasteFillingMalbaQuantity = FINALINPUTSDONE_I68 === "MALBA" ? SFPW_SFSunkenFillingCOBAWasteMT * 0.1 : 0;
+        var SFPW_SFSunkenFillingCOBAWasteFillingMalbaQuantity = FINALINPUTSDONE_I68 === "MALBA" ? SFPW_SFSunkenFillingCOBAWasteMT : 0;
         var SFPW_SFSunkenFillingCOBAWasteFillingCementQuantity = FINALINPUTSDONE_I68 === "MALBA" ? Math.ceil(SFPW_SFSunkenFillingCOBAWasteMT * 0.1 / 5 * 1440 / 50) : 0;
         var SFPW_SFSunkenFillingCOBAWasteFillingPolymerCementiousCoatQuantity = FINALINPUTSDONE_I68 === "MALBA" ? SFPW_SFSunkenFillingCOBAWasteMT * 10.76 : 0;
 
@@ -5849,7 +6136,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var TFPW_TFSunkenFillingCOBAWasteCementQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(TFPW_TFSunkenFillingCOBAWasteMT * COSTINGANDINSTALLMENTDONED115) : 0;
         var TFPW_TFSunkenFillingCOBAWasteSandQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(COSTINGANDINSTALLMENTDONED116 * TFPW_TFSunkenFillingCOBAWasteMT) : 0;
         var TFPW_TFSunkenFillingCOBAWasteWaterproofingQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(TFPW_TFSunkenFillingCOBAWasteMT * 0.2) : 0;
-        var TFPW_TFSunkenFillingCOBAWasteFillingMalbaQuantity = FINALINPUTSDONE_I68 === "MALBA" ? TFPW_TFSunkenFillingCOBAWasteMT * 0.1 : 0;
+        var TFPW_TFSunkenFillingCOBAWasteFillingMalbaQuantity = FINALINPUTSDONE_I68 === "MALBA" ? TFPW_TFSunkenFillingCOBAWasteMT : 0;
         var TFPW_TFSunkenFillingCOBAWasteFillingCementQuantity = FINALINPUTSDONE_I68 === "MALBA" ? Math.ceil(TFPW_TFSunkenFillingCOBAWasteMT * 0.1 / 5 * 1440 / 50) : 0;
         var TFPW_TFSunkenFillingCOBAWasteFillingPolymerCementiousCoatQuantity = FINALINPUTSDONE_I68 === "MALBA" ? TFPW_TFSunkenFillingCOBAWasteMT * 10.76 : 0;
 
@@ -6045,7 +6332,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var FOFPW_FoFSunkenFillingCOBAWasteCementQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(FOFPW_FoFSunkenFillingCOBAWasteMT * COSTINGANDINSTALLMENTDONED115) : 0;
         var FOFPW_FoFSunkenFillingCOBAWasteSandQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(COSTINGANDINSTALLMENTDONED116 * FOFPW_FoFSunkenFillingCOBAWasteMT) : 0;
         var FOFPW_FoFSunkenFillingCOBAWasteWaterproofingQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(FOFPW_FoFSunkenFillingCOBAWasteMT * 0.2) : 0;
-        var FOFPW_FoFSunkenFillingCOBAWasteFillingMalbaQuantity = FINALINPUTSDONE_I68 === "MALBA" ? FOFPW_FoFSunkenFillingCOBAWasteMT * 0.1 : 0;
+        var FOFPW_FoFSunkenFillingCOBAWasteFillingMalbaQuantity = FINALINPUTSDONE_I68 === "MALBA" ? FOFPW_FoFSunkenFillingCOBAWasteMT : 0;
         var FOFPW_FoFSunkenFillingCOBAWasteFillingCementQuantity = FINALINPUTSDONE_I68 === "MALBA" ? Math.ceil(FOFPW_FoFSunkenFillingCOBAWasteMT * 0.1 / 5 * 1440 / 50) : 0;
         var FOFPW_FoFSunkenFillingCOBAWasteFillingPolymerCementiousCoatQuantity = FINALINPUTSDONE_I68 === "MALBA" ? FOFPW_FoFSunkenFillingCOBAWasteMT * 10.76 : 0;
 
@@ -6242,7 +6529,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var TPW_TowerSunkenFillingCOBAWasteCementQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(TPW_TowerSunkenFillingCOBAWasteMT * COSTINGANDINSTALLMENTDONED115) : 0;
         var TPW_TowerSunkenFillingCOBAWasteSandQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(COSTINGANDINSTALLMENTDONED116 * TPW_TowerSunkenFillingCOBAWasteMT) : 0;
         var TPW_TowerSunkenFillingCOBAWasteWaterproofingQuantity = FINALINPUTSDONE_I68 === "COBA" ? Math.ceil(TPW_TowerSunkenFillingCOBAWasteMT * 0.2) : 0;
-        var TPW_TowerSunkenFillingCOBAWasteFillingMalbaQuantity = FINALINPUTSDONE_I68 === "MALBA" ? TPW_TowerSunkenFillingCOBAWasteMT * 0.1 : 0;
+        var TPW_TowerSunkenFillingCOBAWasteFillingMalbaQuantity = FINALINPUTSDONE_I68 === "MALBA" ? TPW_TowerSunkenFillingCOBAWasteMT : 0;
         var TPW_TowerSunkenFillingCOBAWasteFillingCementQuantity = FINALINPUTSDONE_I68 === "MALBA" ? Math.ceil(TPW_TowerSunkenFillingCOBAWasteMT * 0.1 / 5 * 1440 / 50) : 0;
         var TPW_TowerSunkenFillingCOBAWasteFillingPolymerCementiousCoatQuantity = FINALINPUTSDONE_I68 === "MALBA" ? TPW_TowerSunkenFillingCOBAWasteMT * 10.76 : 0;
 
@@ -6530,6 +6817,46 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
         // Seperate | Individual Line per Floor End 
+
+
+        // Rain Water Harvesting Start 
+
+
+        var ALGORITHUMDONE_G259 = ALGORITHUMDONE_B9 * (ALGORITHUMDONE_B8 + 1) * Math.max(ALGORITHUMDONE_G26, ALGORITHUMDONE_G27, ALGORITHUMDONE_G28, ALGORITHUMDONE_G29, ALGORITHUMDONE_G30, ALGORITHUMDONE_G31)
+
+
+        var Rain_Water_Harvesting_QTD = ALGORITHUMDONE_G259;
+
+        var RWH_RainWaterHarvestingMT = Rain_Water_Harvesting_QTD;
+
+
+
+        // Quantity
+
+        var RWH_RainWaterHarvestingPVCPipeQuantity = Math.ceil(RWH_RainWaterHarvestingMT * COSTINGINSTALLMENTDONE_D178);
+        var RWH_RainWaterHarvestingClipsQuantity = Math.ceil(RWH_RainWaterHarvestingMT * COSTINGINSTALLMENTDONE_D179);
+        var RWH_RainWaterHarvestingSolventQuantity = Math.ceil(RWH_RainWaterHarvestingMT * COSTINGINSTALLMENTDONE_D180);
+
+
+
+        // Amount
+
+        var RWH_RainWaterHarvestingPVCPipeAmount = RWH_RainWaterHarvestingPVCPipeQuantity * PVCPipeCost;
+        var RWH_RainWaterHarvestingClipsAmount = RWH_RainWaterHarvestingClipsQuantity * ClipsCost;
+        var RWH_RainWaterHarvestingSolventAmount = RWH_RainWaterHarvestingSolventQuantity * PLUMBINGSolventCost;
+
+
+        var RL_RainWaterHarvesting_TotalAmount = RWH_RainWaterHarvestingPVCPipeAmount + RWH_RainWaterHarvestingClipsAmount + RWH_RainWaterHarvestingSolventAmount;
+
+
+
+
+
+
+
+
+        // Rain Water Harvesting End 
+
 
         // AC Start 
 
@@ -7157,10 +7484,12 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
         var OPW_CeilingPlasterCementQuantity = Math.ceil(OPW_CeilingPlasterMT * COSTINGINSTALLMENTDONE_D221);
+
         var OPW_CeilingPlasterSandQuantity = 0;
         var OPW_CeilingPlasterWaterproofingQuantity = FINALINPUTSDONE_L47 === "MORTOR + WATERPROOF" ? OPW_CeilingPlasterCementQuantity * 0.147 : 0;
 
-        var OPW_NonElevationSideCementQuantity = 39;
+        var OPW_NonElevationSideCementQuantity = Math.ceil(OPW_NonElevationSideMT * COSTINGINSTALLMENTDONE_D40);
+
         var OPW_NonElevationSideSandQuantity = Math.ceil(COSTINGINSTALLMENTDONE_D45 * OPW_NonElevationSideMT);
 
         var OPW_NonElevationSideChickenMeshQuantity = Math.floor(OPW_NonElevationSideMT * COSTINGINSTALLMENTDONE_D223);
@@ -7172,7 +7501,8 @@ const CalculationCheckTentetive = async (req, resp) => {
         var OPW_WeatherBoardReinforcementTMTQuantity = Math.ceil(OPW_WeatherBoardMT * COSTINGINSTALLMENTDONE_D231);
         var OPW_WeatherBoardBindingWireQuantity = OPW_WeatherBoardReinforcementTMTQuantity * 0.15;
 
-        var OPW_ElevationWorkCementQuantity = 24;
+        var OPW_ElevationWorkCementQuantity = Math.ceil(OPW_ElevationWorkMT * COSTINGINSTALLMENTDONE_D40);
+
         var OPW_ElevationWorkSandQuantity = Math.ceil(COSTINGINSTALLMENTDONE_D45 * OPW_ElevationWorkMT);
 
         var OPW_ElevationWorkChickenMeshQuantity = Math.floor(OPW_ElevationWorkMT * COSTINGINSTALLMENTDONE_D223);
@@ -8027,7 +8357,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var ALGORITHUMDONE_C475 = 15 / 3.28;
 
-        var ALGORITHUMDONE_D475 = FINALINPUTSDONE_L41;
+        var ALGORITHUMDONE_D475 = FINALINPUTSDONE_L41 / 3.28;
 
         var ALGORITHUMDONE_E475 = ALGORITHUMDONE_D475 * ALGORITHUMDONE_C475;
 
@@ -8048,7 +8378,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var ALGORITHUMDONE_D476 = 0.9 + (ALGORITHUMDONE_B8 * ALGORITHUMDONE_B9)
 
-        var ALGORITHUMDONE_G7 = FINALINPUTSDONE_D13 / 3.28;
+
 
         var ALGORITHUMDONE_C476 = ((ALGORITHUMDONE_B6 / 2) + ALGORITHUMDONE_G7)
 
@@ -8333,25 +8663,25 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
 
-        var ALGORITHUMDONE_C499 = ALGORITHUMDONE_C185 * FINALINPUTSDONE_D87;
+        var ALGORITHUMDONE_C499 = FINALINPUTSDONE_B87 === "NO FALSE CEILING" ? 0 : ALGORITHUMDONE_C185 * FINALINPUTSDONE_D87;
 
-        var ALGORITHUMDONE_C500 = ALGORITHUMDONE_C186 * FINALINPUTSDONE_D87;
+        var ALGORITHUMDONE_C500 = FINALINPUTSDONE_B87 === "NO FALSE CEILING" ? 0 : ALGORITHUMDONE_C186 * FINALINPUTSDONE_D87;
 
-        var ALGORITHUMDONE_C501 = ALGORITHUMDONE_C187 * FINALINPUTSDONE_D87;
+        var ALGORITHUMDONE_C501 = FINALINPUTSDONE_B87 === "NO FALSE CEILING" ? 0 : ALGORITHUMDONE_C187 * FINALINPUTSDONE_D87;
 
-        var ALGORITHUMDONE_C502 = ALGORITHUMDONE_C188 * FINALINPUTSDONE_D87;
+        var ALGORITHUMDONE_C502 = FINALINPUTSDONE_B87 === "NO FALSE CEILING" ? 0 : ALGORITHUMDONE_C188 * FINALINPUTSDONE_D87;
 
-        var ALGORITHUMDONE_C503 = ALGORITHUMDONE_C189 * FINALINPUTSDONE_D87;
+        var ALGORITHUMDONE_C503 = FINALINPUTSDONE_B87 === "NO FALSE CEILING" ? 0 : ALGORITHUMDONE_C189 * FINALINPUTSDONE_D87;
 
-        var ALGORITHUMDONE_C504 = ALGORITHUMDONE_C190 * FINALINPUTSDONE_D87;
+        var ALGORITHUMDONE_C504 = FINALINPUTSDONE_B87 === "NO FALSE CEILING" ? 0 : ALGORITHUMDONE_C190 * FINALINPUTSDONE_D87;
 
-        var ALGORITHUMDONE_C505 = ALGORITHUMDONE_C191 * FINALINPUTSDONE_D87;
+        var ALGORITHUMDONE_C505 = FINALINPUTSDONE_B87 === "NO FALSE CEILING" ? 0 : ALGORITHUMDONE_C191 * FINALINPUTSDONE_D87;
 
-        var ALGORITHUMDONE_C506 = ALGORITHUMDONE_C192 * FINALINPUTSDONE_D87;
+        var ALGORITHUMDONE_C506 = FINALINPUTSDONE_B87 === "NO FALSE CEILING" ? 0 : ALGORITHUMDONE_C192 * FINALINPUTSDONE_D87;
 
-        var ALGORITHUMDONE_C507 = ALGORITHUMDONE_C193 * FINALINPUTSDONE_D87;
+        var ALGORITHUMDONE_C507 = FINALINPUTSDONE_B87 === "NO FALSE CEILING" ? 0 : ALGORITHUMDONE_C193 * FINALINPUTSDONE_D87;
 
-        var ALGORITHUMDONE_C508 = ALGORITHUMDONE_C194 * FINALINPUTSDONE_D87;
+        var ALGORITHUMDONE_C508 = FINALINPUTSDONE_B87 === "NO FALSE CEILING" ? 0 : ALGORITHUMDONE_C194 * FINALINPUTSDONE_D87;
 
 
         var B1_POP_Framing_QTD = ALGORITHUMDONE_C499;
@@ -14696,9 +15026,10 @@ const CalculationCheckTentetive = async (req, resp) => {
         // Light & Railing Work End 
 
 
-        var All_Final_Cost = Normal_Footing_Isolated_TOTAL + Normal_Footing_Pile_TOTAL + Normal_Footing_Raft_TOTAL + Plinth_Work_Garde_Slab_Shuttering_TOTAL + Ground_Work_RCC_Super_Structure_Total + First_Floor_Work_RCC_Super_Structure_Total + Second_Floor_Work_RCC_Super_Structur + Third_Floor_Work_RCC_Super_Structure_total + Fourth_Floor_Work_RCC_Super_Structure + Tower_Floor_Work_RCC_Super_Structure + Brick_Work_TOtal + Electrical_Conduting_Work + GF_Plumbing_Work_Total + FF_Plumbing_Work + SF_Plumbing_Work_Total + TF_Plumbing_Work_Total + FoF_Plumbing_Work_Total + Tower_Plumbing_Work_Total + RL_ReverseLine_TotalAmount + RL_SeperateIndividualLineperFloor_TotalAmount + RL_AC_TotalAmount + RL_SolarHeaterGeyserLine_TotalAmount + Plaster_Work_Total + Other_Plaster_Work_Total + Door_Window_Vent_Stone_Work + MS_Work_Total + POP_Framing_AluminiumChannel_Total + PVC_Framing_Aluminium_Channel_Total + all_Wiring_Total + Fasle_Ceiling_Total + PVC_Fasle_Ceiling_Covering_Total + Putty_Primer_Work_Total + Washroom_Tiling_Work_Total + Flooring_Work_Total + Other_Area_Flooring_Total + OA_TerraceAreaFlooring_TotalAmount + OA_TowerAreaFlooring_TotalAmount + Door_Panelling_Total + Window_Panelling_Total + Paint_Work_Total + Elevational_Work_Total + Sanitary_Work_Total + Switch_Board_Door_Window_Handel_Total + StaricaseRailing_TotalAmount + BalconyRailing_TotalAmount + Labour_Work_Total;
+        var All_Final_Cost = Site_Clearance_TotalAmount + Normal_Footing_Isolated_TOTAL + Normal_Footing_Pile_TOTAL + Normal_Footing_Raft_TOTAL + Plinth_Work_Grade_Slab_Brick_Total + Plinth_Work_Garde_Slab_Shuttering_TOTAL + Ground_Work_RCC_Super_Structure_Total + First_Floor_Work_RCC_Super_Structure_Total + Second_Floor_Work_RCC_Super_Structur + Third_Floor_Work_RCC_Super_Structure_total + Fourth_Floor_Work_RCC_Super_Structure + Tower_Floor_Work_RCC_Super_Structure + Brick_Work_TOtal + Electrical_Conduting_Work + GF_Plumbing_Work_Total + FF_Plumbing_Work + SF_Plumbing_Work_Total + TF_Plumbing_Work_Total + FoF_Plumbing_Work_Total + Tower_Plumbing_Work_Total + RL_ReverseLine_TotalAmount + RL_SeperateIndividualLineperFloor_TotalAmount + RL_RainWaterHarvesting_TotalAmount + RL_AC_TotalAmount + RL_SolarHeaterGeyserLine_TotalAmount + Plaster_Work_Total + Other_Plaster_Work_Total + Door_Window_Vent_Stone_Work + MS_Work_Total + POP_Framing_AluminiumChannel_Total + PVC_Framing_Aluminium_Channel_Total + all_Wiring_Total + Fasle_Ceiling_Total + PVC_Fasle_Ceiling_Covering_Total + Putty_Primer_Work_Total + Washroom_Tiling_Work_Total + Flooring_Work_Total + Other_Area_Flooring_Total + OA_TerraceAreaFlooring_TotalAmount + OA_TowerAreaFlooring_TotalAmount + Door_Panelling_Total + Window_Panelling_Total + Paint_Work_Total + Elevational_Work_Total + Sanitary_Work_Total + Switch_Board_Door_Window_Handel_Total + StaricaseRailing_TotalAmount + BalconyRailing_TotalAmount + Labour_Work_Total;
 
 
+        console.log("YESqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqvqqqqqqqqqqqqq", Normal_Footing_Isolated_TOTAL)
 
 
 
@@ -14714,10 +15045,18 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
         if (project.chechValB === "FINALDoneCreate") {
-            console.log("YES")
+
 
             const allNewQtdData = req.body;
             allNewQtdData.tentativebudget = All_Final_Cost;
+
+            const KonnbotPercent = All_Final_Cost * 0.12;
+            const IncludeKonnbotPercent = All_Final_Cost + KonnbotPercent;
+            const persquarefeetcostVariable = IncludeKonnbotPercent / Total_BuildUp_Area;
+            allNewQtdData.persquarefeetcost = persquarefeetcostVariable;
+
+
+
             let projNew = new Quotation(allNewQtdData);
             const resultone = await projNew.save();
             let quotationbID = new mongoose.Types.ObjectId(projNew.id)
@@ -17813,7 +18152,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
             return resp.status(200).json("AllDoneFinaly");
         } else {
-            console.log("NO")
+
 
             return resp.status(200).json(All_Final_Cost);
 

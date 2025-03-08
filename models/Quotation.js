@@ -21,6 +21,7 @@ const quotationSchema = mongoose.Schema({
         default: "No"
     },
     tentativebudget: Number,
+    persquarefeetcost: Number,
     quotationname: String,
     status: String,
     Quotationselectionstatusbyclient: {
