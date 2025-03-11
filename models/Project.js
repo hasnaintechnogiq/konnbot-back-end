@@ -47,6 +47,10 @@ const projectsSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'leads'
     },
+    documentsID: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'DocumentForManager'
+    }],
     quotationID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'quotation'

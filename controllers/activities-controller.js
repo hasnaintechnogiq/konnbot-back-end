@@ -74,6 +74,14 @@ const getSingleLeadOnlyActivities = async (req, resp) => {
     }
 };
 
+const getSingleProjectAllDocuments = async (req, resp) => {
+    try {
+        let single = await Project.findById({ _id: req.params._id }).populate("documentsID");
+        resp.send(single);
+    } catch (err) {
+        resp.status(500).json(err);
+    }
+};
 
 const getSingleProjectAllPhotoes = async (req, resp) => {
     try {
@@ -43155,6 +43163,7 @@ module.exports = {
     createAllActivites,
     getSingleLeadactivities,
     getSingleProjectAllPhotoes,
+    getSingleProjectAllDocuments,
     getSingleLeadOnlyActivities,
     addNewActivities,
     updateActivities,

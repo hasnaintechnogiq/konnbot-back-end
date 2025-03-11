@@ -51,16 +51,40 @@ const addNewUser = async (req, res) => {
         } else {
             const hashedPassword = await bcrypt.hash(password, 10);
             const user = new User({ name, email, password: hashedPassword });
-
+            let useID = new mongoose.Types.ObjectId(user.id)
             const newDocument = new NotificationArray();
             const notifiArray = await newDocument.save();
 
             let objID = new mongoose.Types.ObjectId(newDocument.id)
 
             user.notificationarrayID = objID;
-            const result = await user.save();
 
-            res.send(result);
+            let existingLeadByEmail = await Lead.findOne({ email: email })
+            
+            if (existingLeadByEmail) {
+                user.leadID = existingLeadByEmail._id;
+                const result = await user.save();
+   
+
+                console.log("Email fffffffffffffffffts", existingLeadByEmail._id)
+                await Lead.updateOne(
+                    { _id: existingLeadByEmail._id },
+                    {
+                        $set: {
+                            userID: useID
+                        }
+                    }
+                )
+                res.send(result);
+            } else {
+                const result = await user.save();
+                res.send(result);
+            }
+
+
+
+
+
         }
     } catch (err) {
         res.status(500).json(err);
@@ -265,19 +289,19 @@ const signinbygmail = async (req, res) => {
                 const name = req.body.additionalUserInfo.profile.name;
                 const profile_url = req.body.additionalUserInfo.profile.picture;
                 const userNew = new User({ name, email, profile_url });
-            
+
                 try {
                     const newDocument = new NotificationArray();
                     const notifiArray = await newDocument.save();
                     console.log("NotificationArray saved:", notifiArray);
-            
+
                     let objID = new mongoose.Types.ObjectId(newDocument.id);
                     userNew.notificationarrayID = objID;
-            
+
                     console.log("Before saving new user:", userNew);
                     const result = await userNew.save();
                     console.log("New user saved:", result);
-            
+
                     const token = await userNew.generateAuthToken();
                     console.log("condition four");
                     result._doc.tokenCode = token;
@@ -296,19 +320,19 @@ const signinbygmail = async (req, res) => {
                 const name = req.body.additionalUserInfo.profile.name;
                 const profile_url = req.body.additionalUserInfo.profile.picture;
                 const userNew = new User({ name, email, profile_url });
-            
+
                 try {
                     const newDocument = new NotificationArray();
                     const notifiArray = await newDocument.save();
                     console.log("NotificationArray saved:", notifiArray);
-            
+
                     let objID = new mongoose.Types.ObjectId(newDocument.id);
                     userNew.notificationarrayID = objID;
-            
+
                     console.log("Before saving new user:", userNew);
                     const result = await userNew.save();
                     console.log("New user saved:", result);
-            
+
                     const token = await userNew.generateAuthToken();
                     console.log("condition four");
                     result._doc.tokenCode = token;

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const User = require('../models/User.js');
 const Lead = require('../models/Lead.js');
 const Project = require('../models/Project.js');
+const WebsiteLead = require('../models/WebsiteLead.js');
 
 var nodemailer = require('nodemailer');
 
@@ -41,7 +42,7 @@ const addNewLead = async (req, res) => {
     try {
 
         let leadCheck = await Lead.findOne({ email: req.body.email });
- 
+
         if (leadCheck) {
             return res.send("Already");
         }
@@ -222,5 +223,23 @@ const addManagerInLead = async (req, res) => {
 };
 
 
+// Website Lead
+const addNewWebsitLead = async (req, res) => {
+    try {
 
-module.exports = { addEngineerInLead, addManagerInLead, getLeadWithdelays, searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject };
+        let leadCheck = await WebsiteLead.findOne({ MobileNumber: req.body.MobileNumber });
+
+        if (leadCheck) {
+            return res.send("Already");
+        }
+        let lead = new WebsiteLead(req.body);
+        const result = await lead.save();
+
+
+        res.send(result);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+};
+
+module.exports = {addNewWebsitLead, addEngineerInLead, addManagerInLead, getLeadWithdelays, searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject };

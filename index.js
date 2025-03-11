@@ -14,6 +14,8 @@ const Project = require('./models/Project');
 const Queries = require('./models/Queries');
 const MyInstallment = require('./models/MyInstallment.js');
 const DocumentForQuotation = require('./models/DocumentForQuotation.js');
+const DocumentForManager = require('./models/DocumentForManager.js');
+
 const Quotation = require('./models/Quotation.js');
 const Checks = require('./models/Checks.js');
 const Snags = require('./models/Snags.js');
@@ -1223,7 +1225,40 @@ app.post('/upload-documents', upload.single('document'), async (req, res) => {
 
 
 
+app.post('/upload-manager-documents', upload.single('document'), async (req, res) => {
+    console.log(req.file);  // Check if file is received
+    console.log(req.body);  // Check if QuotationID is received
+    try {
+        const { originalname, size, mimetype, filename } = req.file;
+        const newDocument = new DocumentForManager({
+            name: originalname,
+            uri: filename,
+            type: mimetype,
+            size: size
+        });
 
+        const result = await newDocument.save();
+
+        let objID = new mongoose.Types.ObjectId(result.id);
+        let newss = new mongoose.Types.ObjectId(req.body.projectID)
+        console.log(objID);
+        await Project.updateOne(
+            { _id: newss },
+            {
+                $push: {
+                    documentsID: objID
+                }
+            }
+        )
+
+
+
+        res.json({ message: 'Document uploaded successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error uploading document' });
+    }
+});
 
 
 

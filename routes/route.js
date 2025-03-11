@@ -6,13 +6,13 @@ const { signinbygmail, checkotpnow, genarateOtpandsendtoemail, margeClientToLead
 const { clientAprrovedCo, newQuotationaddednotification, statusofInstallmentisChange, statusofTicketChange, quotationFinalizeBytheClient, convertToContractNotificationForAll, getAllNotification, getSingleNotification, addNewNotification, updateNotification, deleteNotification } = require('../controllers/notification-controller.js');
 const { addQueryUpdate, getSingleQuery, getAllQueries, getUserAllQueries, addNewQueries, updateQueries, deleteQueries } = require('../controllers/queries-controller.js');
 const { getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, addNewMyInstallment, updateMyInstallment, deleteMyInstallment, addPaidAmount, chatsInstallment } = require('../controllers/myinstallments-controller.js');
-const { addManagerInLead, addEngineerInLead, getLeadWithdelays, searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject } = require('../controllers/leads-controller.js');
+const { addManagerInLead, addNewWebsitLead,addEngineerInLead, getLeadWithdelays, searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject } = require('../controllers/leads-controller.js');
 const { getAllProjectstructureDetail, getSingleProjectstructure, deleteProjectstructure, addNewProjectstructure, updateProjectstructureDetail } = require('../controllers/project-structure-controller.js');
 const { addRoom, getAllProjectspaceDetail, getSingleProjectspace, deleteProjectspace, addNewProjectspace, updateProjectspaceDetail } = require('../controllers/project-space-controller.js');
 const { addNewNotices, getSingleUserNotices, getAllNoticesDetail, deleteNotices, updateNoticesDetail } = require('../controllers/notices-controller.js');
 const { addNewChangeOrderInstallment, getSingleUserChangeOrderInstallment, getAllChangeOrderInstallmentDetail, deleteChangeOrderInstallment, updatechangeOrderInstallmentDetail } = require('../controllers/change-order-installment-controller.js');
 const { addNewChatOrderInstallment, getSingleUserChatOrderInstallment, getAllChatOrderInstallmentDetail, deleteChatOrderInstallment, updateChatOrderInstallmentDetail } = require('../controllers/Chats-Change-Installment-controller.js');
-const { getSingleLeadactivities, getSingleLeadOnlyActivities, getSingleProjectAllPhotoes, addNewActivities, updateActivities, deleteActivities, createAllActivites } = require('../controllers/activities-controller.js');
+const { getSingleLeadactivities, getSingleLeadOnlyActivities,getSingleProjectAllDocuments, getSingleProjectAllPhotoes, addNewActivities, updateActivities, deleteActivities, createAllActivites } = require('../controllers/activities-controller.js');
 const { updateChecks, updateMaterial, updatesubTask, addMatreial, addCheck, addSubTask, getSubActivitiesWithdetails, addNewUpdateInSubActivity, addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity } = require('../controllers/sub-activites-controller.js');
 const { addNewQuotation, updateQuotation, deleteQuotationOne, commentsonquatation, getspaceWithRoom, addNewProjectInQuotaion, addNewStructureInQuotation, addNewProjectspaceinQuatation, addSelectedQuotationinLead, getQuotationWithDetails, getAllQuotationInLead } = require('../controllers/quotation-controller.js');
 const { updatesnags } = require('../controllers/snags-controller.js');
@@ -88,6 +88,9 @@ router.get("/search/:key", searchLead)
 router.get("/get-lead-delays/:id", getLeadWithdelays)
 router.post("/add-eng-in-lead", addEngineerInLead)
 router.post("/add-manager-in-lead", addManagerInLead)
+router.post("/add-lead-for-website", addNewWebsitLead)
+
+
 // ProjectStructure routes
 
 router.post("/add-new-project-structure", addNewProjectstructure)
@@ -139,6 +142,7 @@ router.get("/get-single-project-all-photos/:_id", getSingleProjectAllPhotoes)
 router.delete("/delete-activity/:_id", deleteActivities)
 router.put("/update-activity/:_id", updateActivities)
 router.post("/add-all-activities", createAllActivites)
+router.get("/get-single-project-all-documents/:_id", getSingleProjectAllDocuments)
 
 
 // SubActivites
