@@ -54,7 +54,8 @@ const projectsSchema = mongoose.Schema({
     quotationID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'quotation'
-    }
+    },
+    Createdate: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model("projects", projectsSchema);

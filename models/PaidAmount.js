@@ -7,7 +7,8 @@ const paidamountSchema = mongoose.Schema({
     installmentID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'myinstallments'
-    }
+    },
+    Createdate: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model("paidamount", paidamountSchema);

@@ -10,6 +10,7 @@ const usersSchema = mongoose.Schema({
     password: String,
     otp: String,
     profile_url: String,
+    Createdate: { type: Date, default: Date.now },
     leadID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'leads'
