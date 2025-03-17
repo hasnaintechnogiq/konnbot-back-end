@@ -5,14 +5,14 @@ const { getProjectDetail, getSingleProject, deleteProject, addNewProject, update
 const { signinbygmail, checkotpnow, genarateOtpandsendtoemail, margeClientToLead, getSingleUserSiteInformation, addSiteDetailsForDemo, getAllUsers, getUserWithQueries, getSingleUser, addNewUser, updateUserDetail, deleteUser } = require('../controllers/user-controller.js');
 const { clientAprrovedCo, newQuotationaddednotification, statusofInstallmentisChange, statusofTicketChange, quotationFinalizeBytheClient, convertToContractNotificationForAll, getAllNotification, getSingleNotification, addNewNotification, updateNotification, deleteNotification } = require('../controllers/notification-controller.js');
 const { addQueryUpdate, getSingleQuery, getAllQueries, getUserAllQueries, addNewQueries, updateQueries, deleteQueries } = require('../controllers/queries-controller.js');
-const { getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, addNewMyInstallment, updateMyInstallment, deleteMyInstallment, addPaidAmount, chatsInstallment } = require('../controllers/myinstallments-controller.js');
-const { addManagerInLead, addNewWebsitLead,addEngineerInLead, getLeadWithdelays, searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject } = require('../controllers/leads-controller.js');
+const { getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, addNewMyInstallment, updateMyInstallment, deleteMyInstallment, addPaidAmount, chatsInstallment, getSingleUserAllInstallmentsWithPaidAmounts } = require('../controllers/myinstallments-controller.js');
+const { addManagerInLead, addNewWebsitLead, addEngineerInLead, getLeadWithdelays, searchLead, getAllLeads, getWebAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject } = require('../controllers/leads-controller.js');
 const { getAllProjectstructureDetail, getSingleProjectstructure, deleteProjectstructure, addNewProjectstructure, updateProjectstructureDetail } = require('../controllers/project-structure-controller.js');
 const { addRoom, getAllProjectspaceDetail, getSingleProjectspace, deleteProjectspace, addNewProjectspace, updateProjectspaceDetail } = require('../controllers/project-space-controller.js');
 const { addNewNotices, getSingleUserNotices, getAllNoticesDetail, deleteNotices, updateNoticesDetail } = require('../controllers/notices-controller.js');
 const { addNewChangeOrderInstallment, getSingleUserChangeOrderInstallment, getAllChangeOrderInstallmentDetail, deleteChangeOrderInstallment, updatechangeOrderInstallmentDetail } = require('../controllers/change-order-installment-controller.js');
 const { addNewChatOrderInstallment, getSingleUserChatOrderInstallment, getAllChatOrderInstallmentDetail, deleteChatOrderInstallment, updateChatOrderInstallmentDetail } = require('../controllers/Chats-Change-Installment-controller.js');
-const { getSingleLeadactivities, getSingleLeadOnlyActivities,getSingleProjectAllDocuments, getSingleProjectAllPhotoes, addNewActivities, updateActivities, deleteActivities, createAllActivites } = require('../controllers/activities-controller.js');
+const { getSingleLeadactivities, getSingleLeadOnlyActivities, getSingleProjectAllDocuments, getSingleProjectAllPhotoes, addNewActivities, updateActivities, deleteActivities, createAllActivites } = require('../controllers/activities-controller.js');
 const { updateChecks, updateMaterial, updatesubTask, addMatreial, addCheck, addSubTask, getSubActivitiesWithdetails, addNewUpdateInSubActivity, addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity } = require('../controllers/sub-activites-controller.js');
 const { addNewQuotation, updateQuotation, deleteQuotationOne, commentsonquatation, getspaceWithRoom, addNewProjectInQuotaion, addNewStructureInQuotation, addNewProjectspaceinQuatation, addSelectedQuotationinLead, getQuotationWithDetails, getAllQuotationInLead } = require('../controllers/quotation-controller.js');
 const { updatesnags } = require('../controllers/snags-controller.js');
@@ -74,10 +74,12 @@ router.put("/update-myinstallment/:_id", updateMyInstallment)
 router.delete("/delete-myinstallment/:_id", deleteMyInstallment)
 router.post("/create-paid-amount", addPaidAmount)
 router.post("/add-chat-installment", chatsInstallment)
+router.get("/get-single-user-all-myinstallments-with-paidamount/:_id", getSingleUserAllInstallmentsWithPaidAmounts)
 
 
 // LEAD routes
 
+router.get("/get-all-web-leads", getWebAllLeads)
 router.get("/get-all-leads", getAllLeads)
 router.get("/get-single-lead/:id", getSingleLead)
 router.post("/create-lead", addNewLead)

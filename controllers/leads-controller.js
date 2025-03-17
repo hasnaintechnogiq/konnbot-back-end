@@ -242,4 +242,14 @@ const addNewWebsitLead = async (req, res) => {
     }
 };
 
-module.exports = {addNewWebsitLead, addEngineerInLead, addManagerInLead, getLeadWithdelays, searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject };
+const getWebAllLeads = async (req, res) => {
+    try {
+        let leads = await WebsiteLead.find();
+        res.send(leads)
+    } catch (err) {
+        res.status(500).json(err);
+    }
+};
+
+
+module.exports = {getWebAllLeads, addNewWebsitLead, addEngineerInLead, addManagerInLead, getLeadWithdelays, searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject };

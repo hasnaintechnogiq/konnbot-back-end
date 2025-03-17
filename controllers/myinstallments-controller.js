@@ -26,6 +26,21 @@ const getSingleUserInstallments = async (req, resp) => {
     }
 };
 
+const getSingleUserAllInstallmentsWithPaidAmounts = async (req, resp) => {
+    try {
+        let single = await Lead.findOne({ _id: req.params._id }).populate({
+            path: 'installmentID',
+            populate: {
+                path: 'paidamountID',
+                model: 'paidamount'
+            }
+        });
+        resp.send(single);
+    } catch (err) {
+        resp.status(500).json(err);
+    }
+};
+
 const getSingleInstallmentWithChangeOrder = async (req, resp) => {
     try {
         let single = await MyInstallment.findOne({ _id: req.params._id }).populate("changeorderinstallmentID").populate("paidamountID").populate("chatsinstallmentID")
@@ -90,7 +105,7 @@ const addPaidAmount = async (req, res) => {
         console.log('productsingle', productsingle)
         const updatNew = productsingle.paidamount + Number(req.body.paidamountn);
 
-        productsingle.paidamount =  updatNew;
+        productsingle.paidamount = updatNew;
 
         await productsingle.save();
 
@@ -262,4 +277,4 @@ const updateMyInstallment = async (req, res) => {
     }
 };
 
-module.exports = { chatsInstallment, addPaidAmount, getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, addNewMyInstallment, updateMyInstallment, deleteMyInstallment };
+module.exports = { chatsInstallment, addPaidAmount, getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, getSingleUserAllInstallmentsWithPaidAmounts, addNewMyInstallment, updateMyInstallment, deleteMyInstallment };
