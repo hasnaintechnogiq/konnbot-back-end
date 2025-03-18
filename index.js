@@ -1288,18 +1288,18 @@ app.post("/add-all-installlments", async (req, resp) => {
 
     try {
         const dataArray = [
-            { installmentnum: '1st', installmenttype: 'Footing', leadID: req.body.leadID, afteraddchangeorderamount: firstInstall, installmentamount: firstInstall },
-            { installmentnum: '2nd', installmenttype: 'Plinth', leadID: req.body.leadID, afteraddchangeorderamount: secondInstall, installmentamount: secondInstall },
-            { installmentnum: '3rd', installmenttype: 'RCC Work', leadID: req.body.leadID, afteraddchangeorderamount: thirdInstall, installmentamount: thirdInstall },
-            { installmentnum: '4th', installmenttype: 'Brick Work', leadID: req.body.leadID, afteraddchangeorderamount: fourthInstall, installmentamount: fourthInstall },
-            { installmentnum: '5th', installmenttype: 'Electrical', leadID: req.body.leadID, afteraddchangeorderamount: fifthInstall, installmentamount: fifthInstall },
-            { installmentnum: '6th', installmenttype: 'Plumbing', leadID: req.body.leadID, afteraddchangeorderamount: sixInstall, installmentamount: sixInstall },
-            { installmentnum: '7th', installmenttype: 'Plaster', leadID: req.body.leadID, afteraddchangeorderamount: sevenstInstall, installmentamount: sevenstInstall },
-            { installmentnum: '8th', installmenttype: 'Other Interior', leadID: req.body.leadID, afteraddchangeorderamount: eightInstall, installmentamount: eightInstall },
-            { installmentnum: '9th', installmenttype: 'Door & Window', leadID: req.body.leadID, afteraddchangeorderamount: nineInstall, installmentamount: nineInstall },
-            { installmentnum: '10th', installmenttype: 'Flooring', leadID: req.body.leadID, afteraddchangeorderamount: tenInstall, installmentamount: tenInstall },
-            { installmentnum: '11th', installmenttype: 'Paint & Finishes', leadID: req.body.leadID, afteraddchangeorderamount: elevenInstall, installmentamount: elevenInstall },
-            { installmentnum: '12th', installmenttype: 'Miscellenous', leadID: req.body.leadID, afteraddchangeorderamount: towlInstall, installmentamount: towlInstall },
+            { installmentnum: '1st', installmenttype: 'Footing', leadID: req.body.leadID, afteraddchangeorderamount: firstInstall, installmentamount: firstInstall, installmentPercent: 12 },
+            { installmentnum: '2nd', installmenttype: 'Plinth', leadID: req.body.leadID, afteraddchangeorderamount: secondInstall, installmentamount: secondInstall , installmentPercent: 10},
+            { installmentnum: '3rd', installmenttype: 'RCC Work', leadID: req.body.leadID, afteraddchangeorderamount: thirdInstall, installmentamount: thirdInstall , installmentPercent: 8},
+            { installmentnum: '4th', installmenttype: 'Brick Work', leadID: req.body.leadID, afteraddchangeorderamount: fourthInstall, installmentamount: fourthInstall , installmentPercent: 12},
+            { installmentnum: '5th', installmenttype: 'Electrical', leadID: req.body.leadID, afteraddchangeorderamount: fifthInstall, installmentamount: fifthInstall , installmentPercent: 8},
+            { installmentnum: '6th', installmenttype: 'Plumbing', leadID: req.body.leadID, afteraddchangeorderamount: sixInstall, installmentamount: sixInstall , installmentPercent: 9},
+            { installmentnum: '7th', installmenttype: 'Plaster', leadID: req.body.leadID, afteraddchangeorderamount: sevenstInstall, installmentamount: sevenstInstall , installmentPercent: 4},
+            { installmentnum: '8th', installmenttype: 'Other Interior', leadID: req.body.leadID, afteraddchangeorderamount: eightInstall, installmentamount: eightInstall , installmentPercent: 6},
+            { installmentnum: '9th', installmenttype: 'Door & Window', leadID: req.body.leadID, afteraddchangeorderamount: nineInstall, installmentamount: nineInstall , installmentPercent: 2},
+            { installmentnum: '10th', installmenttype: 'Flooring', leadID: req.body.leadID, afteraddchangeorderamount: tenInstall, installmentamount: tenInstall , installmentPercent: 11},
+            { installmentnum: '11th', installmenttype: 'Paint & Finishes', leadID: req.body.leadID, afteraddchangeorderamount: elevenInstall, installmentamount: elevenInstall , installmentPercent: 10},
+            { installmentnum: '12th', installmenttype: 'Miscellenous', leadID: req.body.leadID, afteraddchangeorderamount: towlInstall, installmentamount: towlInstall , installmentPercent: 8},
         ];
 
 

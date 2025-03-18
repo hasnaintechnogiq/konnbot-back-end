@@ -18,6 +18,10 @@ const myinstallmentsSchema = mongoose.Schema({
         type: Number,
         default: 0
       },
+      installmentPercent: {
+        type: Number,
+        default: 0
+      },
     approvedco: String,
     pendingco: String,
     discriptioninstall: String,
