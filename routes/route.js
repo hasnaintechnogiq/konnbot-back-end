@@ -130,54 +130,54 @@ router.put("/update-change-order-installment-detail/:_id", authenticate, updatec
 
 // Chat Change Order Installment
 
-router.post("/add-new-order-installment-chat", addNewChatOrderInstallment)
-router.get("/get-single-order-installment-chat/:_id", getSingleUserChatOrderInstallment)
-router.get("/get-all-order-installment-chat-detail", getAllChatOrderInstallmentDetail)
-router.delete("/delete-order-installment-chat/:_id", deleteChatOrderInstallment)
-router.put("/update-order-installment-chat-detail/:_id", updateChatOrderInstallmentDetail)
+router.post("/add-new-order-installment-chat", authenticate, addNewChatOrderInstallment)
+router.get("/get-single-order-installment-chat/:_id", authenticate, getSingleUserChatOrderInstallment)
+// router.get("/get-all-order-installment-chat-detail", getAllChatOrderInstallmentDetail)
+// router.delete("/delete-order-installment-chat/:_id", deleteChatOrderInstallment)
+// router.put("/update-order-installment-chat-detail/:_id", updateChatOrderInstallmentDetail)
 
 // Activites
 
 router.post("/add-new-activity", addNewActivities)
-router.get("/get-single-lead-all-activities/:_id", getSingleLeadactivities)
-router.get("/get-single-lead--Only-activities/:_id", getSingleLeadOnlyActivities)
-router.get("/get-single-project-all-photos/:_id", getSingleProjectAllPhotoes)
+router.get("/get-single-lead-all-activities/:_id", authenticate, getSingleLeadactivities)
+router.get("/get-single-lead--Only-activities/:_id", authenticate, getSingleLeadOnlyActivities)
+router.get("/get-single-project-all-photos/:_id", authenticate, getSingleProjectAllPhotoes)
 // router.get("/get-all-order-installment-chat-detail", getAllChatOrderInstallmentDetail)
-router.delete("/delete-activity/:_id", deleteActivities)
-router.put("/update-activity/:_id", updateActivities)
-router.post("/add-all-activities", createAllActivites)
-router.get("/get-single-project-all-documents/:_id", getSingleProjectAllDocuments)
+// router.delete("/delete-activity/:_id", deleteActivities)
+router.put("/update-activity/:_id", authenticate, updateActivities)
+router.post("/add-all-activities", authenticate, createAllActivites)
+router.get("/get-single-project-all-documents/:_id", authenticate, getSingleProjectAllDocuments)
 
 
 // SubActivites
 
-router.post("/add-new-subactivity", addNewSubActivity)
-router.get("/get-all-subactivities-ofsingle-activity/:_id", getSubActivitiesofSingleActivity)
-router.get("/get-sub-activites-with-details/:_id", getSubActivitiesWithdetails)
-router.delete("/delete-subactivity/:_id", deleteSubActivity)
-router.put("/update-subactivity/:_id", updatesubactivity)
-router.post("/add-new-update-in-subactivity", addNewUpdateInSubActivity)
-router.post("/add-sub-task", addSubTask)
-router.post("/add-checks", addCheck)
-router.put("/update-sub-task/:_id", updatesubTask)
-router.put("/update-checks/:_id", updateChecks)
-router.put("/update-material/:_id", updateMaterial)
-router.post("/add-materials", addMatreial)
+router.post("/add-new-subactivity", authenticate, addNewSubActivity)
+router.get("/get-all-subactivities-ofsingle-activity/:_id", authenticate, getSubActivitiesofSingleActivity)
+router.get("/get-sub-activites-with-details/:_id", authenticate, getSubActivitiesWithdetails)
+// router.delete("/delete-subactivity/:_id", deleteSubActivity)
+router.put("/update-subactivity/:_id", authenticate, updatesubactivity)
+router.post("/add-new-update-in-subactivity", authenticate, addNewUpdateInSubActivity)
+router.post("/add-sub-task", authenticate, addSubTask)
+router.post("/add-checks", authenticate, addCheck)
+router.put("/update-sub-task/:_id", authenticate, updatesubTask)
+router.put("/update-checks/:_id", authenticate, updateChecks)
+router.put("/update-material/:_id", authenticate, updateMaterial)
+router.post("/add-materials", authenticate, addMatreial)
 
 
 // Quotation
 
-router.post("/add-new-project-in-quotation", addNewProjectInQuotaion)
-router.post("/add-structure-in-quatation", addNewStructureInQuotation)
-router.get("/get-quotatin-with-details/:id", getQuotationWithDetails)
-router.post("/add-space-in-quotation", addNewProjectspaceinQuatation)
+router.post("/add-new-project-in-quotation", authenticate, addNewProjectInQuotaion)
+router.post("/add-structure-in-quatation", authenticate, addNewStructureInQuotation)
+router.get("/get-quotatin-with-details/:id", authenticate, getQuotationWithDetails)
+router.post("/add-space-in-quotation", authenticate, addNewProjectspaceinQuatation)
 router.post("/add-selected-quotation-in-lead", addSelectedQuotationinLead)
-router.get("/get-all-quotatins-list/:id", getAllQuotationInLead)
-router.get("/get-space-with-rooms/:id", getspaceWithRoom)
-router.post("/add-commentsonquatation", commentsonquatation)
-router.delete("/delete-quotation-one/:_id", deleteQuotationOne)
-router.put("/update-quotation/:_id", updateQuotation)
-router.post("/add-new-quotation", addNewQuotation)
+router.get("/get-all-quotatins-list/:id", authenticate, getAllQuotationInLead)
+router.get("/get-space-with-rooms/:id", authenticate, getspaceWithRoom)
+router.post("/add-commentsonquatation", authenticate, commentsonquatation)
+router.delete("/delete-quotation-one/:_id", authenticate, deleteQuotationOne)
+router.put("/update-quotation/:_id", authenticate, updateQuotation)
+router.post("/add-new-quotation", authenticate, addNewQuotation)
 
 
 // Snags
@@ -187,18 +187,18 @@ router.put("/update-snags/:_id", updatesnags)
 
 // Extra
 
-router.post("/add-appointment", addNewAppointment)
-router.get("/get-all-appointments", getAllapointments)
-router.post("/add-manager-profile", addMangagerProfile)
-router.post("/add-lead-profile", addProfileofLead)
-router.post("/add-engiiner-profile", addProfileofEngiiner)
-router.get("/get-all-enginner-list", getAllEngineerList)
-router.get("/get-all-lead-list", getAllLeadsList)
-router.get("/get-all-manager-list", getAllManagersList)
-router.get("/get-price-list", getPriceList)
-router.put("/update-price-list/:_id", updatePriceList)
+router.post("/add-appointment", addNewAppointment) // web API
+router.get("/get-all-appointments", authenticate, getAllapointments)
+router.post("/add-manager-profile", authenticate, addMangagerProfile)
+router.post("/add-lead-profile", authenticate, addProfileofLead)
+router.post("/add-engiiner-profile", authenticate, addProfileofEngiiner)
+router.get("/get-all-enginner-list", authenticate, getAllEngineerList)
+router.get("/get-all-lead-list", authenticate, getAllLeadsList)
+router.get("/get-all-manager-list", authenticate, getAllManagersList)
+router.get("/get-price-list", authenticate, getPriceList)
+router.put("/update-price-list/:_id", authenticate, updatePriceList)
 router.post("/add-price-list", addPriceList)
-router.post("/check-tentetive-amount", CalculationCheckTentetive)
+router.post("/check-tentetive-amount", authenticate, CalculationCheckTentetive)
 
 
 
