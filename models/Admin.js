@@ -16,30 +16,28 @@ const adminsSchema = mongoose.Schema({
     role: {
         type: String,
         default: "admin"
-    }
-
-    // ,
-    // tokens: [
-    //     {
-    //         token: {
-    //             type: String
-    //         }
-    //     }
-    // ]
+    },
+    tokens: [
+        {
+            token: {
+                type: String
+            }
+        }
+    ]
 });
 
 
-// usersSchema.methods.generateAuthToken = async function () {
-//     try {
-//         let token = jwt.sign({ _id: this._id }, "MOHDHASNAINKOUSARANSARIPARASIA")
-//         this.tokens = this.tokens.concat({ token: token })
-//         await this.save();
-//         return token;
-//     }
-//     catch (error) {
-//         console.log(error);
-//     }
-// }
+adminsSchema.methods.generateAdminAuthToken = async function () {
+    try {
+        let token = jwt.sign({ _id: this._id }, "MOHDHASNAINKOUSARANSARIPARASIA", { expiresIn: '3d' })
+        this.tokens = this.tokens.concat({ token: token })
+        await this.save();
+        return token;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
 
 
 module.exports = mongoose.model("admins", adminsSchema);

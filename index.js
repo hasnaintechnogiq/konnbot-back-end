@@ -98,7 +98,7 @@ app.post('/upload-profile-user-new', upload.single('image'), async (req, res) =>
             return res.status(400).send('No files were uploaded.');
         }
         const formData = req.body;
-        const profile_url = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
+        const profile_url = `http://10.0.2.2:5000/profile/${files.filename}`;
         console.log(profile_url)
         let singleUser = await User.findById(formData.userID)
 
@@ -124,7 +124,7 @@ app.post('/upload-video-to-create-ticket', upload.single('video'), async (req, r
         }
         const formData = req.body;
 
-        const videoPath = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
+        const videoPath = `http://10.0.2.2:5000/profile/${files.filename}`;
         const result = await Queries.create({ ...formData, videoPath });
 
         let objID = new mongoose.Types.ObjectId(result.id);
@@ -225,7 +225,7 @@ app.post('/add-ticket-and-upload', upload.array('images', 5), async (req, res) =
             originalname: file.originalname,
             filename: file.filename,
             path: file.path,
-            profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
+            profile_url: `http://10.0.2.2:5000/profile/${file.filename}`
         }));
 
 
@@ -381,7 +381,7 @@ app.post('/add-images-in-change-order-upload', upload.array('images', 5), async 
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
+        profile_url: `http://10.0.2.2:5000/profile/${file.filename}`
     }));
 
     const result = await ChatsChangeInstallment.create({ ...formData, imgarry });
@@ -507,7 +507,7 @@ app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, r
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
+        profile_url: `http://10.0.2.2:5000/profile/${file.filename}`
     }));
 
     const result = await Queryupdates.create({ ...formData, imgarry });
@@ -753,7 +753,7 @@ app.post('/add-delay-with-images', upload.array('images', 5), async (req, res) =
             originalname: file.originalname,
             filename: file.filename,
             path: file.path,
-            profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
+            profile_url: `http://10.0.2.2:5000/profile/${file.filename}`
         }));
 
         const result = await Delays.create({ ...formData, imgarry });
@@ -966,7 +966,7 @@ app.post('/upload-images-for-sub-task', upload.array('images', 3), async (req, r
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
+        profile_url: `http://10.0.2.2:5000/profile/${file.filename}`
     }));
 
 
@@ -1006,7 +1006,7 @@ app.post('/upload-profile-image-for-user', upload.array('images', 1), async (req
         originalname: file.originalname,
         filename: file.filename,
         path: file.path,
-        profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
+        profile_url: `http://10.0.2.2:5000/profile/${file.filename}`
     }));
 
 
@@ -1044,7 +1044,7 @@ app.post('/upload-profile-image-for-lead-manag', upload.single('image'), async (
             return res.status(400).send('No files were uploaded.');
         }
         const formData = req.body;
-        const profile_url = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
+        const profile_url = `http://10.0.2.2:5000/profile/${files.filename}`;
         console.log(profile_url)
         let singleUser = await LeadManager.findById(formData.leadmanagerID)
 
@@ -1073,7 +1073,7 @@ app.post('/upload-profile-image-for-lead-manag', upload.single('image'), async (
 //         originalname: file.originalname,
 //         filename: file.filename,
 //         path: file.path,
-//         profile_url: `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${file.filename}`
+//         profile_url: `http://10.0.2.2:5000/profile/${file.filename}`
 //     }));
 
 
@@ -1113,7 +1113,7 @@ app.post('/upload-profile-image-for-manag-dept', upload.single('image'), async (
             return res.status(400).send('No files were uploaded.');
         }
         const formData = req.body;
-        const profile_url = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
+        const profile_url = `http://10.0.2.2:5000/profile/${files.filename}`;
         console.log(profile_url)
         let singleUser = await Manager.findById(formData.managerID)
 
@@ -1146,7 +1146,7 @@ app.post('/upload-profile-image-for-engineer-yes', upload.single('image'), async
             return res.status(400).send('No files were uploaded.');
         }
         const formData = req.body;
-        const profile_url = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
+        const profile_url = `http://10.0.2.2:5000/profile/${files.filename}`;
         console.log(profile_url)
         let singleUser = await Engineer.findById(formData.engineerID)
 
@@ -1405,7 +1405,7 @@ app.post("/login", async (req, resp) => {
     const { email, password } = req.body;
     try {
         if (req.body.email && req.body.password) {
-            const user = await User.findOne({ email }).populate("imagesID");
+            const user = await User.findOne({ email })
             if (!user) {
                 return resp.send("no data found")
             }
@@ -1424,6 +1424,64 @@ app.post("/login", async (req, resp) => {
 });
 
 
+app.post("/manager-login", async (req, resp) => {
+    const { email, password } = req.body;
+    try {
+        if (req.body.email && req.body.password) {
+            const user = await Manager.findOne({ email });
+            if (!user) {
+                return resp.send("no data found")
+            }
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                return resp.send("no data found")
+            }
+            const token = await user.generateManagerAuthToken();
+            console.log(token);
+            user._doc.tokenCode = token;
+            resp.send(user);
+        } else { resp.send("enter email and pass") }
+    } catch (error) {
+        resp.status(500).json(error);
+    }
+});
+
+
+
+app.post("/engineer-login", async (req, resp) => {
+
+    // try {
+    //     if (req.body.email && req.body.password) {
+    //         let user = await Engineer.findOne(req.body).select("-password")
+    //         if (user) {
+    //             resp.send(user);
+    //         } else { resp.send("no data found") }
+    //     } else { resp.send("enter email and pass") }
+    // } catch (error) {
+    //     resp.status(500).json(error);
+    // }
+
+
+    const { email, password } = req.body;
+    try {
+        if (req.body.email && req.body.password) {
+            const user = await Engineer.findOne({ email });
+            if (!user) {
+                return resp.send("no data found")
+            }
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                return resp.send("no data found")
+            }
+            const token = await user.generateEngineerAuthToken();
+            console.log(token);
+            user._doc.tokenCode = token;
+            resp.send(user);
+        } else { resp.send("enter email and pass") }
+    } catch (error) {
+        resp.status(500).json(error);
+    }
+});
 
 
 
@@ -1431,7 +1489,78 @@ app.post("/login", async (req, resp) => {
 
 
 
+app.post("/lead-manager-login", async (req, resp) => {
+    // try {
+    //     if (req.body.email && req.body.password) {
+    //         let user = await LeadManager.findOne(req.body).select("-password")
+    //         if (user) {
+    //             resp.send(user);
+    //         } else { resp.send("no data found") }
+    //     } else { resp.send("enter email and pass") }
+    // } catch (error) {
+    //     resp.status(500).json(error);
+    // }
 
+    const { email, password } = req.body;
+    try {
+        if (req.body.email && req.body.password) {
+            const user = await LeadManager.findOne({ email });
+            if (!user) {
+                return resp.send("no data found")
+            }
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                return resp.send("no data found")
+            }
+            const token = await user.generateLeadManagerAuthToken();
+            console.log(token);
+            user._doc.tokenCode = token;
+            resp.send(user);
+        } else { resp.send("enter email and pass") }
+    } catch (error) {
+        resp.status(500).json(error);
+    }
+});
+
+
+
+
+
+app.post("/admin-login", async (req, resp) => {
+    // if (req.body.name && req.body.password) {
+    //     let admin = await Admin.findOne(req.body).select("-password")
+    //     if (admin) {
+    //         resp.send(admin);
+    //     } else { resp.send("no data found") }
+    // } else { resp.send("enter email and pass") }
+
+
+
+    const { name, password } = req.body;
+    try {
+        if (req.body.name && req.body.password) {
+            const user = await Admin.findOne({ name });
+            if (!user) {
+                return resp.send("no data found")
+            }
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                return resp.send("no data found")
+            }
+            const token = await user.generateAdminAuthToken();
+            console.log(token);
+            user._doc.tokenCode = token;
+            resp.send(user);
+        } else { resp.send("enter email and pass") }
+    } catch (error) {
+        resp.status(500).json(error);
+    }
+
+
+
+
+
+});
 
 
 
@@ -1496,50 +1625,6 @@ app.get("/enginner-profile-picture/:_id", async (req, resp) => {
 
 
 
-app.post("/engineer-login", async (req, resp) => {
-    try {
-        if (req.body.email && req.body.password) {
-            let user = await Engineer.findOne(req.body).select("-password")
-            if (user) {
-                resp.send(user);
-            } else { resp.send("no data found") }
-        } else { resp.send("enter email and pass") }
-    } catch (error) {
-        resp.status(500).json(error);
-    }
-});
-
-
-
-
-app.post("/manager-login", async (req, resp) => {
-    try {
-        if (req.body.email && req.body.password) {
-            let user = await Manager.findOne(req.body).select("-password")
-            if (user) {
-                resp.send(user);
-            } else { resp.send("no data found") }
-        } else { resp.send("enter email and pass") }
-    } catch (error) {
-        resp.status(500).json(error);
-    }
-});
-
-
-
-app.post("/lead-manager-login", async (req, resp) => {
-    try {
-        if (req.body.email && req.body.password) {
-            let user = await LeadManager.findOne(req.body).select("-password")
-            if (user) {
-                resp.send(user);
-            } else { resp.send("no data found") }
-        } else { resp.send("enter email and pass") }
-    } catch (error) {
-        resp.status(500).json(error);
-    }
-});
-
 
 
 
@@ -1555,16 +1640,7 @@ app.post("/admin-register", async (req, resp) => {
     resp.send(result);
 });
 
-app.post("/admin-login", async (req, resp) => {
-    if (req.body.name && req.body.password) {
-        let admin = await Admin.findOne(req.body).select("-password")
-        if (admin) {
-            // const token = await admin.generateAuthToken();
-            // console.log(token);
-            resp.send(admin);
-        } else { resp.send("no data found") }
-    } else { resp.send("enter email and pass") }
-});
+
 
 
 

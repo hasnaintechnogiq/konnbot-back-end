@@ -81,10 +81,6 @@ const addNewUser = async (req, res) => {
                 res.send(result);
             }
 
-
-
-
-
         }
     } catch (err) {
         res.status(500).json(err);

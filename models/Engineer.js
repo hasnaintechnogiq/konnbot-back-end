@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const jwt = require('jsonwebtoken');
 
 const engineerSchema = mongoose.Schema({
     name: String,
@@ -25,10 +25,27 @@ const engineerSchema = mongoose.Schema({
     role: {
         type: String,
         default: "Engineer"
-    }
+    },
+    tokens: [
+        {
+            token: {
+                type: String
+            }
+        }
+    ]
 });
 
 
-
+engineerSchema.methods.generateEngineerAuthToken = async function () {
+    try {
+        let token = jwt.sign({ _id: this._id }, "MOHDHASNAINKOUSARANSARIPARASIA", { expiresIn: '3d' })
+        this.tokens = this.tokens.concat({ token: token })
+        await this.save();
+        return token;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
 
 module.exports = mongoose.model("engineer", engineerSchema);

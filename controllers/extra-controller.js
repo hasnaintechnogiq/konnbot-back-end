@@ -9,7 +9,7 @@ const NotificationArray = require('../models/NotificationArray.js');
 const PriceList = require('../models/PriceList.js');
 const Quotation = require('../models/Quotation.js');
 const QuantitiesMaterial = require('../models/QuantitiesMaterial.js');
-
+const bcrypt = require('bcryptjs');
 
 const getAllapointments = async (req, res) => {
     try {
@@ -31,20 +31,97 @@ const addNewAppointment = async (req, res) => {
 };
 
 const addMangagerProfile = async (req, res) => {
-    try {
-        let data = new Manager(req.body);
-        const newDocument = new NotificationArray();
-        newDocument.role = "Manager";
-        const notifiArray = await newDocument.save();
-        let objID = new mongoose.Types.ObjectId(newDocument.id)
-        data.notificationarrayID = objID;
 
-        const result = await data.save();
-        res.send(result);
+        const { name, number, city, email, password } = req.body;
+        try {
+            let existingManagerByEmail = await Manager.find({ email })
+    
+            if (existingManagerByEmail.length > 0) {
+                res.send('Email already exists');
+                console.log("Email already exists")
+            } else {
+                const hashedPassword = await bcrypt.hash(password, 10);
+                const user = new Manager({ name, number, city, email, password: hashedPassword });
+       
+                const newDocument = new NotificationArray();
+                newDocument.role = "Manager";
+                const notifibbArray = await newDocument.save();
+    
+                let objID = new mongoose.Types.ObjectId(newDocument.id)
+    
+                user.notificationarrayID = objID;
+    
+                const result = await user.save();
+                res.send(result);
+              
+    
+            }
+        } catch (err) {
+            res.status(500).json(err);
+        }
+};
+
+const addProfileofEngiiner = async (req, res) => {
+    const { name, number, city, email, password } = req.body;
+
+    try {
+        let existingManagerByEmail = await Engineer.find({ email })
+
+        if (existingManagerByEmail.length > 0) {
+            res.send('Email already exists');
+            console.log("Email already exists")
+        } else {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            const user = new Engineer({ name, number, city, email, password: hashedPassword });
+   
+            const newDocument = new NotificationArray();
+            newDocument.role = "Engineer";
+            const notifibbArray = await newDocument.save();
+
+            let objID = new mongoose.Types.ObjectId(newDocument.id)
+
+            user.notificationarrayID = objID;
+
+            const result = await user.save();
+            res.send(result);
+          
+        }
     } catch (err) {
         res.status(500).json(err);
     }
 };
+
+
+const addProfileofLead = async (req, res) => {
+    const { name, number, city, email, password } = req.body;
+ 
+    try {
+        let existingManagerByEmail = await LeadManager.find({ email })
+
+        if (existingManagerByEmail.length > 0) {
+            res.send('Email already exists');
+            console.log("Email already exists")
+        } else {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            const user = new LeadManager({ name, number, city, email, password: hashedPassword });
+   
+            const newDocument = new NotificationArray();
+            newDocument.role = "Lead Manager";
+            const notifibbArray = await newDocument.save();
+
+            let objID = new mongoose.Types.ObjectId(newDocument.id)
+
+            user.notificationarrayID = objID;
+
+            const result = await user.save();
+            res.send(result);
+          
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+};
+
 
 const getAllManagersList = async (req, res) => {
     try {
@@ -55,21 +132,7 @@ const getAllManagersList = async (req, res) => {
     }
 };
 
-const addProfileofLead = async (req, res) => {
-    try {
-        let data = new LeadManager(req.body);
-        const newDocument = new NotificationArray();
-        newDocument.role = "Lead Manager";
-        const notifiArray = await newDocument.save();
-        let objID = new mongoose.Types.ObjectId(newDocument.id)
-        data.notificationarrayID = objID;
 
-        const result = await data.save();
-        res.send(result);
-    } catch (err) {
-        res.status(500).json(err);
-    }
-};
 
 const getAllLeadsList = async (req, res) => {
     try {
@@ -79,21 +142,7 @@ const getAllLeadsList = async (req, res) => {
         res.status(500).json(err);
     }
 };
-const addProfileofEngiiner = async (req, res) => {
-    try {
-        let data = new Engineer(req.body);
-        const newDocument = new NotificationArray();
-        newDocument.role = "Engineer";
-        const notifiArray = await newDocument.save();
-        let objID = new mongoose.Types.ObjectId(newDocument.id)
-        data.notificationarrayID = objID;
 
-        const result = await data.save();
-        res.send(result);
-    } catch (err) {
-        res.status(500).json(err);
-    }
-};
 
 const getAllEngineerList = async (req, res) => {
     try {
