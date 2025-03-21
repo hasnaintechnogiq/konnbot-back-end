@@ -45,7 +45,7 @@ router.post("/signin-by-gmail", signinbygmail)
 
 // notification routes 
 
-router.get("/all-notifications", getAllNotification)
+// router.get("/all-notifications", getAllNotification)
 router.get("/get-single-notification/:_id", authenticate, getSingleNotification)
 router.post("/create-notification", authenticate, addNewNotification)
 router.put("/update-notification/:_id", authenticate, updateNotification)
@@ -81,7 +81,7 @@ router.get("/get-single-user-all-myinstallments-with-paidamount/:_id", authentic
 
 // LEAD routes
 
-router.get("/get-all-web-leads", getWebAllLeads)
+router.get("/get-all-web-leads", authenticate, getWebAllLeads)
 router.get("/get-all-leads", authenticate, getAllLeads)
 router.get("/get-single-lead/:id", getSingleLead)
 router.post("/create-lead", authenticate, addNewLead)
@@ -173,8 +173,8 @@ router.get("/get-quotatin-with-details/:id", authenticate, getQuotationWithDetai
 router.post("/add-space-in-quotation", authenticate, addNewProjectspaceinQuatation)
 router.post("/add-selected-quotation-in-lead", addSelectedQuotationinLead)
 router.get("/get-all-quotatins-list/:id", authenticate, getAllQuotationInLead)
-router.get("/get-space-with-rooms/:id", authenticate, getspaceWithRoom)
-router.post("/add-commentsonquatation", authenticate, commentsonquatation)
+router.get("/get-space-with-rooms/:id", authenticate, getspaceWithRoom) // Admin API remaining
+router.post("/add-commentsonquatation", authenticate, commentsonquatation) // Done
 router.delete("/delete-quotation-one/:_id", authenticate, deleteQuotationOne)
 router.put("/update-quotation/:_id", authenticate, updateQuotation)
 router.post("/add-new-quotation", authenticate, addNewQuotation)
@@ -182,21 +182,21 @@ router.post("/add-new-quotation", authenticate, addNewQuotation)
 
 // Snags
 
-router.put("/update-snags/:_id", updatesnags)
+router.put("/update-snags/:_id", updatesnags) 
 
 
 // Extra
 
 router.post("/add-appointment", addNewAppointment) // web API
-router.get("/get-all-appointments", authenticate, getAllapointments)
-router.post("/add-manager-profile", authenticate, addMangagerProfile)
-router.post("/add-lead-profile", authenticate, addProfileofLead)
-router.post("/add-engiiner-profile", authenticate, addProfileofEngiiner)
-router.get("/get-all-enginner-list", authenticate, getAllEngineerList)
-router.get("/get-all-lead-list", authenticate, getAllLeadsList)
-router.get("/get-all-manager-list", authenticate, getAllManagersList)
-router.get("/get-price-list", authenticate, getPriceList)
-router.put("/update-price-list/:_id", authenticate, updatePriceList)
+router.get("/get-all-appointments", authenticate, getAllapointments) // Admin API remaining
+router.post("/add-manager-profile", authenticate, addMangagerProfile) // Admin API
+router.post("/add-lead-profile", authenticate, addProfileofLead) // Admin API
+router.post("/add-engiiner-profile", authenticate, addProfileofEngiiner) // Admin API
+router.get("/get-all-enginner-list", authenticate, getAllEngineerList) // Admin API
+router.get("/get-all-lead-list", authenticate, getAllLeadsList) // Admin API
+router.get("/get-all-manager-list", authenticate, getAllManagersList) // Admin API
+router.get("/get-price-list", authenticate, getPriceList) // Admin API
+router.put("/update-price-list/:_id", authenticate, updatePriceList) // Admin API
 router.post("/add-price-list", addPriceList)
 router.post("/check-tentetive-amount", authenticate, CalculationCheckTentetive)
 
