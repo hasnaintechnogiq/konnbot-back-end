@@ -990,7 +990,9 @@ const QuantitiesMaterialSchema = mongoose.Schema({
     RL_REVERSELINESolventPVC2Quantity: Number,
 
 
-
+    RWH_RainWaterHarvestingPVCPipeQuantity: Number,
+    RWH_RainWaterHarvestingClipsQuantity: Number,
+    RWH_RainWaterHarvestingSolventQuantity: Number,
 
 
     SL_SeperateIndividualLineperFloorCPVCPipe32MMQuantity: Number,

@@ -8,7 +8,7 @@ const { signinbygmail, checkotpnow, genarateOtpandsendtoemail, margeClientToLead
 const { clientAprrovedCo, newQuotationaddednotification, statusofInstallmentisChange, statusofTicketChange, quotationFinalizeBytheClient, convertToContractNotificationForAll, getAllNotification, getSingleNotification, addNewNotification, updateNotification, deleteNotification } = require('../controllers/notification-controller.js');
 const { addQueryUpdate, getSingleQuery, getAllQueries, getUserAllQueries, addNewQueries, updateQueries, deleteQueries } = require('../controllers/queries-controller.js');
 const { getSingleInstallmentWithChangeOrder, getAllInstallmentsDetalis, getSingleUserInstallments, addNewMyInstallment, updateMyInstallment, deleteMyInstallment, addPaidAmount, chatsInstallment, getSingleUserAllInstallmentsWithPaidAmounts } = require('../controllers/myinstallments-controller.js');
-const { addManagerInLead, addNewWebsitLead, addEngineerInLead, getLeadWithdelays, searchLead, getAllLeads, getWebAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject } = require('../controllers/leads-controller.js');
+const { addManagerInLead, addNewWebsitLead, addEngineerInLead, getLeadWithdelays, searchLead, getAllLeads, getWebAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject, addNewRenovationLead, getRenovationAllLeads } = require('../controllers/leads-controller.js');
 const { getAllProjectstructureDetail, getSingleProjectstructure, deleteProjectstructure, addNewProjectstructure, updateProjectstructureDetail } = require('../controllers/project-structure-controller.js');
 const { addRoom, getAllProjectspaceDetail, getSingleProjectspace, deleteProjectspace, addNewProjectspace, updateProjectspaceDetail } = require('../controllers/project-space-controller.js');
 const { addNewNotices, getSingleUserNotices, getAllNoticesDetail, deleteNotices, updateNoticesDetail } = require('../controllers/notices-controller.js');
@@ -93,7 +93,8 @@ router.get("/get-lead-delays/:id", authenticate, getLeadWithdelays)
 router.post("/add-eng-in-lead", addEngineerInLead)
 router.post("/add-manager-in-lead", addManagerInLead)
 router.post("/add-lead-for-website", addNewWebsitLead)
-
+router.post("/add-lead-for-renovation", addNewRenovationLead)
+router.get("/get-all-renovation-leads", authenticate, getRenovationAllLeads)
 
 // ProjectStructure routes
 
@@ -153,7 +154,7 @@ router.get("/get-single-project-all-documents/:_id", authenticate, getSingleProj
 
 router.post("/add-new-subactivity", authenticate, addNewSubActivity)
 router.get("/get-all-subactivities-ofsingle-activity/:_id", authenticate, getSubActivitiesofSingleActivity)
-router.get("/get-sub-activites-with-details/:_id", authenticate, getSubActivitiesWithdetails)
+router.get("/get-sub-activites-with-details/:_id", authenticate, getSubActivitiesWithdetails) // Done
 // router.delete("/delete-subactivity/:_id", deleteSubActivity)
 router.put("/update-subactivity/:_id", authenticate, updatesubactivity)
 router.post("/add-new-update-in-subactivity", authenticate, addNewUpdateInSubActivity)
@@ -167,14 +168,14 @@ router.post("/add-materials", authenticate, addMatreial)
 
 // Quotation
 
-router.post("/add-new-project-in-quotation", authenticate, addNewProjectInQuotaion)
-router.post("/add-structure-in-quatation", authenticate, addNewStructureInQuotation)
+// router.post("/add-new-project-in-quotation", authenticate, addNewProjectInQuotaion)
+// router.post("/add-structure-in-quatation", authenticate, addNewStructureInQuotation)
 router.get("/get-quotatin-with-details/:id", authenticate, getQuotationWithDetails)
-router.post("/add-space-in-quotation", authenticate, addNewProjectspaceinQuatation)
+// router.post("/add-space-in-quotation", authenticate, addNewProjectspaceinQuatation)
 router.post("/add-selected-quotation-in-lead", addSelectedQuotationinLead)
 router.get("/get-all-quotatins-list/:id", authenticate, getAllQuotationInLead)
 router.get("/get-space-with-rooms/:id", authenticate, getspaceWithRoom) // Admin API remaining
-router.post("/add-commentsonquatation", authenticate, commentsonquatation) // Done
+router.post("/add-commentsonquatation", authenticate, commentsonquatation)
 router.delete("/delete-quotation-one/:_id", authenticate, deleteQuotationOne)
 router.put("/update-quotation/:_id", authenticate, updateQuotation)
 router.post("/add-new-quotation", authenticate, addNewQuotation)
@@ -182,7 +183,7 @@ router.post("/add-new-quotation", authenticate, addNewQuotation)
 
 // Snags
 
-router.put("/update-snags/:_id", updatesnags) 
+router.put("/update-snags/:_id", updatesnags)
 
 
 // Extra

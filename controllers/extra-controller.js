@@ -32,33 +32,33 @@ const addNewAppointment = async (req, res) => {
 
 const addMangagerProfile = async (req, res) => {
 
-        const { name, number, city, email, password } = req.body;
-        try {
-            let existingManagerByEmail = await Manager.find({ email })
-    
-            if (existingManagerByEmail.length > 0) {
-                res.send('Email already exists');
-                console.log("Email already exists")
-            } else {
-                const hashedPassword = await bcrypt.hash(password, 10);
-                const user = new Manager({ name, number, city, email, password: hashedPassword });
-       
-                const newDocument = new NotificationArray();
-                newDocument.role = "Manager";
-                const notifibbArray = await newDocument.save();
-    
-                let objID = new mongoose.Types.ObjectId(newDocument.id)
-    
-                user.notificationarrayID = objID;
-    
-                const result = await user.save();
-                res.send(result);
-              
-    
-            }
-        } catch (err) {
-            res.status(500).json(err);
+    const { name, number, city, email, password } = req.body;
+    try {
+        let existingManagerByEmail = await Manager.find({ email })
+
+        if (existingManagerByEmail.length > 0) {
+            res.send('Email already exists');
+            console.log("Email already exists")
+        } else {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            const user = new Manager({ name, number, city, email, password: hashedPassword });
+
+            const newDocument = new NotificationArray();
+            newDocument.role = "Manager";
+            const notifibbArray = await newDocument.save();
+
+            let objID = new mongoose.Types.ObjectId(newDocument.id)
+
+            user.notificationarrayID = objID;
+
+            const result = await user.save();
+            res.send(result);
+
+
         }
+    } catch (err) {
+        res.status(500).json(err);
+    }
 };
 
 const addProfileofEngiiner = async (req, res) => {
@@ -73,7 +73,7 @@ const addProfileofEngiiner = async (req, res) => {
         } else {
             const hashedPassword = await bcrypt.hash(password, 10);
             const user = new Engineer({ name, number, city, email, password: hashedPassword });
-   
+
             const newDocument = new NotificationArray();
             newDocument.role = "Engineer";
             const notifibbArray = await newDocument.save();
@@ -84,7 +84,7 @@ const addProfileofEngiiner = async (req, res) => {
 
             const result = await user.save();
             res.send(result);
-          
+
         }
     } catch (err) {
         res.status(500).json(err);
@@ -94,7 +94,7 @@ const addProfileofEngiiner = async (req, res) => {
 
 const addProfileofLead = async (req, res) => {
     const { name, number, city, email, password } = req.body;
- 
+
     try {
         let existingManagerByEmail = await LeadManager.find({ email })
 
@@ -104,7 +104,7 @@ const addProfileofLead = async (req, res) => {
         } else {
             const hashedPassword = await bcrypt.hash(password, 10);
             const user = new LeadManager({ name, number, city, email, password: hashedPassword });
-   
+
             const newDocument = new NotificationArray();
             newDocument.role = "Lead Manager";
             const notifibbArray = await newDocument.save();
@@ -115,7 +115,7 @@ const addProfileofLead = async (req, res) => {
 
             const result = await user.save();
             res.send(result);
-          
+
         }
     } catch (err) {
         res.status(500).json(err);
@@ -14905,7 +14905,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
         var LF_Light_01Quantity = 0 * COSTINGINSTALLMENTDONE_D405;
-        var LF_FanQuantity = ALGORITHUMDONE_K203 + ALGORITHUMDONE_K204 + ALGORITHUMDONE_K205 + ALGORITHUMDONE_K206 + ALGORITHUMDONE_K207 + ALGORITHUMDONE_K208 + ALGORITHUMDONE_K209 + ALGORITHUMDONE_K210 + ALGORITHUMDONE_K211 + ALGORITHUMDONE_K212 * COSTINGINSTALLMENTDONE_D406;
+        var LF_FanQuantity = (ALGORITHUMDONE_K203 + ALGORITHUMDONE_K204 + ALGORITHUMDONE_K205 + ALGORITHUMDONE_K206 + ALGORITHUMDONE_K207 + ALGORITHUMDONE_K208 + ALGORITHUMDONE_K209 + ALGORITHUMDONE_K210 + ALGORITHUMDONE_K211 + ALGORITHUMDONE_K212) * COSTINGINSTALLMENTDONE_D406;
 
 
         // Amount
@@ -14914,7 +14914,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var LF_Light_01Amount = LF_Light_01Quantity * Light01Cost;
         var LF_FanAmount = LF_FanQuantity * FanCost;
 
-
+        console.log("YESqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqvqqqqqqqqqqqqq", LF_FanQuantity)
         var LightFixingFan_TotalAmount = LF_Light_01Amount + LF_FanAmount;
 
         // Light Fixing & Fan End 
@@ -15075,10 +15075,10 @@ const CalculationCheckTentetive = async (req, resp) => {
         // Light & Railing Work End 
 
 
-        var All_Final_Cost = Site_Clearance_TotalAmount + Normal_Footing_Isolated_TOTAL + Normal_Footing_Pile_TOTAL + Normal_Footing_Raft_TOTAL + Plinth_Work_Grade_Slab_Brick_Total + Plinth_Work_Garde_Slab_Shuttering_TOTAL + Ground_Work_RCC_Super_Structure_Total + First_Floor_Work_RCC_Super_Structure_Total + Second_Floor_Work_RCC_Super_Structur + Third_Floor_Work_RCC_Super_Structure_total + Fourth_Floor_Work_RCC_Super_Structure + Tower_Floor_Work_RCC_Super_Structure + Brick_Work_TOtal + Electrical_Conduting_Work + GF_Plumbing_Work_Total + FF_Plumbing_Work + SF_Plumbing_Work_Total + TF_Plumbing_Work_Total + FoF_Plumbing_Work_Total + Tower_Plumbing_Work_Total + RL_ReverseLine_TotalAmount + RL_SeperateIndividualLineperFloor_TotalAmount + RL_RainWaterHarvesting_TotalAmount + RL_AC_TotalAmount + RL_SolarHeaterGeyserLine_TotalAmount + Plaster_Work_Total + Other_Plaster_Work_Total + Door_Window_Vent_Stone_Work + MS_Work_Total + POP_Framing_AluminiumChannel_Total + PVC_Framing_Aluminium_Channel_Total + all_Wiring_Total + Fasle_Ceiling_Total + PVC_Fasle_Ceiling_Covering_Total + Putty_Primer_Work_Total + Washroom_Tiling_Work_Total + Flooring_Work_Total + Other_Area_Flooring_Total + OA_TerraceAreaFlooring_TotalAmount + OA_TowerAreaFlooring_TotalAmount + Door_Panelling_Total + Window_Panelling_Total + Paint_Work_Total + Elevational_Work_Total + Sanitary_Work_Total + Switch_Board_Door_Window_Handel_Total + StaricaseRailing_TotalAmount + BalconyRailing_TotalAmount + Labour_Work_Total;
+        var All_Final_Cost = Site_Clearance_TotalAmount + Normal_Footing_Isolated_TOTAL + Normal_Footing_Pile_TOTAL + Normal_Footing_Raft_TOTAL + Plinth_Work_Grade_Slab_Brick_Total + Plinth_Work_Garde_Slab_Shuttering_TOTAL + Ground_Work_RCC_Super_Structure_Total + First_Floor_Work_RCC_Super_Structure_Total + Second_Floor_Work_RCC_Super_Structur + Third_Floor_Work_RCC_Super_Structure_total + Fourth_Floor_Work_RCC_Super_Structure + Tower_Floor_Work_RCC_Super_Structure + Brick_Work_TOtal + Electrical_Conduting_Work + GF_Plumbing_Work_Total + FF_Plumbing_Work + SF_Plumbing_Work_Total + TF_Plumbing_Work_Total + FoF_Plumbing_Work_Total + Tower_Plumbing_Work_Total + RL_ReverseLine_TotalAmount + RL_SeperateIndividualLineperFloor_TotalAmount + RL_RainWaterHarvesting_TotalAmount + RL_AC_TotalAmount + RL_SolarHeaterGeyserLine_TotalAmount + Plaster_Work_Total + Other_Plaster_Work_Total + Door_Window_Vent_Stone_Work + MS_Work_Total + POP_Framing_AluminiumChannel_Total + PVC_Framing_Aluminium_Channel_Total + all_Wiring_Total + Fasle_Ceiling_Total + PVC_Fasle_Ceiling_Covering_Total + Putty_Primer_Work_Total + Washroom_Tiling_Work_Total + Flooring_Work_Total + Other_Area_Flooring_Total + OA_TerraceAreaFlooring_TotalAmount + OA_TowerAreaFlooring_TotalAmount + Door_Panelling_Total + Window_Panelling_Total + Paint_Work_Total + Elevational_Work_Total + Sanitary_Work_Total + Switch_Board_Door_Window_Handel_Total + StaricaseRailing_TotalAmount + LightFixingFan_TotalAmount + BalconyRailing_TotalAmount + Labour_Work_Total;
 
 
-        console.log("YESqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqvqqqqqqqqqqqqq", Normal_Footing_Isolated_TOTAL)
+
 
 
 
@@ -16162,8 +16162,9 @@ const CalculationCheckTentetive = async (req, resp) => {
                 RL_REVERSELINESolventPVC2Quantity: RL_REVERSELINESolventPVC2Quantity,
 
 
-
-
+                RWH_RainWaterHarvestingPVCPipeQuantity: RWH_RainWaterHarvestingPVCPipeQuantity,
+                RWH_RainWaterHarvestingClipsQuantity: RWH_RainWaterHarvestingClipsQuantity,
+                RWH_RainWaterHarvestingSolventQuantity: RWH_RainWaterHarvestingSolventQuantity,
 
                 SL_SeperateIndividualLineperFloorCPVCPipe32MMQuantity: SL_SeperateIndividualLineperFloorCPVCPipe32MMQuantity,
                 SL_SeperateIndividualLineperFloorElbow32MMQuantity: SL_SeperateIndividualLineperFloorElbow32MMQuantity,

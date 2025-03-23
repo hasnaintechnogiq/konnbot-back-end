@@ -162,7 +162,7 @@ const createAllActivites = async (req, resp) => {
             var InternalPlaster = quotationSelectedDetails.InternalPlaster;
             var FlaseCeilingTyHNR = quotationSelectedDetails.FlaseCeilingType;
 
-     
+
         }
         else { var fottingtypecheck = "ISOLATED"; }
 
@@ -1636,7 +1636,7 @@ const createAllActivites = async (req, resp) => {
 
         async function saveDataSequentially() {
             for (let i = 0; i < dataArrytocheck.length; i++) {
-                if (dataArrytocheck[i].categoryname === "Flase Ceiling Covering Work" && FlaseCeilingTyHNR === "NO FALSE CEILING" ) {
+                if (dataArrytocheck[i].categoryname === "Flase Ceiling Covering Work" && FlaseCeilingTyHNR === "NO FALSE CEILING") {
                     continue; // Skip this iteration
                 }
                 try {
@@ -13343,15 +13343,15 @@ const createAllActivites = async (req, resp) => {
                                             // { floorsequence: 'Bas 3' },
                                             // { floorsequence: 'Bas 4' },
                                             { floorsequence: 'Ground' },
-                                            { floorsequence: '1st' , TempID: 1},
-                                            { floorsequence: '2nd' , TempID: 2},
-                                            { floorsequence: '3rd' , TempID: 3},
-                                            { floorsequence: '4th' , TempID: 4},
+                                            { floorsequence: '1st', TempID: 1 },
+                                            { floorsequence: '2nd', TempID: 2 },
+                                            { floorsequence: '3rd', TempID: 3 },
+                                            { floorsequence: '4th', TempID: 4 },
                                             { floorsequence: 'Tower' },
 
                                         ];
 
-                      
+
 
 
                                         async function floorCreateFunction() {
@@ -20739,11 +20739,11 @@ const createAllActivites = async (req, resp) => {
                             { subactivityname: 'Tower -Wall Conduting + Internal Fittings', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
                             { subactivityname: 'Tower -Waterproofing', activityID: newData._id, projectID: objectproID, estimateDays: TowerWaterproofing_ESTD },
 
-                            { subactivityname: 'Rain Water Harvesting ', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'Rain Water Harvesting', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
                             { subactivityname: 'AC', activityID: newData._id, projectID: objectproID, estimateDays: ac_ESTD },
                             { subactivityname: 'Reverse Line', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
                             { subactivityname: 'Seperate | Individual Line per Floor', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
-                            { subactivityname: 'Water Tank', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            // { subactivityname: 'Water Tank', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
                             { subactivityname: 'Solar Heater | Geyser Line', activityID: newData._id, projectID: objectproID, estimateDays: 4 }
 
                         ];
@@ -24283,7 +24283,39 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "Rain Water Harvesting") {
 
+                                        const dataArranew = [
+                                            { materailname: 'PVC Pipe', materailquantity: materlID.RWH_RainWaterHarvestingPVCPipeQuantity, materailUnit: 'RUFT' },
+                                            { materailname: 'Clips', materailquantity: materlID.RWH_RainWaterHarvestingClipsQuantity, materailUnit: 'Nos.' },
+                                            { materailname: 'Solvent', materailquantity: materlID.RWH_RainWaterHarvestingSolventQuantity, materailUnit: 'CONTAINER' },
+                                        ];
+
+                                        async function SteelReinforcementfunHGHCall() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Material(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                materialsName: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        SteelReinforcementfunHGHCall();
+                                    }
 
 
                                     if (newDatanew.subactivityname === "Seperate | Individual Line per Floor") {
@@ -32611,7 +32643,7 @@ const createAllActivites = async (req, resp) => {
 
                     if (newData.categoryname === "Flase Ceiling Covering Work") {
 
-              
+
 
                         const dataArranew = [
                             { subactivityname: 'B1 - Boarding | POP', activityID: newData._id, projectID: objectproID, estimateDays: 4, TempID: 11 },

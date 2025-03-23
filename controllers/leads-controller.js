@@ -3,7 +3,7 @@ const User = require('../models/User.js');
 const Lead = require('../models/Lead.js');
 const Project = require('../models/Project.js');
 const WebsiteLead = require('../models/WebsiteLead.js');
-
+const Renovation = require('../models/Renovation.js');
 var nodemailer = require('nodemailer');
 
 
@@ -223,7 +223,7 @@ const addManagerInLead = async (req, res) => {
 };
 
 
-// Website Lead
+// Website Lead Start
 const addNewWebsitLead = async (req, res) => {
     try {
 
@@ -250,6 +250,31 @@ const getWebAllLeads = async (req, res) => {
         res.status(500).json(err);
     }
 };
+// Website Lead End
 
 
-module.exports = {getWebAllLeads, addNewWebsitLead, addEngineerInLead, addManagerInLead, getLeadWithdelays, searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject };
+
+// Renovation Lead Start
+const addNewRenovationLead = async (req, res) => {
+    try {
+        let lead = new Renovation(req.body);
+        const result = await lead.save();
+        res.send(result);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+}
+
+const getRenovationAllLeads = async (req, res) => {
+    try {
+        let leads = await Renovation.find();
+        res.send(leads)
+    } catch (err) {
+        res.status(500).json(err);
+    }
+}
+
+
+
+// Renovation Lead End
+module.exports = {getWebAllLeads, addNewWebsitLead, addEngineerInLead, addManagerInLead, getLeadWithdelays, searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject, addNewRenovationLead, getRenovationAllLeads };
