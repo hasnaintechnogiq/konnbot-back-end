@@ -63,7 +63,7 @@ router.post("/add-query-update", addQueryUpdate)
 router.get("/get-single-query/:_id", authenticate, getSingleQuery)
 router.get("/all-queries", getAllQueries)
 router.get("/get-user-all-queries/:_id", authenticate, getUserAllQueries)
-router.post("/create-queries", authenticate, addNewQueries)
+// router.post("/create-queries", authenticate, addNewQueries)
 router.put("/update-queries/:_id", updateQueries)
 router.delete("/delete-queries/:_id", deleteQueries)
 

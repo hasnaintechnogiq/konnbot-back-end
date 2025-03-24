@@ -33,7 +33,7 @@ const LeadsSchema = mongoose.Schema({
     priority: String,
     projestatus: String,
     goingtostart: String,
-    email: { type: String, required: true, unique: true },
+    email: { type: String, unique: true },
     clientname: String,
     clientdescription: String,
     clientaddress: String,
@@ -94,7 +94,7 @@ const LeadsSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'manager'
     },
-    Createdate:{type:Date, default: Date.now},
+    Createdate: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model("leads", LeadsSchema);

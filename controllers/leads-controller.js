@@ -40,7 +40,12 @@ const getSingleLead = async (req, resp) => {
 
 const addNewLead = async (req, res) => {
     try {
-
+        const { email } = req.body;
+        if (!email) {
+            let lead = new Lead(req.body);
+            const result = await lead.save();
+            return res.send(result);
+        }
         let leadCheck = await Lead.findOne({ email: req.body.email });
 
         if (leadCheck) {
@@ -61,7 +66,7 @@ const addNewLead = async (req, res) => {
         )
         let single = await User.findOne({ email: req.body.email });
 
-        const { email } = req.body;
+
 
         if (single) {
             console.log(single._id)
@@ -277,4 +282,4 @@ const getRenovationAllLeads = async (req, res) => {
 
 
 // Renovation Lead End
-module.exports = {getWebAllLeads, addNewWebsitLead, addEngineerInLead, addManagerInLead, getLeadWithdelays, searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject, addNewRenovationLead, getRenovationAllLeads };
+module.exports = { getWebAllLeads, addNewWebsitLead, addEngineerInLead, addManagerInLead, getLeadWithdelays, searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject, addNewRenovationLead, getRenovationAllLeads };
