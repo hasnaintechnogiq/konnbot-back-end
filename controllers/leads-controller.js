@@ -41,7 +41,7 @@ const getSingleLead = async (req, resp) => {
 const addNewLead = async (req, res) => {
     try {
         const { email } = req.body;
-        if (!email) {
+        if (!email || email.trim() === '') {
             let lead = new Lead(req.body);
             const result = await lead.save();
             return res.send(result);
@@ -66,7 +66,7 @@ const addNewLead = async (req, res) => {
         )
         let single = await User.findOne({ email: req.body.email });
 
-
+        res.send(result);
 
         if (single) {
             console.log(single._id)
@@ -105,7 +105,7 @@ const addNewLead = async (req, res) => {
             }
 
         }
-        res.send(result);
+
     } catch (err) {
         res.status(500).json(err);
     }

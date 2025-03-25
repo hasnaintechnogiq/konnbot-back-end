@@ -154,7 +154,7 @@ router.get("/get-single-project-all-documents/:_id", authenticate, getSingleProj
 
 router.post("/add-new-subactivity", authenticate, addNewSubActivity)
 router.get("/get-all-subactivities-ofsingle-activity/:_id", authenticate, getSubActivitiesofSingleActivity)
-router.get("/get-sub-activites-with-details/:_id", authenticate, getSubActivitiesWithdetails) // Done
+router.get("/get-sub-activites-with-details/:_id", authenticate, getSubActivitiesWithdetails)
 // router.delete("/delete-subactivity/:_id", deleteSubActivity)
 router.put("/update-subactivity/:_id", authenticate, updatesubactivity)
 router.post("/add-new-update-in-subactivity", authenticate, addNewUpdateInSubActivity)

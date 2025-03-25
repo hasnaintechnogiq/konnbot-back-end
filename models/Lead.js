@@ -33,7 +33,7 @@ const LeadsSchema = mongoose.Schema({
     priority: String,
     projestatus: String,
     goingtostart: String,
-    email: { type: String, unique: true },
+    email: String,
     clientname: String,
     clientdescription: String,
     clientaddress: String,
