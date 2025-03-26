@@ -4,6 +4,7 @@ const LeadsSchema = mongoose.Schema({
     city: String,
     number: Number,
     leadname: String,
+    email: String,
     interested: {
         type: String,
         default: "Not Intrested"
@@ -33,7 +34,6 @@ const LeadsSchema = mongoose.Schema({
     priority: String,
     projestatus: String,
     goingtostart: String,
-    email: String,
     clientname: String,
     clientdescription: String,
     clientaddress: String,

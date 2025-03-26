@@ -41,11 +41,11 @@ const getSingleLead = async (req, resp) => {
 const addNewLead = async (req, res) => {
     try {
         const { email } = req.body;
-        // if (!email || email.trim() === '') {
-        //     let lead = new Lead(req.body);
-        //     const result = await lead.save();
-        //     return res.send(result);
-        // }
+        if (!email || email.trim() === '') {
+            let lead = new Lead(req.body);
+            const result = await lead.save();
+            return res.send(result);
+        }
         let leadCheck = await Lead.findOne({ email: req.body.email });
 
         if (leadCheck) {
