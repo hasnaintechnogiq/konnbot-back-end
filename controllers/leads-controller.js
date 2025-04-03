@@ -279,7 +279,15 @@ const getRenovationAllLeads = async (req, res) => {
     }
 }
 
+const getRenovationLead = async (req, resp) => {
+    try {
+        let single = await Renovation.findOne({ _id: req.params.id });
+        resp.send(single);
+    } catch (err) {
+        resp.status(500).json(err);
+    }
+};
 
 
 // Renovation Lead End
-module.exports = { getWebAllLeads, addNewWebsitLead, addEngineerInLead, addManagerInLead, getLeadWithdelays, searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject, addNewRenovationLead, getRenovationAllLeads };
+module.exports = { getWebAllLeads, addNewWebsitLead, addEngineerInLead, addManagerInLead, getLeadWithdelays, searchLead, getAllLeads, getSingleLead, addNewLead, updateLead, deleteLead, getLeadWithProject, addNewRenovationLead, getRenovationAllLeads,getRenovationLead };
