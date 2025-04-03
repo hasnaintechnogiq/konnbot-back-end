@@ -1,3 +1,4 @@
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
 // const User = require('../middilewear/authenticate');
 const User = require('./models/User.js');
@@ -17,7 +18,7 @@ const Authenticate = async (req, res, next) => {
     try {
         const role = req.headers['role'];
         console.log('Role:', role);
-        const verifytoken = jwt.verify(token, "MOHDHASNAINKOUSARANSARIPARASIA");
+        const verifytoken = jwt.verify(token, process.env.JWT_SECRET);
 
 
 
