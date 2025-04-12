@@ -14,10 +14,10 @@ const Authenticate = async (req, res, next) => {
         return res.status(401).send('Authorization header missing');
     }
     const token = authHeader.replace('Bearer ', '');
-    console.log(token)
+    // console.log(token)
     try {
         const role = req.headers['role'];
-        console.log('Role:', role);
+        // console.log('Role:', role);
         const verifytoken = jwt.verify(token, process.env.JWT_SECRET);
 
 

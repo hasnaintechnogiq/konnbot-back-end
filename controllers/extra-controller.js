@@ -447,7 +447,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var BrickType = "RED BRICK";
         var OuterBrickWall = "1L + 0W";
-        var ParapetWallK41 = 3 / 3.28;
+        var ParapetWallK41 = 3 ;
         var BoundaryWallL41 = 1.52;
         var RailingN41 = 0.20;
         var ParapetWallK42 = 0.10;
@@ -715,10 +715,10 @@ const CalculationCheckTentetive = async (req, resp) => {
         var FINALINPUTSDONE_G69 = project.WashroomWall;
         var FINALINPUTSDONE_H69 = project.WashroomWallNumber;
         var FINALINPUTSDONE_I69 = project.WashroomWallI69;
-        var FINALINPUTSDONE_F73 = UGWTTile;  // not complete
+        var FINALINPUTSDONE_F73 = project.UGWTTile;  
         var FINALINPUTSDONE_G73 = project.ParapetStone;
         var FINALINPUTSDONE_I73 = KitchenCounter;  // not complete
-        var FINALINPUTSDONE_F76 = project.BoundaryWall;
+        var FINALINPUTSDONE_F76 = project.BoundaryWll;
         var FINALINPUTSDONE_G76 = project.COBARailing;
         var FINALINPUTSDONE_H76 = CobaRamp;  // not complete
         var FINALINPUTSDONE_F79 = WashArea; // not complete
@@ -747,10 +747,10 @@ const CalculationCheckTentetive = async (req, resp) => {
         var FINALINPUTSDONE_M4 = OHTankCapacityM4; // not complete
         var FINALINPUTSDONE_N4 = OHTankTypeN4; // not complete
         var FINALINPUTSDONE_L5 = project.SepticTank;
-        var FINALINPUTSDONE_M5 = SepticTankCapacityM5;
+        var FINALINPUTSDONE_M5 = project.SepticTankCapacityM5;
         var FINALINPUTSDONE_N5 = SepticTankTypeN5; // not complete
         var FINALINPUTSDONE_L6 = project.FireTank;
-        var FINALINPUTSDONE_M6 = FireTankCapacityM6;
+        var FINALINPUTSDONE_M6 = project.FireTankCapacityM6;
         var FINALINPUTSDONE_N6 = FireTankTypeN6; // not complete
 
         // Lift
@@ -787,7 +787,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var FINALINPUTSDONE_N32 = project.BrickType;
         var FINALINPUTSDONE_M33 = project.OuterBrickWall;
-        var FINALINPUTSDONE_K41 = project.ParapetWallK41;
+        var FINALINPUTSDONE_K41 =  ParapetWallK41;
         var FINALINPUTSDONE_L41 = project.BoundaryWallL41;
         var FINALINPUTSDONE_N41 = RailingN41; // not complete
         var FINALINPUTSDONE_K42 = project.ParapetWallK42;
@@ -4325,7 +4325,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
 
-        var ALGORITHUMDONE_D171 = ALGORITHUMDONE_B171 === 1 ? (ALGORITHUMDONE_H128 + ALGORITHUMDONE_I128 + ALGORITHUMDONE_F137 + ALGORITHUMDONE_G137 + ALGORITHUMDONE_F142 + ALGORITHUMDONE_G142 + ALGORITHUMDONE_E142 + ALGORITHUMDONE_E137) / (ALGORITHUMDONE_B166 + ALGORITHUMDONE_B167 + ALGORITHUMDONE_B168 + ALGORITHUMDONE_B169 + ALGORITHUMDONE_B170 + ALGORITHUMDONE_B171 + ALGORITHUMDONE_B162 + ALGORITHUMDONE_B163 + ALGORITHUMDONE_B164 + ALGORITHUMDONE_B165) + ALGORITHUMDONE_I153 + ALGORITHUMDONE_I156 : 0 + ALGORITHUMDONE_G114 + ALGORITHUMDONE_G116;
+        var ALGORITHUMDONE_D171 = ALGORITHUMDONE_B171 === 1 ? (ALGORITHUMDONE_H128 + ALGORITHUMDONE_I128 + ALGORITHUMDONE_F137 + ALGORITHUMDONE_G137 + ALGORITHUMDONE_F142 + ALGORITHUMDONE_G142 + ALGORITHUMDONE_E142 + ALGORITHUMDONE_E137) / (ALGORITHUMDONE_B166 + ALGORITHUMDONE_B167 + ALGORITHUMDONE_B168 + ALGORITHUMDONE_B169 + ALGORITHUMDONE_B170 + ALGORITHUMDONE_B171 + ALGORITHUMDONE_B162 + ALGORITHUMDONE_B163 + ALGORITHUMDONE_B164 + ALGORITHUMDONE_B165) + ALGORITHUMDONE_I153 + ALGORITHUMDONE_I156 + ALGORITHUMDONE_G114 + ALGORITHUMDONE_G116 : 0;
 
 
         var ALGORITHUMDONE_E108 = ALGORITHUMDONE_D171;
@@ -4764,75 +4764,91 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
         var BWRB_GFBrickWorkCommonBurntClay75DQuantity = (FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_GFBrickWorkMT * COSTINGANDINSTALLMENTDONED94) : 0;
-        var BWRB_GFBrickWorkPortlandCementQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_GFBrickWorkMT * COSTINGANDINSTALLMENTDONED39) + (BWRB_GFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED37) : 0);
-        var BWRB_GFBrickWorkCourseSandQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_GFBrickWorkMT * COSTINGANDINSTALLMENTDONED44) + (BWRB_GFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED42) : 0);
+
+        var BWRB_GFBrickWorkPortlandCementQuantity = Math.ceil(
+            (FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH"
+                ? Math.ceil(BWRB_GFBrickWorkMT * COSTINGANDINSTALLMENTDONED39)
+                : 0) + (BWRB_GFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED37)
+        )
+
+
+
+        var BWRB_GFBrickWorkCourseSandQuantity = Math.ceil(
+            (FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH"
+                ? Math.ceil(BWRB_GFBrickWorkMT * COSTINGANDINSTALLMENTDONED44)
+                : 0) + (BWRB_GFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED42)
+        )
+
+
+
         var BWRB_GFBrickWorkStoneAggregate20MMQuantity = Math.ceil(COSTINGANDINSTALLMENTDONED99 * BWRB_GFBrickWorkMT);
         var BWRB_GFBrickWorkAutoclavedAeratedCementAACQuantity = FINALINPUTSDONE_N32 === "AAC BLOCK" ? BWRB_GFBrickWorkMT * COSTINGANDINSTALLMENTDONED92 : 0;
         var BWRB_GFBrickWorkPolymerModifiedAdhesiveMortarQuantity = FINALINPUTSDONE_N32 === "AAC BLOCK" ? BWRB_GFBrickWorkMT * (COSTINGANDINSTALLMENTDONED93 / 50) : 0;
         var BWRB_GFBrickWorkReinforcementQuantity = Math.ceil(COSTINGANDINSTALLMENTDONED99 * BWRB_GFBrickWorkMT);
-        var BWRB_GFBrickWorkDoorFrameQuantity = BWRB_GFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_C411 + ALGORITHUMDONE_H411;
+        var BWRB_GFBrickWorkDoorFrameQuantity = BWRB_GFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_C415 + ALGORITHUMDONE_H415 + (ALGORITHUMDONE_F396 === "WOODEN" ? ALGORITHUMDONE_B401 : 0);
         var BWRB_GFBrickWorkWindowFrameQuantity = BWRB_GFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_E449;
         var BWRB_GFBrickWorkMSDoorWindowFrameQuantity = BWRB_GFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_D411 + ALGORITHUMDONE_I411 + ALGORITHUMDONE_H461;
 
-
         var BWRB_FFBrickWorkCommonBurntClay75DQuantity = (FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_FFBrickWorkMT * COSTINGANDINSTALLMENTDONED94) : 0;
-
-
-        var BWRB_FFBrickWorkPortlandCementQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_FFBrickWorkMT * COSTINGANDINSTALLMENTDONED39) + (BWRB_FFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED37) : 0);
-        var BWRB_FFBrickWorkCourseSandQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_FFBrickWorkMT * COSTINGANDINSTALLMENTDONED44) + (BWRB_FFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED42) : 0);
+        var BWRB_FFBrickWorkPortlandCementQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH" ? Math.ceil(BWRB_FFBrickWorkMT * COSTINGANDINSTALLMENTDONED39) : 0) + (BWRB_FFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED37))
+        var BWRB_FFBrickWorkCourseSandQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH" ? Math.ceil(BWRB_FFBrickWorkMT * COSTINGANDINSTALLMENTDONED44) : 0) + (BWRB_FFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED42))
         var BWRB_FFBrickWorkStoneAggregate20MMQuantity = Math.ceil(COSTINGANDINSTALLMENTDONED99 * BWRB_FFBrickWorkMT);
         var BWRB_FFBrickWorkAutoclavedAeratedCementAACQuantity = FINALINPUTSDONE_N32 === "AAC BLOCK" ? BWRB_FFBrickWorkMT * COSTINGANDINSTALLMENTDONED92 : 0;
         var BWRB_FFBrickWorkPolymerModifiedAdhesiveMortarQuantity = FINALINPUTSDONE_N32 === "AAC BLOCK" ? BWRB_FFBrickWorkMT * (COSTINGANDINSTALLMENTDONED93 / 50) : 0;
         var BWRB_FFBrickWorkReinforcementQuantity = Math.ceil(COSTINGANDINSTALLMENTDONED99 * BWRB_FFBrickWorkMT);
-        var BWRB_FFBrickWorkDoorFrameQuantity = BWRB_FFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_C411 + ALGORITHUMDONE_H411;
+        var BWRB_FFBrickWorkDoorFrameQuantity = BWRB_FFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_C416 + ALGORITHUMDONE_H416
         var BWRB_FFBrickWorkWindowFrameQuantity = BWRB_FFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_E449;
         var BWRB_FFBrickWorkMSDoorWindowFrameQuantity = BWRB_FFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_D411 + ALGORITHUMDONE_I411 + ALGORITHUMDONE_H461;
 
 
         var BWRB_SFBrickWorkCommonBurntClay75DQuantity = (FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_SFBrickWorkMT * COSTINGANDINSTALLMENTDONED94) : 0;
-        var BWRB_SFBrickWorkPortlandCementQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_SFBrickWorkMT * COSTINGANDINSTALLMENTDONED39) + (BWRB_SFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED37) : 0);
-        var BWRB_BWRB_SFBrickWorkCourseSandQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_SFBrickWorkMT * COSTINGANDINSTALLMENTDONED44) + (BWRB_SFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED42) : 0);
+
+        var BWRB_SFBrickWorkPortlandCementQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH" ? Math.ceil(BWRB_SFBrickWorkMT * COSTINGANDINSTALLMENTDONED39) : 0) + (BWRB_SFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED37))
+        var BWRB_BWRB_SFBrickWorkCourseSandQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH" ? Math.ceil(BWRB_SFBrickWorkMT * COSTINGANDINSTALLMENTDONED44) : 0) + (BWRB_SFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED42))
         var BWRB_SFBrickWorkStoneAggregate20MMQuantity = Math.ceil(COSTINGANDINSTALLMENTDONED99 * BWRB_SFBrickWorkMT);
         var BWRB_SFBrickWorkAutoclavedAeratedCementAACQuantity = FINALINPUTSDONE_N32 === "AAC BLOCK" ? BWRB_SFBrickWorkMT * COSTINGANDINSTALLMENTDONED92 : 0;
         var BWRB_SFBrickWorkPolymerModifiedAdhesiveMortarQuantity = FINALINPUTSDONE_N32 === "AAC BLOCK" ? BWRB_SFBrickWorkMT * (COSTINGANDINSTALLMENTDONED93 / 50) : 0;
         var BWRB_SFBrickWorkReinforcementQuantity = Math.ceil(COSTINGANDINSTALLMENTDONED99 * BWRB_SFBrickWorkMT);
-        var BWRB_SFBrickWorkDoorFrameQuantity = BWRB_SFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_C411 + ALGORITHUMDONE_H411;
+        var BWRB_SFBrickWorkDoorFrameQuantity = BWRB_SFBrickWorkMT  === 0 ? 0 : ALGORITHUMDONE_C417 + ALGORITHUMDONE_H417
         var BWRB_SFBrickWorkWindowFrameQuantity = BWRB_SFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_E449;
         var BWRB_SFBrickWorkMSDoorWindowFrameQuantity = BWRB_SFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_D411 + ALGORITHUMDONE_I411 + ALGORITHUMDONE_H461;
 
 
         var BWRB_TFBrickWorkCommonBurntClay75DQuantity = (FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_TFBrickWorkMT * COSTINGANDINSTALLMENTDONED94) : 0;
-        var BWRB_TFBrickWorkPortlandCementQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_TFBrickWorkMT * COSTINGANDINSTALLMENTDONED39) + (BWRB_TFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED37) : 0);
-        var BWRB_TFBrickWorkCourseSandQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_TFBrickWorkMT * COSTINGANDINSTALLMENTDONED44) + (BWRB_TFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED42) : 0);
+        var BWRB_TFBrickWorkPortlandCementQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH" ? Math.ceil(BWRB_TFBrickWorkMT * COSTINGANDINSTALLMENTDONED39) : 0) + (BWRB_TFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED37))
+        var BWRB_TFBrickWorkCourseSandQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH" ? Math.ceil(BWRB_TFBrickWorkMT * COSTINGANDINSTALLMENTDONED44) : 0) + (BWRB_TFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED42))
         var BWRB_TFBrickWorkStoneAggregate20MMQuantity = Math.ceil(COSTINGANDINSTALLMENTDONED99 * BWRB_TFBrickWorkMT);
         var BWRB_TFBrickWorkAutoclavedAeratedCementAACQuantity = FINALINPUTSDONE_N32 === "AAC BLOCK" ? BWRB_TFBrickWorkMT * COSTINGANDINSTALLMENTDONED92 : 0;
         var BWRB_TFBrickWorkPolymerModifiedAdhesiveMortarQuantity = FINALINPUTSDONE_N32 === "AAC BLOCK" ? BWRB_TFBrickWorkMT * (COSTINGANDINSTALLMENTDONED93 / 50) : 0;
         var BWRB_TFBrickWorkReinforcementQuantity = Math.ceil(COSTINGANDINSTALLMENTDONED99 * BWRB_TFBrickWorkMT);
-        var BWRB_TFBrickWorkDoorFrameQuantity = BWRB_TFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_C411 + ALGORITHUMDONE_H411;
+        var BWRB_TFBrickWorkDoorFrameQuantity = BWRB_TFBrickWorkMT  === 0 ? 0 : ALGORITHUMDONE_C418 + ALGORITHUMDONE_H418
         var BWRB_TFBrickWorkWindowFrameQuantity = BWRB_TFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_E449;
         var BWRB_TFBrickWorkMSDoorWindowFrameQuantity = BWRB_TFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_D411 + ALGORITHUMDONE_I411 + ALGORITHUMDONE_H461;
 
 
         var BWRB_FoFBrickWorkCommonBurntClay75DQuantity = (FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_FoFBrickWorkMT * COSTINGANDINSTALLMENTDONED94) : 0;
-        var BWRB_FoFBrickWorkPortlandCementQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_FoFBrickWorkMT * COSTINGANDINSTALLMENTDONED39) + (BWRB_FoFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED37) : 0);
-        var BWRB_FoFBrickWorkCourseSandQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_FoFBrickWorkMT * COSTINGANDINSTALLMENTDONED44) + (BWRB_FoFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED42) : 0);
+         var BWRB_FoFBrickWorkPortlandCementQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH" ? Math.ceil(BWRB_FoFBrickWorkMT * COSTINGANDINSTALLMENTDONED39) : 0) + (BWRB_FoFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED37))
+         var BWRB_FoFBrickWorkCourseSandQuantity =   Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH" ? Math.ceil(BWRB_FoFBrickWorkMT * COSTINGANDINSTALLMENTDONED44) : 0) + (BWRB_FoFBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED42))
         var BWRB_FoFBrickWorkStoneAggregate20MMQuantity = Math.ceil(COSTINGANDINSTALLMENTDONED99 * BWRB_FoFBrickWorkMT);
         var BWRB_FoFBrickWorkAutoclavedAeratedCementAACQuantity = FINALINPUTSDONE_N32 === "AAC BLOCK" ? BWRB_FoFBrickWorkMT * COSTINGANDINSTALLMENTDONED92 : 0;
         var BWRB_FoFBrickWorkPolymerModifiedAdhesiveMortarQuantity = FINALINPUTSDONE_N32 === "AAC BLOCK" ? BWRB_FoFBrickWorkMT * (COSTINGANDINSTALLMENTDONED93 / 50) : 0;
         var BWRB_FoFBrickWorkReinforcementQuantity = Math.ceil(COSTINGANDINSTALLMENTDONED99 * BWRB_FoFBrickWorkMT);
-        var BWRB_FoFBrickWorkDoorFrameQuantity = BWRB_FoFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_C411 + ALGORITHUMDONE_H411;
+        var BWRB_FoFBrickWorkDoorFrameQuantity = BWRB_FoFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_C419 + ALGORITHUMDONE_H419
         var BWRB_FoFBrickWorkWindowFrameQuantity = BWRB_FoFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_E449;
         var BWRB_FoFBrickWorkMSDoorWindowFrameQuantity = BWRB_FoFBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_D411 + ALGORITHUMDONE_I411 + ALGORITHUMDONE_H461;
 
 
         var BWRB_TowerBrickWorkCommonBurntClay75DQuantity = (FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_TowerBrickWorkMT * COSTINGANDINSTALLMENTDONED94) : 0;
-        var BWRB_TowerBrickWorkPortlandCementQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_TowerBrickWorkMT * COSTINGANDINSTALLMENTDONED39) + (BWRB_TowerBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED37) : 0);
-        var BWRB_TowerBrickWorkCourseSandQuantity = Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH") ? Math.ceil(BWRB_TowerBrickWorkMT * COSTINGANDINSTALLMENTDONED44) + (BWRB_TowerBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED42) : 0);
+         var BWRB_TowerBrickWorkPortlandCementQuantity =  Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH" ? Math.ceil(BWRB_TowerBrickWorkMT * COSTINGANDINSTALLMENTDONED39) : 0) + (BWRB_TowerBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED37))
+         var BWRB_TowerBrickWorkCourseSandQuantity =    Math.ceil((FINALINPUTSDONE_N32 === "RED BRICK" || FINALINPUTSDONE_N32 === "FLY ASH" ? Math.ceil(BWRB_TowerBrickWorkMT * COSTINGANDINSTALLMENTDONED44) : 0) + (BWRB_TowerBrickWorkMT * 0.064 * COSTINGANDINSTALLMENTDONED42))
+
         var BWRB_TowerBrickWorkStoneAggregate20MMQuantity = Math.ceil(COSTINGANDINSTALLMENTDONED99 * BWRB_TowerBrickWorkMT);
         var BWRB_TowerBrickWorkAutoclavedAeratedCementAACQuantity = FINALINPUTSDONE_N32 === "AAC BLOCK" ? BWRB_TowerBrickWorkMT * COSTINGANDINSTALLMENTDONED92 : 0;
         var BWRB_TowerBrickWorkPolymerModifiedAdhesiveMortarQuantity = FINALINPUTSDONE_N32 === "AAC BLOCK" ? BWRB_TowerBrickWorkMT * (COSTINGANDINSTALLMENTDONED93 / 50) : 0;
         var BWRB_TowerBrickWorkReinforcementQuantity = Math.ceil(COSTINGANDINSTALLMENTDONED99 * BWRB_TowerBrickWorkMT);
-        var BWRB_TowerBrickWorkDoorFrameQuantity = BWRB_TowerBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_C411 + ALGORITHUMDONE_H411;
+        var BWRB_TowerBrickWorkDoorFrameQuantity = BWRB_TowerBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_C420 + ALGORITHUMDONE_H420;
+
+        console.log("YESqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqvqqqqqqqqqqqqq", BWRB_TowerBrickWorkDoorFrameQuantity)
         var BWRB_TowerBrickWorkWindowFrameQuantity = BWRB_TowerBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_E449;
         var BWRB_TowerBrickWorkMSDoorWindowFrameQuantity = BWRB_TowerBrickWorkMT === 0 ? 0 : ALGORITHUMDONE_D411 + ALGORITHUMDONE_I411 + ALGORITHUMDONE_H461;
 
@@ -4899,10 +4915,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
         var BWRB_GFBrickWorkCommonBurntClay75DAmount = BWRB_GFBrickWorkCommonBurntClay75DQuantity * BWRB_CommonBurntClay75DUnitCost;
-
-
         var BWRB_GFBrickWorkPortlandCementAmount = BWRB_GFBrickWorkPortlandCementQuantity * PortlandCementBrickMortorCost;
-
         var BWRB_GFBrickWorkCourseSandAmount = BWRB_GFBrickWorkCourseSandQuantity * CourseSandBrickMortorCost;
         var BWRB_GFBrickWorkStoneAggregate20MMAmount = BWRB_GFBrickWorkStoneAggregate20MMQuantity * StoneAggregate20MM_RCCCost;
         var BWRB_GFBrickWorkAutoclavedAeratedCementAACAmount = BWRB_GFBrickWorkAutoclavedAeratedCementAACQuantity * AutoclavedAeratedCementAACCost;
@@ -4911,8 +4924,8 @@ const CalculationCheckTentetive = async (req, resp) => {
         var BWRB_GFBrickWorkDoorFrameAmount = BWRB_GFBrickWorkDoorFrameQuantity * DoorFrameCost;
         var BWRB_GFBrickWorkWindowFrameAmount = BWRB_GFBrickWorkWindowFrameQuantity * WindowFrameCost;
         var BWRB_GFBrickWorkMSDoorWindowFrameAmount = BWRB_GFBrickWorkMSDoorWindowFrameQuantity * MSWindowFrameCost;
-
         var BWRB_FFBrickWorkCommonBurntClay75DAmount = BWRB_FFBrickWorkCommonBurntClay75DQuantity * BWRB_CommonBurntClay75DUnitCost;
+
 
 
         var BWRB_FFBrickWorkPortlandCementAmount = BWRB_FFBrickWorkPortlandCementQuantity * PortlandCementBrickMortorCost;
@@ -4983,6 +4996,8 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
 
+
+        
         var BRICKWORKREDBRICKS_B1BrickWork_ToatalAmount = BWRB_B1BrickWorkCommonBurntClay75DAmount + BWRB_B1BrickWorkPortlandCementAmount + BWRB_B1BrickWorkCourseSandAmount + BWRB_B1BrickWorkStoneAggregate20MMAmount + BWRB_B1BrickWorkAutoclavedAeratedCementAACAmount + BWRB_B1BrickWorkPolymerModifiedAdhesiveMortarAmount + BWRB_B1BrickWorkReinforcementAmount;
 
         var BRICKWORKREDBRICKS_B2BrickWork_ToatalAmount = BWRB_B2BrickWorkCommonBurntClay75DAmount + BWRB_B2BrickWorkPortlandCementAmount + BWRB_B2BrickWorkCourseSandAmount + BWRB_B2BrickWorkStoneAggregate20MMAmount + BWRB_B2BrickWorkAutoclavedAeratedCementAACAmount + BWRB_B2BrickWorkPolymerModifiedAdhesiveMortarAmount + BWRB_B2BrickWorkReinforcementAmount;
@@ -4992,7 +5007,6 @@ const CalculationCheckTentetive = async (req, resp) => {
         var BRICKWORKREDBRICKS_B4BrickWork_ToatalAmount = BWRB_B4BrickWorkCommonBurntClay75DAmount + BWRB_B4BrickWorkPortlandCementAmount + BWRB_B4BrickWorkCourseSandAmount + BWRB_B4BrickWorkStoneAggregate20MMAmount + BWRB_B4BrickWorkAutoclavedAeratedCementAACAmount + BWRB_B4BrickWorkPolymerModifiedAdhesiveMortarAmount + BWRB_B4BrickWorkReinforcementAmount;
 
         var BRICKWORKREDBRICKS_GFBrickWork_ToatalAmount = BWRB_GFBrickWorkCommonBurntClay75DAmount + BWRB_GFBrickWorkPortlandCementAmount + BWRB_GFBrickWorkCourseSandAmount + BWRB_GFBrickWorkStoneAggregate20MMAmount + BWRB_GFBrickWorkAutoclavedAeratedCementAACAmount + BWRB_GFBrickWorkPolymerModifiedAdhesiveMortarAmount + BWRB_GFBrickWorkReinforcementAmount;
-
 
         var BRICKWORKREDBRICKS_FFBrickWork_ToatalAmount = BWRB_FFBrickWorkCommonBurntClay75DAmount + BWRB_FFBrickWorkPortlandCementAmount + BWRB_FFBrickWorkCourseSandAmount + BWRB_FFBrickWorkStoneAggregate20MMAmount + BWRB_FFBrickWorkAutoclavedAeratedCementAACAmount + BWRB_FFBrickWorkPolymerModifiedAdhesiveMortarAmount + BWRB_FFBrickWorkReinforcementAmount;
 
@@ -14914,7 +14928,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var LF_Light_01Amount = LF_Light_01Quantity * Light01Cost;
         var LF_FanAmount = LF_FanQuantity * FanCost;
 
-        console.log("YESqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqvqqqqqqqqqqqqq", LF_FanQuantity)
+
         var LightFixingFan_TotalAmount = LF_Light_01Amount + LF_FanAmount;
 
         // Light Fixing & Fan End 
