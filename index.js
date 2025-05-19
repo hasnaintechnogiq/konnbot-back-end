@@ -46,7 +46,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: '*' }));
+app.use(cors());
 
 const Routes = require("./routes/route.js")
 
