@@ -17,7 +17,7 @@ const { addNewChatOrderInstallment, getSingleUserChatOrderInstallment, getAllCha
 const { getSingleLeadactivities, getSingleLeadOnlyActivities, getSingleProjectAllDocuments, getSingleProjectAllPhotoes, addNewActivities, updateActivities, deleteActivities, createAllActivites } = require('../controllers/activities-controller.js');
 const { updateChecks, updateMaterial, updatesubTask, addMatreial, addCheck, addSubTask, getSubActivitiesWithdetails, addNewUpdateInSubActivity, addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity } = require('../controllers/sub-activites-controller.js');
 const { addNewQuotation, updateQuotation, deleteQuotationOne, commentsonquatation, getspaceWithRoom, addNewProjectInQuotaion, addNewStructureInQuotation, addNewProjectspaceinQuatation, addSelectedQuotationinLead, getQuotationWithDetails, getAllQuotationInLead } = require('../controllers/quotation-controller.js');
-const { updatesnags } = require('../controllers/snags-controller.js');
+const { updatesnags, addMultiplesSnags } = require('../controllers/snags-controller.js');
 const { CalculationCheckTentetive, getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, getAllEngineerList, getAllLeadsList, getAllManagersList, getPriceList, updatePriceList, addPriceList } = require('../controllers/extra-controller.js');
 
 // Project routes
@@ -185,6 +185,8 @@ router.post("/add-new-quotation", authenticate, addNewQuotation)
 // Snags
 
 router.put("/update-snags/:_id", updatesnags)
+router.post("/add-multiples-snags", addMultiplesSnags)
+
 
 
 // Extra

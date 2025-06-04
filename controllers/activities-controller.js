@@ -8802,6 +8802,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "ISO - Layout & Levelling") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Marking', NormalHeadingThree: 'Distance', NormalHeadingfoure: 'Benchmar.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -8895,6 +8931,44 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         SteelReinforcementfunHGHCall();
+                                    }
+
+
+                                    if (newDatanew.subactivityname === "ISO - Waterproofing") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Finish Surf.', NormalHeadingThree: 'First Coat', NormalHeadingfoure: 'Final Coat' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
 
@@ -9072,6 +9146,45 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         SteelReinforcementfunHGHCall();
+                                    }
+
+
+
+                                    if (newDatanew.subactivityname === "RAFT - Sewage Line") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Washroom', headingforshortingTwo: 'Chamber' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Washbasin', NormalHeadingThree: 'W.C', NormalHeadingfoure: 'Shower' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Construct.', NormalHeadingThree: 'Pipeline', NormalHeadingfoure: 'Covering' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
 
@@ -9286,7 +9399,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "ISO - Footing RCC") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Casting', headingforshortingTwo: 'Honey Comb' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Workability', NormalHeadingThree: 'Vibrator', NormalHeadingfoure: 'Depth' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Final Finish', NormalHeadingThree: 'Honey Co.', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -9446,7 +9594,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "ISO - Pedestal RCC") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Starter', headingforshortingTwo: 'Casting' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Starter', NormalHeadingThree: 'Cover Blo.', NormalHeadingfoure: 'S - Vertical' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Casting', NormalHeadingThree: 'Honey Co.', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -9648,6 +9831,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "PILE -  RCC") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Casting', NormalHeadingThree: 'Vibrator', NormalHeadingfoure: 'Dep. | Fini.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -9777,6 +9996,46 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+
+                                    if (newDatanew.subactivityname === "RAFT - Waterproofing") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Finish Surf.', NormalHeadingThree: 'First Coat', NormalHeadingfoure: 'Final Coat' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
                                     if (newDatanew.subactivityname === "RAFT - RCC") {
 
                                         const dataArranew = [
@@ -9830,14 +10089,107 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "RAFT - RCC") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Casting', headingforshortingTwo: 'Honey Comb' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Workability', NormalHeadingThree: 'Vibrator', NormalHeadingfoure: 'Depth' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Final Finish', NormalHeadingThree: 'Honey Co.', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+                                    // ... existing code ...
+                                    // if (newDatanew.subactivityname === "RAFT - RCC") {
+                                    //     const RCC_SNAGS_DATA = [
+                                    //         { headingforshortingOne: 'Casting', headingforshortingTwo: 'Honey Comb' },
+                                    //         { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Workability', NormalHeadingThree: 'Vibrator', NormalHeadingfoure: 'Depth' },
+                                    //         { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Final Finish', NormalHeadingThree: 'Honey Co.', NormalHeadingfoure: 'Curing' },
+                                    //         {},
+                                    //         {},
+                                    //         {},
+                                    //     ];
+
+                                    //     const createRCCSnags = async () => {
+                                    //         try {
+                                    //             const snags = await Promise.all(
+                                    //                 RCC_SNAGS_DATA.map(data => new Snags(data).save())
+                                    //             );
+
+                                    //             const snagsIds = snags.map(snag => new mongoose.Types.ObjectId(snag.id));
+                                    //             await SubActivities.updateOne(
+                                    //                 { _id: new mongoose.Types.ObjectId(newDatanew._id) },
+                                    //                 { $push: { snagsID: { $each: snagsIds } } }
+                                    //             );
+
+                                    //             console.log('RCC Snags created successfully');
+                                    //         } catch (error) {
+                                    //             console.error('Error creating RCC snags:', error);
+                                    //         }
+                                    //     };
+
+                                    //     createRCCSnags();
+                                    // }
+                                    // ... existing code ...
 
 
 
+                                    // if (newDatanew.subactivityname === "RAFT - RCC") {
+                                    //     const RCC_SNAGS_DATA = [
+                                    //         { headingforshortingOne: 'Casting', headingforshortingTwo: 'Honey Comb' },
+                                    //         { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Workability', NormalHeadingThree: 'Vibrator', NormalHeadingfoure: 'Depth' },
+                                    //         { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Final Finish', NormalHeadingThree: 'Honey Co.', NormalHeadingfoure: 'Curing' },
+                                    //         {},
+                                    //         {},
+                                    //         {},
+                                    //     ];
 
+                                    //     const createRCCSnags = async () => {
+                                    //         try {
+                                    //             const snags = await Promise.all(
+                                    //                 RCC_SNAGS_DATA.map(data => new Snags(data).save())
+                                    //             );
 
+                                    //             const snagsIds = snags.map(snag => new mongoose.Types.ObjectId(snag.id));
+                                    //             await SubActivities.updateOne(
+                                    //                 { _id: new mongoose.Types.ObjectId(newDatanew._id) },
+                                    //                 { $push: { snagsID: { $each: snagsIds } } }
+                                    //             );
+                                    //         } catch (error) {
+                                    //             console.error('Error creating RCC snags:', error);
+                                    //         }
+                                    //     };
 
-
-
+                                    //     createRCCSnags();
+                                    // }
 
 
 
@@ -9969,7 +10321,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "ISO - PCC") {
 
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Workability', NormalHeadingThree: 'Depth', NormalHeadingfoure: 'Dim./Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -10097,6 +10484,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "ISO - Reinforcement") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Layout', headingforshortingTwo: 'Footing', headingforshortingThree: 'Column', headingforshortingFour: 'Final Check' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Workability', NormalHeadingThree: 'Col. Center' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Binding', NormalHeadingfoure: 'Placement' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Binding', NormalHeadingfoure: 'Placement' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Cover Blo.', NormalHeadingThree: 'Verticality', NormalHeadingfoure: 'Grid Check' },
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -10179,6 +10602,44 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "PILE -  Reinforcement") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Binding', NormalHeadingfoure: 'Placement' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
 
                                     if (newDatanew.subactivityname === "PILE -  Excavation") {
 
@@ -10211,6 +10672,51 @@ const createAllActivites = async (req, resp) => {
                                         }
                                         SteelReinforcementfunHGHCall();
                                     }
+
+
+
+                                    if (newDatanew.subactivityname === "PILE -  Excavation") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Pile Locate', NormalHeadingThree: 'Depth', NormalHeadingfoure: 'Underream' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+
+
+
+
 
                                     if (newDatanew.subactivityname === "PILE -  Reinforcement") {
 
@@ -10380,6 +10886,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "RAFT - Reinforcement") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Footing', headingforshortingTwo: 'Column', headingforshortingThree: 'Beam', headingforshortingFour: 'Slab', headingforshortingFive: 'Final Check' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Binding', NormalHeadingfoure: 'Placement' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Binding', NormalHeadingfoure: 'Placement' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Main/Extra', NormalHeadingfoure: 'Ring | Hook' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Spacing', NormalHeadingfoure: 'Chair/Bind' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Spacing', NormalHeadingfoure: 'Chair/Bind' },
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -10519,6 +11061,49 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+
+                                    if (newDatanew.subactivityname === "PILE -  Layout & Levelling") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Marking', NormalHeadingThree: 'Distance', NormalHeadingfoure: 'Benchmar.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+
+
+
+
                                     if (newDatanew.subactivityname === "RAFT - Layout & Levelling") {
 
                                         const dataArranew = [
@@ -10560,6 +11145,44 @@ const createAllActivites = async (req, resp) => {
                                         layoutAndLevellingCall();
                                     }
 
+
+
+                                    if (newDatanew.subactivityname === "RAFT - Layout & Levelling") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Marking', NormalHeadingThree: 'Distance', NormalHeadingfoure: 'Benchmar.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "PILE -  Layout & Levelling") {
 
@@ -10768,6 +11391,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "RAFT - PCC") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Workability', NormalHeadingThree: 'Depth', NormalHeadingfoure: 'Dim./Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -10911,7 +11570,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "ISO - Excavation") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Marking', headingforshortingTwo: 'Ex. Dimension' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Colu. Cen.', NormalHeadingThree: 'Area', NormalHeadingfoure: 'Diagonal' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Excavation', NormalHeadingThree: 'Depth', NormalHeadingfoure: 'Clearance' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -11005,6 +11699,43 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+                                    if (newDatanew.subactivityname === "RAFT - Excavation") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Depth', NormalHeadingThree: 'Clearance', NormalHeadingfoure: 'Marking' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "RAFT - Excavation") {
 
@@ -11234,7 +11965,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "PCC Above") {
 
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Workability', NormalHeadingThree: 'Depth', NormalHeadingfoure: 'Dim./Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -11382,6 +12148,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "Grade Slab RCC Work") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Casting', NormalHeadingThree: 'Thickness', NormalHeadingfoure: 'Final Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -11511,7 +12313,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "Reinforcement Work") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Main Bar', headingforshortingTwo: 'Check' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Main/Extra', NormalHeadingfoure: 'L - Bend' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Ring | Hook', NormalHeadingThree: 'Cover Blo.', NormalHeadingfoure: 'Final Chk.' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -11622,6 +12459,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "Grade Slab + Plinth RCC Work") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Casting', NormalHeadingThree: 'Thickness', NormalHeadingfoure: 'Final Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -11732,7 +12605,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "RCC") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Casting', headingforshortingTwo: 'Honey Comb' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Vibrator', NormalHeadingThree: 'Casting', NormalHeadingfoure: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Honey Co.', NormalHeadingThree: 'Curing', NormalHeadingfoure: 'Protection' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -11819,6 +12727,44 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "Anti Termite Work") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Surface Pr.', NormalHeadingThree: 'Holes', NormalHeadingfoure: 'Solution' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
                                     if (newDatanew.subactivityname === "Grade Slab Reinforcement Work") {
 
                                         const dataArranew = [
@@ -11853,6 +12799,84 @@ const createAllActivites = async (req, resp) => {
                                         }
                                         SteelReinforcementfunHGHCall();
                                     }
+
+                                    if (newDatanew.subactivityname === "Grade Slab Reinforcement Work") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Main Bar', headingforshortingTwo: 'Check' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Main/Extra', NormalHeadingfoure: 'L - Bend' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Ring | Hook', NormalHeadingThree: 'Cover Blo.', NormalHeadingfoure: 'Final Chk.' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+                                    if (newDatanew.subactivityname === "Grade Slab Reinforcement Work") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Binding', NormalHeadingfoure: 'Cover Blo.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+
+
 
                                     if (newDatanew.subactivityname === "Anti Termite Work") {
 
@@ -12004,6 +13028,43 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "Shuttering Bottom") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Bottom', NormalHeadingThree: 'Straight C.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
 
                                     if (newDatanew.subactivityname === "Shuttering Side") {
 
@@ -12038,7 +13099,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "Shuttering Side") {
 
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Size Fix', NormalHeadingThree: 'Straight C.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "RCC") {
 
@@ -12111,7 +13207,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "Filling Work") {
 
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Level', NormalHeadingThree: 'Ramming', NormalHeadingfoure: 'Gitti Layer' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "Shuttering Bottom") {
 
@@ -12319,6 +13450,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "Sewage Line Work") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Washroom', headingforshortingTwo: 'Chamber' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Washbasin', NormalHeadingThree: 'W.C', NormalHeadingfoure: 'Shower' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Construct.', NormalHeadingThree: 'Pipeline', NormalHeadingfoure: 'Covering' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -12706,9 +13873,80 @@ const createAllActivites = async (req, resp) => {
                                     //     pccworkchChacks();
                                     // }
 
+                                    // if (newDatanew.subactivityname === "PCC Below Beam") {
+
+                                    //     const dataArranew = [
+                                    //         {},
+                                    //         { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Bottom Lvl.', NormalHeadingThree: 'Cast | Laid', NormalHeadingfoure: 'Final Chk.' },
+                                    //         {},
+                                    //         {},
+                                    //         {},
+                                    //         {},
+                                    //     ];
+
+                                    //     async function RccsnagsSnags() {
+                                    //         for (let i = 0; i < dataArranew.length; i++) {
+                                    //             try {
+                                    //                 const newDatanewtask = new Snags(dataArranew[i]);
+                                    //                 const savedData = await newDatanewtask.save();
+
+                                    //                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                    //                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                    //                 console.log(objID);
+                                    //                 await SubActivities.updateOne(
+                                    //                     { _id: newss },
+                                    //                     {
+                                    //                         $push: {
+                                    //                             snagsID: objID
+                                    //                         }
+                                    //                     }
+                                    //                 )
+                                    //                 console.log('Data saved:', savedData);
+                                    //             } catch (error) {
+                                    //                 console.error('Error saving data:', error);
+                                    //             }
+                                    //         }
+                                    //     }
+                                    //     RccsnagsSnags();
+                                    // }
 
 
+                                    if (newDatanew.subactivityname === "Brick Work along the Plinth") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Brick Work', headingforshortingTwo: 'Bottom', headingforshortingThree: 'Sides' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Base Line', NormalHeadingThree: 'Brick Work', NormalHeadingfoure: 'PCC Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Bottom', NormalHeadingThree: 'Straight C.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Size Fix', NormalHeadingThree: 'Straight C.' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     // if (newDatanew.subactivityname === "PCC Below Beam") {
 
@@ -12943,6 +14181,45 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "GF Slab Electrical Conducting") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Fan', NormalHeadingThree: 'Light', NormalHeadingfoure: 'Connectio.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+
                                     if (newDatanew.subactivityname === 'FF Slab Electrical Conducting') {
 
                                         const dataArranew = [
@@ -13021,6 +14298,48 @@ const createAllActivites = async (req, resp) => {
                                         }
                                         ElectricalChacks();
                                     }
+
+
+                                    if (newDatanew.subactivityname === "FF Slab Electrical Conducting") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Fan', NormalHeadingThree: 'Light', NormalHeadingfoure: 'Connectio.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+
+
                                     if (newDatanew.subactivityname === 'SF Slab Electrical Conducting') {
 
                                         const dataArranew = [
@@ -13099,6 +14418,50 @@ const createAllActivites = async (req, resp) => {
                                         }
                                         ElectricalChacks();
                                     }
+
+
+
+                                    if (newDatanew.subactivityname === "SF Slab Electrical Conducting") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Fan', NormalHeadingThree: 'Light', NormalHeadingfoure: 'Connectio.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+
+
+
                                     if (newDatanew.subactivityname === 'TF Slab Electrical Conducting') {
 
                                         const dataArranew = [
@@ -13177,6 +14540,49 @@ const createAllActivites = async (req, resp) => {
                                         }
                                         ElectricalChacks();
                                     }
+
+
+
+                                    if (newDatanew.subactivityname === "TF Slab Electrical Conducting") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Fan', NormalHeadingThree: 'Light', NormalHeadingfoure: 'Connectio.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+
+
                                     if (newDatanew.subactivityname === 'FoF Slab Electrical Conducting') {
 
                                         const dataArranew = [
@@ -13256,6 +14662,45 @@ const createAllActivites = async (req, resp) => {
                                         ElectricalChacks();
                                     }
 
+
+                                    if (newDatanew.subactivityname === "FoF Slab Electrical Conducting") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Fan', NormalHeadingThree: 'Light', NormalHeadingfoure: 'Connectio.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
                                     if (newDatanew.subactivityname === 'Tower Slab Electrical Conducting') {
 
                                         const dataArranew = [
@@ -13333,6 +14778,45 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         ElectricalChacks();
+                                    }
+
+
+
+                                    if (newDatanew.subactivityname === "Tower Slab Electrical Conducting") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Fan', NormalHeadingThree: 'Light', NormalHeadingfoure: 'Connectio.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
                                     if (newDatanew.subactivityname === "GF Column Reinforcement") {
@@ -13421,6 +14905,44 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "GF Column Reinforcement") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Column', headingforshortingTwo: 'Final Check' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Binding', NormalHeadingfoure: 'Placement' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Verticality', NormalHeadingThree: 'Grid Check', NormalHeadingfoure: 'Starter' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
                                     if (newDatanew.subactivityname === "GF RCC Column") {
 
                                         const dataArranew = [
@@ -13457,6 +14979,43 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+                                    if (newDatanew.subactivityname === "GF RCC Column") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Column', headingforshortingTwo: 'Honey Comb' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Starter', NormalHeadingThree: 'Shuttering', NormalHeadingfoure: 'Casting' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Verticality', NormalHeadingThree: 'Honey Co.', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "GF Brick Work") {
 
@@ -13503,7 +15062,6 @@ const createAllActivites = async (req, resp) => {
 
 
 
-
                                     if (newDatanew.subactivityname === "GF Slab Shuttering") {
 
                                         const dataArranew = [
@@ -13542,6 +15100,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "GF Slab Shuttering") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Beam', headingforshortingTwo: 'Slab' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain Lvl.', NormalHeadingThree: 'Bottom', NormalHeadingfoure: 'Sides' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plate : Gap', NormalHeadingThree: 'Support', NormalHeadingfoure: 'Cvr (O|T|P)' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "GF Slab Reinforcement") {
 
@@ -13623,7 +15217,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "GF RCC Slab") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Beam', headingforshortingTwo: 'Slab', headingforshortingThree: 'Details' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Casting', NormalHeadingThree: 'Straight', NormalHeadingfoure: 'Vibrator' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Casting', NormalHeadingThree: 'Vibrator', NormalHeadingfoure: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Honey Co.', NormalHeadingThree: 'Ponding', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
                                     if (newDatanew.subactivityname === "GF Column Reinforcement") {
@@ -13742,6 +15371,44 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "FF Column Reinforcement") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Column', headingforshortingTwo: 'Final Check' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Binding', NormalHeadingfoure: 'Placement' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Verticality', NormalHeadingThree: 'Grid Check', NormalHeadingfoure: 'Starter' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
                                     if (newDatanew.subactivityname === "FF RCC Column") {
 
                                         const dataArranew = [
@@ -13778,6 +15445,43 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+                                    if (newDatanew.subactivityname === "FF RCC Column") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Column', headingforshortingTwo: 'Honey Comb' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Starter', NormalHeadingThree: 'Shuttering', NormalHeadingfoure: 'Casting' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Verticality', NormalHeadingThree: 'Honey Co.', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "FF Brick Work") {
 
@@ -13864,6 +15568,44 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "FF Slab Shuttering") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Beam', headingforshortingTwo: 'Slab' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain Lvl.', NormalHeadingThree: 'Bottom', NormalHeadingfoure: 'Sides' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plate : Gap', NormalHeadingThree: 'Support', NormalHeadingfoure: 'Cvr (O|T|P)' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
                                     if (newDatanew.subactivityname === "FF Slab Reinforcement") {
 
                                         const dataArranew = [
@@ -13899,6 +15641,44 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+
+                                    if (newDatanew.subactivityname === "FF Slab Reinforcement") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Beam', headingforshortingTwo: 'Slab', headingforshortingThree: 'Details' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Main/Extra', NormalHeadingfoure: 'Ring | Hook' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Spacing', NormalHeadingfoure: 'Chair/Bind' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'L - Bend', NormalHeadingThree: 'Lapping', NormalHeadingfoure: 'Develop. L' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "FF RCC Slab") {
 
@@ -14093,7 +15873,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "GF Slab Reinforcement") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Beam', headingforshortingTwo: 'Slab', headingforshortingThree: 'Details' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Main/Extra', NormalHeadingfoure: 'Ring | Hook' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Spacing', NormalHeadingfoure: 'Chair/Bind' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'L - Bend', NormalHeadingThree: 'Lapping', NormalHeadingfoure: 'Develop. L' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -14400,6 +16215,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "SF Slab Reinforcement") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Beam', headingforshortingTwo: 'Slab', headingforshortingThree: 'Details' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Main/Extra', NormalHeadingfoure: 'Ring | Hook' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Spacing', NormalHeadingfoure: 'Chair/Bind' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'L - Bend', NormalHeadingThree: 'Lapping', NormalHeadingfoure: 'Develop. L' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -14550,7 +16401,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "TF Slab Reinforcement") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Beam', headingforshortingTwo: 'Slab', headingforshortingThree: 'Details' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Main/Extra', NormalHeadingfoure: 'Ring | Hook' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Spacing', NormalHeadingfoure: 'Chair/Bind' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'L - Bend', NormalHeadingThree: 'Lapping', NormalHeadingfoure: 'Develop. L' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -14703,7 +16589,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "FoF Slab Reinforcement") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Beam', headingforshortingTwo: 'Slab', headingforshortingThree: 'Details' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Main/Extra', NormalHeadingfoure: 'Ring | Hook' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Spacing', NormalHeadingfoure: 'Chair/Bind' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'L - Bend', NormalHeadingThree: 'Lapping', NormalHeadingfoure: 'Develop. L' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -14853,7 +16774,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "Tower Slab Reinforcement") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Beam', headingforshortingTwo: 'Slab', headingforshortingThree: 'Details' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Main/Extra', NormalHeadingfoure: 'Ring | Hook' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Spacing', NormalHeadingfoure: 'Chair/Bind' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'L - Bend', NormalHeadingThree: 'Lapping', NormalHeadingfoure: 'Develop. L' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -15808,7 +17764,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "SF Slab Shuttering") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Beam', headingforshortingTwo: 'Slab' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain Lvl.', NormalHeadingThree: 'Bottom', NormalHeadingfoure: 'Sides' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plate : Gap', NormalHeadingThree: 'Support', NormalHeadingfoure: 'Cvr (O|T|P)' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -15924,7 +17915,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "TF Slab Shuttering") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Beam', headingforshortingTwo: 'Slab' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain Lvl.', NormalHeadingThree: 'Bottom', NormalHeadingfoure: 'Sides' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plate : Gap', NormalHeadingThree: 'Support', NormalHeadingfoure: 'Cvr (O|T|P)' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -16041,7 +18067,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "FoF Slab Shuttering") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Beam', headingforshortingTwo: 'Slab' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain Lvl.', NormalHeadingThree: 'Bottom', NormalHeadingfoure: 'Sides' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plate : Gap', NormalHeadingThree: 'Support', NormalHeadingfoure: 'Cvr (O|T|P)' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -16157,7 +18218,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "Tower Slab Shuttering") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Beam', headingforshortingTwo: 'Slab' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain Lvl.', NormalHeadingThree: 'Bottom', NormalHeadingfoure: 'Sides' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plate : Gap', NormalHeadingThree: 'Support', NormalHeadingfoure: 'Cvr (O|T|P)' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -16559,7 +18655,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "SF RCC Column") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Column', headingforshortingTwo: 'Honey Comb' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Starter', NormalHeadingThree: 'Shuttering', NormalHeadingfoure: 'Casting' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Verticality', NormalHeadingThree: 'Honey Co.', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -16673,7 +18804,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "TF RCC Column") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Column', headingforshortingTwo: 'Honey Comb' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Starter', NormalHeadingThree: 'Shuttering', NormalHeadingfoure: 'Casting' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Verticality', NormalHeadingThree: 'Honey Co.', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -16788,7 +18954,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "FoF RCC Column") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Column', headingforshortingTwo: 'Honey Comb' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Starter', NormalHeadingThree: 'Shuttering', NormalHeadingfoure: 'Casting' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Verticality', NormalHeadingThree: 'Honey Co.', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -16902,7 +19103,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "Tower RCC Column") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Column', headingforshortingTwo: 'Honey Comb' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Starter', NormalHeadingThree: 'Shuttering', NormalHeadingfoure: 'Casting' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Verticality', NormalHeadingThree: 'Honey Co.', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -16993,6 +19229,43 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+                                    if (newDatanew.subactivityname === "SF Column Reinforcement") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Column', headingforshortingTwo: 'Final Check' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Binding', NormalHeadingfoure: 'Placement' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Verticality', NormalHeadingThree: 'Grid Check', NormalHeadingfoure: 'Starter' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "SF RCC Column") {
 
@@ -17277,6 +19550,45 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "TF Column Reinforcement") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Column', headingforshortingTwo: 'Final Check' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Binding', NormalHeadingfoure: 'Placement' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Verticality', NormalHeadingThree: 'Grid Check', NormalHeadingfoure: 'Starter' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+
 
                                     if (newDatanew.subactivityname === "TF RCC Column") {
 
@@ -17556,6 +19868,43 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "FoF Column Reinforcement") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Column', headingforshortingTwo: 'Final Check' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Binding', NormalHeadingfoure: 'Placement' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Verticality', NormalHeadingThree: 'Grid Check', NormalHeadingfoure: 'Starter' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
 
                                     if (newDatanew.subactivityname === "FoF RCC Column") {
 
@@ -17796,6 +20145,43 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         SteelReinforcementfunHGHCall();
+                                    }
+
+                                    if (newDatanew.subactivityname === "Tower Column Reinforcement") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Column', headingforshortingTwo: 'Final Check' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Explain', NormalHeadingThree: 'Binding', NormalHeadingfoure: 'Placement' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Verticality', NormalHeadingThree: 'Grid Check', NormalHeadingfoure: 'Starter' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
 
@@ -18203,6 +20589,52 @@ const createAllActivites = async (req, resp) => {
                                         }
                                         DoorChacks();
                                     }
+
+
+                                    if (newDatanew.subactivityname === "Door & Window (Wooden |MS) Frame") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Opening', NormalHeadingThree: 'Hold Fast', NormalHeadingfoure: 'Verticality' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+
+
+
+
+
+
 
                                     var bricktype = "Normal";
                                     if (bricktype === "Normal") {
@@ -18756,6 +21188,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                        if (newDatanew.subactivityname === "GF Brick Work") {
+
+                                            const dataArranew = [
+                                                { headingforshortingOne: 'Layout', headingforshortingTwo: 'Brick Work' },
+                                                { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Layout', NormalHeadingThree: 'Opening', NormalHeadingfoure: 'Dimension' },
+                                                { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Sill Band', NormalHeadingThree: 'Lintel Band', NormalHeadingfoure: 'Beam Bott.' },
+                                                {},
+                                                {},
+                                                {},
+                                            ];
+
+                                            async function RccsnagsSnags() {
+                                                for (let i = 0; i < dataArranew.length; i++) {
+                                                    try {
+                                                        const newDatanewtask = new Snags(dataArranew[i]);
+                                                        const savedData = await newDatanewtask.save();
+
+                                                        let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                        let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                        console.log(objID);
+                                                        await SubActivities.updateOne(
+                                                            { _id: newss },
+                                                            {
+                                                                $push: {
+                                                                    snagsID: objID
+                                                                }
+                                                            }
+                                                        )
+                                                        console.log('Data saved:', savedData);
+                                                    } catch (error) {
+                                                        console.error('Error saving data:', error);
+                                                    }
+                                                }
+                                            }
+                                            RccsnagsSnags();
+                                        }
 
 
 
@@ -18901,6 +21369,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                        if (newDatanew.subactivityname === "FF Brick Work") {
+
+                                            const dataArranew = [
+                                                { headingforshortingOne: 'Layout', headingforshortingTwo: 'Brick Work' },
+                                                { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Layout', NormalHeadingThree: 'Opening', NormalHeadingfoure: 'Dimension' },
+                                                { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Sill Band', NormalHeadingThree: 'Lintel Band', NormalHeadingfoure: 'Beam Bott.' },
+                                                {},
+                                                {},
+                                                {},
+                                            ];
+
+                                            async function RccsnagsSnags() {
+                                                for (let i = 0; i < dataArranew.length; i++) {
+                                                    try {
+                                                        const newDatanewtask = new Snags(dataArranew[i]);
+                                                        const savedData = await newDatanewtask.save();
+
+                                                        let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                        let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                        console.log(objID);
+                                                        await SubActivities.updateOne(
+                                                            { _id: newss },
+                                                            {
+                                                                $push: {
+                                                                    snagsID: objID
+                                                                }
+                                                            }
+                                                        )
+                                                        console.log('Data saved:', savedData);
+                                                    } catch (error) {
+                                                        console.error('Error saving data:', error);
+                                                    }
+                                                }
+                                            }
+                                            RccsnagsSnags();
+                                        }
 
 
 
@@ -19044,7 +21548,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                        if (newDatanew.subactivityname === "SF Brick Work") {
 
+                                            const dataArranew = [
+                                                { headingforshortingOne: 'Layout', headingforshortingTwo: 'Brick Work' },
+                                                { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Layout', NormalHeadingThree: 'Opening', NormalHeadingfoure: 'Dimension' },
+                                                { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Sill Band', NormalHeadingThree: 'Lintel Band', NormalHeadingfoure: 'Beam Bott.' },
+                                                {},
+                                                {},
+                                                {},
+                                            ];
+
+                                            async function RccsnagsSnags() {
+                                                for (let i = 0; i < dataArranew.length; i++) {
+                                                    try {
+                                                        const newDatanewtask = new Snags(dataArranew[i]);
+                                                        const savedData = await newDatanewtask.save();
+
+                                                        let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                        let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                        console.log(objID);
+                                                        await SubActivities.updateOne(
+                                                            { _id: newss },
+                                                            {
+                                                                $push: {
+                                                                    snagsID: objID
+                                                                }
+                                                            }
+                                                        )
+                                                        console.log('Data saved:', savedData);
+                                                    } catch (error) {
+                                                        console.error('Error saving data:', error);
+                                                    }
+                                                }
+                                            }
+                                            RccsnagsSnags();
+                                        }
 
 
 
@@ -19192,6 +21731,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                        if (newDatanew.subactivityname === "TF Brick Work") {
+
+                                            const dataArranew = [
+                                                { headingforshortingOne: 'Layout', headingforshortingTwo: 'Brick Work' },
+                                                { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Layout', NormalHeadingThree: 'Opening', NormalHeadingfoure: 'Dimension' },
+                                                { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Sill Band', NormalHeadingThree: 'Lintel Band', NormalHeadingfoure: 'Beam Bott.' },
+                                                {},
+                                                {},
+                                                {},
+                                            ];
+
+                                            async function RccsnagsSnags() {
+                                                for (let i = 0; i < dataArranew.length; i++) {
+                                                    try {
+                                                        const newDatanewtask = new Snags(dataArranew[i]);
+                                                        const savedData = await newDatanewtask.save();
+
+                                                        let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                        let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                        console.log(objID);
+                                                        await SubActivities.updateOne(
+                                                            { _id: newss },
+                                                            {
+                                                                $push: {
+                                                                    snagsID: objID
+                                                                }
+                                                            }
+                                                        )
+                                                        console.log('Data saved:', savedData);
+                                                    } catch (error) {
+                                                        console.error('Error saving data:', error);
+                                                    }
+                                                }
+                                            }
+                                            RccsnagsSnags();
+                                        }
 
 
 
@@ -19285,6 +21860,43 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                        if (newDatanew.subactivityname === "FoF Brick Work") {
+
+                                            const dataArranew = [
+                                                { headingforshortingOne: 'Layout', headingforshortingTwo: 'Brick Work' },
+                                                { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Layout', NormalHeadingThree: 'Opening', NormalHeadingfoure: 'Dimension' },
+                                                { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Sill Band', NormalHeadingThree: 'Lintel Band', NormalHeadingfoure: 'Beam Bott.' },
+                                                {},
+                                                {},
+                                                {},
+                                            ];
+
+                                            async function RccsnagsSnags() {
+                                                for (let i = 0; i < dataArranew.length; i++) {
+                                                    try {
+                                                        const newDatanewtask = new Snags(dataArranew[i]);
+                                                        const savedData = await newDatanewtask.save();
+
+                                                        let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                        let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                        console.log(objID);
+                                                        await SubActivities.updateOne(
+                                                            { _id: newss },
+                                                            {
+                                                                $push: {
+                                                                    snagsID: objID
+                                                                }
+                                                            }
+                                                        )
+                                                        console.log('Data saved:', savedData);
+                                                    } catch (error) {
+                                                        console.error('Error saving data:', error);
+                                                    }
+                                                }
+                                            }
+                                            RccsnagsSnags();
+                                        }
+
                                         if (newDatanew.subactivityname === "Tower Brick Work") {
 
                                             const dataArranew = [
@@ -19327,6 +21939,46 @@ const createAllActivites = async (req, resp) => {
                                             SteelReinforcementfunHGHCall();
                                         }
 
+
+
+
+
+                                        if (newDatanew.subactivityname === "Tower Brick Work") {
+
+                                            const dataArranew = [
+                                                { headingforshortingOne: 'Layout', headingforshortingTwo: 'Brick Work' },
+                                                { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Layout', NormalHeadingThree: 'Opening', NormalHeadingfoure: 'Dimension' },
+                                                { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Sill Band', NormalHeadingThree: 'Lintel Band', NormalHeadingfoure: 'Beam Bott.' },
+                                                {},
+                                                {},
+                                                {},
+                                            ];
+
+                                            async function RccsnagsSnags() {
+                                                for (let i = 0; i < dataArranew.length; i++) {
+                                                    try {
+                                                        const newDatanewtask = new Snags(dataArranew[i]);
+                                                        const savedData = await newDatanewtask.save();
+
+                                                        let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                        let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                        console.log(objID);
+                                                        await SubActivities.updateOne(
+                                                            { _id: newss },
+                                                            {
+                                                                $push: {
+                                                                    snagsID: objID
+                                                                }
+                                                            }
+                                                        )
+                                                        console.log('Data saved:', savedData);
+                                                    } catch (error) {
+                                                        console.error('Error saving data:', error);
+                                                    }
+                                                }
+                                            }
+                                            RccsnagsSnags();
+                                        }
 
 
                                         if (newDatanew.subactivityname === "FoF Brick Work") {
@@ -19962,6 +22614,48 @@ const createAllActivites = async (req, resp) => {
                                         BeamSlabShutteringReinforcementRCCCall();
                                     }
 
+
+
+                                    if (newDatanew.subactivityname === "GF - Electrical Conduting") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Layout', headingforshortingTwo: 'Pipeline' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Layout', NormalHeadingThree: 'Heights', NormalHeadingfoure: 'Conduit' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Pipeline', NormalHeadingThree: 'Metal Box', NormalHeadingfoure: 'Covering' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+
+
                                     //Anuj
                                     if (newDatanew.subactivityname === 'FF - Electrical Conduting') {
 
@@ -20103,6 +22797,43 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "FF - Electrical Conduting") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Layout', headingforshortingTwo: 'Pipeline' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Layout', NormalHeadingThree: 'Heights', NormalHeadingfoure: 'Conduit' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Pipeline', NormalHeadingThree: 'Metal Box', NormalHeadingfoure: 'Covering' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
                                     if (newDatanew.subactivityname === 'SF - Electrical Conduting') {
 
                                         const dataArranew = [
@@ -20242,6 +22973,43 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "SF - Electrical Conduting") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Layout', headingforshortingTwo: 'Pipeline' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Layout', NormalHeadingThree: 'Heights', NormalHeadingfoure: 'Conduit' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Pipeline', NormalHeadingThree: 'Metal Box', NormalHeadingfoure: 'Covering' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
                                     if (newDatanew.subactivityname === 'TF - Electrical Conduting') {
 
                                         const dataArranew = [
@@ -20379,6 +23147,44 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+
+                                    if (newDatanew.subactivityname === "TF - Electrical Conduting") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Layout', headingforshortingTwo: 'Pipeline' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Layout', NormalHeadingThree: 'Heights', NormalHeadingfoure: 'Conduit' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Pipeline', NormalHeadingThree: 'Metal Box', NormalHeadingfoure: 'Covering' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
                                     if (newDatanew.subactivityname === 'FoF - Electrical Conduting') {
 
                                         const dataArranew = [
@@ -20514,6 +23320,43 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         BeamSlabShutteringReinforcementRCCCall();
+                                    }
+
+                                    if (newDatanew.subactivityname === "FoF - Electrical Conduting") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Layout', headingforshortingTwo: 'Pipeline' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Layout', NormalHeadingThree: 'Heights', NormalHeadingfoure: 'Conduit' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Pipeline', NormalHeadingThree: 'Metal Box', NormalHeadingfoure: 'Covering' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
 
@@ -20654,7 +23497,42 @@ const createAllActivites = async (req, resp) => {
                                         BeamSlabShutteringReinforcementRCCCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "Tower - Electrical Conduting") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Layout', headingforshortingTwo: 'Pipeline' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Layout', NormalHeadingThree: 'Heights', NormalHeadingfoure: 'Conduit' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Pipeline', NormalHeadingThree: 'Metal Box', NormalHeadingfoure: 'Covering' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -27057,6 +29935,43 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "GF - Plaster Work") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'Surface Chk.', headingforshortingThree: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Condu. Co.', NormalHeadingThree: 'Open(D|W)', NormalHeadingfoure: 'Chi. Mesh' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Surface Lvl', NormalHeadingThree: 'Water|Ghol', NormalHeadingfoure: 'Ele. Box Co.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster', NormalHeadingThree: 'SLevelling', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
 
                                     if (newDatanew.subactivityname === "FF - Plaster Work") {
 
@@ -27102,6 +30017,46 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+
+
+
+                                    if (newDatanew.subactivityname === "FF - Plaster Work") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'Surface Chk.', headingforshortingThree: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Condu. Co.', NormalHeadingThree: 'Open(D|W)', NormalHeadingfoure: 'Chi. Mesh' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Surface Lvl', NormalHeadingThree: 'Water|Ghol', NormalHeadingfoure: 'Ele. Box Co.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster', NormalHeadingThree: 'SLevelling', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
                                     if (newDatanew.subactivityname === "SF - Plaster Work") {
@@ -27150,6 +30105,44 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "SF - Plaster Work") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'Surface Chk.', headingforshortingThree: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Condu. Co.', NormalHeadingThree: 'Open(D|W)', NormalHeadingfoure: 'Chi. Mesh' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Surface Lvl', NormalHeadingThree: 'Water|Ghol', NormalHeadingfoure: 'Ele. Box Co.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster', NormalHeadingThree: 'SLevelling', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
                                     if (newDatanew.subactivityname === "TF - Plaster Work") {
 
                                         if (InternalPlaster === "GYPSUM PLASTER") {
@@ -27194,6 +30187,43 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+                                    if (newDatanew.subactivityname === "TF - Plaster Work") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'Surface Chk.', headingforshortingThree: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Condu. Co.', NormalHeadingThree: 'Open(D|W)', NormalHeadingfoure: 'Chi. Mesh' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Surface Lvl', NormalHeadingThree: 'Water|Ghol', NormalHeadingfoure: 'Ele. Box Co.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster', NormalHeadingThree: 'SLevelling', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
                                     if (newDatanew.subactivityname === "FoF - Plaster Work") {
@@ -27245,6 +30275,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "FoF - Plaster Work") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'Surface Chk.', headingforshortingThree: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Condu. Co.', NormalHeadingThree: 'Open(D|W)', NormalHeadingfoure: 'Chi. Mesh' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Surface Lvl', NormalHeadingThree: 'Water|Ghol', NormalHeadingfoure: 'Ele. Box Co.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster', NormalHeadingThree: 'SLevelling', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
                                     if (newDatanew.subactivityname === "Tower - Plaster Work") {
@@ -27293,7 +30359,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "Tower - Plaster Work") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'Surface Chk.', headingforshortingThree: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Condu. Co.', NormalHeadingThree: 'Open(D|W)', NormalHeadingfoure: 'Chi. Mesh' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Surface Lvl', NormalHeadingThree: 'Water|Ghol', NormalHeadingfoure: 'Ele. Box Co.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster', NormalHeadingThree: 'SLevelling', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -27332,7 +30433,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "Ceiling Plaster") {
 
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Surf. Clear', NormalHeadingThree: 'Hekking', NormalHeadingfoure: 'Plaster' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "Non Elevation Side") {
 
@@ -27479,7 +30615,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "Punning") {
 
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Surf. Check', NormalHeadingThree: 'Corner Ch.', NormalHeadingfoure: 'Applicatio.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "GF - Plaster Work") {
 
@@ -28064,6 +31235,44 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         ExternalPlasterNewChacks();
+                                    }
+
+
+                                    if (newDatanew.subactivityname === "Non Elevation Side") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'Plastering', headingforshortingThree: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Scaffolding', NormalHeadingThree: 'Surface Lvl', NormalHeadingfoure: 'Chic. Mesh' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Water|Ghol', NormalHeadingThree: 'Base Coat', NormalHeadingfoure: 'Grooving' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Final Coat', NormalHeadingThree: 'Hole Cover', NormalHeadingfoure: 'Curing' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
                                     //Anuj                                    
                                     if (newDatanew.subactivityname === 'Elevation Side') {
@@ -28707,6 +31916,44 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "GF - Chowkat Stone") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Opening', headingforshortingTwo: 'Cutting', headingforshortingThree: 'Fixing & Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Inter. Dim.', NormalHeadingThree: 'Alignment', NormalHeadingfoure: 'Plast. Fini.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Rough Surf.', NormalHeadingThree: 'Chamfer', NormalHeadingfoure: 'Polish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Adhesive', NormalHeadingThree: 'Intern. Dim.', NormalHeadingfoure: 'Grouting' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
                                     if (newDatanew.subactivityname === "FF - Chowkat Stone") {
 
                                         const dataArranew = [
@@ -28748,6 +31995,43 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         SteelReinforcementfunHGHCall();
+                                    }
+
+                                    if (newDatanew.subactivityname === "FF - Chowkat Stone") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Opening', headingforshortingTwo: 'Cutting', headingforshortingThree: 'Fixing & Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Inter. Dim.', NormalHeadingThree: 'Alignment', NormalHeadingfoure: 'Plast. Fini.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Rough Surf.', NormalHeadingThree: 'Chamfer', NormalHeadingfoure: 'Polish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Adhesive', NormalHeadingThree: 'Intern. Dim.', NormalHeadingfoure: 'Grouting' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
 
@@ -28796,6 +32080,43 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "SF - Chowkat Stone") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Opening', headingforshortingTwo: 'Cutting', headingforshortingThree: 'Fixing & Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Inter. Dim.', NormalHeadingThree: 'Alignment', NormalHeadingfoure: 'Plast. Fini.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Rough Surf.', NormalHeadingThree: 'Chamfer', NormalHeadingfoure: 'Polish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Adhesive', NormalHeadingThree: 'Intern. Dim.', NormalHeadingfoure: 'Grouting' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
 
                                     if (newDatanew.subactivityname === "TF - Chowkat Stone") {
 
@@ -28841,6 +32162,43 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "TF - Chowkat Stone") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Opening', headingforshortingTwo: 'Cutting', headingforshortingThree: 'Fixing & Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Inter. Dim.', NormalHeadingThree: 'Alignment', NormalHeadingfoure: 'Plast. Fini.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Rough Surf.', NormalHeadingThree: 'Chamfer', NormalHeadingfoure: 'Polish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Adhesive', NormalHeadingThree: 'Intern. Dim.', NormalHeadingfoure: 'Grouting' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
                                     if (newDatanew.subactivityname === "FoF - Chowkat Stone") {
 
                                         const dataArranew = [
@@ -28884,7 +32242,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "FoF - Chowkat Stone") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Opening', headingforshortingTwo: 'Cutting', headingforshortingThree: 'Fixing & Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Inter. Dim.', NormalHeadingThree: 'Alignment', NormalHeadingfoure: 'Plast. Fini.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Rough Surf.', NormalHeadingThree: 'Chamfer', NormalHeadingfoure: 'Polish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Adhesive', NormalHeadingThree: 'Intern. Dim.', NormalHeadingfoure: 'Grouting' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "Tower - Chowkat Stone") {
 
@@ -28930,6 +32323,43 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+
+                                    if (newDatanew.subactivityname === "Tower - Chowkat Stone") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Opening', headingforshortingTwo: 'Cutting', headingforshortingThree: 'Fixing & Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Inter. Dim.', NormalHeadingThree: 'Alignment', NormalHeadingfoure: 'Plast. Fini.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Rough Surf.', NormalHeadingThree: 'Chamfer', NormalHeadingfoure: 'Polish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Adhesive', NormalHeadingThree: 'Intern. Dim.', NormalHeadingfoure: 'Grouting' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
                                     if (newDatanew.subactivityname === "Parapet Work + Railing + Boundary Wall") {
@@ -29226,6 +32656,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "Grill MS Work") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Dimension', headingforshortingTwo: 'Application' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Alignment', NormalHeadingThree: 'Intern. Dim.', NormalHeadingfoure: 'Hole Posit.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Holing', NormalHeadingThree: 'MS Fixing', NormalHeadingfoure: 'Grouting' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -30332,6 +33798,43 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "GF - POP Framing") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Chk', NormalHeadingThree: 'Draw. | Bot.', NormalHeadingfoure: 'Installation' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
 
 
                                     if (newDatanew.subactivityname === "FF - POP Framing") {
@@ -30374,7 +33877,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "FF - POP Framing") {
 
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Chk', NormalHeadingThree: 'Draw. | Bot.', NormalHeadingfoure: 'Installation' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "SF - POP Framing") {
 
@@ -30417,6 +33955,44 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+
+                                    if (newDatanew.subactivityname === "SF - POP Framing") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Chk', NormalHeadingThree: 'Draw. | Bot.', NormalHeadingfoure: 'Installation' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
                                     if (newDatanew.subactivityname === "TF - POP Framing") {
 
                                         const dataArranew = [
@@ -30455,6 +34031,43 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         SteelReinforcementfunHGHCall();
+                                    }
+
+                                    if (newDatanew.subactivityname === "TF - POP Framing") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Chk', NormalHeadingThree: 'Draw. | Bot.', NormalHeadingfoure: 'Installation' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
 
@@ -30499,6 +34112,44 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+
+                                    if (newDatanew.subactivityname === "FoF - POP Framing") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Chk', NormalHeadingThree: 'Draw. | Bot.', NormalHeadingfoure: 'Installation' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
                                     if (newDatanew.subactivityname === "Tower - POP Framing") {
 
                                         const dataArranew = [
@@ -30539,8 +34190,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "Tower - POP Framing") {
 
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Chk', NormalHeadingThree: 'Draw. | Bot.', NormalHeadingfoure: 'Installation' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
 
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "Balcony - PVC") {
 
@@ -30582,7 +34267,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "Balcony - PVC") {
 
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Chk', NormalHeadingThree: 'Draw. | Bot.', NormalHeadingfoure: 'Installation' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "Parking - PVC") {
 
@@ -30624,7 +34344,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "Parking - PVC") {
 
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Chk', NormalHeadingThree: 'Draw. | Bot.', NormalHeadingfoure: 'Installation' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "Washroom - PVC") {
 
@@ -30666,7 +34421,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "Washroom - PVC") {
 
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Chk', NormalHeadingThree: 'Draw. | Bot.', NormalHeadingfoure: 'Installation' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === 'GF - POP Framing') {
 
@@ -31886,7 +35676,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "GF - Wiring") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Points', headingforshortingTwo: 'Wiring', headingforshortingThree: 'Others' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Switch Bo.', NormalHeadingThree: 'Looping', NormalHeadingfoure: 'False Ceili.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Boa. Wiring', NormalHeadingThree: 'Inverter', NormalHeadingfoure: 'Earthing' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'AC', NormalHeadingThree: 'Solar', NormalHeadingfoure: 'LAN' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
                                     if (newDatanew.subactivityname === "FF - Wiring") {
@@ -31929,7 +35754,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "FF - Wiring") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Points', headingforshortingTwo: 'Wiring', headingforshortingThree: 'Others' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Switch Bo.', NormalHeadingThree: 'Looping', NormalHeadingfoure: 'False Ceili.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Boa. Wiring', NormalHeadingThree: 'Inverter', NormalHeadingfoure: 'Earthing' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'AC', NormalHeadingThree: 'Solar', NormalHeadingfoure: 'LAN' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "SF - Wiring") {
 
@@ -31969,6 +35829,44 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         SteelReinforcementfunHGHCall();
+                                    }
+
+
+                                    if (newDatanew.subactivityname === "SF - Wiring") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Points', headingforshortingTwo: 'Wiring', headingforshortingThree: 'Others' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Switch Bo.', NormalHeadingThree: 'Looping', NormalHeadingfoure: 'False Ceili.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Boa. Wiring', NormalHeadingThree: 'Inverter', NormalHeadingfoure: 'Earthing' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'AC', NormalHeadingThree: 'Solar', NormalHeadingfoure: 'LAN' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
 
@@ -32013,7 +35911,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "TF - Wiring") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Points', headingforshortingTwo: 'Wiring', headingforshortingThree: 'Others' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Switch Bo.', NormalHeadingThree: 'Looping', NormalHeadingfoure: 'False Ceili.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Boa. Wiring', NormalHeadingThree: 'Inverter', NormalHeadingfoure: 'Earthing' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'AC', NormalHeadingThree: 'Solar', NormalHeadingfoure: 'LAN' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
                                     if (newDatanew.subactivityname === "FoF - Wiring") {
@@ -32057,7 +35990,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "FoF - Wiring") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Points', headingforshortingTwo: 'Wiring', headingforshortingThree: 'Others' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Switch Bo.', NormalHeadingThree: 'Looping', NormalHeadingfoure: 'False Ceili.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Boa. Wiring', NormalHeadingThree: 'Inverter', NormalHeadingfoure: 'Earthing' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'AC', NormalHeadingThree: 'Solar', NormalHeadingfoure: 'LAN' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "Tower - Wiring") {
 
@@ -32100,7 +36068,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "Tower - Wiring") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Points', headingforshortingTwo: 'Wiring', headingforshortingThree: 'Others' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Switch Bo.', NormalHeadingThree: 'Looping', NormalHeadingfoure: 'False Ceili.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Boa. Wiring', NormalHeadingThree: 'Inverter', NormalHeadingfoure: 'Earthing' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'AC', NormalHeadingThree: 'Solar', NormalHeadingfoure: 'LAN' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
                                     if (newDatanew.subactivityname === 'GF - Wiring') {
@@ -33051,6 +37054,51 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+
+
+                                    if (newDatanew.subactivityname === "GF - Boarding | POP") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Boa. | Mesh', NormalHeadingThree: 'Light Point', NormalHeadingfoure: 'Joint|Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+
+
+
+
+
                                     if (newDatanew.subactivityname === "FF - Boarding | POP") {
 
 
@@ -33099,6 +37147,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "FF - Boarding | POP") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Boa. | Mesh', NormalHeadingThree: 'Light Point', NormalHeadingfoure: 'Joint|Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "SF - Boarding | POP") {
 
@@ -33146,6 +37230,43 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "SF - Boarding | POP") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Boa. | Mesh', NormalHeadingThree: 'Light Point', NormalHeadingfoure: 'Joint|Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
                                     if (newDatanew.subactivityname === "TF - Boarding | POP") {
 
                                         if (FlaseCeilingTyHNR === "GYPSUM BOARD") {
@@ -33188,6 +37309,44 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         SteelReinforcementfunHGHCall();
+                                    }
+
+
+                                    if (newDatanew.subactivityname === "TF - Boarding | POP") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Boa. | Mesh', NormalHeadingThree: 'Light Point', NormalHeadingfoure: 'Joint|Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
 
@@ -33235,6 +37394,46 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+                                    if (newDatanew.subactivityname === "FoF - Boarding | POP") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Boa. | Mesh', NormalHeadingThree: 'Light Point', NormalHeadingfoure: 'Joint|Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+
                                     if (newDatanew.subactivityname === "Tower - Boarding | POP") {
 
                                         if (FlaseCeilingTyHNR === "GYPSUM BOARD") {
@@ -33280,6 +37479,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "Tower - Boarding | POP") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Boa. | Mesh', NormalHeadingThree: 'Light Point', NormalHeadingfoure: 'Joint|Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
 
@@ -33874,6 +38109,43 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "GF - Putty Work & Primer Work") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'First Coat', headingforshortingThree: 'Second Coat' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Fini.', NormalHeadingThree: 'Line & Lvl.', NormalHeadingfoure: 'Dust | Wall' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Putty Coat', NormalHeadingThree: 'Undulation', NormalHeadingfoure: 'Corners' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Putty Coat', NormalHeadingThree: 'Undulation', NormalHeadingfoure: 'Corners' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
                                     if (newDatanew.subactivityname === "FF - Putty Work & Primer Work") {
 
                                         const dataTCVFDArranew = [
@@ -33907,7 +38179,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "FF - Putty Work & Primer Work") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'First Coat', headingforshortingThree: 'Second Coat' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Fini.', NormalHeadingThree: 'Line & Lvl.', NormalHeadingfoure: 'Dust | Wall' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Putty Coat', NormalHeadingThree: 'Undulation', NormalHeadingfoure: 'Corners' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Putty Coat', NormalHeadingThree: 'Undulation', NormalHeadingfoure: 'Corners' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "SF - Putty Work & Primer Work") {
 
@@ -33942,7 +38249,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "SF - Putty Work & Primer Work") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'First Coat', headingforshortingThree: 'Second Coat' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Fini.', NormalHeadingThree: 'Line & Lvl.', NormalHeadingfoure: 'Dust | Wall' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Putty Coat', NormalHeadingThree: 'Undulation', NormalHeadingfoure: 'Corners' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Putty Coat', NormalHeadingThree: 'Undulation', NormalHeadingfoure: 'Corners' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
                                     if (newDatanew.subactivityname === "TF - Putty Work & Primer Work") {
@@ -33978,6 +38320,43 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+                                    if (newDatanew.subactivityname === "TF - Putty Work & Primer Work") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'First Coat', headingforshortingThree: 'Second Coat' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Fini.', NormalHeadingThree: 'Line & Lvl.', NormalHeadingfoure: 'Dust | Wall' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Putty Coat', NormalHeadingThree: 'Undulation', NormalHeadingfoure: 'Corners' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Putty Coat', NormalHeadingThree: 'Undulation', NormalHeadingfoure: 'Corners' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
                                     if (newDatanew.subactivityname === "FoF - Putty Work & Primer Work") {
 
                                         const dataTCVFDArranew = [
@@ -34011,6 +38390,44 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+
+                                    if (newDatanew.subactivityname === "FoF - Putty Work & Primer Work") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'First Coat', headingforshortingThree: 'Second Coat' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Fini.', NormalHeadingThree: 'Line & Lvl.', NormalHeadingfoure: 'Dust | Wall' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Putty Coat', NormalHeadingThree: 'Undulation', NormalHeadingfoure: 'Corners' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Putty Coat', NormalHeadingThree: 'Undulation', NormalHeadingfoure: 'Corners' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
                                     if (newDatanew.subactivityname === "Tower - Putty Work & Primer Work") {
 
                                         const dataTCVFDArranew = [
@@ -34044,7 +38461,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "Tower - Putty Work & Primer Work") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'First Coat', headingforshortingThree: 'Second Coat' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Fini.', NormalHeadingThree: 'Line & Lvl.', NormalHeadingfoure: 'Dust | Wall' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Putty Coat', NormalHeadingThree: 'Undulation', NormalHeadingfoure: 'Corners' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Putty Coat', NormalHeadingThree: 'Undulation', NormalHeadingfoure: 'Corners' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     await Activities.updateOne(
                                         { _id: newss },
@@ -34614,6 +39066,88 @@ const createAllActivites = async (req, resp) => {
                                         }
                                         FlooringChacks();
                                     }
+
+
+                                    if (newDatanew.subactivityname === "GF - Washroom Tiling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Dependency', headingforshortingTwo: 'Tiling Prep.', headingforshortingThree: 'Tiling', headingforshortingFour: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Fini.', NormalHeadingThree: 'Int. Fitting', NormalHeadingfoure: 'Ele. Condu.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Waterproof', NormalHeadingThree: 'Base Level', NormalHeadingfoure: 'Base Tile' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: '-X', NormalHeadingThree: '+Y', NormalHeadingfoure: '-Y' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Grout Fill', NormalHeadingThree: 'Traps', NormalHeadingfoure: 'Coin | Verti.' },
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+
+                                    if (newDatanew.subactivityname === "GF - Floor Tiling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Levelling', headingforshortingTwo: 'Base Prep.', headingforshortingThree: 'Tiling' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Undulation', NormalHeadingThree: 'Bot. Level', NormalHeadingfoure: 'Skirting Fin.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Trap', NormalHeadingThree: 'Base Prep.', NormalHeadingfoure: 'Floor Start' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Flooring', NormalHeadingThree: 'Skirting', NormalHeadingfoure: 'Grout Fill' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+
+
+
                                     //Anuj
                                     if (newDatanew.subactivityname === 'FF - Floor Tiling') {
 
@@ -34668,6 +39202,49 @@ const createAllActivites = async (req, resp) => {
                                         }
                                         FlooringfunCall();
                                     }
+
+
+                                    if (newDatanew.subactivityname === "FF - Washroom Tiling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Dependency', headingforshortingTwo: 'Tiling Prep.', headingforshortingThree: 'Tiling', headingforshortingFour: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Fini.', NormalHeadingThree: 'Int. Fitting', NormalHeadingfoure: 'Ele. Condu.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Waterproof', NormalHeadingThree: 'Base Level', NormalHeadingfoure: 'Base Tile' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: '-X', NormalHeadingThree: '+Y', NormalHeadingfoure: '-Y' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Grout Fill', NormalHeadingThree: 'Traps', NormalHeadingfoure: 'Coin | Verti.' },
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+
+
+
                                     if (newDatanew.subactivityname === 'FF - Floor Tiling') {
 
                                         const dataArranew = [
@@ -34712,6 +39289,45 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         FlooringChacks();
+                                    }
+
+
+
+                                    if (newDatanew.subactivityname === "FF - Floor Tiling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Levelling', headingforshortingTwo: 'Base Prep.', headingforshortingThree: 'Tiling' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Undulation', NormalHeadingThree: 'Bot. Level', NormalHeadingfoure: 'Skirting Fin.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Trap', NormalHeadingThree: 'Base Prep.', NormalHeadingfoure: 'Floor Start' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Flooring', NormalHeadingThree: 'Skirting', NormalHeadingfoure: 'Grout Fill' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
                                     //Anuj
                                     if (newDatanew.subactivityname === 'SF - Floor Tiling') {
@@ -34767,6 +39383,10 @@ const createAllActivites = async (req, resp) => {
                                         }
                                         FlooringfunCall();
                                     }
+
+
+
+
                                     if (newDatanew.subactivityname === 'SF - Floor Tiling') {
 
                                         const dataArranew = [
@@ -34811,6 +39431,81 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         FlooringChacks();
+                                    }
+
+                                    if (newDatanew.subactivityname === "SF - Washroom Tiling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Dependency', headingforshortingTwo: 'Tiling Prep.', headingforshortingThree: 'Tiling', headingforshortingFour: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Fini.', NormalHeadingThree: 'Int. Fitting', NormalHeadingfoure: 'Ele. Condu.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Waterproof', NormalHeadingThree: 'Base Level', NormalHeadingfoure: 'Base Tile' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: '-X', NormalHeadingThree: '+Y', NormalHeadingfoure: '-Y' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Grout Fill', NormalHeadingThree: 'Traps', NormalHeadingfoure: 'Coin | Verti.' },
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+                                    if (newDatanew.subactivityname === "SF - Floor Tiling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Levelling', headingforshortingTwo: 'Base Prep.', headingforshortingThree: 'Tiling' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Undulation', NormalHeadingThree: 'Bot. Level', NormalHeadingfoure: 'Skirting Fin.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Trap', NormalHeadingThree: 'Base Prep.', NormalHeadingfoure: 'Floor Start' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Flooring', NormalHeadingThree: 'Skirting', NormalHeadingfoure: 'Grout Fill' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
                                     //Anuj
                                     if (newDatanew.subactivityname === 'TF - Floor Tiling') {
@@ -34911,6 +39606,82 @@ const createAllActivites = async (req, resp) => {
                                         }
                                         FlooringChacks();
                                     }
+
+
+                                    if (newDatanew.subactivityname === "TF - Washroom Tiling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Dependency', headingforshortingTwo: 'Tiling Prep.', headingforshortingThree: 'Tiling', headingforshortingFour: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Fini.', NormalHeadingThree: 'Int. Fitting', NormalHeadingfoure: 'Ele. Condu.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Waterproof', NormalHeadingThree: 'Base Level', NormalHeadingfoure: 'Base Tile' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: '-X', NormalHeadingThree: '+Y', NormalHeadingfoure: '-Y' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Grout Fill', NormalHeadingThree: 'Traps', NormalHeadingfoure: 'Coin | Verti.' },
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+                                    if (newDatanew.subactivityname === "TF - Floor Tiling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Levelling', headingforshortingTwo: 'Base Prep.', headingforshortingThree: 'Tiling' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Undulation', NormalHeadingThree: 'Bot. Level', NormalHeadingfoure: 'Skirting Fin.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Trap', NormalHeadingThree: 'Base Prep.', NormalHeadingfoure: 'Floor Start' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Flooring', NormalHeadingThree: 'Skirting', NormalHeadingfoure: 'Grout Fill' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
                                     //Anuj
                                     if (newDatanew.subactivityname === 'FoF - Floor Tiling') {
 
@@ -35009,6 +39780,84 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         FlooringChacks();
+                                    }
+
+
+
+
+                                    if (newDatanew.subactivityname === "FoF - Washroom Tiling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Dependency', headingforshortingTwo: 'Tiling Prep.', headingforshortingThree: 'Tiling', headingforshortingFour: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Fini.', NormalHeadingThree: 'Int. Fitting', NormalHeadingfoure: 'Ele. Condu.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Waterproof', NormalHeadingThree: 'Base Level', NormalHeadingfoure: 'Base Tile' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: '-X', NormalHeadingThree: '+Y', NormalHeadingfoure: '-Y' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Grout Fill', NormalHeadingThree: 'Traps', NormalHeadingfoure: 'Coin | Verti.' },
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+                                    if (newDatanew.subactivityname === "FoF - Floor Tiling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Levelling', headingforshortingTwo: 'Base Prep.', headingforshortingThree: 'Tiling' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Undulation', NormalHeadingThree: 'Bot. Level', NormalHeadingfoure: 'Skirting Fin.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Trap', NormalHeadingThree: 'Base Prep.', NormalHeadingfoure: 'Floor Start' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Flooring', NormalHeadingThree: 'Skirting', NormalHeadingfoure: 'Grout Fill' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
                                     //Anuj
                                     if (newDatanew.subactivityname === 'Tower - Floor Tiling') {
@@ -35110,6 +39959,80 @@ const createAllActivites = async (req, resp) => {
                                         FlooringChacks();
                                     }
 
+
+                                    if (newDatanew.subactivityname === "Tower - Washroom Tiling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Dependency', headingforshortingTwo: 'Tiling Prep.', headingforshortingThree: 'Tiling', headingforshortingFour: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Fini.', NormalHeadingThree: 'Int. Fitting', NormalHeadingfoure: 'Ele. Condu.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Waterproof', NormalHeadingThree: 'Base Level', NormalHeadingfoure: 'Base Tile' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: '-X', NormalHeadingThree: '+Y', NormalHeadingfoure: '-Y' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Grout Fill', NormalHeadingThree: 'Traps', NormalHeadingfoure: 'Coin | Verti.' },
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+                                    if (newDatanew.subactivityname === "Tower - Floor Tiling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Levelling', headingforshortingTwo: 'Base Prep.', headingforshortingThree: 'Tiling' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Undulation', NormalHeadingThree: 'Bot. Level', NormalHeadingfoure: 'Skirting Fin.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Trap', NormalHeadingThree: 'Base Prep.', NormalHeadingfoure: 'Floor Start' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Flooring', NormalHeadingThree: 'Skirting', NormalHeadingfoure: 'Grout Fill' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
                                     //Anuj
                                     if (newDatanew.subactivityname === 'B1 - Washroom Tiling') {
 
@@ -36169,7 +41092,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "Platform") {
 
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Vertical', NormalHeadingThree: 'Horizontal', NormalHeadingfoure: 'Grout Fill' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "Granite Running") {
 
@@ -36252,6 +41210,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "Staircase") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Step Level', NormalHeadingThree: 'Tread', NormalHeadingfoure: 'Riser' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "Any Tank or Other Area") {
 
@@ -36291,6 +41285,43 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+                                    if (newDatanew.subactivityname === "Any Tank or Other Area") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Dependency', headingforshortingTwo: 'Tiling Prep.', headingforshortingThree: 'Tiling', headingforshortingFour: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Fini.', NormalHeadingThree: 'Int. Fitting', NormalHeadingfoure: 'Ele. Condu.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Waterproof', NormalHeadingThree: 'Base Level', NormalHeadingfoure: 'Base Tile' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: '-X', NormalHeadingThree: '+Y', NormalHeadingfoure: '-Y' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Grout Fill', NormalHeadingThree: 'Traps', NormalHeadingfoure: 'Coin | Verti.' },
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "Ramp - Entrace Level") {
 
@@ -37269,6 +42300,46 @@ const createAllActivites = async (req, resp) => {
                                         }
                                         GradeBlankChacks();
                                     }
+
+
+
+
+                                    if (newDatanew.subactivityname === "Other Area Vertical Wall") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Dependency', headingforshortingTwo: 'Tiling Prep.', headingforshortingThree: 'Tiling', headingforshortingFour: 'Final Finish' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Plaster Fini.', NormalHeadingThree: 'Int. Fitting', NormalHeadingfoure: 'Ele. Condu.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Waterproof', NormalHeadingThree: 'Base Level', NormalHeadingfoure: 'Base Tile' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: '-X', NormalHeadingThree: '+Y', NormalHeadingfoure: '-Y' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Grout Fill', NormalHeadingThree: 'Traps', NormalHeadingfoure: 'Coin | Verti.' },
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
                                     //Anuj
                                     if (newDatanew.subactivityname === 'Staircase') {
 
@@ -37902,6 +42973,46 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+
+
+                                    if (newDatanew.subactivityname === "GF - Door Panelling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Panel', headingforshortingTwo: 'Accessories' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Internal Siz.', NormalHeadingThree: 'Final Panel', NormalHeadingfoure: 'Laminate' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Hinges', NormalHeadingThree: 'Locks', NormalHeadingfoure: 'Stopper' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
                                     if (newDatanew.subactivityname === "FF - Door Panelling") {
 
                                         const dataArranew = [
@@ -37942,6 +43053,46 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+
+                                    if (newDatanew.subactivityname === "FF - Door Panelling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Panel', headingforshortingTwo: 'Accessories' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Internal Siz.', NormalHeadingThree: 'Final Panel', NormalHeadingfoure: 'Laminate' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Hinges', NormalHeadingThree: 'Locks', NormalHeadingfoure: 'Stopper' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
                                     if (newDatanew.subactivityname === "SF - Door Panelling") {
 
                                         const dataArranew = [
@@ -37980,6 +43131,43 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         SteelReinforcementfunHGHCall();
+                                    }
+
+                                    if (newDatanew.subactivityname === "SF - Door Panelling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Panel', headingforshortingTwo: 'Accessories' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Internal Siz.', NormalHeadingThree: 'Final Panel', NormalHeadingfoure: 'Laminate' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Hinges', NormalHeadingThree: 'Locks', NormalHeadingfoure: 'Stopper' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
 
@@ -38023,6 +43211,45 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+                                    if (newDatanew.subactivityname === "TF - Door Panelling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Panel', headingforshortingTwo: 'Accessories' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Internal Siz.', NormalHeadingThree: 'Final Panel', NormalHeadingfoure: 'Laminate' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Hinges', NormalHeadingThree: 'Locks', NormalHeadingfoure: 'Stopper' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
                                     if (newDatanew.subactivityname === "FoF - Door Panelling") {
 
                                         const dataArranew = [
@@ -38061,6 +43288,43 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         SteelReinforcementfunHGHCall();
+                                    }
+
+                                    if (newDatanew.subactivityname === "FoF - Door Panelling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Panel', headingforshortingTwo: 'Accessories' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Internal Siz.', NormalHeadingThree: 'Final Panel', NormalHeadingfoure: 'Laminate' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Hinges', NormalHeadingThree: 'Locks', NormalHeadingfoure: 'Stopper' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
 
@@ -38106,6 +43370,42 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "Tower - Door Panelling") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Panel', headingforshortingTwo: 'Accessories' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Internal Siz.', NormalHeadingThree: 'Final Panel', NormalHeadingfoure: 'Laminate' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Hinges', NormalHeadingThree: 'Locks', NormalHeadingfoure: 'Stopper' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "GF - Window Panelling") {
 
@@ -38147,7 +43447,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "GF - Window Panelling") {
 
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Internal Siz.', NormalHeadingThree: 'Fixing', NormalHeadingfoure: 'Gap|Move.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "FF - Window Panelling") {
 
@@ -38188,6 +43523,43 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "FF - Window Panelling") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Internal Siz.', NormalHeadingThree: 'Fixing', NormalHeadingfoure: 'Gap|Move.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
 
                                     if (newDatanew.subactivityname === "SF - Window Panelling") {
 
@@ -38226,6 +43598,43 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         SteelReinforcementfunHGHCall();
+                                    }
+
+                                    if (newDatanew.subactivityname === "SF - Window Panelling") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Internal Siz.', NormalHeadingThree: 'Fixing', NormalHeadingfoure: 'Gap|Move.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
 
@@ -38269,6 +43678,43 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "TF - Window Panelling") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Internal Siz.', NormalHeadingThree: 'Fixing', NormalHeadingfoure: 'Gap|Move.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
                                     if (newDatanew.subactivityname === "FoF - Window Panelling") {
 
                                         const dataArranew = [
@@ -38309,6 +43755,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "FoF - Window Panelling") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Internal Siz.', NormalHeadingThree: 'Fixing', NormalHeadingfoure: 'Gap|Move.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "Tower - Window Panelling") {
 
@@ -38350,6 +43832,42 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "Tower - Window Panelling") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Internal Siz.', NormalHeadingThree: 'Fixing', NormalHeadingfoure: 'Gap|Move.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === 'GF - Door Panelling') {
 
@@ -40215,6 +45733,43 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "GF - Paint") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'Paint Coat' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'P|P Check', NormalHeadingThree: 'Board Cov.', NormalHeadingfoure: 'Surface C.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Paint : 01', NormalHeadingThree: 'Paint : 02', NormalHeadingfoure: 'Final Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
 
                                     if (newDatanew.subactivityname === "FF - Paint") {
 
@@ -40250,6 +45805,44 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+
+                                    if (newDatanew.subactivityname === "FF - Paint") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'Paint Coat' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'P|P Check', NormalHeadingThree: 'Board Cov.', NormalHeadingfoure: 'Surface C.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Paint : 01', NormalHeadingThree: 'Paint : 02', NormalHeadingfoure: 'Final Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
                                     if (newDatanew.subactivityname === "SF - Paint") {
 
                                         const dataArranew = [
@@ -40281,6 +45874,43 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         SteelReinforcementfunHGHCall();
+                                    }
+
+                                    if (newDatanew.subactivityname === "SF - Paint") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'Paint Coat' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'P|P Check', NormalHeadingThree: 'Board Cov.', NormalHeadingfoure: 'Surface C.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Paint : 01', NormalHeadingThree: 'Paint : 02', NormalHeadingfoure: 'Final Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
 
@@ -40315,6 +45945,43 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         SteelReinforcementfunHGHCall();
+                                    }
+
+                                    if (newDatanew.subactivityname === "TF - Paint") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'Paint Coat' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'P|P Check', NormalHeadingThree: 'Board Cov.', NormalHeadingfoure: 'Surface C.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Paint : 01', NormalHeadingThree: 'Paint : 02', NormalHeadingfoure: 'Final Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
 
@@ -40352,6 +46019,43 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "FoF - Paint") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'Paint Coat' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'P|P Check', NormalHeadingThree: 'Board Cov.', NormalHeadingfoure: 'Surface C.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Paint : 01', NormalHeadingThree: 'Paint : 02', NormalHeadingfoure: 'Final Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
                                     if (newDatanew.subactivityname === "Tower - Paint") {
 
                                         const dataArranew = [
@@ -40385,7 +46089,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "Tower - Paint") {
 
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Surface Prep.', headingforshortingTwo: 'Paint Coat' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'P|P Check', NormalHeadingThree: 'Board Cov.', NormalHeadingfoure: 'Surface C.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Paint : 01', NormalHeadingThree: 'Paint : 02', NormalHeadingfoure: 'Final Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
                                     if (newDatanew.subactivityname === "Side - 01") {
 
@@ -41628,6 +47367,47 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+                                    if (newDatanew.subactivityname === "GF - Sanitary") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Sanitary', headingforshortingTwo: 'Toilet Access.', headingforshortingThree: 'Other Access.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Washbasin', NormalHeadingThree: 'W.C', NormalHeadingfoure: 'Shower' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Traps', NormalHeadingThree: 'Faucets', NormalHeadingfoure: 'Remaining' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Taps', NormalHeadingThree: 'Traps', NormalHeadingfoure: 'Faucets' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
+
+
                                     if (newDatanew.subactivityname === "FF - Sanitary") {
 
                                         const dataArranew = [
@@ -41663,6 +47443,46 @@ const createAllActivites = async (req, resp) => {
                                         }
                                         SteelReinforcementfunHGHCall();
                                     }
+
+
+
+                                    if (newDatanew.subactivityname === "FF - Sanitary") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Sanitary', headingforshortingTwo: 'Toilet Access.', headingforshortingThree: 'Other Access.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Washbasin', NormalHeadingThree: 'W.C', NormalHeadingfoure: 'Shower' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Traps', NormalHeadingThree: 'Faucets', NormalHeadingfoure: 'Remaining' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Taps', NormalHeadingThree: 'Traps', NormalHeadingfoure: 'Faucets' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
 
                                     if (newDatanew.subactivityname === "SF - Sanitary") {
 
@@ -41700,6 +47520,45 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+                                    if (newDatanew.subactivityname === "SF - Sanitary") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Sanitary', headingforshortingTwo: 'Toilet Access.', headingforshortingThree: 'Other Access.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Washbasin', NormalHeadingThree: 'W.C', NormalHeadingfoure: 'Shower' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Traps', NormalHeadingThree: 'Faucets', NormalHeadingfoure: 'Remaining' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Taps', NormalHeadingThree: 'Traps', NormalHeadingfoure: 'Faucets' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
                                     if (newDatanew.subactivityname === "TF - Sanitary") {
 
                                         const dataArranew = [
@@ -41734,6 +47593,44 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         SteelReinforcementfunHGHCall();
+                                    }
+
+
+                                    if (newDatanew.subactivityname === "TF - Sanitary") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Sanitary', headingforshortingTwo: 'Toilet Access.', headingforshortingThree: 'Other Access.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Washbasin', NormalHeadingThree: 'W.C', NormalHeadingfoure: 'Shower' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Traps', NormalHeadingThree: 'Faucets', NormalHeadingfoure: 'Remaining' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Taps', NormalHeadingThree: 'Traps', NormalHeadingfoure: 'Faucets' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
                                     if (newDatanew.subactivityname === "FoF - Sanitary") {
@@ -41772,6 +47669,45 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+                                    
+                                    if (newDatanew.subactivityname === "FoF - Sanitary") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Sanitary', headingforshortingTwo: 'Toilet Access.', headingforshortingThree: 'Other Access.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Washbasin', NormalHeadingThree: 'W.C', NormalHeadingfoure: 'Shower' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Traps', NormalHeadingThree: 'Faucets', NormalHeadingfoure: 'Remaining' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Taps', NormalHeadingThree: 'Traps', NormalHeadingfoure: 'Faucets' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
                                     if (newDatanew.subactivityname === "Tower - Sanitary") {
 
                                         const dataArranew = [
@@ -41807,6 +47743,45 @@ const createAllActivites = async (req, resp) => {
                                         }
                                         SteelReinforcementfunHGHCall();
                                     }
+
+
+                                    if (newDatanew.subactivityname === "Tower - Sanitary") {
+
+                                        const dataArranew = [
+                                            { headingforshortingOne: 'Sanitary', headingforshortingTwo: 'Toilet Access.', headingforshortingThree: 'Other Access.' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Washbasin', NormalHeadingThree: 'W.C', NormalHeadingfoure: 'Shower' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Traps', NormalHeadingThree: 'Faucets', NormalHeadingfoure: 'Remaining' },
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Taps', NormalHeadingThree: 'Traps', NormalHeadingfoure: 'Faucets' },
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
 
                                     if (newDatanew.subactivityname === "GF - Door Accessories + Switch Board") {
 
@@ -41853,6 +47828,43 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         SteelReinforcementfunHGHCall();
+                                    }
+
+                                    if (newDatanew.subactivityname === "GF - Door Accessories + Switch Board") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Looping C.', NormalHeadingThree: 'Board Base', NormalHeadingfoure: 'Plate' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
 
@@ -41904,6 +47916,44 @@ const createAllActivites = async (req, resp) => {
                                     }
 
 
+                                    if (newDatanew.subactivityname === "FF - Door Accessories + Switch Board") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Looping C.', NormalHeadingThree: 'Board Base', NormalHeadingfoure: 'Plate' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
                                     if (newDatanew.subactivityname === "SF - Door Accessories + Switch Board") {
 
                                         const dataArranew = [
@@ -41950,6 +48000,45 @@ const createAllActivites = async (req, resp) => {
                                         }
                                         SteelReinforcementfunHGHCall();
                                     }
+
+
+                                    if (newDatanew.subactivityname === "SF - Door Accessories + Switch Board") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Looping C.', NormalHeadingThree: 'Board Base', NormalHeadingfoure: 'Plate' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
 
                                     if (newDatanew.subactivityname === "TF - Door Accessories + Switch Board") {
 
@@ -41998,6 +48087,45 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+                                    if (newDatanew.subactivityname === "TF - Door Accessories + Switch Board") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Looping C.', NormalHeadingThree: 'Board Base', NormalHeadingfoure: 'Plate' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
                                     if (newDatanew.subactivityname === "FoF - Door Accessories + Switch Board") {
 
                                         const dataArranew = [
@@ -42045,6 +48173,45 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+
+                                    if (newDatanew.subactivityname === "FoF - Door Accessories + Switch Board") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Looping C.', NormalHeadingThree: 'Board Base', NormalHeadingfoure: 'Plate' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
+
                                     if (newDatanew.subactivityname === "Tower - Door Accessories + Switch Board") {
 
                                         const dataArranew = [
@@ -42090,6 +48257,43 @@ const createAllActivites = async (req, resp) => {
                                             }
                                         }
                                         SteelReinforcementfunHGHCall();
+                                    }
+
+                                    if (newDatanew.subactivityname === "Tower - Door Accessories + Switch Board") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Looping C.', NormalHeadingThree: 'Board Base', NormalHeadingfoure: 'Plate' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
                                     }
 
 
@@ -42165,6 +48369,43 @@ const createAllActivites = async (req, resp) => {
 
 
 
+                                    if (newDatanew.subactivityname === "Staricase Railing") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Holes', NormalHeadingThree: 'Fixing', NormalHeadingfoure: 'Final Finish' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
+
                                     if (newDatanew.subactivityname === "Light Fixing & Fan") {
 
                                         const dataArranew = [
@@ -42199,6 +48440,42 @@ const createAllActivites = async (req, resp) => {
                                         SteelReinforcementfunHGHCall();
                                     }
 
+                                    if (newDatanew.subactivityname === "Light Fixing & Fan") {
+
+                                        const dataArranew = [
+                                            {},
+                                            { NormalHeadingOne: 'Name', NormalHeadingTwo: 'Ceiling L.', NormalHeadingThree: 'Fan', NormalHeadingfoure: 'Elevation L.' },
+                                            {},
+                                            {},
+                                            {},
+                                            {},
+                                        ];
+
+                                        async function RccsnagsSnags() {
+                                            for (let i = 0; i < dataArranew.length; i++) {
+                                                try {
+                                                    const newDatanewtask = new Snags(dataArranew[i]);
+                                                    const savedData = await newDatanewtask.save();
+
+                                                    let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
+                                                    let newss = new mongoose.Types.ObjectId(newDatanew._id)
+                                                    console.log(objID);
+                                                    await SubActivities.updateOne(
+                                                        { _id: newss },
+                                                        {
+                                                            $push: {
+                                                                snagsID: objID
+                                                            }
+                                                        }
+                                                    )
+                                                    console.log('Data saved:', savedData);
+                                                } catch (error) {
+                                                    console.error('Error saving data:', error);
+                                                }
+                                            }
+                                        }
+                                        RccsnagsSnags();
+                                    }
 
 
                                     if (newDatanew.subactivityname === "Balcony Railing") {

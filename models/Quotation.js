@@ -20,6 +20,10 @@ const quotationSchema = mongoose.Schema({
         type: String,
         default: "No"
     },
+    DeleteStatus: {
+        type: String,
+        default: "NotDeleted"
+    },
     tentativebudget: Number,
     persquarefeetcost: Number,
     quotationname: String,
