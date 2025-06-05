@@ -18,7 +18,7 @@ const { getSingleLeadactivities, getSingleLeadOnlyActivities, getSingleProjectAl
 const { updateChecks, updateMaterial, updatesubTask, addMatreial, addCheck, addSubTask, getSubActivitiesWithdetails, addNewUpdateInSubActivity, addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity } = require('../controllers/sub-activites-controller.js');
 const { addNewQuotation, updateQuotation, deleteQuotationOne, commentsonquatation, getspaceWithRoom, addNewProjectInQuotaion, addNewStructureInQuotation, addNewProjectspaceinQuatation, addSelectedQuotationinLead, getQuotationWithDetails, getAllQuotationInLead } = require('../controllers/quotation-controller.js');
 const { updatesnags, addMultiplesSnags } = require('../controllers/snags-controller.js');
-const { CalculationCheckTentetive, getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, getAllEngineerList, getAllLeadsList, getAllManagersList, getPriceList, updatePriceList, addPriceList } = require('../controllers/extra-controller.js');
+const { CalculationCheckTentetive, getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, getAllEngineerList, getAllLeadsList, getAllManagersList, getAppVersion,updateAppVersion, getPriceList, updatePriceList, addPriceList } = require('../controllers/extra-controller.js');
 
 // Project routes
 
@@ -200,6 +200,10 @@ router.get("/get-all-enginner-list", authenticate, getAllEngineerList) // Admin 
 router.get("/get-all-lead-list", authenticate, getAllLeadsList) // Admin API
 router.get("/get-all-manager-list", authenticate, getAllManagersList) // Admin API
 router.get("/get-price-list", authenticate, getPriceList) // Admin API
+router.get("/get-app-version", getAppVersion) // Admin API
+router.put("/update-app-version", authenticate, updateAppVersion) // Admin API
+
+
 router.put("/update-price-list/:_id", authenticate, updatePriceList) // Admin API
 router.post("/add-price-list", addPriceList)
 router.post("/check-tentetive-amount", authenticate, CalculationCheckTentetive)

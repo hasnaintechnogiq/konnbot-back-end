@@ -9,7 +9,7 @@ const adminsSchema = mongoose.Schema({
     // city: String,
     // state: String,
     password: String,
- 
+    appVersion: String,
     status: {
         type: String,
         default: "login"

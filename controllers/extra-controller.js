@@ -10,6 +10,7 @@ const PriceList = require('../models/PriceList.js');
 const Quotation = require('../models/Quotation.js');
 const QuantitiesMaterial = require('../models/QuantitiesMaterial.js');
 const bcrypt = require('bcryptjs');
+const Admin = require('../models/Admin.js');
 
 const getAllapointments = async (req, res) => {
     try {
@@ -17,6 +18,46 @@ const getAllapointments = async (req, res) => {
         res.send(data)
     } catch (err) {
         res.status(500).json(err);
+    }
+};
+
+// Get App Version API
+const getAppVersion = async (req, res) => {
+    try {
+        const admin = await Admin.findOne({}, { appVersion: 1, _id: 0 }).sort({ _id: -1 });
+
+        if (admin && admin.appVersion) {
+            return res.status(200).json({ appVersion: admin.appVersion });
+        } else {
+            return res.status(404).json({ message: "No appVersion available." });
+        }
+    } catch (err) {
+        return res.status(500).json({ message: "An error occurred on the server.", error: err });
+    }
+};
+
+// Update App Version API
+const updateAppVersion = async (req, res) => {
+    try {
+        const { appVersion } = req.body;
+        if (!appVersion) {
+            return res.status(400).json({ message: "appVersion is required." });
+        }
+
+        // Update the latest admin document
+        const admin = await Admin.findOneAndUpdate(
+            {},
+            { $set: { appVersion: appVersion } },
+            { new: true, sort: { _id: -1 } }
+        );
+
+        if (admin) {
+            return res.status(200).json({ message: "appVersion updated successfully.", appVersion: admin.appVersion });
+        } else {
+            return res.status(404).json({ message: "No admin record found." });
+        }
+    } catch (err) {
+        return res.status(500).json({ message: "An error occurred on the server.", error: err });
     }
 };
 
@@ -735,7 +776,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var FINALINPUTSDONE_G104 = StaricaseRailing;  // not complete
         var FINALINPUTSDONE_I104 = StaricaseRailingFactor;  // not complete
-        var FINALINPUTSDONE_G105 = project.ElevationalRailing;  
+        var FINALINPUTSDONE_G105 = project.ElevationalRailing;
         var FINALINPUTSDONE_G107 = Schedule; // not complete
 
         // Tank
@@ -748,7 +789,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var FINALINPUTSDONE_N4 = OHTankTypeN4; // not complete
         var FINALINPUTSDONE_L5 = project.SepticTank;
         var FINALINPUTSDONE_M5 = project.SepticTankCapacityM5;
-        var FINALINPUTSDONE_N5 = project.SepticTankTypeN5; 
+        var FINALINPUTSDONE_N5 = project.SepticTankTypeN5;
         var FINALINPUTSDONE_L6 = project.FireTank;
         var FINALINPUTSDONE_M6 = project.FireTankCapacityM6;
         var FINALINPUTSDONE_N6 = FireTankTypeN6; // not complete
@@ -3212,7 +3253,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var ALGORITHUMDONE_E446 = ALGORITHUMDONE_D446 * ALGORITHUMDONE_C446 * ALGORITHUMDONE_B446;
 
-   
+
         var ALGORITHUMDONE_F207 = Math.ceil(((ALGORITHUMDONE_C189 * 0.6) / (200 / 10.76)));
 
         var ALGORITHUMDONE_G203 = 1.25;
@@ -4584,7 +4625,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_B180 = ALGORITHUMDONE_B176 === 1 ? ALGORITHUMDONE_C176 : ALGORITHUMDONE_B177 === 1 ? ALGORITHUMDONE_C177 : ALGORITHUMDONE_B178 === 1 ? ALGORITHUMDONE_C178 : ALGORITHUMDONE_F176 === 1 ? ALGORITHUMDONE_G176 : ALGORITHUMDONE_F177 === 1 ? ALGORITHUMDONE_G177 : ALGORITHUMDONE_F178 === 1 ? ALGORITHUMDONE_G178 : ALGORITHUMDONE_J176 === 1 ? ALGORITHUMDONE_K176 : ALGORITHUMDONE_J177 === 1 ? ALGORITHUMDONE_K177 : ALGORITHUMDONE_J178 === 1 ? ALGORITHUMDONE_K178 : 0;
 
 
-        
+
         var ALGORITHUMDONE_J180 = ALGORITHUMDONE_F180 + ALGORITHUMDONE_B180;
 
         var ALGORITHUMDONE_C96 = ALGORITHUMDONE_G35 == 1 ? 0.4 : ALGORITHUMDONE_G35 == 2 ? 0.5 : ALGORITHUMDONE_G35 == 3 ? 0.6 : 0.4;
@@ -4687,7 +4728,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_C469 = ALGORITHUMDONE_C457;
         var ALGORITHUMDONE_C470 = ALGORITHUMDONE_C458;
 
-        
+
         var ALGORITHUMDONE_E449 = ALGORITHUMDONE_H442 * ALGORITHUMDONE_C449;
         var ALGORITHUMDONE_H411 = ALGORITHUMDONE_I270 * ALGORITHUMDONE_H398;
 
@@ -5031,9 +5072,9 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var BRICKWORKREDBRICKS_GFBrickWork_ToatalAmount = BWRB_GFBrickWorkCommonBurntClay75DAmount + BWRB_GFBrickWorkPortlandCementAmount + BWRB_GFBrickWorkCourseSandAmount + BWRB_GFBrickWorkStoneAggregate20MMAmount + BWRB_GFBrickWorkAutoclavedAeratedCementAACAmount + BWRB_GFBrickWorkPolymerModifiedAdhesiveMortarAmount + BWRB_GFBrickWorkReinforcementAmount;
 
-        
 
-        
+
+
         var BRICKWORKREDBRICKS_FFBrickWork_ToatalAmount = BWRB_FFBrickWorkCommonBurntClay75DAmount + BWRB_FFBrickWorkPortlandCementAmount + BWRB_FFBrickWorkCourseSandAmount + BWRB_FFBrickWorkStoneAggregate20MMAmount + BWRB_FFBrickWorkAutoclavedAeratedCementAACAmount + BWRB_FFBrickWorkPolymerModifiedAdhesiveMortarAmount + BWRB_FFBrickWorkReinforcementAmount;
 
 
@@ -12471,7 +12512,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var ALGORITHUMDONE_F403 = FINALINPUTSDONE_N90 === "FLUSH DOOR" ? ALGORITHUMDONE_E396 : FINALINPUTSDONE_N90 === "HDRM BOARD" ? ALGORITHUMDONE_E396 : 0;
 
-        console.log("YESqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqvqqqqqqqqqqqqq", DPW_GFDoorPanellingDoorPanelAreaHDRMFlushQuantity );
+        console.log("YESqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqvqqqqqqqqqqqqq", DPW_GFDoorPanellingDoorPanelAreaHDRMFlushQuantity);
         var ALGORITHUMDONE_B408 = (FINALINPUTSDONE_N94 === "FLUSH DOOR" || FINALINPUTSDONE_N94 === "HDRM BOARD") ? ALGORITHUMDONE_E397 : 0;
 
 
@@ -12955,7 +12996,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_E402 = 1;
         // var DPW_FFDoorPanellingHDMRMDFBoardQuantity = (ALGORITHUMDONE_D406 === 0 ? 0 : (ALGORITHUMDONE_D411 === ALGORITHUMDONE_E402 ? ALGORITHUMDONE_E442 : (ALGORITHUMDONE_D406 > ALGORITHUMDONE_E402 ? ALGORITHUMDONE_E402 * 2 : 0))) * COSTINGINSTALLMENTDONE_D345;
 
-        var DPW_FFDoorPanellingHDMRMDFBoardQuantity =   ALGORITHUMDONE_D406 === 0 ? 0 : (ALGORITHUMDONE_D411 === ALGORITHUMDONE_E402 ? ALGORITHUMDONE_E442 : (ALGORITHUMDONE_D406 > ALGORITHUMDONE_E402 ? ALGORITHUMDONE_E402 * 2 : 0)) * COSTINGINSTALLMENTDONE_D345
+        var DPW_FFDoorPanellingHDMRMDFBoardQuantity = ALGORITHUMDONE_D406 === 0 ? 0 : (ALGORITHUMDONE_D411 === ALGORITHUMDONE_E402 ? ALGORITHUMDONE_E442 : (ALGORITHUMDONE_D406 > ALGORITHUMDONE_E402 ? ALGORITHUMDONE_E402 * 2 : 0)) * COSTINGINSTALLMENTDONE_D345
 
 
 
@@ -13081,7 +13122,7 @@ const CalculationCheckTentetive = async (req, resp) => {
         var DPW_GFDoorPanellingDoorAreaWoodenAmount = DPW_GFDoorPanellingDoorAreaWoodenQuantity * DoorAreaWoodenCost;
         var DPW_GFDoorPanellingDoorPanelAreaHDRMFlushAmount = DPW_GFDoorPanellingDoorPanelAreaHDRMFlushQuantity * DoorPanelAreaHDRMFlushCost;
 
-    
+
 
         var DPW_GFDoorPanellingMicaVeneerDesignerSheetAmount = DPW_GFDoorPanellingMicaVeneerDesignerSheetQuantity * MicaVeneerDesignerSheetCost;
 
@@ -13171,11 +13212,11 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var DPW_GFDoorPanelling_TotalAmount = DPW_GFDoorPanellingDoorAreaWoodenAmount + DPW_GFDoorPanellingDoorPanelAreaHDRMFlushAmount + DPW_GFDoorPanellingMicaVeneerDesignerSheetAmount + DPW_GFDoorPanellingCarvingAmount + DPW_GFDoorPanellingHDMRMDFBoardAmount + DPW_GFDoorPanellingWoodenPolishAmount + DPW_GFDoorPanellingPUDecoPaintAmount + DPW_GFDoorPanellingHingersAmount + DPW_GFDoorPanellingOtherAccessoriesAmount;
 
-        
+
         var DPW_FFDoorPanelling_TotalAmount = DPW_FFDoorPanellingDoorAreaWoodenAmount + DPW_FFDoorPanellingDoorPanelAreaHDRMFlushAmount + DPW_FFDoorPanellingMicaVeneerDesignerSheetAmount + DPW_FFDoorPanellingCarvingAmount + DPW_FFDoorPanellingHDMRMDFBoardAmount + DPW_FFDoorPanellingWoodenPolishAmount + DPW_FFDoorPanellingPUDecoPaintAmount + DPW_FFDoorPanellingHingersAmount + DPW_FFDoorPanellingOtherAccessoriesAmount;
 
- 
-        
+
+
         var DPW_SFDoorPanelling_TotalAmount = DPW_SFDoorPanellingDoorAreaWoodenAmount + DPW_SFDoorPanellingDoorPanelAreaHDRMFlushAmount + DPW_SFDoorPanellingMicaVeneerDesignerSheetAmount + DPW_SFDoorPanellingCarvingAmount + DPW_SFDoorPanellingHDMRMDFBoardAmount + DPW_SFDoorPanellingWoodenPolishAmount + DPW_SFDoorPanellingPUDecoPaintAmount + DPW_SFDoorPanellingHingersAmount + DPW_SFDoorPanellingOtherAccessoriesAmount;
 
         var DPW_TFDoorPanelling_TotalAmount = DPW_TFDoorPanellingDoorAreaWoodenAmount + DPW_TFDoorPanellingDoorPanelAreaHDRMFlushAmount + DPW_TFDoorPanellingMicaVeneerDesignerSheetAmount + DPW_TFDoorPanellingCarvingAmount + DPW_TFDoorPanellingHDMRMDFBoardAmount + DPW_TFDoorPanellingWoodenPolishAmount + DPW_TFDoorPanellingPUDecoPaintAmount + DPW_TFDoorPanellingHingersAmount + DPW_TFDoorPanellingOtherAccessoriesAmount;
@@ -13202,13 +13243,13 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_F449 = ALGORITHUMDONE_I442 * ALGORITHUMDONE_C449;
 
         var ALGORITHUMDONE_F453 = ALGORITHUMDONE_I442 * ALGORITHUMDONE_C453;
-   
+
         var ALGORITHUMDONE_F454 = ALGORITHUMDONE_I442 * ALGORITHUMDONE_C454;
         var ALGORITHUMDONE_F455 = ALGORITHUMDONE_I442 * ALGORITHUMDONE_C455;
         var ALGORITHUMDONE_F456 = ALGORITHUMDONE_I442 * ALGORITHUMDONE_C456;
         var ALGORITHUMDONE_F457 = ALGORITHUMDONE_I442 * ALGORITHUMDONE_C457;
         var ALGORITHUMDONE_F458 = ALGORITHUMDONE_I442 * ALGORITHUMDONE_C458;
-        
+
 
 
         var ALGORITHUMDONE_G438 = ALGORITHUMDONE_C438 === "WOODEN" ? FINALINPUTSDONE_L106 : 0;
@@ -13237,8 +13278,8 @@ const CalculationCheckTentetive = async (req, resp) => {
         var ALGORITHUMDONE_H457 = ALGORITHUMDONE_K442 * ALGORITHUMDONE_C457;
         var ALGORITHUMDONE_H458 = ALGORITHUMDONE_K442 * ALGORITHUMDONE_C458;
 
-        
-        
+
+
         var B1_Window_Panelling_QTD = ALGORITHUMDONE_C449;
         var B2_Window_Panelling_QTD = ALGORITHUMDONE_C450;
         var B3_Window_Panelling_QTD = ALGORITHUMDONE_C451;
@@ -13329,8 +13370,8 @@ const CalculationCheckTentetive = async (req, resp) => {
         var WPW_GFWindowPanellingOtherAccessoriesQuantity = (WPW_GFWindowPanellingWoodenPanelQuantity > 0 ? ALGORITHUMDONE_C465 * 2 * 3 : 0) * COSTINGINSTALLMENTDONE_D357;
 
 
-  
- 
+
+
 
         var WPW_FFWindowPanellingAluminiumUPVCSystemQuantity = ((FINALINPUTSDONE_L104 === "ALUMINIUM" || FINALINPUTSDONE_L104 === "UPVC" || FINALINPUTSDONE_L104 === "SYSTEM ALUMINIUM") ? WPW_FFWindowPanellingMT : 0) * COSTINGINSTALLMENTDONE_D351;
         var WPW_FFWindowPanellingWoodenPanelQuantity = ALGORITHUMDONE_F454 * COSTINGINSTALLMENTDONE_D352;
@@ -18305,4 +18346,4 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
 
-module.exports = { CalculationCheckTentetive, addPriceList, updatePriceList, getPriceList, getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, getAllEngineerList, getAllLeadsList, getAllManagersList };
+module.exports = { CalculationCheckTentetive, addPriceList, updatePriceList, getPriceList, getAppVersion, updateAppVersion, getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, getAllEngineerList, getAllLeadsList, getAllManagersList };
