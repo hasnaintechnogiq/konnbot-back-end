@@ -1447,7 +1447,7 @@ app.post("/manager-login", async (req, resp) => {
 });
 
 
-app.put("/toggle-manager-block/:id", authenticate, async (req, resp) => {
+app.put("/toggle-manager-block/:id", async (req, resp) => {
     try {
         const manager = await Manager.findById(req.params.id);
         if (!manager) {
@@ -1476,7 +1476,7 @@ app.put("/toggle-manager-block/:id", authenticate, async (req, resp) => {
 });
 
 
-app.put("/toggle-engineer-block/:id", authenticate, async (req, resp) => {
+app.put("/toggle-engineer-block/:id", async (req, resp) => {
     try {
         const engineer = await Engineer.findById(req.params.id);
         if (!engineer) {
@@ -1505,7 +1505,7 @@ app.put("/toggle-engineer-block/:id", authenticate, async (req, resp) => {
 });
 
 
-app.put("/toggle-lead-manager-block/:id", authenticate, async (req, resp) => {
+app.put("/toggle-lead-manager-block/:id", async (req, resp) => {
     try {
         const leadManager = await LeadManager.findById(req.params.id);
         if (!leadManager) {
