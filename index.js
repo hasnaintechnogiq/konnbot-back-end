@@ -1289,17 +1289,17 @@ app.post("/add-all-installlments", async (req, resp) => {
     try {
         const dataArray = [
             { installmentnum: '1st', installmenttype: 'Footing', leadID: req.body.leadID, afteraddchangeorderamount: firstInstall, installmentamount: firstInstall, installmentPercent: 12 },
-            { installmentnum: '2nd', installmenttype: 'Plinth', leadID: req.body.leadID, afteraddchangeorderamount: secondInstall, installmentamount: secondInstall , installmentPercent: 10},
-            { installmentnum: '3rd', installmenttype: 'RCC Work', leadID: req.body.leadID, afteraddchangeorderamount: thirdInstall, installmentamount: thirdInstall , installmentPercent: 8},
-            { installmentnum: '4th', installmenttype: 'Brick Work', leadID: req.body.leadID, afteraddchangeorderamount: fourthInstall, installmentamount: fourthInstall , installmentPercent: 12},
-            { installmentnum: '5th', installmenttype: 'Electrical', leadID: req.body.leadID, afteraddchangeorderamount: fifthInstall, installmentamount: fifthInstall , installmentPercent: 8},
-            { installmentnum: '6th', installmenttype: 'Plumbing', leadID: req.body.leadID, afteraddchangeorderamount: sixInstall, installmentamount: sixInstall , installmentPercent: 9},
-            { installmentnum: '7th', installmenttype: 'Plaster', leadID: req.body.leadID, afteraddchangeorderamount: sevenstInstall, installmentamount: sevenstInstall , installmentPercent: 4},
-            { installmentnum: '8th', installmenttype: 'Other Interior', leadID: req.body.leadID, afteraddchangeorderamount: eightInstall, installmentamount: eightInstall , installmentPercent: 6},
-            { installmentnum: '9th', installmenttype: 'Door & Window', leadID: req.body.leadID, afteraddchangeorderamount: nineInstall, installmentamount: nineInstall , installmentPercent: 2},
-            { installmentnum: '10th', installmenttype: 'Flooring', leadID: req.body.leadID, afteraddchangeorderamount: tenInstall, installmentamount: tenInstall , installmentPercent: 11},
-            { installmentnum: '11th', installmenttype: 'Paint & Finishes', leadID: req.body.leadID, afteraddchangeorderamount: elevenInstall, installmentamount: elevenInstall , installmentPercent: 10},
-            { installmentnum: '12th', installmenttype: 'Miscellenous', leadID: req.body.leadID, afteraddchangeorderamount: towlInstall, installmentamount: towlInstall , installmentPercent: 8},
+            { installmentnum: '2nd', installmenttype: 'Plinth', leadID: req.body.leadID, afteraddchangeorderamount: secondInstall, installmentamount: secondInstall, installmentPercent: 10 },
+            { installmentnum: '3rd', installmenttype: 'RCC Work', leadID: req.body.leadID, afteraddchangeorderamount: thirdInstall, installmentamount: thirdInstall, installmentPercent: 8 },
+            { installmentnum: '4th', installmenttype: 'Brick Work', leadID: req.body.leadID, afteraddchangeorderamount: fourthInstall, installmentamount: fourthInstall, installmentPercent: 12 },
+            { installmentnum: '5th', installmenttype: 'Electrical', leadID: req.body.leadID, afteraddchangeorderamount: fifthInstall, installmentamount: fifthInstall, installmentPercent: 8 },
+            { installmentnum: '6th', installmenttype: 'Plumbing', leadID: req.body.leadID, afteraddchangeorderamount: sixInstall, installmentamount: sixInstall, installmentPercent: 9 },
+            { installmentnum: '7th', installmenttype: 'Plaster', leadID: req.body.leadID, afteraddchangeorderamount: sevenstInstall, installmentamount: sevenstInstall, installmentPercent: 4 },
+            { installmentnum: '8th', installmenttype: 'Other Interior', leadID: req.body.leadID, afteraddchangeorderamount: eightInstall, installmentamount: eightInstall, installmentPercent: 6 },
+            { installmentnum: '9th', installmenttype: 'Door & Window', leadID: req.body.leadID, afteraddchangeorderamount: nineInstall, installmentamount: nineInstall, installmentPercent: 2 },
+            { installmentnum: '10th', installmenttype: 'Flooring', leadID: req.body.leadID, afteraddchangeorderamount: tenInstall, installmentamount: tenInstall, installmentPercent: 11 },
+            { installmentnum: '11th', installmenttype: 'Paint & Finishes', leadID: req.body.leadID, afteraddchangeorderamount: elevenInstall, installmentamount: elevenInstall, installmentPercent: 10 },
+            { installmentnum: '12th', installmenttype: 'Miscellenous', leadID: req.body.leadID, afteraddchangeorderamount: towlInstall, installmentamount: towlInstall, installmentPercent: 8 },
         ];
 
 
@@ -1447,6 +1447,33 @@ app.post("/manager-login", async (req, resp) => {
 });
 
 
+app.put("/toggle-manager-block/:id", authenticate, async (req, resp) => {
+    try {
+        const manager = await Manager.findById(req.params.id);
+        if (!manager) {
+            return resp.status(404).send("Manager not found");
+        }
+        if (manager.status === 'Blocked') {
+            manager.status = 'login';
+            await manager.save();
+
+            resp.send({
+                message: "Manager has been unblocked"
+            });
+        } else {
+            manager.status = 'Blocked';
+            manager.tokens = [];
+            await manager.save();
+
+            resp.send({
+                message: "Manager has been blocked"
+            });
+        }
+
+    } catch (error) {
+        resp.status(500).json(error);
+    }
+});
 
 app.post("/engineer-login", async (req, resp) => {
 

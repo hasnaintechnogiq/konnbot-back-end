@@ -115,7 +115,7 @@ const updateLead = async (req, res) => {
     try {
         console.log(req.params)
         let data = await Lead.updateOne(
-            req.params,
+            { _id: req.params._id },
             { $set: req.body }
         );
         res.send(data);
