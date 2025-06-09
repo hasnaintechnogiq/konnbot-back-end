@@ -1475,6 +1475,64 @@ app.put("/toggle-manager-block/:id", authenticate, async (req, resp) => {
     }
 });
 
+
+app.put("/toggle-engineer-block/:id", authenticate, async (req, resp) => {
+    try {
+        const engineer = await Engineer.findById(req.params.id);
+        if (!engineer) {
+            return resp.status(404).send("Engineer not found");
+        }
+        if (engineer.status === 'Blocked') {
+            engineer.status = 'login';
+            await engineer.save();
+
+            resp.send({
+                message: "Engineer has been unblocked"
+            });
+        } else {
+            engineer.status = 'Blocked';
+            engineer.tokens = [];
+            await engineer.save();
+
+            resp.send({
+                message: "Engineer has been blocked"
+            });
+        }
+
+    } catch (error) {
+        resp.status(500).json(error);
+    }
+});
+
+
+app.put("/toggle-lead-manager-block/:id", authenticate, async (req, resp) => {
+    try {
+        const leadManager = await LeadManager.findById(req.params.id);
+        if (!leadManager) {
+            return resp.status(404).send("Lead manager not found");
+        }
+        if (leadManager.status === 'Blocked') {
+            leadManager.status = 'login';
+            await leadManager.save();
+
+            resp.send({
+                message: "Lead manager has been unblocked"
+            });
+        } else {
+            leadManager.status = 'Blocked';
+            leadManager.tokens = [];
+            await leadManager.save();
+
+            resp.send({
+                message: "Lead manager has been blocked"
+            });
+        }
+
+    } catch (error) {
+        resp.status(500).json(error);
+    }
+});
+
 app.post("/engineer-login", async (req, resp) => {
 
     // try {
