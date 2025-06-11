@@ -98,7 +98,74 @@ const snagsSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
+    fourthCount: {
+        type: Number,
+        default: 0
+    },
+    fifthCount: {
+        type: Number,
+        default: 0
+    },
+    sixthCount: {
+        type: Number,
+        default: 0
+    },
+    seventhCount: {
+        type: Number,
+        default: 0
+    },
+    eighthCount: {
+        type: Number,
+        default: 0
+    },
+    ninthCount: {
+        type: Number,
+        default: 0
+    },
 
+    firstIsNumberCheck: {
+        type: String,
+        default: "No"
+    },
+    secondIsNumberCheck: {
+        type: String,
+        default: "No"
+    },
+    thirdIsNumberCheck: {
+        type: String,
+        default: "No"
+    },
+    fourthIsNumberCheck: {
+        type: String,
+        default: "No"
+    },
+    fifthIsNumberCheck: {
+        type: String,
+        default: "No"
+    },
+    sixthIsNumberCheck: {
+        type: String,
+        default: "No"
+    },
+    seventhIsNumberCheck: {
+        type: String,
+        default: "No"
+    },
+    eighthIsNumberCheck: {
+        type: String,
+        default: "No"
+    },
+    ninthIsNumberCheck: {
+        type: String,
+        default: "No"
+    },
+
+
+
+
+
+
+    
     InformationOneString: {
         type: String,
         default: "No"
