@@ -45,10 +45,7 @@ const snagsSchema = mongoose.Schema({
         type: String,
         default: "NoneOfThere"
     },
-    YesForCountNoForCheck: {
-        type: String,
-        default: "No"
-    },
+
     firstcheck: {
         type: String,
         default: "No"

@@ -39,6 +39,10 @@ const addMultiplesSnags = async (req, res) => {
                             }
                         }
                     )
+               
+                    if (i === req.body.valuable.length - 1) {
+                        res.send(single);
+                    }
                     console.log('Data saved:', savedData);
                 } catch (error) {
                     console.error('Error saving data:', error);
@@ -47,7 +51,7 @@ const addMultiplesSnags = async (req, res) => {
         }
         SpriscriptinfunCall();
 
-        res.send(single);
+   
     } catch (err) {
         res.status(500).json(err);
     }
