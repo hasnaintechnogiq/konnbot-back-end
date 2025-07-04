@@ -43,9 +43,9 @@ const getSingleUser = async (req, resp) => {
 const addNewUser = async (req, res) => {
     const { email, password, name } = req.body;
     try {
-        let existingTeacherByEmail = await User.find({ email })
+        let existingByEmail = await User.find({ email })
 
-        if (existingTeacherByEmail.length > 0) {
+        if (existingByEmail.length > 0) {
             res.send('Email already exists');
             console.log("Email already exists")
         } else {
@@ -270,45 +270,45 @@ const checkotpnow = async (req, resp) => {
 const signinbygmail = async (req, res) => {
     try {
         console.log(req.body)
-        if (req.body.additionalUserInfo.isNewUser) {
-            const email = req.body.additionalUserInfo.profile.email
-            let existingTeacherByEmail = await User.findOne({ email })
-            console.log("condition one");
-            if (existingTeacherByEmail) {
-                const token = await existingTeacherByEmail.generateAuthToken();
-                console.log(token);
-                existingTeacherByEmail._doc.tokenCode = token;
-                console.log("condition two");
-                return res.send(existingTeacherByEmail);
+        // if (req.body.additionalUserInfo.isNewUser) {
+        //     const email = req.body.additionalUserInfo.profile.email
+        //     let existingByEmail = await User.findOne({ email })
+        //     console.log("condition one");
+        //     if (existingByEmail) {
+        //         const token = await existingByEmail.generateAuthToken();
+        //         console.log(token);
+        //         existingByEmail._doc.tokenCode = token;
+        //         console.log("condition two");
+        //         return res.send(existingByEmail);
 
-            } else {
-                const name = req.body.additionalUserInfo.profile.name;
-                const profile_url = req.body.additionalUserInfo.profile.picture;
-                const userNew = new User({ name, email, profile_url });
+        //     } else {
+        //         const name = req.body.additionalUserInfo.profile.name;
+        //         const profile_url = req.body.additionalUserInfo.profile.picture;
+        //         const userNew = new User({ name, email, profile_url });
 
-                try {
-                    const newDocument = new NotificationArray();
-                    const notifiArray = await newDocument.save();
-                    console.log("NotificationArray saved:", notifiArray);
+        //         try {
+        //             const newDocument = new NotificationArray();
+        //             const notifiArray = await newDocument.save();
+        //             console.log("NotificationArray saved:", notifiArray);
 
-                    let objID = new mongoose.Types.ObjectId(newDocument.id);
-                    userNew.notificationarrayID = objID;
+        //             let objID = new mongoose.Types.ObjectId(newDocument.id);
+        //             userNew.notificationarrayID = objID;
 
-                    console.log("Before saving new user:", userNew);
-                    const result = await userNew.save();
-                    console.log("New user saved:", result);
+        //             console.log("Before saving new user:", userNew);
+        //             const result = await userNew.save();
+        //             console.log("New user saved:", result);
 
-                    const token = await userNew.generateAuthToken();
-                    console.log("condition four");
-                    result._doc.tokenCode = token;
-                    return res.send(result);
-                } catch (error) {
-                    console.error("Error in saving new user:", error);
-                    return res.status(500).json({ error: 'Failed to save new user' });
-                }
-            }
+        //             const token = await userNew.generateAuthToken();
+        //             console.log("condition four");
+        //             result._doc.tokenCode = token;
+        //             return res.send(result);
+        //         } catch (error) {
+        //             console.error("Error in saving new user:", error);
+        //             return res.status(500).json({ error: 'Failed to save new user' });
+        //         }
+        //     }
 
-        } else {
+        // } else {
             const email = req.body.additionalUserInfo.profile.email
             const user = await User.findOne({ email })
 
@@ -343,7 +343,7 @@ const signinbygmail = async (req, res) => {
             console.log("condition five");
             user._doc.tokenCode = token;
             res.send(user);
-        }
+        // }
 
     } catch (err) {
         res.status(500).json(err);
