@@ -197,7 +197,7 @@ router.post("/add-manager-profile", authenticate, addMangagerProfile) // Admin A
 router.post("/add-lead-profile", authenticate, addProfileofLead) // Admin API
 router.post("/add-engiiner-profile", authenticate, addProfileofEngiiner) // Admin API
 router.get("/get-all-enginner-list", authenticate, getAllEngineerList) // Admin API
-router.post("/update-engiiner-profile", authenticate, updateProfileofEngiiner) // Admin API
+router.post("/update-engineer-profile", authenticate, updateProfileofEngiiner) // Admin API
 router.post("/update-manager-profile", authenticate, updateProfileofManager) // Admin API
 router.post("/update-leadmanager-profile", authenticate, updateProfileofLeadManager) // Admin API
 
