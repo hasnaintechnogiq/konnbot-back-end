@@ -158,6 +158,61 @@ const updateProfileofEngiiner = async (req, res) => {
     }
 };
 
+
+const updateProfileofManager = async (req, res) => {
+    const { name, number, city, email, password, managerID } = req.body;
+    try {
+        const existingEngineergerByEmail = await Manager.findById(managerID)
+        if (!existingEngineergerByEmail) {
+            return res.status(404).send("Engineer not found");
+        } else {
+            const hashedPassword = await bcrypt.hash(password, 10);
+
+            existingEngineergerByEmail.name = name;
+            existingEngineergerByEmail.number = number;
+            existingEngineergerByEmail.city = city;
+            existingEngineergerByEmail.email = email;
+            existingEngineergerByEmail.password = hashedPassword;
+            existingEngineergerByEmail.tokens = [];
+
+            const notifibbArray = await existingEngineergerByEmail.save();
+
+            res.send(notifibbArray);
+
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+};
+
+
+
+const updateProfileofLeadManager = async (req, res) => {
+    const { name, number, city, email, password, leadmanagerID } = req.body;
+    try {
+        const existingEngineergerByEmail = await LeadManager.findById(leadmanagerID)
+        if (!existingEngineergerByEmail) {
+            return res.status(404).send("Engineer not found");
+        } else {
+            const hashedPassword = await bcrypt.hash(password, 10);
+
+            existingEngineergerByEmail.name = name;
+            existingEngineergerByEmail.number = number;
+            existingEngineergerByEmail.city = city;
+            existingEngineergerByEmail.email = email;
+            existingEngineergerByEmail.password = hashedPassword;
+            existingEngineergerByEmail.tokens = [];
+
+            const notifibbArray = await existingEngineergerByEmail.save();
+
+            res.send(notifibbArray);
+
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+};
+
 const addProfileofLead = async (req, res) => {
     const { name, number, city, email, password } = req.body;
 
@@ -18371,4 +18426,4 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
 
-module.exports = { CalculationCheckTentetive, addPriceList, updatePriceList, getPriceList, getAppVersion, updateAppVersion, getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, updateProfileofEngiiner, getAllEngineerList, getAllLeadsList, getAllManagersList };
+module.exports = { CalculationCheckTentetive, addPriceList, updatePriceList, getPriceList, getAppVersion, updateAppVersion, getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, updateProfileofEngiiner,updateProfileofManager,updateProfileofLeadManager, getAllEngineerList, getAllLeadsList, getAllManagersList };
