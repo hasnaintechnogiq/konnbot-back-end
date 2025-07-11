@@ -132,6 +132,31 @@ const addProfileofEngiiner = async (req, res) => {
     }
 };
 
+const updateProfileofEngiiner = async (req, res) => {
+    const { name, number, city, email, password, engineerID } = req.body;
+    try {
+        const existingEngineergerByEmail = await Engineer.findById(engineerID)
+        if (!existingEngineergerByEmail) {
+            return res.status(404).send("Engineer not found");
+        } else {
+            const hashedPassword = await bcrypt.hash(password, 10);
+
+            existingEngineergerByEmail.name = name;
+            existingEngineergerByEmail.number = number;
+            existingEngineergerByEmail.city = city;
+            existingEngineergerByEmail.email = email;
+            existingEngineergerByEmail.password = hashedPassword;
+            existingEngineergerByEmail.tokens = [];
+
+            const notifibbArray = await existingEngineergerByEmail.save();
+
+            res.send(notifibbArray);
+
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+};
 
 const addProfileofLead = async (req, res) => {
     const { name, number, city, email, password } = req.body;
@@ -18346,4 +18371,4 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
 
-module.exports = { CalculationCheckTentetive, addPriceList, updatePriceList, getPriceList, getAppVersion, updateAppVersion, getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, getAllEngineerList, getAllLeadsList, getAllManagersList };
+module.exports = { CalculationCheckTentetive, addPriceList, updatePriceList, getPriceList, getAppVersion, updateAppVersion, getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, updateProfileofEngiiner, getAllEngineerList, getAllLeadsList, getAllManagersList };

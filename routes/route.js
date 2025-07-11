@@ -18,7 +18,7 @@ const { getSingleLeadactivities, getSingleLeadOnlyActivities, getSingleProjectAl
 const { updateChecks, updateMaterial, updatesubTask, addMatreial, addCheck, addSubTask, getSubActivitiesWithdetails, addNewUpdateInSubActivity, addNewSubActivity, getSubActivitiesofSingleActivity, deleteSubActivity, updatesubactivity } = require('../controllers/sub-activites-controller.js');
 const { addNewQuotation, updateQuotation, deleteQuotationOne, commentsonquatation, getspaceWithRoom, addNewProjectInQuotaion, addNewStructureInQuotation, addNewProjectspaceinQuatation, addSelectedQuotationinLead, getQuotationWithDetails, getAllQuotationInLead } = require('../controllers/quotation-controller.js');
 const { updatesnags, addMultiplesSnags } = require('../controllers/snags-controller.js');
-const { CalculationCheckTentetive, getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, getAllEngineerList, getAllLeadsList, getAllManagersList, getAppVersion,updateAppVersion, getPriceList, updatePriceList, addPriceList } = require('../controllers/extra-controller.js');
+const { CalculationCheckTentetive, getAllapointments, addNewAppointment, addMangagerProfile, addProfileofLead, addProfileofEngiiner, getAllEngineerList, updateProfileofEngiiner, getAllLeadsList, getAllManagersList, getAppVersion, updateAppVersion, getPriceList, updatePriceList, addPriceList } = require('../controllers/extra-controller.js');
 
 // Project routes
 
@@ -197,6 +197,9 @@ router.post("/add-manager-profile", authenticate, addMangagerProfile) // Admin A
 router.post("/add-lead-profile", authenticate, addProfileofLead) // Admin API
 router.post("/add-engiiner-profile", authenticate, addProfileofEngiiner) // Admin API
 router.get("/get-all-enginner-list", authenticate, getAllEngineerList) // Admin API
+router.post("/update-engiiner-profile", authenticate, updateProfileofEngiiner) // Admin API
+
+
 router.get("/get-all-lead-list", authenticate, getAllLeadsList) // Admin API
 router.get("/get-all-manager-list", authenticate, getAllManagersList) // Admin API
 router.get("/get-price-list", authenticate, getPriceList) // Admin API

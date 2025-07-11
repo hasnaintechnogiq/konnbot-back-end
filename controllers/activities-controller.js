@@ -10981,7 +10981,7 @@ const createAllActivites = async (req, resp) => {
 
 
 
-                                    if (newDatanew.subactivityname === "PILE -  Layout & Levelling") {
+                                    if (newDatanew.subactivityname === "RAFT - Layout & Levelling") {
 
                                         const dataArranew = [
                                             { materailname: 'Chuna', materailquantity: materlID.NFP_LayoutLevellingChunaQuantity, materailUnit: 'BAG' },
