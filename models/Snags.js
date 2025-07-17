@@ -82,6 +82,34 @@ const snagsSchema = mongoose.Schema({
         type: String,
         default: "No"
     },    
+    tenthcheck: {
+        type: String,
+        default: "No"
+    },
+    eleventhcheck: {
+        type: String,
+        default: "No"
+    },
+    twelfthcheck: {
+        type: String,
+        default: "No"
+    },
+    thirteenthcheck: {
+        type: String,
+        default: "No"
+    },
+    fourteenthcheck: {
+        type: String,
+        default: "No"
+    },
+    fifteenthcheck: {
+        type: String,
+        default: "No"
+    },
+
+
+
+
 
     firstCount: {
         type: Number,
@@ -119,6 +147,33 @@ const snagsSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
+    tenthCount: {
+        type: Number,
+        default: 0
+    },
+    eleventhCount: {
+        type: Number,
+        default: 0
+    },
+    twelfthCount: {
+        type: Number,
+        default: 0
+    },
+    thirteenthCount: {
+        type: Number,
+        default: 0
+    },
+    fourteenthCount: {
+        type: Number,
+        default: 0
+    },
+    fifteenthCount: {
+        type: Number,
+        default: 0
+    },
+
+
+
 
     firstIsNumberCheck: {
         type: String,
@@ -156,11 +211,30 @@ const snagsSchema = mongoose.Schema({
         type: String,
         default: "No"
     },
-
-
-
-
-
+    tenthIsNumberCheck: {
+        type: String,
+        default: "No"
+    },
+    eleventhIsNumberCheck: {
+        type: String,
+        default: "No"
+    },
+    twelfthIsNumberCheck: {
+        type: String,
+        default: "No"
+    },
+    thirteenthIsNumberCheck: {
+        type: String,
+        default: "No"
+    },
+    fourteenthIsNumberCheck: {
+        type: String,
+        default: "No"
+    },
+    fifteenthIsNumberCheck: {
+        type: String,
+        default: "No"
+    },
 
     
     InformationOneString: {

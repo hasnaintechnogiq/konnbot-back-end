@@ -216,17 +216,17 @@ const genarateOtpandsendtoemail = async (req, resp) => {
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: 'pushpd2000@gmail.com',
-                    pass: 'fmxpxshteaasyklz'
+                    user: 'konnbot0804@gmail.com',
+                    pass: process.env.APPPASSWORD
                 }
             });
 
 
 
             const mailOptions = {
-                from: 'pushpd2000@gmail.com',
+                from: 'konnbot0804@gmail.com',
                 to: email,
-                subject: 'Sending Email using Node.js',
+                subject: 'Konnbot: One Time Password (OTP)',
                 text: `Your 6-digit OTP is: ${randomNumber}`
             };
 
@@ -329,6 +329,29 @@ const signinbygmail = async (req, res) => {
                     const result = await userNew.save();
                     console.log("New user saved:", result);
 
+                    // let leadCheck = await Lead.findOne({ email: email });
+
+                    // let userIDEx = new mongoose.Types.ObjectId(req.body.userID)
+                    // let leadIDEx = new mongoose.Types.ObjectId(req.body.leadID)
+                    // console.log(userIDEx);
+                    // await User.updateOne(
+                    //     { _id: userIDEx },
+                    //     {
+                    //         $set: {
+                    //             leadID: leadIDEx
+                    //         }
+                    //     }
+                    // )
+        
+                    // await Lead.updateOne(
+                    //     { _id: leadIDEx },
+                    //     {
+                    //         $set: {
+                    //             userID: userIDEx
+                    //         }
+                    //     }
+                    // )
+                    
                     const token = await userNew.generateAuthToken();
                     console.log("condition four");
                     result._doc.tokenCode = token;

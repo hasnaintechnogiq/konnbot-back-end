@@ -10,8 +10,8 @@ var nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'pushpd2000@gmail.com',
-        pass: 'fmxpxshteaasyklz'
+        user: 'konnbot0804@gmail.com',
+        pass: process.env.APPPASSWORD
     }
 });
 
@@ -80,9 +80,9 @@ const addNewLead = async (req, res) => {
             )
         } else if (email) {
             const mailOptions = {
-                from: 'pushpd2000@gmail.com',
+                from: 'konnbot0804@gmail.com',
                 to: email,
-                subject: 'Sending Email using Node.js',
+                subject: 'Konnbot: Project ID',
                 text: `Project ID: ${lead.id}`
             };
 
