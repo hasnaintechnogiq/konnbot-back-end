@@ -32,7 +32,7 @@ const Delays = require('./models/Delays.js');
 const ProfileImage = require('./models/ProfileImage.js');
 const bcrypt = require('bcryptjs');
 const fs = require('fs');
-
+const os = require('os');
 
 
 
@@ -62,14 +62,14 @@ const multer = require("multer");
 const path = require("path");
 
 
-const uploadDir = '/upload/images';
+const uploadDir = path.join(os.homedir(), 'upload', 'images');
 
 fs.mkdirSync(uploadDir, { recursive: true });
 
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './upload/images');
+        cb(null, uploadDir);
     },
     filename: (req, file, cb) => {
         const randomDigit = Math.floor(100000 + Math.random() * 900000);
@@ -80,7 +80,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-app.use('/profile', express.static('upload/images'));
+app.use('/profile', express.static(uploadDir));
 
 
 
