@@ -41,7 +41,7 @@ if (newDatanew.subactivityname === "Gradeaaaaaaaaaaa") {
 
                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
-                console.log(objID);
+                // console.log(objID);
                 await SubActivities.updateOne(
                     { _id: newss },
                     {
@@ -50,9 +50,9 @@ if (newDatanew.subactivityname === "Gradeaaaaaaaaaaa") {
                         }
                     }
                 )
-                console.log('Data saved:', savedData);
+                // console.log('Data saved:', savedData);
             } catch (error) {
-                console.error('Error saving data:', error);
+                // console.error('Error saving data:', error);
             }
         }
     }
@@ -88,7 +88,7 @@ if (newDatanew.subactivityname === "Site Mobilization - Shoring | Protection (13
 
                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
-                console.log(objID);
+                // console.log(objID);
                 await SubActivities.updateOne(
                     { _id: newss },
                     {
@@ -97,9 +97,9 @@ if (newDatanew.subactivityname === "Site Mobilization - Shoring | Protection (13
                         }
                     }
                 )
-                console.log('Data saved:', savedData);
+                // console.log('Data saved:', savedData);
             } catch (error) {
-                console.error('Error saving data:', error);
+                // console.error('Error saving data:', error);
             }
         }
     }
@@ -142,7 +142,7 @@ if (newDatanew.subactivityname === "Plinth Beam Shuttering - Shuttering Bottom C
 
                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
-                console.log(objID);
+                // console.log(objID);
                 await SubActivities.updateOne(
                     { _id: newss },
                     {
@@ -151,9 +151,9 @@ if (newDatanew.subactivityname === "Plinth Beam Shuttering - Shuttering Bottom C
                         }
                     }
                 )
-                console.log('Data saved:', savedData);
+                // console.log('Data saved:', savedData);
             } catch (error) {
-                console.error('Error saving data:', error);
+                // console.error('Error saving data:', error);
             }
         }
     }
@@ -198,7 +198,7 @@ if (newDatanew.subactivityname === "Grade Slab") {
 
                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
-                console.log(objID);
+                // console.log(objID);
                 await SubActivities.updateOne(
                     { _id: newss },
                     {
@@ -207,9 +207,9 @@ if (newDatanew.subactivityname === "Grade Slab") {
                         }
                     }
                 )
-                console.log('Data saved:', savedData);
+                // console.log('Data saved:', savedData);
             } catch (error) {
-                console.error('Error saving data:', error);
+                // console.error('Error saving data:', error);
             }
         }
     }
@@ -252,7 +252,7 @@ if (newDatanew.subactivityname === "Beam & Slab Shuttering | Reinforcement | R.C
 
                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
-                console.log(objID);
+                // console.log(objID);
                 await SubActivities.updateOne(
                     { _id: newss },
                     {
@@ -261,9 +261,9 @@ if (newDatanew.subactivityname === "Beam & Slab Shuttering | Reinforcement | R.C
                         }
                     }
                 )
-                console.log('Data saved:', savedData);
+                // console.log('Data saved:', savedData);
             } catch (error) {
-                console.error('Error saving data:', error);
+                // console.error('Error saving data:', error);
             }
         }
     }
@@ -346,7 +346,7 @@ if (newDatanew.subactivityname === "Beam & Slab  Reinforcement - GF (178) + FF (
 
                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
-                console.log(objID);
+                // console.log(objID);
                 await SubActivities.updateOne(
                     { _id: newss },
                     {
@@ -355,9 +355,9 @@ if (newDatanew.subactivityname === "Beam & Slab  Reinforcement - GF (178) + FF (
                         }
                     }
                 )
-                console.log('Data saved:', savedData);
+                // console.log('Data saved:', savedData);
             } catch (error) {
-                console.error('Error saving data:', error);
+                // console.error('Error saving data:', error);
             }
         }
     }
@@ -404,7 +404,7 @@ if (newDatanew.subactivityname === "Beam & Slab  RCC- GF (180) + FF (188) + SF (
 
                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
-                console.log(objID);
+                // console.log(objID);
                 await SubActivities.updateOne(
                     { _id: newss },
                     {
@@ -413,9 +413,9 @@ if (newDatanew.subactivityname === "Beam & Slab  RCC- GF (180) + FF (188) + SF (
                         }
                     }
                 )
-                console.log('Data saved:', savedData);
+                // console.log('Data saved:', savedData);
             } catch (error) {
-                console.error('Error saving data:', error);
+                // console.error('Error saving data:', error);
             }
         }
     }
@@ -461,7 +461,7 @@ if (newDatanew.subactivityname === "Toilet Waterproofing : Plumbing - B1 Waterpr
 
                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
-                console.log(objID);
+                // console.log(objID);
                 await SubActivities.updateOne(
                     { _id: newss },
                     {
@@ -470,9 +470,9 @@ if (newDatanew.subactivityname === "Toilet Waterproofing : Plumbing - B1 Waterpr
                         }
                     }
                 )
-                console.log('Data saved:', savedData);
+                // console.log('Data saved:', savedData);
             } catch (error) {
-                console.error('Error saving data:', error);
+                // console.error('Error saving data:', error);
             }
         }
     }
@@ -525,7 +525,7 @@ if (newDatanew.subactivityname === "Terrace Waterproofing :  Terrace Waterproofi
 
                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
-                console.log(objID);
+                // console.log(objID);
                 await SubActivities.updateOne(
                     { _id: newss },
                     {
@@ -534,7 +534,7 @@ if (newDatanew.subactivityname === "Terrace Waterproofing :  Terrace Waterproofi
                         }
                     }
                 )
-                console.log('Data saved:', savedData);
+                // console.log('Data saved:', savedData);
             } catch (error) {
                 console.error('Error saving data:', error);
             }

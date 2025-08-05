@@ -3,7 +3,7 @@ const Snags = require('../models/Snags.js');
 const SubActivities = require('../models/SubActivities.js');
 
 const updatesnags = async (req, res) => {
-    console.log(req.params)
+    // console.log(req.params)
     try {
         let data = await Snags.updateOne(
             req.params,
@@ -21,7 +21,7 @@ const addMultiplesSnags = async (req, res) => {
     try {
         let single = await SubActivities.findById(req.body.subactivityID);
 
-        console.log(req.body)
+        // console.log(req.body)
         async function SpriscriptinfunCall() {
             for (let i = 0; i < req.body.valuable.length; i++) {
                 try {
@@ -30,7 +30,7 @@ const addMultiplesSnags = async (req, res) => {
 
                     let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                     let newss = new mongoose.Types.ObjectId(req.body.subactivityID)
-                    console.log(objID);
+                    // console.log(objID);
                     await SubActivities.updateOne(
                         { _id: newss },
                         {
@@ -43,9 +43,9 @@ const addMultiplesSnags = async (req, res) => {
                     if (i === req.body.valuable.length - 1) {
                         res.send(single);
                     }
-                    console.log('Data saved:', savedData);
+                    // console.log('Data saved:', savedData);
                 } catch (error) {
-                    console.error('Error saving data:', error);
+                    // console.error('Error saving data:', error);
                 }
             }
         }

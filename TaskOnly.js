@@ -55,7 +55,7 @@ if (newDatanew.subactivityname === "Beamgggggggggg") {
 
                 let objID = new mongoose.Types.ObjectId(newDatanewtask.id)
                 let newss = new mongoose.Types.ObjectId(newDatanew._id)
-                console.log(objID);
+                // console.log(objID);
                 await SubActivities.updateOne(
                     { _id: newss },
                     {
@@ -64,7 +64,7 @@ if (newDatanew.subactivityname === "Beamgggggggggg") {
                         }
                     }
                 )
-                console.log('Data saved:', savedData);
+                // console.log('Data saved:', savedData);
             } catch (error) {
                 console.error('Error saving data:', error);
             }

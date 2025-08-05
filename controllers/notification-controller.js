@@ -43,7 +43,7 @@ const deleteNotification = async (req, res) => {
 
 const updateNotification = async (req, res) => {
     try {
-        console.log(req.params)
+        // console.log(req.params)
         let data = await NotificationsForAll.updateOne(
             req.params,
             { $set: req.body }
@@ -86,7 +86,7 @@ const convertToContractNotificationForAll = async (req, resp) => {
         const forSearch = "Lead Manager"
         NotificationArray.find({ role: forSearch })
             .then((results) => {
-                console.log('Documents found:', results);
+     
 
                 const objecttosave = {
                     pathtoredirect: 'LEAD DETAILS',
@@ -113,7 +113,7 @@ const convertToContractNotificationForAll = async (req, resp) => {
                                 }
                             )
                         } catch (error) {
-                            console.error('Error saving data:', error);
+                            // console.error('Error saving data:', error);
                         }
                     }
                 }
@@ -123,7 +123,7 @@ const convertToContractNotificationForAll = async (req, resp) => {
 
             })
             .catch((error) => {
-                console.error('Error finding documents:', error);
+                // console.error('Error finding documents:', error);
             });
 
         resp.send({ message: "Done" });
@@ -141,7 +141,7 @@ const quotationFinalizeBytheClient = async (req, resp) => {
         const forSearch = "Lead Manager"
         NotificationArray.find({ role: forSearch })
             .then((results) => {
-                console.log('Documents found:', results);
+                // console.log('Documents found:', results);
 
                 const objecttosave = {
                     pathtoredirect: 'LEAD DETAILS',
@@ -168,14 +168,14 @@ const quotationFinalizeBytheClient = async (req, resp) => {
                                 }
                             )
                         } catch (error) {
-                            console.error('Error saving data:', error);
+                            // console.error('Error saving data:', error);
                         }
                     }
                 }
                 saveDataSen();
             })
             .catch((error) => {
-                console.error('Error finding documents:', error);
+                // console.error('Error finding documents:', error);
             });
 
         resp.send({ message: "Done" });
@@ -213,7 +213,7 @@ const statusofTicketChange = async (req, resp) => {
 
             let notifiIDes = single.notificationarrayID
 
-            console.log("go", notifiIDes);
+            // console.log("go", notifiIDes);
             await NotificationArray.updateOne(
                 { _id: notifiIDes },
                 {
@@ -252,7 +252,7 @@ const statusofInstallmentisChange = async (req, resp) => {
 
             let notifiIDes = single.notificationarrayID
 
-            console.log("go", notifiIDes);
+            // console.log("go", notifiIDes);
             await NotificationArray.updateOne(
                 { _id: notifiIDes },
                 {
@@ -298,7 +298,7 @@ const newQuotationaddednotification = async (req, resp) => {
 
             let notifiIDes = single.notificationarrayID
 
-            console.log("go", notifiIDes);
+            // console.log("go", notifiIDes);
             await NotificationArray.updateOne(
                 { _id: notifiIDes },
                 {
@@ -344,7 +344,7 @@ const clientAprrovedCo = async (req, resp) => {
 
             let notifiIDes = single.notificationarrayID
 
-            console.log("go", notifiIDes);
+            // console.log("go", notifiIDes);
             await NotificationArray.updateOne(
                 { _id: notifiIDes },
                 {

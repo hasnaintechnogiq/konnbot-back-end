@@ -31,7 +31,7 @@ const NotificationArray = require('./models/NotificationArray.js');
 const Delays = require('./models/Delays.js');
 const ProfileImage = require('./models/ProfileImage.js');
 const bcrypt = require('bcryptjs');
-
+const fs = require('fs');
 
 
 
@@ -62,7 +62,9 @@ const multer = require("multer");
 const path = require("path");
 
 
+const uploadDir = '/upload/images';
 
+fs.mkdirSync(uploadDir, { recursive: true });
 
 
 const storage = multer.diskStorage({
@@ -99,12 +101,12 @@ app.post('/upload-profile-user-new', upload.single('image'), async (req, res) =>
         }
         const formData = req.body;
         const profile_url = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
-        console.log(profile_url)
+        // console.log(profile_url)
         let singleUser = await User.findById(formData.userID)
 
         singleUser.profile_url = profile_url
 
-        singleUser.save();
+        await singleUser.save();
 
         res.json({ message: 'Image uploaded successfully' });
 
@@ -129,7 +131,7 @@ app.post('/upload-video-to-create-ticket', upload.single('video'), async (req, r
 
         let objID = new mongoose.Types.ObjectId(result.id);
         let newss = new mongoose.Types.ObjectId(req.body.userIDtogo)
-        console.log(objID);
+        // console.log(objID);
         await User.updateOne(
             { _id: newss },
             {
@@ -218,7 +220,7 @@ app.post('/add-ticket-and-upload', upload.array('images', 5), async (req, res) =
 
         const formData = req.body;
 
-        console.log(files)
+        // console.log(files)
 
 
         const imgarry = files.map((file) => ({
@@ -233,7 +235,7 @@ app.post('/add-ticket-and-upload', upload.array('images', 5), async (req, res) =
 
         let objID = new mongoose.Types.ObjectId(result.id);
         let newss = new mongoose.Types.ObjectId(req.body.userIDtogo)
-        console.log(objID);
+        // console.log(objID);
         await User.updateOne(
             { _id: newss },
             {
@@ -333,7 +335,7 @@ app.post('/add-images-in-change-order-upload', upload.array('images', 5), async 
 
         let objID = new mongoose.Types.ObjectId(result.id);
         let newss = new mongoose.Types.ObjectId(req.body.changeorderinstallmentid)
-        console.log(objID);
+        // console.log(objID);
         await ChangeOrderInstallment.updateOne(
             { _id: newss },
             {
@@ -361,7 +363,7 @@ app.post('/add-images-in-change-order-upload', upload.array('images', 5), async 
 
             let notifiIDes = single.notificationarrayID
 
-            console.log("go", notifiIDes);
+            // console.log("go", notifiIDes);
             await NotificationArray.updateOne(
                 { _id: notifiIDes },
                 {
@@ -376,7 +378,7 @@ app.post('/add-images-in-change-order-upload', upload.array('images', 5), async 
     }
 
     const formData = req.body;
-    console.log(files)
+    // console.log(files)
     const imgarry = files.map((file) => ({
         originalname: file.originalname,
         filename: file.filename,
@@ -388,7 +390,7 @@ app.post('/add-images-in-change-order-upload', upload.array('images', 5), async 
 
     let objID = new mongoose.Types.ObjectId(result.id);
     let newss = new mongoose.Types.ObjectId(req.body.changeorderinstallmentid)
-    console.log(objID);
+    // console.log(objID);
     await ChangeOrderInstallment.updateOne(
         { _id: newss },
         {
@@ -415,7 +417,7 @@ app.post('/add-images-in-change-order-upload', upload.array('images', 5), async 
 
         let notifiIDes = single.notificationarrayID
 
-        console.log("go", notifiIDes);
+        // console.log("go", notifiIDes);
         await NotificationArray.updateOne(
             { _id: notifiIDes },
             {
@@ -456,7 +458,7 @@ app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, r
 
         let objID = new mongoose.Types.ObjectId(result.id);
         let newss = new mongoose.Types.ObjectId(req.body.queryid)
-        console.log(req.body.email);
+        // console.log(req.body.email);
         await Queries.updateOne(
             { _id: newss },
             {
@@ -486,7 +488,7 @@ app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, r
 
             let notifiIDes = single.notificationarrayID
 
-            console.log("go", notifiIDes);
+            // console.log("go", notifiIDes);
             await NotificationArray.updateOne(
                 { _id: notifiIDes },
                 {
@@ -502,7 +504,7 @@ app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, r
     }
 
     const formData = req.body;
-    console.log(files)
+    // console.log(files)
     const imgarry = files.map((file) => ({
         originalname: file.originalname,
         filename: file.filename,
@@ -514,7 +516,7 @@ app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, r
 
     let objID = new mongoose.Types.ObjectId(result.id);
     let newss = new mongoose.Types.ObjectId(req.body.queryid)
-    console.log(req.body.email);
+    // console.log(req.body.email);
     await Queries.updateOne(
         { _id: newss },
         {
@@ -544,7 +546,7 @@ app.post('/ticket-updates-with-images', upload.array('images', 5), async (req, r
 
         let notifiIDes = single.notificationarrayID
 
-        console.log("go", notifiIDes);
+        // console.log("go", notifiIDes);
         await NotificationArray.updateOne(
             { _id: notifiIDes },
             {
@@ -701,7 +703,7 @@ app.post('/add-delay-with-images', upload.array('images', 5), async (req, res) =
 
 
                     } catch (error) {
-                        console.error('Error saving data:', error);
+                        // console.error('Error saving data:', error);
                     }
                 }
             }
@@ -748,7 +750,7 @@ app.post('/add-delay-with-images', upload.array('images', 5), async (req, res) =
         }
 
         const formData = req.body;
-        console.log(files)
+        // console.log(files)
         const imgarry = files.map((file) => ({
             originalname: file.originalname,
             filename: file.filename,
@@ -870,7 +872,7 @@ app.post('/add-delay-with-images', upload.array('images', 5), async (req, res) =
 
 
                 } catch (error) {
-                    console.error('Error saving data:', error);
+                    // console.error('Error saving data:', error);
                 }
             }
         }
@@ -960,7 +962,7 @@ app.post('/upload-images-for-sub-task', upload.array('images', 3), async (req, r
     if (!files || files.length === 0) {
         return res.status(400).send('No files were uploaded.');
     }
-    console.log(files)
+    // console.log(files)
 
     const imgarry = files.map((file) => ({
         originalname: file.originalname,
@@ -974,7 +976,7 @@ app.post('/upload-images-for-sub-task', upload.array('images', 3), async (req, r
 
     let objID = new mongoose.Types.ObjectId(result.id);
     let newss = new mongoose.Types.ObjectId(req.body.subactivityID)
-    console.log(objID);
+    // console.log(objID);
     await SubActivities.updateOne(
         { _id: newss },
         {
@@ -1000,7 +1002,7 @@ app.post('/upload-profile-image-for-user', upload.array('images', 1), async (req
     if (!files || files.length === 0) {
         return res.status(400).send('No files were uploaded.');
     }
-    console.log(files)
+    // console.log(files)
 
     const imgarry = files.map((file) => ({
         originalname: file.originalname,
@@ -1014,7 +1016,7 @@ app.post('/upload-profile-image-for-user', upload.array('images', 1), async (req
 
     let objID = new mongoose.Types.ObjectId(result.id);
     let newss = new mongoose.Types.ObjectId(req.body.userID)
-    console.log(objID);
+    // console.log(objID);
     await User.updateOne(
         { _id: newss },
         {
@@ -1045,12 +1047,12 @@ app.post('/upload-profile-image-for-lead-manag', upload.single('image'), async (
         }
         const formData = req.body;
         const profile_url = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
-        console.log(profile_url)
+        // console.log(profile_url)
         let singleUser = await LeadManager.findById(formData.leadmanagerID)
 
         singleUser.profile_url = profile_url
 
-        singleUser.save();
+        await singleUser.save();
 
         res.json({ message: 'Image uploaded successfully' });
 
@@ -1114,12 +1116,12 @@ app.post('/upload-profile-image-for-manag-dept', upload.single('image'), async (
         }
         const formData = req.body;
         const profile_url = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
-        console.log(profile_url)
+        // console.log(profile_url)
         let singleUser = await Manager.findById(formData.managerID)
 
         singleUser.profile_url = profile_url
 
-        singleUser.save();
+        await singleUser.save();
 
         res.json({ message: 'Image uploaded successfully' });
 
@@ -1147,12 +1149,12 @@ app.post('/upload-profile-image-for-engineer-yes', upload.single('image'), async
         }
         const formData = req.body;
         const profile_url = `https://konnbot-app-zq4v4.ondigitalocean.app/profile/${files.filename}`;
-        console.log(profile_url)
+        // console.log(profile_url)
         let singleUser = await Engineer.findById(formData.engineerID)
 
         singleUser.profile_url = profile_url
 
-        singleUser.save();
+        await singleUser.save();
 
         res.json({ message: 'Image uploaded successfully' });
 
@@ -1188,8 +1190,8 @@ app.post('/upload-profile-image-for-engineer-yes', upload.single('image'), async
 // app.use('/documents', express.static('uploads'));
 // upload documents for Quotation
 app.post('/upload-documents', upload.single('document'), async (req, res) => {
-    console.log(req.file);  // Check if file is received
-    console.log(req.body);  // Check if QuotationID is received
+    // console.log(req.file);  // Check if file is received
+    // console.log(req.body);  // Check if QuotationID is received
     try {
         const { originalname, size, mimetype, filename } = req.file;
         const newDocument = new DocumentForQuotation({
@@ -1203,7 +1205,7 @@ app.post('/upload-documents', upload.single('document'), async (req, res) => {
 
         let objID = new mongoose.Types.ObjectId(result.id);
         let newss = new mongoose.Types.ObjectId(req.body.QuotationID)
-        console.log(objID);
+        // console.log(objID);
         await Quotation.updateOne(
             { _id: newss },
             {
@@ -1217,7 +1219,7 @@ app.post('/upload-documents', upload.single('document'), async (req, res) => {
 
         res.json({ message: 'Document uploaded successfully' });
     } catch (error) {
-        console.error(error);
+        // console.error(error);
         res.status(500).json({ error: 'Error uploading document' });
     }
 });
@@ -1226,8 +1228,8 @@ app.post('/upload-documents', upload.single('document'), async (req, res) => {
 
 
 app.post('/upload-manager-documents', upload.single('document'), async (req, res) => {
-    console.log(req.file);  // Check if file is received
-    console.log(req.body);  // Check if QuotationID is received
+    // console.log(req.file);  // Check if file is received
+    // console.log(req.body);  // Check if QuotationID is received
     try {
         const { originalname, size, mimetype, filename } = req.file;
         const newDocument = new DocumentForManager({
@@ -1241,7 +1243,7 @@ app.post('/upload-manager-documents', upload.single('document'), async (req, res
 
         let objID = new mongoose.Types.ObjectId(result.id);
         let newss = new mongoose.Types.ObjectId(req.body.projectID)
-        console.log(objID);
+        // console.log(objID);
         await Project.updateOne(
             { _id: newss },
             {
@@ -1255,7 +1257,7 @@ app.post('/upload-manager-documents', upload.single('document'), async (req, res
 
         res.json({ message: 'Document uploaded successfully' });
     } catch (error) {
-        console.error(error);
+        // console.error(error);
         res.status(500).json({ error: 'Error uploading document' });
     }
 });
@@ -1323,14 +1325,14 @@ app.post("/add-all-installlments", async (req, resp) => {
                         return resp.send("Done");
                     }
                 } catch (error) {
-                    console.error('Error saving data:', error);
+                    // console.error('Error saving data:', error);
                 }
             }
         }
         saveDataSeq();
 
     } catch (error) {
-        console.error('Error saving data:', error);
+        // console.error('Error saving data:', error);
     }
 
 });
@@ -1414,7 +1416,7 @@ app.post("/login", async (req, resp) => {
                 return resp.send("no data found")
             }
             const token = await user.generateAuthToken();
-            console.log(token);
+            // console.log(token);
             user._doc.tokenCode = token;
             resp.send(user);
         } else { resp.send("enter email and pass") }
@@ -1437,7 +1439,7 @@ app.post("/manager-login", async (req, resp) => {
                 return resp.send("no data found")
             }
             const token = await user.generateManagerAuthToken();
-            console.log(token);
+            // console.log(token);
             user._doc.tokenCode = token;
             resp.send(user);
         } else { resp.send("enter email and pass") }
@@ -1559,7 +1561,7 @@ app.post("/engineer-login", async (req, resp) => {
                 return resp.send("no data found")
             }
             const token = await user.generateEngineerAuthToken();
-            console.log(token);
+            // console.log(token);
             user._doc.tokenCode = token;
             resp.send(user);
         } else { resp.send("enter email and pass") }
@@ -1598,7 +1600,7 @@ app.post("/lead-manager-login", async (req, resp) => {
                 return resp.send("no data found")
             }
             const token = await user.generateLeadManagerAuthToken();
-            console.log(token);
+            // console.log(token);
             user._doc.tokenCode = token;
             resp.send(user);
         } else { resp.send("enter email and pass") }
@@ -1612,16 +1614,7 @@ app.post("/lead-manager-login", async (req, resp) => {
 
 
 app.post("/admin-login", async (req, resp) => {
-    // if (req.body.name && req.body.password) {
-    //     let admin = await Admin.findOne(req.body).select("-password")
-    //     if (admin) {
-    //         resp.send(admin);
-    //     } else { resp.send("no data found") }
-    // } else { resp.send("enter email and pass") }
-
-
-
-    const { name, password } = req.body;
+      const { name, password } = req.body;
     try {
         if (req.body.name && req.body.password) {
             const user = await Admin.findOne({ name });
@@ -1633,18 +1626,13 @@ app.post("/admin-login", async (req, resp) => {
                 return resp.send("no data found")
             }
             const token = await user.generateAdminAuthToken();
-            console.log(token);
+            // console.log(token);
             user._doc.tokenCode = token;
             resp.send(user);
         } else { resp.send("enter email and pass") }
     } catch (error) {
         resp.status(500).json(error);
     }
-
-
-
-
-
 });
 
 
@@ -1733,13 +1721,13 @@ app.post("/admin-register", async (req, resp) => {
 
 app.put("/update-new-password/:_id", async (req, resp) => {
     const { password, otp } = req.body;
-    console.log(password, otp)
+    // console.log(password, otp)
     try {
         let productsingle = await User.findById(req.params._id);
-        console.log(productsingle)
+        // console.log(productsingle)
         const hashedPassword = await bcrypt.hash(password, 10);
         productsingle.password = hashedPassword
-        productsingle.save();
+        await productsingle.save();
         resp.send(productsingle);
 
     } catch (error) {
@@ -1781,7 +1769,7 @@ app.put("/add-queries-in-user/:id", async (req, resp) => {
 
 app.put("/date-change-for-all-sub-activites", async (req, resp) => {
     const { projectID, subactivityID, dateToAdd } = req.body;
-    console.log(projectID, subactivityID);
+    // console.log(projectID, subactivityID);
 
     try {
         let productsingle = await SubActivities.findById(subactivityID);
@@ -1798,7 +1786,7 @@ app.put("/date-change-for-all-sub-activites", async (req, resp) => {
 
         date.setDate(date.getDate() + productsingle.estimateDays - 1);
 
-        console.log(date.toISOString());
+        // console.log(date.toISOString());
 
         const endDateOfSub = date.toISOString();
 
@@ -1820,13 +1808,13 @@ app.put("/date-change-for-all-sub-activites", async (req, resp) => {
         const ArrayDatainArrayofObejects = ActivitiesData.activitiesID;
         const ArrayDataNewAP = ArrayDatainArrayofObejects.reduce((acc, current) => acc.concat(current.subactivitiesID), []);
 
-        console.log(ArrayDataNewAP);
+        // console.log(ArrayDataNewAP);
 
 
 
         const getObjectsAfterId = (array, specificId) => {
             const index = array.findIndex(obj => obj._id.equals(specificId));
-            console.log("Index found:", index);
+            // console.log("Index found:", index);
 
             if (index === -1 || index === array.length - 1) {
                 return [];
@@ -1863,7 +1851,7 @@ app.put("/date-change-for-all-sub-activites", async (req, resp) => {
 
                     datefirst.setDate(datefirst.getDate() + myVariable);
 
-                    console.log(datefirst.toISOString());
+                    // console.log(datefirst.toISOString());
 
                     const StartDateForEvery = datefirst.toISOString();
 
@@ -1876,7 +1864,7 @@ app.put("/date-change-for-all-sub-activites", async (req, resp) => {
 
                     datNew.setDate(datNew.getDate() + finalEndDate);
 
-                    console.log(datNew.toISOString());
+                    // console.log(datNew.toISOString());
 
                     const endDateForEvery = datNew.toISOString();
 
@@ -1886,7 +1874,7 @@ app.put("/date-change-for-all-sub-activites", async (req, resp) => {
 
 
                 } catch (error) {
-                    console.error('Error saving data:', error);
+                    // console.error('Error saving data:', error);
                 }
             }
         }
@@ -1897,7 +1885,7 @@ app.put("/date-change-for-all-sub-activites", async (req, resp) => {
         resp.send(productsingle);
 
     } catch (error) {
-        console.error(error);
+        // console.error(error);
         resp.status(500).json(error);
     }
 });
@@ -1926,7 +1914,7 @@ app.put("/date-change-for-all-sub-activites", async (req, resp) => {
 
 app.put("/date-chng-for-all-sub-activity-by-end-date", async (req, resp) => {
     const { projectID, subactivityID, dateToAdd } = req.body;
-    console.log(projectID, subactivityID);
+    // console.log(projectID, subactivityID);
 
     try {
         let productsingle = await SubActivities.findById(subactivityID);
@@ -1953,11 +1941,11 @@ app.put("/date-chng-for-all-sub-activity-by-end-date", async (req, resp) => {
         const ArrayDatainArrayofObejects = ActivitiesData.activitiesID;
         const ArrayDataNewAP = ArrayDatainArrayofObejects.reduce((acc, current) => acc.concat(current.subactivitiesID), []);
 
-        console.log(ArrayDataNewAP);
+        // console.log(ArrayDataNewAP);
 
         const getObjectsAfterId = (array, specificId) => {
             const index = array.findIndex(obj => obj._id.equals(specificId));
-            console.log("Index found:", index);
+            // console.log("Index found:", index);
 
             if (index === -1 || index === array.length - 1) {
                 return [];
@@ -1994,7 +1982,7 @@ app.put("/date-chng-for-all-sub-activity-by-end-date", async (req, resp) => {
 
                     datefirst.setDate(datefirst.getDate() + myVariable);
 
-                    console.log(datefirst.toISOString());
+                    // console.log(datefirst.toISOString());
 
                     const StartDateForEvery = datefirst.toISOString();
 
@@ -2007,7 +1995,7 @@ app.put("/date-chng-for-all-sub-activity-by-end-date", async (req, resp) => {
 
                     datNew.setDate(datNew.getDate() + finalEndDate);
 
-                    console.log(datNew.toISOString());
+                    // console.log(datNew.toISOString());
 
                     const endDateForEvery = datNew.toISOString();
 
@@ -2017,7 +2005,7 @@ app.put("/date-chng-for-all-sub-activity-by-end-date", async (req, resp) => {
 
 
                 } catch (error) {
-                    console.error('Error saving data:', error);
+                    // console.error('Error saving data:', error);
                 }
             }
         }
@@ -2028,7 +2016,7 @@ app.put("/date-chng-for-all-sub-activity-by-end-date", async (req, resp) => {
         resp.send(productsingle);
 
     } catch (error) {
-        console.error(error);
+        // console.error(error);
         resp.status(500).json(error);
     }
 });

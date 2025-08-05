@@ -79,7 +79,7 @@ const addMangagerProfile = async (req, res) => {
 
         if (existingManagerByEmail.length > 0) {
             res.send('Email already exists');
-            console.log("Email already exists")
+            // console.log("Email already exists")
         } else {
             const hashedPassword = await bcrypt.hash(password, 10);
             const user = new Manager({ name, number, city, email, password: hashedPassword });
@@ -110,7 +110,7 @@ const addProfileofEngiiner = async (req, res) => {
 
         if (existingManagerByEmail.length > 0) {
             res.send('Email already exists');
-            console.log("Email already exists")
+            // console.log("Email already exists")
         } else {
             const hashedPassword = await bcrypt.hash(password, 10);
             const user = new Engineer({ name, number, city, email, password: hashedPassword });
@@ -221,7 +221,7 @@ const addProfileofLead = async (req, res) => {
 
         if (existingManagerByEmail.length > 0) {
             res.send('Email already exists');
-            console.log("Email already exists")
+            // console.log("Email already exists")
         } else {
             const hashedPassword = await bcrypt.hash(password, 10);
             const user = new LeadManager({ name, number, city, email, password: hashedPassword });
@@ -12592,7 +12592,7 @@ const CalculationCheckTentetive = async (req, resp) => {
 
         var ALGORITHUMDONE_F403 = FINALINPUTSDONE_N90 === "FLUSH DOOR" ? ALGORITHUMDONE_E396 : FINALINPUTSDONE_N90 === "HDRM BOARD" ? ALGORITHUMDONE_E396 : 0;
 
-        console.log("YESqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqvqqqqqqqqqqqqq", DPW_GFDoorPanellingDoorPanelAreaHDRMFlushQuantity);
+
         var ALGORITHUMDONE_B408 = (FINALINPUTSDONE_N94 === "FLUSH DOOR" || FINALINPUTSDONE_N94 === "HDRM BOARD") ? ALGORITHUMDONE_E397 : 0;
 
 
@@ -18369,23 +18369,6 @@ const CalculationCheckTentetive = async (req, resp) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             }
 
             let qunatieMaterilID = new QuantitiesMaterial(objecttosave);
@@ -18402,19 +18385,9 @@ const CalculationCheckTentetive = async (req, resp) => {
                 }
             )
 
-
-
-
-
-
-
-
             return resp.status(200).json("AllDoneFinaly");
         } else {
-
-
             return resp.status(200).json(All_Final_Cost);
-
         }
 
         // resp.send(OA_GraniteRunning_TotalAmount);

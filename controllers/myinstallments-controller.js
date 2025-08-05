@@ -89,7 +89,7 @@ const addPaidAmount = async (req, res) => {
 
         let objID = new mongoose.Types.ObjectId(data.id)
         let newss = new mongoose.Types.ObjectId(req.body.installmentID)
-        console.log(objID);
+        // console.log(objID);
         await MyInstallment.updateOne(
             { _id: newss },
             {
@@ -99,10 +99,10 @@ const addPaidAmount = async (req, res) => {
             }
         )
 
-        console.log('req.body', req.body)
+        // console.log('req.body', req.body)
         let productsingle = await MyInstallment.findById(req.body.installmentID);
 
-        console.log('productsingle', productsingle)
+        // console.log('productsingle', productsingle)
         const updatNew = productsingle.paidamount + Number(req.body.paidamountn);
 
         productsingle.paidamount = updatNew;
@@ -129,7 +129,7 @@ const addPaidAmount = async (req, res) => {
 
             let notifiIDes = single.notificationarrayID
 
-            console.log("go", notifiIDes);
+            // console.log("go", notifiIDes);
             await NotificationArray.updateOne(
                 { _id: notifiIDes },
                 {
@@ -181,13 +181,13 @@ const chatsInstallment = async (req, resp) => {
         let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
 
         const { userID, managerID } = req.body
-        console.log(userID)
+        // console.log(userID)
         if (userID && req.body.usertype !== "user") {
             let single = await User.findOne({ _id: userID })
 
             let notifiIDes = single.notificationarrayID
 
-            console.log(notifiIDes);
+            // console.log(notifiIDes);
             await NotificationArray.updateOne(
                 { _id: notifiIDes },
                 {
@@ -219,7 +219,7 @@ const chatsInstallment = async (req, resp) => {
 
             let notifiIDes = single.notificationarrayID
 
-            console.log(notifiIDes);
+            // console.log(notifiIDes);
             await NotificationArray.updateOne(
                 { _id: notifiIDes },
                 {
@@ -266,7 +266,7 @@ const chatsInstallment = async (req, resp) => {
 
 const updateMyInstallment = async (req, res) => {
     try {
-        console.log(req.params)
+        // console.log(req.params)
         let data = await MyInstallment.updateOne(
             req.params,
             { $set: req.body }

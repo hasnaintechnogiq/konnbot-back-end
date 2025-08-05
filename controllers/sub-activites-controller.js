@@ -13,7 +13,7 @@ const addNewSubActivity = async (req, res) => {
 
         let objID = new mongoose.Types.ObjectId(data.id)
         let newss = new mongoose.Types.ObjectId(req.body.activityID)
-        console.log(objID);
+        // console.log(objID);
         await Activities.updateOne(
             { _id: newss },
             {
@@ -37,7 +37,7 @@ const addNewUpdateInSubActivity = async (req, res) => {
 
         let objID = new mongoose.Types.ObjectId(data.id)
         let newss = new mongoose.Types.ObjectId(req.body.subactivityID)
-        console.log(objID);
+        // console.log(objID);
         await SubActivities.updateOne(
             { _id: newss },
             {
@@ -60,7 +60,7 @@ const addSubTask = async (req, res) => {
 
         let objID = new mongoose.Types.ObjectId(data.id)
         let newss = new mongoose.Types.ObjectId(req.body.subactivityID)
-        console.log(objID);
+        // console.log(objID);
         await SubActivities.updateOne(
             { _id: newss },
             {
@@ -83,7 +83,7 @@ const addCheck = async (req, res) => {
 
         let objID = new mongoose.Types.ObjectId(data.id)
         let newss = new mongoose.Types.ObjectId(req.body.subactivityID)
-        console.log(objID);
+        // console.log(objID);
         await SubActivities.updateOne(
             { _id: newss },
             {
@@ -107,7 +107,7 @@ const addMatreial = async (req, res) => {
 
         let objID = new mongoose.Types.ObjectId(data.id)
         let newss = new mongoose.Types.ObjectId(req.body.subactivityID)
-        console.log(objID);
+        // console.log(objID);
         await SubActivities.updateOne(
             { _id: newss },
             {
@@ -155,7 +155,7 @@ const deleteSubActivity = async (req, res) => {
 
 const updatesubactivity = async (req, res) => {
     try {
-        console.log(req.params)
+        // console.log(req.params)
         let data = await SubActivities.updateOne(
             req.params,
             { $set: req.body }
@@ -169,7 +169,7 @@ const updatesubactivity = async (req, res) => {
 
 const updatesubTask = async (req, res) => {
     try {
-        console.log(req.params)
+        // console.log(req.params)
         let data = await Subtask.updateOne(
             req.params,
             { $set: req.body }
@@ -183,7 +183,7 @@ const updatesubTask = async (req, res) => {
 
 const updateChecks = async (req, res) => {
     try {
-        console.log(req.params)
+        // console.log(req.params)
         let data = await Checks.updateOne(
             req.params,
             { $set: req.body }
@@ -196,7 +196,7 @@ const updateChecks = async (req, res) => {
 
 const updateMaterial = async (req, res) => {
     try {
-        console.log(req.params)
+        // console.log(req.params)
         let data = await Material.updateOne(
             req.params,
             { $set: req.body }

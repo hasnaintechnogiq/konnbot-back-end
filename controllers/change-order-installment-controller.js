@@ -12,7 +12,7 @@ const addNewChangeOrderInstallment = async (req, resp) => {
         const result = await changeorder.save();
         let objID = new mongoose.Types.ObjectId(changeorder.id)
         let newss = new mongoose.Types.ObjectId(req.body.installmentID)
-        console.log(objID);
+        // console.log(objID);
         await MyInstallment.updateOne(
             { _id: newss },
             {
@@ -40,7 +40,7 @@ const addNewChangeOrderInstallment = async (req, resp) => {
     
             let notifiIDes = single.notificationarrayID
     
-            console.log("go", notifiIDes);
+            // console.log("go", notifiIDes);
             await NotificationArray.updateOne(
                 { _id: notifiIDes },
                 {
@@ -67,7 +67,7 @@ const getAllChangeOrderInstallmentDetail = async (req, res) => {
 };
 
 const getSingleUserChangeOrderInstallment = async (req, resp) => {
-    console.log(req.params._id)
+    // console.log(req.params._id)
     try {
         let single = await Lead.findOne({ _id: req.params._id }).populate("ChangeOrderInstallmentID");
         resp.send(single);
@@ -87,7 +87,7 @@ const deleteChangeOrderInstallment = async (req, resp) => {
 
 const updatechangeOrderInstallmentDetail = async (req, resp) => {
     try {
-        console.log(req.params)
+        // console.log(req.params)
         let data = await ChangeOrderInstallment.updateOne(
             req.params,
             { $set: req.body }

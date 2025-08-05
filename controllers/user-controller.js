@@ -47,7 +47,7 @@ const addNewUser = async (req, res) => {
 
         if (existingByEmail.length > 0) {
             res.send('Email already exists');
-            console.log("Email already exists")
+            // console.log("Email already exists")
         } else {
             const hashedPassword = await bcrypt.hash(password, 10);
             const user = new User({ name, email, password: hashedPassword });
@@ -66,7 +66,7 @@ const addNewUser = async (req, res) => {
                 const result = await user.save();
 
 
-                console.log("Email fffffffffffffffffts", existingLeadByEmail._id)
+                // console.log("Email fffffffffffffffffts", existingLeadByEmail._id)
                 await Lead.updateOne(
                     { _id: existingLeadByEmail._id },
                     {
@@ -89,7 +89,7 @@ const addNewUser = async (req, res) => {
 
 const updateUserDetail = async (req, res) => {
     try {
-        console.log(req.params)
+        // console.log(req.params)
         let data = await User.updateOne(
             req.params,
             { $set: req.body }
@@ -123,7 +123,7 @@ const addSiteDetailsForDemo = async (req, resp) => {
         const result = await sitedemo.save();
         let objID = new mongoose.Types.ObjectId(sitedemo.id)
         let newss = new mongoose.Types.ObjectId(req.body.userID)
-        console.log(objID);
+        // console.log(objID);
         await User.updateOne(
             { _id: newss },
             {
@@ -146,12 +146,12 @@ const margeClientToLead = async (req, resp) => {
     try {
 
         let leadid = await Lead.findById(req.body.leadID)
-        console.log(leadid)
+        // console.log(leadid)
         if (leadid) {
 
             let userIDEx = new mongoose.Types.ObjectId(req.body.userID)
             let leadIDEx = new mongoose.Types.ObjectId(req.body.leadID)
-            console.log(userIDEx);
+            // console.log(userIDEx);
             await User.updateOne(
                 { _id: userIDEx },
                 {
@@ -205,10 +205,10 @@ const genarateOtpandsendtoemail = async (req, resp) => {
                 { new: true }
             )
                 .then(user => {
-                    console.log('User OTP updated:', user);
+                    // console.log('User OTP updated:', user);
                 })
                 .catch(err => {
-                    console.error('Error updating user OTP:', err);
+                    // console.error('Error updating user OTP:', err);
                 });
 
 
@@ -318,7 +318,7 @@ const checkotpnow = async (req, resp) => {
 
 const signinbygmail = async (req, res) => {
     try {
-        console.log(req.body)
+        // console.log(req.body)
         // if (req.body.additionalUserInfo.isNewUser) {
         //     const email = req.body.additionalUserInfo.profile.email
         //     let existingByEmail = await User.findOne({ email })
@@ -369,14 +369,14 @@ const signinbygmail = async (req, res) => {
             try {
                 const newDocument = new NotificationArray();
                 const notifiArray = await newDocument.save();
-                console.log("NotificationArray saved:", notifiArray);
+                // console.log("NotificationArray saved:", notifiArray);
 
                 let objID = new mongoose.Types.ObjectId(newDocument.id);
                 userNew.notificationarrayID = objID;
 
-                console.log("Before saving new user:", userNew);
+                // console.log("Before saving new user:", userNew);
                 const result = await userNew.save();
-                console.log("New user saved:", result);
+                // console.log("New user saved:", result);
 
                 // let leadCheck = await Lead.findOne({ email: email });
 
@@ -402,17 +402,17 @@ const signinbygmail = async (req, res) => {
                 // )
 
                 const token = await userNew.generateAuthToken();
-                console.log("condition four");
+                // console.log("condition four");
                 result._doc.tokenCode = token;
                 return res.send(result);
             } catch (error) {
-                console.error("Error in saving new user:", error);
+                // console.error("Error in saving new user:", error);
                 return res.status(500).json({ error: 'Failed to save new user' });
             }
         }
 
         const token = await user.generateAuthToken();
-        console.log("condition five");
+        // console.log("condition five");
         user._doc.tokenCode = token;
         res.send(user);
         // }

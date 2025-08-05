@@ -56,7 +56,7 @@ const addNewProjectspace = async (req, resp) => {
         const result = await structure.save();
         let objID = new mongoose.Types.ObjectId(structure.id)
         let newss = new mongoose.Types.ObjectId(req.body.projectID)
-        console.log(objID);
+        // console.log(objID);
         await Project.updateOne(
             { _id: newss },
             {
@@ -77,7 +77,7 @@ const addRoom = async (req, resp) => {
         const result = await roomnew.save();
         let objID = new mongoose.Types.ObjectId(roomnew.id)
         let newss = new mongoose.Types.ObjectId(req.body.floorID)
-        console.log(objID);
+        // console.log(objID);
         await Projectspace.updateOne(
             { _id: newss },
             {
@@ -95,7 +95,7 @@ const addRoom = async (req, resp) => {
 
 const updateProjectspaceDetail = async (req, resp) => {
     try {
-        console.log(req.params)
+        // console.log(req.params)
         let data = await Projectspace.updateOne(
             req.params,
             { $set: req.body }

@@ -36,7 +36,7 @@ const addQueryUpdate = async (req, res) => {
         const result = await queries.save();
         let objID = new mongoose.Types.ObjectId(queries.id);
         let newss = new mongoose.Types.ObjectId(req.body.queryid)
-        console.log(req.body.email);
+        // console.log(req.body.email);
         await Queries.updateOne(
             { _id: newss },
             {
@@ -57,7 +57,7 @@ const addNewQueries = async (req, res) => {
         const result = await queries.save();
         let objID = new mongoose.Types.ObjectId(queries.id);
         
-        console.log(req.body.email);
+        // console.log(req.body.email);
         await User.updateOne(
             { email: req.body.email },
             {
@@ -74,7 +74,7 @@ const addNewQueries = async (req, res) => {
 
 const updateQueries = async (req, res) => {
     try {
-        console.log(req.params)
+        // console.log(req.params)
         let data = await Queries.updateOne(
             req.params,
             { $set: req.body }

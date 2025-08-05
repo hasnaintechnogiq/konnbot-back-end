@@ -44,7 +44,7 @@ managerSchema.methods.generateManagerAuthToken = async function () {
         return token;
     }
     catch (error) {
-        console.log(error);
+        // console.log(error);
     }
 }
 

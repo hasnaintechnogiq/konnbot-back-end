@@ -80,7 +80,7 @@ const addNewStructureInQuotation = async (req, resp) => {
         const result = await projectstructure.save();
         let objID = new mongoose.Types.ObjectId(projectstructure.id)
         let newss = new mongoose.Types.ObjectId(req.body.quotationID)
-        console.log(objID);
+        // console.log(objID);
         await Quotation.updateOne(
             { _id: newss },
             {
@@ -101,7 +101,7 @@ const addNewProjectspaceinQuatation = async (req, resp) => {
         const result = await structure.save();
         let objID = new mongoose.Types.ObjectId(structure.id)
         let newss = new mongoose.Types.ObjectId(req.body.quotationID)
-        console.log(objID);
+        // console.log(objID);
         await Quotation.updateOne(
             { _id: newss },
             {
@@ -121,7 +121,7 @@ const addSelectedQuotationinLead = async (req, resp) => {
     try {
         let leadID = new mongoose.Types.ObjectId(req.body.leadID)
         let quotationID = new mongoose.Types.ObjectId(req.body.quotationID)
-        console.log(quotationID);
+        // console.log(quotationID);
         await Lead.updateOne(
             { _id: leadID },
             {
@@ -143,13 +143,13 @@ const addSelectedQuotationinLead = async (req, resp) => {
         const resultnew = await notificationall.save();
         let objIDnew = new mongoose.Types.ObjectId(notificationall.id)
         const useridcheck = req.body.userID
-        console.log("useridcheck", useridcheck);
+        // console.log("useridcheck", useridcheck);
         if (useridcheck) {
             let single = await User.findOne({ _id: useridcheck })
     
             let notifiIDes = single.notificationarrayID
     
-            console.log("go", notifiIDes);
+            // console.log("go", notifiIDes);
             await NotificationArray.updateOne(
                 { _id: notifiIDes },
                 {
@@ -231,7 +231,7 @@ const commentsonquatation = async (req, resp) => {
         const result = await changeorder.save();
         let objID = new mongoose.Types.ObjectId(changeorder.id)
         let newss = new mongoose.Types.ObjectId(req.body.quotationID)
-        console.log(objID);
+        // console.log(objID);
         await Quotation.updateOne(
             { _id: newss },
             {
@@ -260,7 +260,7 @@ const deleteQuotationOne = async (req, res) => {
 
 const updateQuotation = async (req, res) => {
     try {
-        console.log(req.params)
+        // console.log(req.params)
         let data = await Quotation.updateOne(
             req.params,
             { $set: req.body }

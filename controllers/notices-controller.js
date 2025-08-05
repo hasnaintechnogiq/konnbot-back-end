@@ -14,7 +14,7 @@ const getAllNoticesDetail = async (req, res) => {
 };
 
 const getSingleUserNotices = async (req, resp) => {
-    console.log(req.params._id)
+    // console.log(req.params._id)
     try {
         let single = await Lead.findOne({ _id: req.params._id }).populate("noticesID");
         resp.send(single);
@@ -38,7 +38,7 @@ const addNewNotices = async (req, resp) => {
         const result = await structure.save();
         let objID = new mongoose.Types.ObjectId(structure.id)
         let newss = new mongoose.Types.ObjectId(req.body.leadID)
-        console.log(objID);
+        // console.log(objID);
         await Lead.updateOne(
             { _id: newss },
             {
@@ -55,7 +55,7 @@ const addNewNotices = async (req, resp) => {
 
 const updateNoticesDetail = async (req, resp) => {
     try {
-        console.log(req.params)
+        // console.log(req.params)
         let data = await Notices.updateOne(
             req.params,
             { $set: req.body }

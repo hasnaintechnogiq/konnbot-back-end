@@ -69,7 +69,7 @@ const addNewLead = async (req, res) => {
         res.send(result);
 
         if (single) {
-            console.log(single._id)
+            // console.log(single._id)
             await Lead.updateOne(
                 { _id: objID },
                 {
@@ -100,7 +100,7 @@ const addNewLead = async (req, res) => {
                 await transporter.sendMail(mailOptions);
                 // return res.status(200).json({ message: 'Email sent successfully' });
             } catch (error) {
-                console.error('Error sending email:', error);
+                // console.error('Error sending email:', error);
                 // return res.status(500).json({ error: 'Failed to send email' });
             }
 
@@ -113,7 +113,7 @@ const addNewLead = async (req, res) => {
 
 const updateLead = async (req, res) => {
     try {
-        console.log(req.params)
+        // console.log(req.params)
         let data = await Lead.updateOne(
             { _id: req.params._id },
             { $set: req.body }

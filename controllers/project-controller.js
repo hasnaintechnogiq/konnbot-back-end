@@ -37,7 +37,7 @@ const addNewProject = async (req, resp) => {
         const result = await project.save();
         let objID = new mongoose.Types.ObjectId(project.id)
         let newss = new mongoose.Types.ObjectId(req.body.leadID)
-        console.log(objID);
+        // console.log(objID);
         await Lead.updateOne(
             { _id: newss },
             {
@@ -54,7 +54,7 @@ const addNewProject = async (req, resp) => {
 
 const updateProjectDetail = async (req, resp) => {
     try {
-        console.log(req.params)
+        // console.log(req.params)
         let data = await Project.updateOne(
             req.params,
             { $set: req.body }
