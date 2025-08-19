@@ -11848,15 +11848,15 @@ const createAllActivites = async (req, resp) => {
 
 
                         var dataArrayPlinthWork = [
-                            { subactivityname: 'Shuttering Bottom', activityID: newData._id, projectID: objectproID, estimateDays: shutteringBottom_ESTD },
-                            { subactivityname: 'Reinforcement Work', activityID: newData._id, projectID: objectproID, estimateDays: reinforcementWork_ESTD },
-                            { subactivityname: 'Shuttering Side', activityID: newData._id, projectID: objectproID, estimateDays: shutteringSide_ESTD },
-                            { subactivityname: 'RCC', activityID: newData._id, projectID: objectproID, estimateDays: rcc_ESTD },
-                            { subactivityname: 'Filling Work', activityID: newData._id, projectID: objectproID, estimateDays: fillingWork_ESTD },
-                            { subactivityname: 'Sewage Line Work', activityID: newData._id, projectID: objectproID, estimateDays: sewageLineWork_ESTD },
-                            { subactivityname: 'Anti Termite Work', activityID: newData._id, projectID: objectproID, estimateDays: antiTermiteWork_ESTD },
-                            { subactivityname: 'Grade Slab Reinforcement Work', activityID: newData._id, projectID: objectproID, estimateDays: gradeSlabReinforcementWork_ESTD },
-                            { subactivityname: 'Grade Slab RCC Work', activityID: newData._id, projectID: objectproID, estimateDays: gradeSlabRCCWork_ESTD }
+                            { subactivityname: 'Shuttering Bottom', activityID: newData._id, projectID: objectproID, estimateDays: 3 },
+                            { subactivityname: 'Reinforcement Work', activityID: newData._id, projectID: objectproID, estimateDays: 2 },
+                            { subactivityname: 'Shuttering Side', activityID: newData._id, projectID: objectproID, estimateDays: 3 },
+                            { subactivityname: 'RCC', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'Filling Work', activityID: newData._id, projectID: objectproID, estimateDays: 2 },
+                            { subactivityname: 'Sewage Line Work', activityID: newData._id, projectID: objectproID, estimateDays: 4 },
+                            { subactivityname: 'Anti Termite Work', activityID: newData._id, projectID: objectproID, estimateDays: 1 },
+                            { subactivityname: 'Grade Slab Reinforcement Work', activityID: newData._id, projectID: objectproID, estimateDays: 2 },
+                            { subactivityname: 'Grade Slab RCC Work', activityID: newData._id, projectID: objectproID, estimateDays: 3 }
                         ];
 
 
@@ -12736,6 +12736,9 @@ const createAllActivites = async (req, resp) => {
                                             {},
                                             {},
                                             {},
+                                            { maintitle: 'Footing', InformationOneString: 'No', InformationTwoString: '562', InformationThreeString: 'Rentokil PCI' },
+                                            { maintitle: 'Plinth Beam', InformationOneString: 'No', InformationTwoString: '562', InformationThreeString: 'Rentokil PCI' },
+                                            { maintitle: 'Periphery', InformationOneString: 'No', InformationTwoString: '562', InformationThreeString: 'Rentokil PCI' },
                                         ];
 
                                         async function RccsnagsSnags() {

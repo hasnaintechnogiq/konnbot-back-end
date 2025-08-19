@@ -10,7 +10,7 @@ const managerSchema = mongoose.Schema({
     state: String,
     password: String,
     profile_url: String,
-    date:{type:Date, default: Date.now},
+    date: { type: Date, default: Date.now },
     notificationarrayID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'notificationarray'
@@ -38,7 +38,7 @@ const managerSchema = mongoose.Schema({
 
 managerSchema.methods.generateManagerAuthToken = async function () {
     try {
-        let token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET, { expiresIn: '3d' })
+        let token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET, { expiresIn: '28d' })
         this.tokens = this.tokens.concat({ token: token })
         await this.save();
         return token;
