@@ -7,7 +7,7 @@ const LeadsSchema = mongoose.Schema({
     email: String,
     interested: {
         type: String,
-        default: "Not Intrested"
+        default: "Interested"
     },
     ScopeofWork: String,
     quotationstatus: {
