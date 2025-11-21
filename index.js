@@ -60,6 +60,7 @@ const Routes = require("./routes/route.js")
 
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
 
 
 
@@ -989,6 +990,71 @@ app.post('/upload-images-for-sub-task', upload.array('images', 3), async (req, r
 
 // Upload images for sub task end
 
+// Delete single image for sub task start
+
+app.delete('/delete-sub-task-image/:photoId/:imageId', async (req, res) => {
+    try {
+        const { photoId } = req.params;
+        const imageIdParam = decodeURIComponent(req.params.imageId);
+
+        if (!photoId || !imageIdParam) {
+            return res.status(400).json({ message: 'photoId and imageId are required.' });
+        }
+
+        const photoDoc = await PhotosForSubActivities.findById(photoId);
+
+        if (!photoDoc) {
+            return res.status(404).json({ message: 'Photos not found for the provided id.' });
+        }
+
+        const imageIndex = photoDoc.imgarry.findIndex((image) => {
+            if (!image) return false;
+            if (image._id && image._id.toString() === imageIdParam) {
+                return true;
+            }
+            if (image.filename && image.filename === imageIdParam) {
+                return true;
+            }
+            if (!image._id && !image.filename && image.profile_url === imageIdParam) {
+                return true;
+            }
+            return false;
+        });
+
+        if (imageIndex === -1) {
+            return res.status(404).json({ message: 'Image not found.' });
+        }
+
+        const [removedImage] = photoDoc.imgarry.splice(imageIndex, 1);
+        const filePath = removedImage?.path ? path.resolve(removedImage.path) : null;
+
+        if (photoDoc.imgarry.length > 0) {
+            await photoDoc.save();
+        } else {
+            await PhotosForSubActivities.deleteOne({ _id: photoId });
+            await SubActivities.updateMany(
+                { imagesID: photoId },
+                { $pull: { imagesID: photoId } }
+            );
+        }
+
+        if (filePath) {
+            fs.unlink(filePath, (err) => {
+                if (err && err.code !== 'ENOENT') {
+                    console.error('Error deleting file:', err);
+                }
+            });
+        }
+
+        res.json({ message: 'Image deleted successfully.' });
+    } catch (error) {
+        console.error('Error deleting image:', error);
+        res.status(500).json({ message: 'Failed to delete image.' });
+    }
+});
+
+// Delete single image for sub task end
+
 
 
 
@@ -1267,6 +1333,44 @@ app.post('/upload-manager-documents', upload.single('document'), async (req, res
 
 
 
+
+
+app.delete('/delete-manager-document/:projectId/:documentId', async (req, res) => {
+    try {
+        const { projectId, documentId } = req.params;
+
+        if (!projectId || !documentId) {
+            return res.status(400).json({ message: 'projectId and documentId are required.' });
+        }
+
+        const document = await DocumentForManager.findById(documentId);
+
+        if (!document) {
+            return res.status(404).json({ message: 'Document not found.' });
+        }
+
+        const documentPath = document.uri ? path.resolve('./upload/images', document.uri) : null;
+
+        await DocumentForManager.deleteOne({ _id: documentId });
+        await Project.updateOne(
+            { _id: projectId },
+            { $pull: { documentsID: documentId } }
+        );
+
+        if (documentPath) {
+            fs.unlink(documentPath, (err) => {
+                if (err && err.code !== 'ENOENT') {
+                    console.error('Error deleting document file:', err);
+                }
+            });
+        }
+
+        res.json({ message: 'Document deleted successfully.' });
+    } catch (error) {
+        console.error('Error deleting manager document:', error);
+        res.status(500).json({ message: 'Failed to delete document.' });
+    }
+});
 
 
 // Create Installments start

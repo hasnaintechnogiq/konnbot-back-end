@@ -63,7 +63,7 @@ router.post("/cliet-approved-co", userAuthenticate, clientAprrovedCo) // Done
 
 // Queries routes
 
-router.post("/add-query-update", addQueryUpdate) // Not used
+// router.post("/add-query-update", addQueryUpdate) // Not used
 router.get("/get-single-query/:_id", authenticate, getSingleQuery)
 router.get("/all-queries", getAllQueries)
 router.get("/get-user-all-queries/:_id", authenticate, getUserAllQueries) // one time used
